@@ -1,0 +1,384 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Notifications | MONOLITH Luxury</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&amp;family=Montserrat:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#000000",
+                      "surface-container-high": "#e8e8e8",
+                      "on-surface": "#1a1c1c",
+                      "error": "#ba1a1a",
+                      "tertiary": "#000000",
+                      "on-primary-container": "#848484",
+                      "outline": "#7e7576",
+                      "surface-container-highest": "#e2e2e2",
+                      "surface-bright": "#f9f9f9",
+                      "secondary-container": "#dcdddd",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#dadada",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-secondary-container": "#5f6161",
+                      "surface": "#f9f9f9",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "tertiary-fixed": "#e2e2e2",
+                      "inverse-primary": "#c6c6c6",
+                      "surface-container-low": "#f3f3f4",
+                      "surface-container": "#eeeeee",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e2e2e2",
+                      "tertiary-container": "#1a1c1c",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-primary-fixed-variant": "#474747",
+                      "secondary": "#5d5f5f",
+                      "primary-container": "#1b1b1b",
+                      "on-secondary-fixed-variant": "#454747",
+                      "inverse-surface": "#2f3131",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#5e5e5e",
+                      "primary-fixed": "#e2e2e2",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#cfc4c5",
+                      "on-surface-variant": "#4c4546",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "on-tertiary-container": "#838484",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f1",
+                      "background": "#f9f9f9",
+                      "on-background": "#1a1c1c",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-primary-fixed": "#1b1b1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "32px",
+                      "margin-desktop": "64px",
+                      "unit": "8px",
+                      "margin-mobile": "20px",
+                      "container-max": "1440px",
+                      "section-gap": "128px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Montserrat"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "button": ["Montserrat"],
+                      "body-md": ["Montserrat"],
+                      "headline-lg": ["Playfair Display"],
+                      "body-lg": ["Montserrat"],
+                      "display-lg": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                      "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .nav-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-underline:hover::after {
+            width: 100%;
+        }
+        body {
+            cursor: default;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-high border-b border-outline-variant dark:border-outline transition-all ease-in-out duration-300 h-20">
+<div class="flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<span class="font-headline-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary">MONOLITH</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 relative nav-underline" href="#">HOME</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 relative nav-underline" href="#">COLLECTIONS</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 relative nav-underline" href="#">CATEGORIES</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 relative nav-underline" href="#">NEW ARRIVALS</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center border-b border-primary py-1">
+<span class="material-symbols-outlined text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-caps font-label-caps w-40 placeholder:text-outline" placeholder="SEARCH" type="text">
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined hover:text-primary transition-colors">favorite</button>
+<button class="material-symbols-outlined hover:text-primary transition-colors">shopping_bag</button>
+<button class="material-symbols-outlined text-primary">person</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap max-w-container-max mx-auto px-margin-desktop min-h-screen">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Side: Account Sidebar -->
+<aside class="md:col-span-3 space-y-12">
+<div class="space-y-4">
+<h2 class="font-headline-md text-headline-md">My Account</h2>
+<p class="font-body-md text-on-surface-variant">Welcome back, Julian</p>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span>DASHBOARD</span>
+</a>
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg">package_2</span>
+<span>MY ORDERS</span>
+</a>
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg">favorite</span>
+<span>WISHLIST</span>
+</a>
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-primary border-r-2 border-primary group" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span>NOTIFICATIONS</span>
+</a>
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span>ACCOUNT SETTINGS</span>
+</a>
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg">credit_card</span>
+<span>PAYMENT METHODS</span>
+</a>
+<div class="pt-8 border-t border-outline-variant">
+<a class="flex items-center gap-3 font-label-caps text-label-caps text-error hover:opacity-70 transition-opacity" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span>LOGOUT</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Right Side: Main Notification Content -->
+<section class="md:col-span-9">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-2">
+<h1 class="font-headline-lg text-headline-lg">Notifications</h1>
+<p class="font-body-md text-on-surface-variant max-w-lg">Stay updated with your orders, offers and account activity.</p>
+</div>
+<div class="flex items-center gap-6">
+<button class="font-label-caps text-label-caps border-b border-primary hover:opacity-60 transition-opacity pb-1">MARK ALL AS READ</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1">CLEAR ALL</button>
+</div>
+</div>
+<!-- Notifications List -->
+<div class="space-y-4">
+<!-- Notification Item: Order Update (Unread) -->
+<div class="group relative bg-surface-container-lowest border border-outline-variant p-6 transition-all duration-300 hover:bg-white">
+<div class="absolute top-6 right-6 h-2 w-2 rounded-full bg-primary"></div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">local_shipping</span>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[20px] leading-tight">Order #MON-9821 Shipped</h3>
+<span class="font-label-caps text-[10px] text-on-surface-variant">2 HOURS AGO</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Your order containing the Wool Oversized Coat has been dispatched and is currently in transit.</p>
+<div class="pt-4 flex gap-4">
+<button class="font-label-caps text-[11px] px-4 py-2 border border-primary hover:bg-primary hover:text-on-primary transition-all">TRACK SHIPMENT</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Item: Wishlist Alert -->
+<div class="group relative bg-surface-container-lowest border border-outline-variant p-6 transition-all duration-300 hover:bg-white">
+<div class="absolute top-6 right-6 h-2 w-2 rounded-full bg-primary"></div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[20px] leading-tight">Back in Stock: Silk Wrap Dress</h3>
+<span class="font-label-caps text-[10px] text-on-surface-variant">5 HOURS AGO</span>
+</div>
+<p class="font-body-md text-on-surface-variant">An item in your wishlist is now available in your size. Limited quantities remaining.</p>
+<div class="pt-4 flex gap-4">
+<button class="font-label-caps text-[11px] px-4 py-2 bg-primary text-on-primary hover:opacity-90 transition-all">SHOP NOW</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Item: Promotion -->
+<div class="group relative bg-surface border border-outline-variant/50 p-6 transition-all duration-300">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">campaign</span>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface-variant">Early Access: Winter Collection</h3>
+<span class="font-label-caps text-[10px] text-on-surface-variant">YESTERDAY</span>
+</div>
+<p class="font-body-md text-on-surface-variant">As a Monolith Member, you now have 24-hour early access to our seasonal curated winter essentials.</p>
+</div>
+</div>
+</div>
+<!-- Notification Item: Security -->
+<div class="group relative bg-surface border border-outline-variant/50 p-6 transition-all duration-300">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">security</span>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface-variant">Login Alert</h3>
+<span class="font-label-caps text-[10px] text-on-surface-variant">OCT 24</span>
+</div>
+<p class="font-body-md text-on-surface-variant">A new login was detected on a Mac OS device in Paris, France. If this wasn't you, please secure your account.</p>
+</div>
+</div>
+</div>
+<!-- Notification Item: Shipping Update -->
+<div class="group relative bg-surface border border-outline-variant/50 p-6 transition-all duration-300">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">check_circle</span>
+</div>
+<div class="flex-grow space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface-variant">Delivered: Order #MON-8711</h3>
+<span class="font-label-caps text-[10px] text-on-surface-variant">OCT 22</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Your order has been delivered at the front desk. We hope you enjoy your new purchase.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Hidden by Default -->
+<div class="hidden flex-col items-center justify-center py-24 text-center space-y-6">
+<span class="material-symbols-outlined text-6xl text-outline-variant">notifications_off</span>
+<div class="space-y-2">
+<h3 class="font-headline-md text-headline-md">No Notifications</h3>
+<p class="font-body-md text-on-surface-variant">We'll let you know when something important happens.</p>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-label-caps text-label-caps mt-4">GO TO SHOP</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Newsletter Section -->
+<section class="bg-surface-container-low border-t border-outline-variant py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center space-y-8">
+<div class="space-y-4">
+<h2 class="font-headline-lg text-headline-lg">Join the Monolith</h2>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto text-on-surface-variant">Subscribe for exclusive early access to new collections, editorial journals, and private events.</p>
+</div>
+<form class="max-w-xl mx-auto flex flex-col md:flex-row gap-4 items-end">
+<div class="flex-grow w-full">
+<input class="w-full bg-transparent border-b border-primary py-3 px-1 focus:ring-0 focus:outline-none font-body-md placeholder:text-outline-variant" placeholder="EMAIL ADDRESS" type="email">
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary px-12 py-3 font-label-caps text-label-caps hover:opacity-90 transition-opacity" type="submit">SUBSCRIBE</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full pt-section-gap pb-12 bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-4 space-y-6">
+<span class="font-headline-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary">MONOLITH</span>
+<p class="font-body-md text-on-surface-variant dark:text-surface-variant pr-12">Redefining luxury through minimalist design and uncompromising quality. Curated for the modern individual.</p>
+</div>
+<div class="md:col-span-2 space-y-4">
+<h4 class="font-label-caps text-label-caps text-primary mb-6">SERVICES</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">STORE LOCATOR</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">CONTACT</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">RETURNS</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">SHIPPING</a></li>
+</ul>
+</div>
+<div class="md:col-span-2 space-y-4">
+<h4 class="font-label-caps text-label-caps text-primary mb-6">ABOUT</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">JOURNAL</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">SUSTAINABILITY</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-opacity" href="#">CAREERS</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 space-y-6">
+<h4 class="font-label-caps text-label-caps text-primary mb-6">FOLLOW</h4>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">INSTAGRAM</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">PINTEREST</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">X</a>
+</div>
+</div>
+</div>
+<div class="mt-24 px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center border-t border-outline-variant/30 pt-8">
+<span class="text-on-surface-variant dark:text-surface-variant font-body-md text-sm">© 2024 MONOLITH. All rights reserved.</span>
+<div class="flex gap-8 mt-4 md:mt-0">
+<a class="text-xs font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="text-xs font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+<a class="text-xs font-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">ACCESSIBILITY</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for notification dismissal or read status
+        document.querySelectorAll('.group').forEach(notification => {
+            notification.addEventListener('click', () => {
+                const dot = notification.querySelector('.bg-primary.rounded-full');
+                if (dot) {
+                    dot.style.opacity = '0';
+                    notification.classList.add('opacity-70');
+                }
+            });
+        });
+
+        // Simple Clear All logic simulation
+        const clearBtn = document.querySelector('button:contains("CLEAR ALL")') || document.querySelectorAll('.flex.items-center.gap-6 button')[1];
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                const list = document.querySelector('.space-y-4');
+                const emptyState = document.querySelector('.hidden.flex-col.items-center');
+                if (confirm('Are you sure you want to clear all notifications?')) {
+                    list.style.display = 'none';
+                    emptyState.classList.remove('hidden');
+                    emptyState.classList.add('flex');
+                }
+            });
+        }
+    </script>
+</body></html>

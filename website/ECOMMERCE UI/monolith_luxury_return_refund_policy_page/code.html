@@ -1,0 +1,360 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Returns &amp; Refunds | MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#dcdddd",
+                    "surface-tint": "#5e5e5e",
+                    "tertiary": "#000000",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary-container": "#1b1b1b",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-container": "#eeeeee",
+                    "outline-variant": "#cfc4c5",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#4c4546",
+                    "secondary": "#5d5f5f",
+                    "surface-dim": "#dadada",
+                    "on-primary-fixed": "#1b1b1b",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "secondary-fixed": "#e2e2e2",
+                    "inverse-primary": "#c6c6c6",
+                    "primary-fixed": "#e2e2e2",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-container-low": "#f3f3f4",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface": "#f9f9f9",
+                    "inverse-surface": "#2f3131",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "background": "#f9f9f9",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-container": "#838484",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "primary": "#000000",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-container": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "outline": "#7e7576",
+                    "on-secondary-container": "#5f6161",
+                    "on-primary-container": "#848484"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "container-max": "1440px",
+                    "section-gap": "128px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Montserrat"],
+                    "button": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .vignette-overlay {
+            background: linear-gradient(to bottom, rgba(249,249,249,0) 0%, rgba(249,249,249,1) 100%);
+        }
+        ::selection {
+            background: #000000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center h-20 px-margin-desktop w-full max-w-container-max mx-auto transition-all duration-500 ease-in-out">
+<div class="flex items-center gap-gutter">
+<span class="text-headline-md font-headline-md tracking-widest text-primary">MONOLITH</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">COLLECTIONS</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">MEN</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">WOMEN</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">EDITORIAL</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">ARCHIVE</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-40">
+<!-- Hero Header -->
+<header class="px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+<div class="md:w-2/3">
+<p class="font-label-caps text-label-caps text-secondary mb-4">CUSTOMER CARE</p>
+<h1 class="font-headline-lg text-headline-lg md:text-display-lg leading-tight mb-8">Returns &amp; Refunds</h1>
+<div class="h-px w-24 bg-primary"></div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<div class="px-margin-desktop max-w-container-max mx-auto pb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Sidebar Navigation -->
+<aside class="md:col-span-3 hidden md:block">
+<nav class="sticky top-32 space-y-6">
+<a class="block font-label-caps text-label-caps text-primary border-l-2 border-primary pl-4 transition-all duration-300" href="#eligibility">ELIGIBILITY</a>
+<a class="block font-label-caps text-label-caps text-secondary hover:text-primary border-l-2 border-transparent pl-4 transition-all duration-300" href="#process">RETURN PROCESS</a>
+<a class="block font-label-caps text-label-caps text-secondary hover:text-primary border-l-2 border-transparent pl-4 transition-all duration-300" href="#timeline">REFUND TIMELINE</a>
+<a class="block font-label-caps text-label-caps text-secondary hover:text-primary border-l-2 border-transparent pl-4 transition-all duration-300" href="#exchanges">EXCHANGE POLICY</a>
+<a class="block font-label-caps text-label-caps text-secondary hover:text-primary border-l-2 border-transparent pl-4 transition-all duration-300" href="#damaged">DAMAGED PRODUCTS</a>
+<a class="block font-label-caps text-label-caps text-secondary hover:text-primary border-l-2 border-transparent pl-4 transition-all duration-300" href="#cancellation">CANCELLATIONS</a>
+</nav>
+</aside>
+<!-- Policy Sections -->
+<div class="md:col-span-9 space-y-24">
+<!-- Return Eligibility -->
+<section class="scroll-mt-32" id="eligibility">
+<h2 class="font-headline-md text-headline-md mb-8">Return Eligibility</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="space-y-6">
+<p class="font-body-lg text-body-lg text-secondary">Our curation is meticulous, and we want your experience to be flawless. Items may be returned within 14 days of delivery provided they remain in their original condition.</p>
+<ul class="space-y-4 font-body-md text-on-surface">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span>Original tags and security seals must remain intact.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span>Items must be unworn, unwashed, and unaltered.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span>Original packaging and accessories must be included.</span>
+</li>
+</ul>
+</div>
+<div class="border border-outline-variant p-8 bg-surface-container-low">
+<h3 class="font-label-caps text-label-caps mb-4">NON-RETURNABLE ITEMS</h3>
+<p class="font-body-md text-secondary mb-6 italic">For hygiene and exclusivity reasons, the following are final sale:</p>
+<ul class="space-y-2 font-label-caps text-[10px] text-on-surface-variant">
+<li>INTIMATES &amp; SWIMWEAR</li>
+<li>BESPOKE / CUSTOM ORDERS</li>
+<li>FRAGRANCES (IF UNSEALED)</li>
+<li>ARCHIVE SALE ITEMS</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Return Process -->
+<section class="scroll-mt-32" id="process">
+<h2 class="font-headline-md text-headline-md mb-12">The Return Process</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 border border-outline-variant hover:bg-surface-container transition-colors duration-500">
+<span class="font-headline-md text-surface-dim mb-4 block">01</span>
+<h4 class="font-label-caps text-label-caps mb-4">INITIATE</h4>
+<p class="font-body-md text-secondary">Access your account portal and select the items for return to generate a RAN (Return Authorization Number).</p>
+</div>
+<div class="p-8 border border-outline-variant hover:bg-surface-container transition-colors duration-500">
+<span class="font-headline-md text-surface-dim mb-4 block">02</span>
+<h4 class="font-label-caps text-label-caps mb-4">PACKAGE</h4>
+<p class="font-body-md text-secondary">Secure items in original shipping box. Affix the provided pre-paid DHL Express label to the exterior.</p>
+</div>
+<div class="p-8 border border-outline-variant hover:bg-surface-container transition-colors duration-500">
+<span class="font-headline-md text-surface-dim mb-4 block">03</span>
+<h4 class="font-label-caps text-label-caps mb-4">DISPATCH</h4>
+<p class="font-body-md text-secondary">Schedule a complimentary collection or drop off at any authorized concierge point.</p>
+</div>
+</div>
+</section>
+<!-- Refund Timeline & Interactive Visual -->
+<section class="scroll-mt-32 relative" id="timeline">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-md text-headline-md mb-8">Refund Timeline</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-6">
+                                    Quality inspection occurs within 48 hours of receipt at our atelier. Once approved, refunds are initiated immediately to your original payment method.
+                                </p>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant pb-2">
+<span class="font-label-caps text-label-caps">INSPECTION</span>
+<span class="font-body-md">1-2 Business Days</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant pb-2">
+<span class="font-label-caps text-label-caps">PROCESSING</span>
+<span class="font-body-md">2-3 Business Days</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant pb-2">
+<span class="font-label-caps text-label-caps">BANK CLEARANCE</span>
+<span class="font-body-md">5-10 Business Days</span>
+</div>
+</div>
+</div>
+<div class="aspect-square bg-surface-container-highest relative overflow-hidden group">
+<img class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="An ultra-minimalist, high-fashion editorial shot of a white silk garment being carefully folded in a bright, modern studio. The lighting is soft and ethereal, emphasizing the premium texture of the fabric. The composition is clean and focused, utilizing a limited palette of white and soft grey tones to evoke a sense of quiet luxury and meticulous care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb8MEbBSdEYmqpBB39yOMdk4iD5xuIldr19KM-38PBkJFHKT1QNhumdxdT8TVUoNibvrJer1Kqn5-cn7C0t6b1faSoLRqGCoR3RqPzL2Q_9li0qMuUoY8XwzeGKr1ZemXCIV0FJkBy6bg-x_kTCHiHrrdpiATZoROjMBwdvyLD22gQf0crcc1WDe6TI2tseIJ7J5V1XdLfQ9Qw--Sg4NWBL844wN8ocNxfSCPFna38N3EAVFMSZFPhvA">
+<div class="absolute inset-0 bg-primary/5 flex items-center justify-center pointer-events-none">
+<div class="w-1/2 h-px bg-white/20 animate-pulse"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Exchange & Damaged Policy -->
+<div class="grid md:grid-cols-2 gap-gutter">
+<section class="scroll-mt-32 p-12 bg-primary text-on-primary" id="exchanges">
+<h2 class="font-headline-md text-headline-md mb-6">Exchange Policy</h2>
+<p class="font-body-md mb-8 opacity-80">Prefer a different size or shade? We offer seamless exchanges within the 14-day window. Contact our concierge for immediate inventory reservation.</p>
+<button class="font-label-caps text-label-caps border border-on-primary px-8 py-3 hover:bg-on-primary hover:text-primary transition-all duration-300">RESERVE SIZE</button>
+</section>
+<section class="scroll-mt-32 p-12 border border-primary" id="damaged">
+<h2 class="font-headline-md text-headline-md mb-6">Damaged Products</h2>
+<p class="font-body-md text-secondary mb-8">In the rare event of a transit-related defect, please notify us within 24 hours of delivery. We will arrange an immediate priority replacement.</p>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="font-label-caps text-label-caps underline">CLAIM@MONOLITH.COM</span>
+</div>
+</section>
+</div>
+<!-- Cancellation Policy -->
+<section class="scroll-mt-32 pt-12 border-t border-outline-variant" id="cancellation">
+<div class="max-w-2xl">
+<h2 class="font-headline-md text-headline-md mb-6">Order Cancellation</h2>
+<p class="font-body-md text-secondary mb-4">Orders may be cancelled within 60 minutes of placement. After this window, the logistics cycle is initiated and the standard return process must be followed.</p>
+<p class="font-body-md text-secondary italic">Note: Priority shipping orders move immediately to fulfillment and cannot be cancelled.</p>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- Visual Anchor -->
+<section class="h-[614px] relative overflow-hidden px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+<div class="w-full h-full bg-cover bg-center grayscale" data-alt="A wide-angle editorial shot of a minimalist warehouse interior with high ceilings and stark white walls. A single, perfectly packaged box sits on a concrete floor in a pool of natural sunlight streaming from a high window. The aesthetic is extremely clean, modern, and high-contrast, symbolizing the precision and care of the brand's logistics and returns process." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDttCAHVKBL8ySFTNsDSb9Tz1Pc6w98wAv4aWgOUG0HhcIg1hnfzrLvZuQ2kCYx0AYyMs7OoJ2cyKKH6BpPE1t5uHooPsUCYCqHvHdQJZEoo8AycrChBItrXUNiYFgUjqOdXNirsKBt0QjiV_EH84lJiXwOBBspxx-SV-icEGB3x3okS8k8_km90SPavqrPjkPTXfhC4MzVsBC6P8ewg6dPZ9zfpVO1jsn6JP6462uMfrWzb0ecgHSx4A')"></div>
+<div class="absolute inset-0 bg-surface/20 flex items-center justify-center">
+<div class="bg-surface p-12 border border-outline-variant max-w-md text-center">
+<h3 class="font-headline-md text-headline-md mb-4">Dedicated Support</h3>
+<p class="font-body-md text-secondary mb-8">Our concierge team is available 24/7 for bespoke assistance regarding your return.</p>
+<div class="space-y-4">
+<a class="block font-label-caps text-label-caps text-primary hover:underline" href="mailto:concierge@monolith.com">CONCIERGE@MONOLITH.COM</a>
+<p class="font-label-caps text-label-caps text-secondary">+1 (888) MONOLITH</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="md:col-span-4">
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">MONOLITH</span>
+<p class="mt-6 font-body-md text-secondary max-w-xs">Curated architectural silhouettes for the modern individual.</p>
+</div>
+<div class="md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">NAVIGATION</span>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">COLLECTIONS</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">EDITORIAL</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">THE MONOLITH JOURNAL</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">LEGAL</span>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">PRIVACY POLICY</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">TERMS OF SERVICE</a>
+<a class="font-label-caps text-label-caps text-primary underline" href="#">SHIPPING &amp; RETURNS</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">SOCIAL</span>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">INSTAGRAM</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">PINTEREST</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300" href="#">CONTACT</a>
+</div>
+</div>
+<div class="md:col-span-12 mt-16 pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-caps text-[10px] text-secondary">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="language">language</span>
+<span class="font-label-caps text-[10px] text-secondary">GLOBAL / ENGLISH</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll spy for side nav
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('aside nav a');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'border-primary');
+                link.classList.add('text-secondary', 'border-transparent');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('text-primary', 'border-primary');
+                    link.classList.remove('text-secondary', 'border-transparent');
+                }
+            });
+        });
+
+        // Sticky header transition
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('h-16', 'bg-surface/95', 'backdrop-blur-md');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16', 'bg-surface/95', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Men | MONOLITH LUXURY</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1b1b1b",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "outline": "#7e7576",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-primary-fixed": "#1b1b1b",
+                    "tertiary": "#000000",
+                    "background": "#f9f9f9",
+                    "surface-bright": "#f9f9f9",
+                    "surface-container-highest": "#e2e2e2",
+                    "primary": "#000000",
+                    "on-background": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "surface-variant": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "error": "#ba1a1a",
+                    "secondary": "#5d5f5f",
+                    "on-surface": "#1a1c1c",
+                    "surface-container": "#eeeeee",
+                    "on-primary-container": "#848484",
+                    "tertiary-container": "#1a1c1c",
+                    "primary-fixed": "#e2e2e2",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "outline-variant": "#cfc4c5",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "on-surface-variant": "#4c4546",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#838484",
+                    "tertiary-fixed": "#e2e2e2",
+                    "secondary-container": "#dcdddd",
+                    "surface-dim": "#dadada",
+                    "surface-container-high": "#e8e8e8",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-secondary-container": "#5f6161",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary-fixed": "#1a1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "128px",
+                    "margin-mobile": "20px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-md": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            transition: font-variation-settings 0.3s ease;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .product-card:hover .second-image { opacity: 1; }
+        .product-card:hover .primary-image { opacity: 0; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .action-button-group {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card:hover .action-button-group {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .wishlist-btn {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        .product-card:hover .wishlist-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-background text-primary font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky z-50 bg-background dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop py-6">
+<div class="flex items-center gap-12">
+<a class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary" href="#">MONOLITH</a>
+<div class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-primary dark:text-on-primary border-b border-primary dark:border-on-primary pb-1" href="#">Categories</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">New Arrivals</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex border-b border-primary items-center pb-1">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 font-label-caps text-label-caps w-32 placeholder-secondary" placeholder="SEARCH" type="text">
+</div>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+</div>
+</div>
+</nav>
+<!-- Editorial Hero Banner -->
+<header class="relative h-[50vh] w-full overflow-hidden bg-surface-container">
+<div class="absolute inset-0 grayscale contrast-125 transition-transform duration-[3000ms] hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGPQOk6iZWR8JE8ZK9UBA1KYtzip0hXSS5KWZKm1MrlmXyo6w5j7GmvTIkAUyoCvxGr-ugobJyf025tNF7zvDHBIk-VdDdOrAT8bHrws5ba1l3zfw0OPIaCqY13A7h6CenkerB0RiY-MzK6-LnY50eysXq8ZkPPnut6Q4KRnMnf5QZ12PZ2yZx57sFsHbppJYXoaAnuCHM7t9hP6y0L1IZ-yQjCB-tLVivwM_gAjb-sF6wWqv5b5k7mQ'); background-size: cover; background-position: center;">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="relative z-10 h-full max-w-container-max mx-auto px-margin-desktop flex flex-col justify-end pb-16">
+<h1 class="font-display-lg text-display-lg text-white mb-2">Men</h1>
+<p class="font-body-lg text-body-lg text-white/90 max-w-xl">
+            A definitive collection of architectural silhouettes, artisanal fabrics, and precision tailoring.
+        </p>
+</div>
+</header>
+<!-- Controls Bar -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-12">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-outline-variant pb-8">
+<div class="flex items-center gap-12">
+<button class="group flex items-center gap-2 font-label-caps text-label-caps hover:text-secondary transition-colors" onclick="toggleFilters()">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                FILTERS
+            </button>
+<div class="hidden md:block h-4 w-[1px] bg-outline-variant"></div>
+<div class="font-label-caps text-label-caps text-secondary">
+                32 ITEMS
+            </div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 group cursor-pointer">
+<span class="font-label-caps text-label-caps">SORT BY</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<main class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+<!-- Product Card 1 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low">
+<div class="primary-image absolute inset-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEKWnpn1_Tib7O2_6Yoq1niepB3Fm78EBBmngEc7ZIGUs8oDWKNfz6gBnwFy0TVlIj7jKthsEaIvYu6rehh3iCK_3pnvUu09vWayXYVwBcIElGIu1VkeKqiHzZWdIWtTWe-q5TBp5UF68YRhIsGTLRb9R_aEPYqekRfBtvFuDDV0RnAfz7sLwZvsF6zE39yfDY-ibu0ej5Kq4x4AO5BxDnXnO8nDieLmpWB4LJ2g7k-fLjucxwQY_P0w')"></div>
+<div class="second-image absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe_oriS2-aBSJcPmU1ecF6Z_TLXeENkrpoH1OOD3vzVreMJ_lmzXeJHHvTQ0YyyH5G4_a6v0hQd9jPALlQymgTq_D5-15a6vLmvugo5OPIckA7vqUspki12E00qZni7-tlCP8N6LDSmBXh531PkyKXjGdDwN_N6-EbnIkSUtTEZ3K5MvOYr8DlE0r6f1FRELDFlaYoqj28-rleq0FNfCw5u0XOVt__BSlgz2_TMgje26DQmnemP7gNrg')"></div>
+<!-- Light Overlay -->
+<div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-colors duration-500"></div>
+<!-- Wishlist Button -->
+<button class="wishlist-btn absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-primary shadow-sm hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<!-- Bottom Action Buttons -->
+<div class="action-button-group absolute bottom-8 left-0 right-0 px-6 z-20 flex justify-center gap-4"><button class="w-10 h-10 flex items-center justify-center bg-white/95 backdrop-blur-sm text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('Product', '$000')"><span class="material-symbols-outlined text-[18px]">visibility</span></button><button class="flex-1 flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary font-label-caps text-[10px] tracking-widest py-3 px-6 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-[16px]">shopping_bag</span> ADD TO CART</button></div>
+</div>
+<div class="mt-6 flex flex-col gap-1"><div class="flex justify-between items-baseline"><h3 class="font-headline-md text-body-lg text-primary">{{PRODUCT_NAME}}</h3><p class="font-label-caps text-label-caps text-primary">{{PRODUCT_PRICE}}</p></div><p class="font-label-caps text-[11px] text-secondary tracking-widest uppercase">{{PRODUCT_LABEL}}</p></div>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low">
+<div class="primary-image absolute inset-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGHYDcNvZlllmEdqBDIxrT4GIBoPZAjaAT7LB0cO45u9EvuBAocskcnzKS8lX0w9_9si6sxVaakNyZcKu8cq70r7aHLcUrVCpNRdlNbUj7xuxJHhu7D6qDsVbWWEBmpO3T2dM_KaxTMkiN2a1lTfY-xGOaRLOAg_YBAr-OyPMN2pUtjyI03o_Xu7gAvEbr4awvHeNcXAqtCY_VR0Nr8ddk6PxwXj0er6DL1DkNTB7fDHFOST-QGegKLQ')"></div>
+<div class="second-image absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD69gJzEgeOK4O0xXFt_LaozqWpLU-KvnH9C9DRp5FoTqlzfplWjIOrY8GW77lDwmSAaAP5Bxi_Ss_MnbLrzbZaggOaCDmZd5deoLP6YW_Rx2zMtrUSF_2mycpwBmULNsNIy5noVPMARSoQYNOT8Q8MMllPfAwo1gTuF3WyjJeUOM-Xw07PMKU3tzmDcs4OAeIYgdgYseVIA7-Hv0_AzplRaC_rhnGYGcmylJ_PGrdo8-qyiRox60bN8A')"></div>
+<div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="wishlist-btn absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-primary shadow-sm hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="action-button-group absolute bottom-8 left-0 right-0 px-6 z-20 flex justify-center gap-4"><button class="w-10 h-10 flex items-center justify-center bg-white/95 backdrop-blur-sm text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('Product', '$000')"><span class="material-symbols-outlined text-[18px]">visibility</span></button><button class="flex-1 flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary font-label-caps text-[10px] tracking-widest py-3 px-6 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-[16px]">shopping_bag</span> ADD TO CART</button></div>
+</div>
+<div class="mt-6 flex flex-col gap-1"><div class="flex justify-between items-baseline"><h3 class="font-headline-md text-body-lg text-primary">{{PRODUCT_NAME}}</h3><p class="font-label-caps text-label-caps text-primary">{{PRODUCT_PRICE}}</p></div><p class="font-label-caps text-[11px] text-secondary tracking-widest uppercase">{{PRODUCT_LABEL}}</p></div>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low">
+<div class="primary-image absolute inset-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmeAKApefGxkSYSwRdrYEu30eC26U2c4BjStOPpAh1rrCDpi_uk5nqx8tnXON_luMkQgMjRS0iwwWK7LuM_soCi6b4W-JT6UT8PtNyTJEyW2UTleruqqfIYe-57YKM9KuefbVJe7g0l0HYAF0GCGlenAsSKo9WUhELRa9U88f4uujOMHkeZiETimeuRJZb0jgjJuK4PPinJImCsG7UKB7fDTKSwJ7YrkC6yj6vb4dRak0WmdgfcRYw8Q')"></div>
+<div class="second-image absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCeby3wWv98DQVCECa7FCbje0yPcqEnuC3zkgzfaLZtXMMo7GoXUtFtf3n-oTOGi8GSJivb930VP0cfatrbtfDOcCy0dZGOP2YSlOo1Ab7kMpIOIYDgWLhFOYJYZqtPWYJtRRgO7xUpEuPj7hAAUBT175dqy0GVaBSVvX-Po871oummaLRz6sWQckWN3Gbn_ZcLAJenIAcn5_dqTxg58C-feI-O2mPPu7nSu42E2zcJPwxa8ID0VG-t6g')"></div>
+<div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="wishlist-btn absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-primary shadow-sm hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="action-button-group absolute bottom-8 left-0 right-0 px-6 z-20 flex justify-center gap-4"><button class="w-10 h-10 flex items-center justify-center bg-white/95 backdrop-blur-sm text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('Product', '$000')"><span class="material-symbols-outlined text-[18px]">visibility</span></button><button class="flex-1 flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary font-label-caps text-[10px] tracking-widest py-3 px-6 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-[16px]">shopping_bag</span> ADD TO CART</button></div>
+</div>
+<div class="mt-6 flex flex-col gap-1"><div class="flex justify-between items-baseline"><h3 class="font-headline-md text-body-lg text-primary">{{PRODUCT_NAME}}</h3><p class="font-label-caps text-label-caps text-primary">{{PRODUCT_PRICE}}</p></div><p class="font-label-caps text-[11px] text-secondary tracking-widest uppercase">{{PRODUCT_LABEL}}</p></div>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low">
+<div class="primary-image absolute inset-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwqcNCNaPHRRhoPg4qmMOeiXvtSC9rLhlxFpsfhDhH8tZ50YYlk9TnxiTfCWSY282kFXuY_vkfunRhaYR1NyuYSmm5n2sMbhxtrFyxMn8OBoqyLXZyX3WiNwSoiH-_r9Oy5NAPjNc59m3qfBclIUyUr4gluMj0tmTp6sGiZcp30kA1Zz2RbDMvW-sgtSIUg4R6lBIRt9E7dA-33WKwZ_PymrBhocj3I1xINiq8OeFKY4-esLV8e9XsNA')"></div>
+<div class="second-image absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBnY6X99tcQPAz-ikyCiktSmrRh6DQf_AEX36nztRncZmUyhYqfipksbtIseV4506MmC7vPuKXTi7BBzPwgySdn5owyiduZoJ3S1EEg_59hk9YgF-cqE_AVeRMPHm8N71iGM7rkHfxNFTHV1W5bpfAVCxemRypNmMWuGW3czhos1F9M7rGDDuhmX5l2Kk5dYESuCe3UH1ie5GybYFdSuU_V6IKW9g9Ql1nAPgfamTQ5GFb4qCHDMbp7PQ')"></div>
+<div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="wishlist-btn absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-primary shadow-sm hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="action-button-group absolute bottom-8 left-0 right-0 px-6 z-20 flex justify-center gap-4"><button class="w-10 h-10 flex items-center justify-center bg-white/95 backdrop-blur-sm text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('Product', '$000')"><span class="material-symbols-outlined text-[18px]">visibility</span></button><button class="flex-1 flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary font-label-caps text-[10px] tracking-widest py-3 px-6 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-[16px]">shopping_bag</span> ADD TO CART</button></div>
+</div>
+<div class="mt-6 flex flex-col gap-1"><div class="flex justify-between items-baseline"><h3 class="font-headline-md text-body-lg text-primary">{{PRODUCT_NAME}}</h3><p class="font-label-caps text-label-caps text-primary">{{PRODUCT_PRICE}}</p></div><p class="font-label-caps text-[11px] text-secondary tracking-widest uppercase">{{PRODUCT_LABEL}}</p></div>
+</div>
+<!-- Product Card 5 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low">
+<div class="primary-image absolute inset-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCvYW0gEiZ1yIrBelAC5DQOHUydEKFaezk_L5grl0KFZWK4v7N5u2Fwvj-F9QN_30q31Fll00rvb_ID_mUnsUCzXBfqbLx6KufJxWx4fD8Jn-yVcRKWUih7a9fiIniFPXSP_rYesFxiwBY_v9GrrNt1Aglw0RbUKAHCikwd3WaFKoGlNn7LL6_BhTceBsNMEvJM_-NmUtJCEVqYoF8I-vIAPdvrhwHbF5HjQiezxm4qz1NFJDXB3xxqug')"></div>
+<div class="second-image absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNmDRMvtpG4bDITIsthl5SrT19nZPwue2YfbbJrfbzvikIkVdfTim52f2b-TS_-5wiOTLTdch3UvtSepcqy2yV_o0xoNfabdMCtUt288FHmT-aEtup0CVA51Xvmm_UallUTUyVqBuw8X0yKh6Q4nnn-27m9UtgmwBsaA9GKEfZLBpvBQi8TwubckMpZ58dpbH7QV3i7mQAdKt4GoXDi27JBocf7BxaROPbauAHLuOkk5VDKQPDMrw9_Q')"></div>
+<div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="wishlist-btn absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-primary shadow-sm hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="action-button-group absolute bottom-8 left-0 right-0 px-6 z-20 flex justify-center gap-4"><button class="w-10 h-10 flex items-center justify-center bg-white/95 backdrop-blur-sm text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('Product', '$000')"><span class="material-symbols-outlined text-[18px]">visibility</span></button><button class="flex-1 flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary font-label-caps text-[10px] tracking-widest py-3 px-6 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-[16px]">shopping_bag</span> ADD TO CART</button></div>
+</div>
+<div class="mt-6 flex flex-col gap-1"><div class="flex justify-between items-baseline"><h3 class="font-headline-md text-body-lg text-primary">{{PRODUCT_NAME}}</h3><p class="font-label-caps text-label-caps text-primary">{{PRODUCT_PRICE}}</p></div><p class="font-label-caps text-[11px] text-secondary tracking-widest uppercase">{{PRODUCT_LABEL}}</p></div>
+</div>
+<!-- Product Card 6 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low">
+<div class="primary-image absolute inset-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_WldC3es9-pXgFsy04DYnlWo9GD9BpmRlKg57VkKHxMMjSvSvvfrPupg3_esOJ63SqDK9HovPczprk8UTlk-ViQoLiK8ovx4_bYJHm4PtkIayAuJbqR6xAFKNME7pDKrEH-FnE2y3AhMvUljWikQF6z0CAt4rj5V6eGeqJkEVIlA7XhZckBAP4ApLTxTATBmCVi_l7V_HpEZYyOEolUbXj-nRJEDp6-q4eyXxgwHW_8cOi8MGgnpDqg')"></div>
+<div class="second-image absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnDGa3oFeIpGwCMFs7mDp1_PNIhcuPXOdF1dam9LHCELrGuAO1MAq_H01l-30A0QaVwvl36PpwTUGiRk7jJ10BIX1aOvA-DUtHq0K-MYSViVPirvocebTtveClmmW9Hi6Ow0H0KEFbwxF2EjbrE0aTX863IijKjLfO913imd0kkrvmV-jjVcQcGcAShVSe2PsdE10e-d3T81OPM7QIi1IRq6FSVU8TCQ7STfnFbRTZXsiSu8nqKzaxLw')"></div>
+<div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="wishlist-btn absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full text-primary shadow-sm hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</button>
+<div class="action-button-group absolute bottom-8 left-0 right-0 px-6 z-20 flex justify-center gap-4"><button class="w-10 h-10 flex items-center justify-center bg-white/95 backdrop-blur-sm text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('Product', '$000')"><span class="material-symbols-outlined text-[18px]">visibility</span></button><button class="flex-1 flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary font-label-caps text-[10px] tracking-widest py-3 px-6 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300"><span class="material-symbols-outlined text-[16px]">shopping_bag</span> ADD TO CART</button></div>
+</div>
+<div class="mt-6 flex flex-col gap-1"><div class="flex justify-between items-baseline"><h3 class="font-headline-md text-body-lg text-primary">{{PRODUCT_NAME}}</h3><p class="font-label-caps text-label-caps text-primary">{{PRODUCT_PRICE}}</p></div><p class="font-label-caps text-[11px] text-secondary tracking-widest uppercase">{{PRODUCT_LABEL}}</p></div>
+</div>
+</div>
+<!-- Load More Section -->
+<div class="mt-section-gap flex flex-col items-center">
+<div class="w-64 h-[1px] bg-outline-variant mb-12"></div>
+<button class="font-label-caps text-label-caps px-12 py-4 border border-primary hover:bg-primary hover:text-white transition-all duration-300">
+            LOAD MORE
+        </button>
+</div>
+</main>
+<!-- Quick View Modal -->
+<div class="fixed inset-0 z-[200] hidden" id="quick-view-modal">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeQuickView()"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl bg-white flex flex-col md:flex-row animate-in fade-in zoom-in duration-300">
+<button class="absolute top-4 right-4 z-50 text-primary" onclick="closeQuickView()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="w-full md:w-1/2 aspect-[4/5] bg-surface-container-low" id="modal-image-container">
+<img alt="" class="w-full h-full object-cover" id="modal-image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=">
+</div>
+<div class="w-full md:w-1/2 p-12 flex flex-col justify-center">
+<span class="font-label-caps text-[12px] text-secondary tracking-widest mb-4 uppercase">New Collection</span>
+<h2 class="font-headline-lg text-headline-md mb-2" id="modal-title"></h2>
+<p class="font-body-lg text-primary mb-8" id="modal-price"></p>
+<p class="font-body-md text-secondary mb-12">
+                Exemplifying the pinnacle of modern luxury, this piece features architectural lines and premium materials sourced from historic Italian mills.
+            </p>
+<button class="w-full bg-primary text-white font-label-caps text-label-caps py-5 tracking-[0.2em] hover:bg-on-surface-variant transition-colors">
+                ADD TO CART
+            </button>
+<button class="mt-6 font-label-caps text-[11px] text-secondary underline underline-offset-4 tracking-widest text-center">
+                VIEW FULL DETAILS
+            </button>
+</div>
+</div>
+</div>
+<!-- Monolith Journal Newsletter Section -->
+<section class="bg-surface-container-low py-section-gap mt-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<span class="font-label-caps text-label-caps text-secondary tracking-[0.3em] uppercase mb-4 block">The Monolith Journal</span>
+<h2 class="font-headline-lg text-headline-lg mb-8 italic">Curation delivered to your inbox.</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto mb-12">
+            Join our collective for early access to seasonal launches, exclusive editorial stories, and invitations to private boutique events.
+        </p>
+<form class="max-w-md mx-auto flex items-center border-b border-primary">
+<input class="bg-transparent border-none focus:ring-0 w-full py-4 font-label-caps text-label-caps placeholder:text-outline" placeholder="ENTER YOUR EMAIL" type="email">
+<button class="font-label-caps text-label-caps hover:translate-x-1 transition-transform" type="submit">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline">
+<div class="max-w-container-max mx-auto px-margin-desktop py-section-gap flex flex-col items-center gap-12 text-center">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-primary">MONOLITH</div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-6">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Store Locator</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Journal</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Sustainability</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Instagram</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Pinterest</a>
+</div>
+<div class="font-body-lg text-body-lg text-secondary opacity-60">
+            © 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.
+        </div>
+</div>
+</footer>
+<!-- Filter Slide-out -->
+<div class="fixed inset-0 z-[100] translate-x-full transition-transform duration-500 ease-in-out" id="filter-drawer">
+<div class="absolute inset-0 bg-black/30 backdrop-blur-md" onclick="toggleFilters()"></div>
+<div class="absolute top-0 right-0 h-full w-full max-w-md bg-white p-margin-desktop flex flex-col">
+<div class="flex justify-between items-center mb-12">
+<h2 class="font-label-caps text-label-caps">FILTERS</h2>
+<button class="material-symbols-outlined" onclick="toggleFilters()">close</button>
+</div>
+<div class="flex-1 overflow-y-auto hide-scrollbar space-y-12">
+<div>
+<h3 class="font-label-caps text-label-caps mb-6">CATEGORY</h3>
+<div class="space-y-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Outerwear</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Knitwear</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Shirts</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Accessories</span>
+</label>
+</div>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps mb-6">MATERIAL</h3>
+<div class="space-y-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Organic Cashmere</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Italian Wool</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded-none border-primary text-primary focus:ring-0" type="checkbox">
+<span class="font-body-md text-secondary group-hover:text-primary">Mulberry Silk</span>
+</label>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-outline-variant flex gap-4">
+<button class="flex-1 border border-primary py-4 font-label-caps text-label-caps hover:bg-surface-container transition-colors">CLEAR</button>
+<button class="flex-1 bg-primary text-white py-4 font-label-caps text-label-caps hover:bg-black/90 transition-colors" onclick="toggleFilters()">APPLY</button>
+</div>
+</div>
+</div>
+<script>
+    function toggleFilters() {
+        const drawer = document.getElementById('filter-drawer');
+        if (drawer.classList.contains('translate-x-full')) {
+            drawer.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        } else {
+            drawer.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function openQuickView(title, price) {
+        const modal = document.getElementById('quick-view-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalImage = document.getElementById('modal-image');
+        
+        modalTitle.textContent = title;
+        modalPrice.textContent = price;
+        
+        const activeCard = event.currentTarget.closest('.product-card');
+        const primaryImgUrl = activeCard.querySelector('.primary-image').style.backgroundImage.slice(5, -2);
+        modalImage.src = primaryImgUrl;
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeQuickView() {
+        const modal = document.getElementById('quick-view-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100');
+                entry.target.classList.remove('opacity-0', 'translate-y-4');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700');
+        observer.observe(card);
+    });
+</script>
+
+
+</body></html>

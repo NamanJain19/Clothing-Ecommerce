@@ -1,0 +1,213 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#e2e2e2",
+            "on-secondary-fixed-variant": "#454747",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#4c4546",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#e2e2e2",
+            "on-tertiary-fixed": "#1a1c1c",
+            "on-primary-container": "#848484",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#f0f1f1",
+            "surface-bright": "#f9f9f9",
+            "surface-variant": "#e2e2e2",
+            "secondary-container": "#dcdddd",
+            "on-error": "#ffffff",
+            "primary-container": "#1b1b1b",
+            "background": "#f9f9f9",
+            "secondary": "#5d5f5f",
+            "on-primary-fixed-variant": "#474747",
+            "inverse-primary": "#c6c6c6",
+            "primary-fixed-dim": "#c6c6c6",
+            "on-tertiary-container": "#838484",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#1b1b1b",
+            "outline": "#7e7576",
+            "primary": "#000000",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-background": "#1a1c1c",
+            "surface-container-low": "#f3f3f4",
+            "outline-variant": "#cfc4c5",
+            "surface-tint": "#5e5e5e",
+            "inverse-surface": "#2f3131",
+            "surface-container": "#eeeeee",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e2e2e2",
+            "on-secondary-container": "#5f6161",
+            "tertiary": "#000000",
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "secondary-fixed-dim": "#c6c6c7",
+            "surface-container-high": "#e8e8e8",
+            "on-tertiary-fixed-variant": "#454747",
+            "on-secondary-fixed": "#1a1c1c",
+            "tertiary-fixed-dim": "#c6c6c6",
+            "on-secondary": "#ffffff",
+            "tertiary-container": "#1a1c1c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "unit": "8px",
+            "margin-mobile": "20px",
+            "container-max": "1440px",
+            "margin-desktop": "64px",
+            "gutter": "32px",
+            "section-gap": "128px"
+          },
+          "fontFamily": {
+            "label-caps": ["Montserrat"],
+            "headline-lg": ["Playfair Display"],
+            "display-lg-mobile": ["Playfair Display"],
+            "body-md": ["Montserrat"],
+            "headline-md": ["Playfair Display"],
+            "body-lg": ["Montserrat"],
+            "display-lg": ["Playfair Display"],
+            "button": ["Montserrat"]
+          },
+          "fontSize": {
+            "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+            "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+            "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+            "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+            "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .input-underline {
+      border: none;
+      border-bottom: 1px solid #000000;
+      background: transparent;
+      padding: 12px 0;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .input-underline:focus {
+      border-bottom: 1px solid #7e7576;
+      box-shadow: none;
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- Main Content Shell -->
+<main class="flex flex-col md:flex-row min-h-screen w-full overflow-hidden">
+<!-- Left: Editorial Column -->
+<section class="hidden md:block md:w-1/2 lg:w-7/12 relative h-screen bg-surface-container overflow-hidden">
+<div class="absolute inset-0 transition-transform duration-[2000ms] ease-out hover:scale-105">
+<img alt="Editorial fashion portrait" class="w-full h-full object-cover grayscale brightness-95" src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4">
+</div>
+<!-- Logo Overlay for Authentication Flow -->
+<div class="absolute top-margin-desktop left-margin-desktop z-10">
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary">MONOLITH</h1>
+</div>
+</section>
+<!-- Right: Authentication Form Column -->
+<section class="w-full md:w-1/2 lg:w-5/12 flex items-center justify-center bg-surface px-margin-mobile md:px-margin-desktop py-12 h-screen overflow-y-auto">
+<!-- Mobile Logo -->
+<div class="absolute top-8 left-margin-mobile md:hidden">
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary">MONOLITH</h1>
+</div>
+<div class="w-full max-w-md fade-in">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Reset Password</h2>
+<p class="font-body-md text-secondary max-w-xs">Please enter your new credentials below to secure your account.</p>
+</div>
+<form action="#" class="space-y-8" onsubmit="return false;">
+<div class="flex flex-col space-y-2">
+<label class="font-label-caps text-label-caps text-secondary" for="new_password">NEW PASSWORD</label>
+<div class="relative flex items-center">
+<input class="input-underline w-full font-body-md text-primary placeholder-outline-variant" id="new_password" name="new_password" placeholder="••••••••" type="password">
+<button class="absolute right-0 text-secondary hover:text-primary transition-colors duration-300" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col space-y-2">
+<label class="font-label-caps text-label-caps text-secondary" for="confirm_password">CONFIRM PASSWORD</label>
+<div class="relative flex items-center">
+<input class="input-underline w-full font-body-md text-primary placeholder-outline-variant" id="confirm_password" name="confirm_password" placeholder="••••••••" type="password">
+<button class="absolute right-0 text-secondary hover:text-primary transition-colors duration-300" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full bg-primary text-on-primary font-button text-button py-5 tracking-[0.2em] hover:bg-secondary transition-all duration-500 ease-in-out group flex items-center justify-center" type="submit">
+              UPDATE PASSWORD
+              <span class="material-symbols-outlined ml-3 text-[18px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-12 text-center">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 relative inline-block after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-500" href="#">
+            BACK TO LOGIN
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Atmospheric Background Interaction -->
+<script>
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        const moveX = (x - 0.5) * 15;
+        const moveY = (y - 0.5) * 15;
+        img.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+      });
+    });
+
+    // Password visibility toggle micro-interaction
+    const toggleButtons = document.querySelectorAll('button[type="button"]');
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = btn.previousElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.innerText = 'visibility';
+        } else {
+          input.type = 'password';
+          icon.innerText = 'visibility_off';
+        }
+      });
+    });
+  </script>
+</body></html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset Password | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c0c6db",
+                    "surface-container-highest": "#e5e2e3",
+                    "primary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#151c27",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#575e70",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#5e6572",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#45464c",
+                    "on-secondary-fixed-variant": "#404754",
+                    "primary-fixed": "#dce2f7",
+                    "on-background": "#1b1b1d",
+                    "inverse-surface": "#303031",
+                    "tertiary-fixed": "#f9debf",
+                    "surface-dim": "#dcd9db",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-tertiary-container": "#968065",
+                    "on-tertiary-fixed": "#261906",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#261906",
+                    "surface-container-high": "#eae7e9",
+                    "inverse-on-surface": "#f3f0f1",
+                    "on-surface": "#1b1b1d",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "surface-bright": "#fcf8fa",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#141b2b",
+                    "on-primary-fixed-variant": "#404758",
+                    "on-primary-container": "#7d8497",
+                    "surface": "#fcf8fa",
+                    "primary-fixed-dim": "#c0c6db",
+                    "tertiary": "#000000",
+                    "surface-container-low": "#f6f3f4",
+                    "background": "#fcf8fa",
+                    "outline-variant": "#c6c6cd",
+                    "outline": "#76777d",
+                    "secondary-fixed": "#dce2f3",
+                    "on-primary-fixed": "#141b2b",
+                    "surface-container": "#f0edee",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e5e2e3",
+                    "secondary": "#585f6c",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#dce2f3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-sm": "0.5rem",
+                    "space-lg": "1.5rem",
+                    "space-2xl": "3rem",
+                    "gutter": "1.5rem",
+                    "space-xl": "2rem",
+                    "space-md": "1rem",
+                    "space-xs": "0.25rem",
+                    "container-margin": "2rem"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8fa;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .luxury-gradient {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #111827;
+            box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<main class="flex min-h-screen">
+<!-- Left Side: Atmospheric/Brand Visual (Hidden on mobile) -->
+<section class="hidden lg:flex lg:w-1/2 relative luxury-gradient overflow-hidden items-center justify-center p-space-2xl">
+<!-- Background Animation Overlay -->
+
+<div class="relative z-10 text-center max-w-lg">
+<div class="mb-space-lg flex justify-center">
+<span class="material-symbols-outlined text-[64px] text-surface" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<h1 class="font-display text-display text-surface mb-space-md">Atelier Admin</h1>
+<p class="font-body-lg text-body-lg text-surface/70 leading-relaxed">
+                    Secure access to the luxury inventory and operations suite. Maintain the standard of excellence with quiet authority.
+                </p>
+<!-- Decorative Elements -->
+<div class="mt-space-2xl flex items-center justify-center space-x-space-md opacity-50">
+<div class="h-px w-12 bg-surface"></div>
+<span class="font-label-sm text-label-sm text-surface uppercase tracking-widest">Est. 1924</span>
+<div class="h-px w-12 bg-surface"></div>
+</div>
+</div>
+<!-- Full-bleed background image behind shader -->
+<div class="absolute inset-0 -z-10" data-alt="A high-end, minimalist architectural interior of a luxury fashion atelier. The scene features clean lines, white marble floors, and soft cinematic lighting that emphasizes texture and depth. A palette of deep blacks and pristine whites dominates, creating a sense of quiet authority and professional elegance. The atmosphere is serene and meticulously organized, reflecting a high-standard retail environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_DdrvugQ5stUNnFKUI_5wFeASAtELs4GW1y5JXK9Tsho1P7kkqzPCaSwj9ZGcaXftkPk0LgFM-qBEiXqpAv2pXBQE2W-vWzlRAuo6gt_tWRil1wtz8B0-Mo4QwMDC1mJqZHXLT2ViM58WUdDasFQ4lY7P6A5nZl8Cw2tuWfU39ZIeYNI67QuFYd_dQncdlWTfaU5H-gHegZWG-9CtUKVC6kpIBdK_mmdcrk1IOqnrRQ6YD4nFVsxWKg')"></div>
+</section>
+<!-- Right Side: Transactional Content -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-space-xl bg-surface">
+<div class="w-full max-w-md">
+<!-- Mobile Header (Visible only on mobile) -->
+<div class="lg:hidden flex items-center mb-space-xl">
+<span class="material-symbols-outlined text-primary text-[32px] mr-space-sm" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight">Atelier Admin</span>
+</div>
+<!-- Reset Password Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-xl shadow-sm">
+<header class="mb-space-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">Reset Password</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Please choose a strong password to protect your admin account.</p>
+</header>
+<form class="space-y-space-lg" id="resetForm" onsubmit="return handleReset(event)">
+<!-- New Password Field -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="new_password">New Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" style="font-size: 20px;">lock</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md transition-all input-focus-ring" id="new_password" name="new_password" placeholder="••••••••" required="" type="password"/>
+</div>
+<p class="text-[11px] text-outline px-1">Must be at least 8 characters long.</p>
+</div>
+<!-- Confirm Password Field -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="confirm_password">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" style="font-size: 20px;">verified_user</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md transition-all input-focus-ring" id="confirm_password" name="confirm_password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-10 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-on-background/90 active:scale-[0.98] transition-all duration-200" type="submit">
+                            Update Password
+                            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Action -->
+<div class="mt-space-xl pt-space-lg border-t border-outline-variant flex justify-center">
+<a class="inline-flex items-center gap-2 text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">keyboard_backspace</span>
+                            Back to Login
+                        </a>
+</div>
+</div>
+<!-- Helper Support Text -->
+<footer class="mt-space-xl text-center">
+<p class="font-caption text-caption text-outline">
+                        Trouble resetting? <a class="text-primary font-medium hover:underline" href="#">Contact System Administrator</a>
+</p>
+</footer>
+</div>
+</section>
+</main>
+<!-- Success Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-space-md" id="successModal">
+<div class="absolute inset-0 bg-on-background/20 backdrop-blur-sm"></div>
+<div class="relative bg-surface rounded-xl border border-outline-variant p-space-xl max-w-sm w-full shadow-xl animate-in fade-in zoom-in duration-300">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-green-600 text-[40px]">check_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-space-xs">Password Updated</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">Your security credentials have been successfully refreshed. You can now log in with your new password.</p>
+<button class="w-full h-10 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-on-background/90 transition-all" onclick="window.location.reload()">
+                    Proceed to Login
+                </button>
+</div>
+</div>
+</div>
+<script>
+        function handleReset(event) {
+            event.preventDefault();
+            
+            const pass = document.getElementById('new_password').value;
+            const confirm = document.getElementById('confirm_password').value;
+            const btn = event.target.querySelector('button');
+            
+            if (pass !== confirm) {
+                alert('Passwords do not match.');
+                return false;
+            }
+
+            // Simulate loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin" style="font-size: 18px;">progress_activity</span> Updating...';
+            
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+            }, 1200);
+
+            return false;
+        }
+
+        // Add a subtle parallax effect to the left background image
+        document.addEventListener('mousemove', (e) => {
+            const bgImage = document.querySelector('[data-alt^="A high-end, minimalist architectural interior"]');
+            if (bgImage) {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                bgImage.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+</body></html>

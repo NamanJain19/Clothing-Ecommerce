@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monolith Luxury Admin - Create Notification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f6f3f4",
+                    "tertiary-container": "#261906",
+                    "on-error": "#ffffff",
+                    "primary": "#000000",
+                    "surface-dim": "#dcd9db",
+                    "secondary": "#585f6c",
+                    "outline": "#76777d",
+                    "secondary-container": "#dce2f3",
+                    "on-primary-fixed-variant": "#404758",
+                    "primary-container": "#141b2b",
+                    "surface-variant": "#e5e2e3",
+                    "on-secondary-container": "#5e6572",
+                    "error-container": "#ffdad6",
+                    "surface": "#fcf8fa",
+                    "surface-bright": "#fcf8fa",
+                    "on-surface-variant": "#45464c",
+                    "on-tertiary-fixed": "#261906",
+                    "on-tertiary-container": "#968065",
+                    "surface-container-high": "#eae7e9",
+                    "on-background": "#1b1b1d",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#575e70",
+                    "on-primary-fixed": "#141b2b",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "primary-fixed-dim": "#c0c6db",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-fixed": "#151c27",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0edee",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#7d8497",
+                    "on-secondary-fixed-variant": "#404754",
+                    "inverse-primary": "#c0c6db",
+                    "inverse-on-surface": "#f3f0f1",
+                    "surface-container-highest": "#e5e2e3",
+                    "tertiary-fixed": "#f9debf",
+                    "background": "#fcf8fa",
+                    "tertiary": "#000000",
+                    "secondary-fixed": "#dce2f3",
+                    "inverse-surface": "#303031",
+                    "primary-fixed": "#dce2f7",
+                    "on-surface": "#1b1b1d",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-xs": "0.25rem",
+                    "space-md": "1rem",
+                    "space-xl": "2rem",
+                    "container-margin": "2rem",
+                    "space-sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "space-lg": "1.5rem",
+                    "space-2xl": "3rem"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        .form-input-focus:focus { outline: none; border-color: #000000; ring: 2px solid #000000; }
+        .card-elevation { background-color: #ffffff; border: 1px solid #E5E7EB; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface dark:bg-inverse-surface flex flex-col py-space-xl px-space-md z-50">
+<div class="mb-space-2xl px-space-sm flex items-center gap-space-sm">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Monolith Luxury</h1>
+<p class="font-label-sm text-label-sm text-secondary">Atelier Admin</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Inventory
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_bag</span> Orders
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span> Customers
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">web_stories</span> Website Content
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">sell</span> Coupons
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">reviews</span> Reviews
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md bg-surface-container-high text-primary font-bold rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span> Notifications
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 ease-in-out font-label-md text-label-md text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="pt-space-xl mt-auto border-t border-outline-variant flex items-center gap-3 px-space-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a high-end fashion house administrator in a sleek black blazer, against a soft gray backdrop, embodying the quiet authority and minimalist luxury aesthetic of a premium brand management office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx76om_1x-_z4tpK9DfRP7xr1xml3eqQ7fSxlyTAi3QXCsy6O9pr4vGJbqNEGsO51lnWjpDg7mAjCIU8NyeZkZ9LevvpbV25-yLpEgXiwUXN--XpLDu63ssBrQuXmLtaLeYJind0SSr2Z6zlQsW3znPy32pAzkWM9zGrJJYJAERzIXMkHPm7RxDfk2431CfJm9foXZo7z1s5y7TrbCNmAWIGSPIAzf6gK4w9zixRCioSV25rz7H-LmQA"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md font-bold truncate">Julian Vane</p>
+<p class="font-caption text-caption text-secondary truncate">Chief of Operations</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md flex justify-between items-center px-space-xl h-[64px] border-b border-outline-variant">
+<div class="flex items-center gap-space-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary scale-90">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-label-md font-label-md focus:ring-1 focus:ring-primary" placeholder="Search Atelier..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined text-secondary">help</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all relative">
+<span class="material-symbols-outlined text-secondary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined text-secondary">settings</span>
+</button>
+</div>
+</header>
+<!-- Editor Content -->
+<div class="p-space-xl max-w-[1440px] mx-auto w-full pb-32">
+<header class="mb-space-xl">
+<nav class="flex items-center gap-2 text-secondary font-label-sm mb-2">
+<a class="hover:text-primary" href="#">Notifications</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-bold">New Notification</span>
+</nav>
+<h2 class="font-display text-display">Create Notification</h2>
+<p class="text-secondary font-body-md mt-1">Compose and schedule premium communications for your clientele.</p>
+</header>
+<div class="grid grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Form Cards -->
+<div class="col-span-12 lg:col-span-7 space-y-space-lg">
+<!-- Card 1: Notification Details -->
+<section class="card-elevation rounded-xl p-space-lg">
+<div class="flex items-center gap-3 mb-space-lg border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-primary">info</span>
+<h3 class="font-headline-md text-headline-md">Notification Details</h3>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md mb-2">Internal Title</label>
+<input class="w-full h-[40px] px-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" id="input-title" placeholder="e.g., Summer Private Sale Launch" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md mb-2">Category</label>
+<select class="w-full h-[40px] px-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none appearance-none bg-no-repeat bg-[right_0.75rem_center] bg-[length:1em_1em]" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%236B7280%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22 /%3E%3C/svg%3E')">
+<option>Marketing</option>
+<option>Transactional</option>
+<option>System Update</option>
+<option>Exclusive Invite</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">Priority</label>
+<select class="w-full h-[40px] px-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none appearance-none bg-no-repeat bg-[right_0.75rem_center] bg-[length:1em_1em]" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%236B7280%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22 /%3E%3C/svg%3E')">
+<option>Standard</option>
+<option>High</option>
+<option>Critical</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 2: Content -->
+<section class="card-elevation rounded-xl p-space-lg">
+<div class="flex items-center gap-3 mb-space-lg border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+<h3 class="font-headline-md text-headline-md">Content</h3>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md mb-2">Heading</label>
+<input class="w-full h-[40px] px-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" id="input-heading" placeholder="Capture their attention..." type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">Message Body</label>
+<textarea class="w-full px-3 py-2 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none resize-none" id="input-message" placeholder="Craft your message with elegance..." rows="4"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md mb-2">CTA Button Text</label>
+<input class="w-full h-[40px] px-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" id="input-cta" placeholder="e.g., Shop Collection" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">CTA Link</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm">https://</span>
+<input class="w-full h-[40px] pl-16 pr-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" placeholder="monolith.com/..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 3: Delivery -->
+<section class="card-elevation rounded-xl p-space-lg">
+<div class="flex items-center gap-3 mb-space-lg border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-primary">send</span>
+<h3 class="font-headline-md text-headline-md">Delivery Method</h3>
+</div>
+<div class="space-y-space-lg">
+<div class="grid grid-cols-4 gap-4">
+<label class="relative flex flex-col items-center gap-3 p-4 border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input checked="" class="absolute top-2 right-2 w-4 h-4 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">smartphone</span>
+<span class="font-label-sm text-label-sm">Push</span>
+</label>
+<label class="relative flex flex-col items-center gap-3 p-4 border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="absolute top-2 right-2 w-4 h-4 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">mail</span>
+<span class="font-label-sm text-label-sm">Email</span>
+</label>
+<label class="relative flex flex-col items-center gap-3 p-4 border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="absolute top-2 right-2 w-4 h-4 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">chat_bubble</span>
+<span class="font-label-sm text-label-sm">SMS</span>
+</label>
+<label class="relative flex flex-col items-center gap-3 p-4 border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="absolute top-2 right-2 w-4 h-4 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">layers</span>
+<span class="font-label-sm text-label-sm">In-App</span>
+</label>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<div class="flex items-center justify-between mb-4">
+<div>
+<p class="font-label-md text-label-md">Schedule Delivery</p>
+<p class="text-caption text-secondary">Set a future time for this notification to deploy.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary scale-90">calendar_today</span>
+<input class="w-full h-[40px] pl-10 pr-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" type="date"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary scale-90">schedule</span>
+<input class="w-full h-[40px] pl-10 pr-3 border border-outline-variant rounded-lg font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" type="time"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 4: Target Audience -->
+<section class="card-elevation rounded-xl p-space-lg">
+<div class="flex items-center gap-3 mb-space-lg border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-primary">groups</span>
+<h3 class="font-headline-md text-headline-md">Target Audience</h3>
+</div>
+<div class="space-y-4">
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 bg-primary text-white rounded-full font-label-md text-label-md">All Clients</button>
+<button class="px-4 py-2 bg-surface-container-low text-secondary border border-outline-variant rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-all">New Customers</button>
+<button class="px-4 py-2 bg-surface-container-low text-secondary border border-outline-variant rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-all">Returning VIPs</button>
+<button class="px-4 py-2 bg-surface-container-low text-secondary border border-outline-variant rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-all">High Spenders</button>
+<button class="px-4 py-2 bg-surface-container-low text-secondary border border-outline-variant rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-all">By Category</button>
+</div>
+<div class="bg-surface-container-lowest border border-dashed border-outline-variant p-space-lg rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary-container text-4xl mb-2">person_add</span>
+<p class="font-label-md text-label-md text-on-surface">Custom Segment Analysis</p>
+<p class="font-caption text-caption text-secondary mt-1 max-w-[280px]">Select this option to use our AI-driven segmentation for specific collection launches.</p>
+<button class="mt-4 text-primary font-bold text-label-md hover:underline decoration-2 underline-offset-4">Define Custom Rules</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Live Preview -->
+<div class="col-span-12 lg:col-span-5 sticky top-[88px]">
+<div class="card-elevation rounded-xl overflow-hidden flex flex-col h-[740px]">
+<div class="p-space-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-wider text-secondary">Live Preview</h3>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-3 py-1.5 rounded-md text-label-sm font-label-sm bg-white shadow-sm text-primary transition-all" id="tab-push">Push</button>
+<button class="px-3 py-1.5 rounded-md text-label-sm font-label-sm text-secondary hover:text-primary transition-all" id="tab-email">Email</button>
+<button class="px-3 py-1.5 rounded-md text-label-sm font-label-sm text-secondary hover:text-primary transition-all" id="tab-inapp">In-App</button>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-xl flex items-center justify-center relative overflow-hidden">
+<!-- Mobile Frame Mockup -->
+<div class="relative w-[300px] h-[600px] bg-[#0d0d0d] rounded-[3rem] border-[8px] border-[#1a1a1a] shadow-2xl overflow-hidden ring-4 ring-[#262626]" id="preview-container">
+<!-- Device Notch -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[25px] bg-[#1a1a1a] rounded-b-2xl z-10"></div>
+<!-- Wallpaper -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-80" data-alt="A luxurious abstract wallpaper with deep navy and gold silk-like textures, featuring flowing organic shapes and soft lighting, designed to showcase a high-end smartphone interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzf_Y9xsZYxMxgjJcYSh51OySo-4PHzGrGnnIq1SdMbaegoG3szRSwYymNsm65yTjR7sPf1dduF6WoLOB6cHM0uXhFkSYZ9nc4pi4ztnW6_x_2TTiaLbI0ES4jezVd_FC_CZmrTHgT2pNEDFwK2UQO5q2IldCMj_rJj-TXzA0FBuUnbAsbBNKnIHYi248CwzTB9MU2Hs2el4sf6lTNUdQTXDX1Kh_5w0L-M1KRuEWcseKgsfMK6DN1iw"/>
+</div>
+<!-- Push Notification Mock -->
+<div class="absolute top-16 left-3 right-3 z-20 space-y-2 animate-in fade-in slide-in-from-top-4 duration-500" id="view-push">
+<div class="bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/20">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-5 h-5 bg-black rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-black flex-1">MONOLITH LUXURY</span>
+<span class="text-[10px] text-gray-500">now</span>
+</div>
+<h4 class="font-label-md text-label-md font-bold text-black mb-1" id="preview-heading">New Collection Arrival</h4>
+<p class="text-[13px] leading-tight text-gray-700" id="preview-message">Explore the exclusive Summer '24 Atelier collection, now available for early access to our private members.</p>
+</div>
+</div>
+<!-- Email View (Hidden by default) -->
+<div class="absolute inset-0 bg-white z-30 hidden overflow-y-auto custom-scrollbar p-6" id="view-email">
+<div class="text-center mb-8">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+<h2 class="font-headline-md text-headline-md mt-4">MONOLITH</h2>
+</div>
+<div class="w-full h-32 bg-surface-container-low rounded-lg mb-6 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-fashion editorial photograph of a luxury boutique interior with minimalist architectural lines, soft ambient lighting, and high-end apparel displayed as art, representing the Monolith Luxury brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqPywUuEC03bFmlaryLEps7J_XSf1cdvNgqhj0q-Cm-wNiRY4p2mOn2av01JFRHvFs3r3xmTNPI5Qvp_EAjNrC6Jtui92TmXRDqXEp4XW2GdeebQBO60T8cKZ8BWeY90onkRFt0NWDxyuU8HwreCzSnPe2M4yO2Uv21MWdXhR3fBo4BO06jN77gQ7kn0LDoTvnEvFr1vBGlL9YBnny9lZAM7G6v2yx4aHO9K7lFPdK_kDlBJzoRESdng"/>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-center mb-4" id="email-preview-heading">Summer Private Sale</h1>
+<p class="text-body-md text-secondary text-center mb-8" id="email-preview-message">Dear Julian, we are pleased to invite you to an exclusive first look at our latest artisanal collection.</p>
+<div class="flex justify-center">
+<button class="bg-black text-white px-8 py-3 rounded-full font-label-md text-label-md" id="email-preview-cta">Shop Exclusive</button>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant text-center">
+<p class="text-[10px] text-secondary uppercase tracking-widest">Monolith Luxury Atelier • Paris</p>
+</div>
+</div>
+<!-- In-App View (Hidden by default) -->
+<div class="absolute inset-0 bg-surface z-30 hidden p-4" id="view-inapp">
+<div class="flex items-center justify-between mb-8">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-bold tracking-widest">MONOLITH</span>
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<div class="relative rounded-2xl overflow-hidden h-[400px] shadow-xl border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A cinematic close-up of a luxury leather accessory being handcrafted by an artisan in a bright, modern studio, highlighting the texture and premium quality of the material under warm, focused light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqIYL15h4AKR907VAzG8TYmgDtlWymrdhF_0jesBltgotmdxZgqx4SwLI8qHgg0aPaYjWHgGz1c2eXYgUHjAlyrXx0Kxb3SdHGLFZGd2-isTc5uDVcX3TG7VVYHo5TWOUFYj7sYBhpBKkeptzTYwiNyb7Pz7IuqthEP14ooqYW0t2N2kFa0xgLR1QkVfJ17aiiQVznInZASxU7ja5WYn471l2t7iv3j2BSDqWdoFKF6fDWhvSc4YZEMw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+<h3 class="text-white font-headline-lg mb-2" id="inapp-preview-heading">Private Access</h3>
+<p class="text-white/80 text-sm mb-6" id="inapp-preview-message">Your exclusive invitation to the Autumn preview is now ready.</p>
+<button class="w-full bg-white text-black py-3 rounded-lg font-bold" id="inapp-preview-cta">Discover Now</button>
+</div>
+<button class="absolute top-4 right-4 text-white/50 hover:text-white">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Sticky Bar -->
+<footer class="fixed bottom-0 left-[280px] right-0 bg-surface border-t border-outline-variant px-space-xl py-space-md z-50 flex items-center justify-between shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+<span class="font-label-md text-label-md text-secondary">Draft saved 2 minutes ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="px-6 py-2 text-primary font-label-md text-label-md hover:bg-surface-container-low rounded-lg transition-all">Preview All Devices</button>
+<button class="px-6 py-2 border border-outline-variant bg-white text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-all">Save Draft</button>
+<button class="px-10 py-2 bg-primary text-white font-label-md text-label-md rounded-lg hover:bg-gray-800 transition-all shadow-lg shadow-black/10">Publish Notification</button>
+</div>
+</footer>
+</main>
+<script>
+        // Real-time Preview Synchronization
+        const inputTitle = document.getElementById('input-title');
+        const inputHeading = document.getElementById('input-heading');
+        const inputMessage = document.getElementById('input-message');
+        const inputCTA = document.getElementById('input-cta');
+
+        const previewHeading = document.getElementById('preview-heading');
+        const previewMessage = document.getElementById('preview-message');
+        
+        const emailHeading = document.getElementById('email-preview-heading');
+        const emailMessage = document.getElementById('email-preview-message');
+        const emailCTA = document.getElementById('email-preview-cta');
+
+        const inappHeading = document.getElementById('inapp-preview-heading');
+        const inappMessage = document.getElementById('inapp-preview-message');
+        const inappCTA = document.getElementById('inapp-preview-cta');
+
+        const updatePreviews = () => {
+            const h = inputHeading.value || "New Collection Arrival";
+            const m = inputMessage.value || "Explore the exclusive Summer '24 Atelier collection, now available for early access.";
+            const c = inputCTA.value || "Discover More";
+
+            previewHeading.textContent = h;
+            previewMessage.textContent = m;
+            
+            emailHeading.textContent = h;
+            emailMessage.textContent = m;
+            emailCTA.textContent = c;
+
+            inappHeading.textContent = h;
+            inappMessage.textContent = m;
+            inappCTA.textContent = c;
+        };
+
+        [inputHeading, inputMessage, inputCTA].forEach(el => {
+            el.addEventListener('input', updatePreviews);
+        });
+
+        // Tab Switching Logic
+        const tabs = {
+            push: document.getElementById('tab-push'),
+            email: document.getElementById('tab-email'),
+            inapp: document.getElementById('tab-inapp')
+        };
+        const views = {
+            push: document.getElementById('view-push'),
+            email: document.getElementById('view-email'),
+            inapp: document.getElementById('view-inapp')
+        };
+
+        const switchTab = (activeKey) => {
+            Object.keys(tabs).forEach(key => {
+                if(key === activeKey) {
+                    tabs[key].classList.add('bg-white', 'shadow-sm', 'text-primary');
+                    tabs[key].classList.remove('text-secondary');
+                    views[key].classList.remove('hidden');
+                } else {
+                    tabs[key].classList.remove('bg-white', 'shadow-sm', 'text-primary');
+                    tabs[key].classList.add('text-secondary');
+                    views[key].classList.add('hidden');
+                }
+            });
+        };
+
+        tabs.push.addEventListener('click', () => switchTab('push'));
+        tabs.email.addEventListener('click', () => switchTab('email'));
+        tabs.inapp.addEventListener('click', () => switchTab('inapp'));
+
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-[0.98]'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-[0.98]'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-[0.98]'));
+        });
+    </script>
+</body></html>

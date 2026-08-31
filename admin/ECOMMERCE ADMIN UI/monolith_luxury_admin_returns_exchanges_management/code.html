@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Returns &amp; Exchanges | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#261906",
+                    "surface": "#fcf8fa",
+                    "on-tertiary-container": "#968065",
+                    "on-surface-variant": "#45464c",
+                    "on-tertiary-fixed": "#261906",
+                    "on-surface": "#1b1b1d",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "surface-container-low": "#f6f3f4",
+                    "surface-tint": "#575e70",
+                    "surface-container-highest": "#e5e2e3",
+                    "surface-variant": "#e5e2e3",
+                    "surface-bright": "#fcf8fa",
+                    "on-primary-container": "#7d8497",
+                    "secondary": "#585f6c",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#f9debf",
+                    "outline-variant": "#c6c6cd",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#404758",
+                    "inverse-surface": "#303031",
+                    "primary-fixed-dim": "#c0c6db",
+                    "surface-container-high": "#eae7e9",
+                    "inverse-primary": "#c0c6db",
+                    "surface-container": "#f0edee",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "surface-dim": "#dcd9db",
+                    "primary-container": "#141b2b",
+                    "on-secondary-container": "#5e6572",
+                    "on-error": "#ffffff",
+                    "primary": "#000000",
+                    "inverse-on-surface": "#f3f0f1",
+                    "tertiary": "#000000",
+                    "secondary-container": "#dce2f3",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#151c27",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1b1d",
+                    "primary-fixed": "#dce2f7",
+                    "secondary-fixed": "#dce2f3",
+                    "on-secondary-fixed-variant": "#404754",
+                    "background": "#fcf8fa",
+                    "outline": "#76777d",
+                    "on-primary-fixed": "#141b2b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-lg": "1.5rem",
+                    "space-sm": "0.5rem",
+                    "space-xs": "0.25rem",
+                    "space-xl": "2rem",
+                    "space-md": "1rem",
+                    "container-margin": "2rem",
+                    "space-2xl": "3rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "display": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F7F7F7; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .drawer-shadow { box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
+        .table-row-hover:hover { background-color: #F9FAFB; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Side Navigation Bar -->
+<nav class="fixed left-0 top-0 h-screen w-[280px] bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline flex flex-col p-space-lg z-50">
+<div class="mb-10">
+<h1 class="text-headline-lg font-headline-lg font-bold tracking-tight text-primary dark:text-inverse-primary">Atelier Admin</h1>
+<p class="text-label-md font-label-md text-on-surface-variant opacity-70">Premium Retail Ops</p>
+</div>
+<div class="flex flex-col gap-1 overflow-y-auto hide-scrollbar flex-grow">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Inventory -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<!-- Orders -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<!-- Active: Returns & Exchanges (Implicitly replacing/adding to the 9 tabs) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary-fixed text-on-secondary-container dark:text-on-secondary-fixed font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_return">assignment_return</span>
+<span class="font-label-md text-label-md">Returns &amp; Exchanges</span>
+</a>
+<!-- Customers -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<!-- Website Content -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+<span class="font-label-md text-label-md">Website Content</span>
+</a>
+<!-- Coupons -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-md text-label-md">Coupons</span>
+</a>
+<!-- Reviews -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="font-label-md text-label-md">Reviews</span>
+</a>
+<!-- Analytics -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a premium retail operations manager, high-end photography, soft corporate lighting, minimalist style with clean white background, representative of luxury administration identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-6K_nTFNjqkPw0fGcNviCMql4REkN6BtrunITCXpHnYGKkC8mczDlLkeqxwIeJBV-SeeJGrl1qCq5xtKPc8iG2H8c16BJ4lgP0QULkVPo2if6zwA6Iz1CeVPwsknShG3tFDihGEkKyXZcMzfcmUJc4G8kIu6CD8cvZDWKtoOlfo_yXwrqUPGq4AL3VQt4PJtV9MJ_eap6_fUXC31DUuVH-kdNYsK_xKP7bDvJ5thItNMZYyax_wjR1A"/>
+<div>
+<p class="font-label-md text-label-md text-primary">Julian Vane</p>
+<p class="text-caption text-on-surface-variant">Lead Administrator</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 right-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant px-space-xl py-space-sm flex justify-between items-center w-full">
+<div class="flex flex-col">
+<h2 class="text-headline-md font-headline-md font-black text-primary">Returns &amp; Exchanges</h2>
+<p class="text-label-md font-label-md text-on-surface-variant">Manage customer return and exchange requests.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant focus-within:ring-2 focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-64 ml-2" placeholder="Search requests..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="ios_share">ios_share</span>
+                    Export
+                </button>
+<div class="flex gap-2">
+<span class="material-symbols-outlined p-2 text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined p-2 text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<div class="p-space-xl max-w-[1440px] mx-auto space-y-space-lg">
+<!-- Filters & Tools Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md">All</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">Pending</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">Approved</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">Rejected</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">Completed</button>
+<div class="w-[1px] h-6 bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-1.5 border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                        More Filters
+                    </button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-label-md font-label-md text-on-surface-variant">Last 30 Days</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="calendar_month">calendar_month</span>
+</div>
+</div>
+<!-- KPI Cards Overview Section (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="all_inbox">all_inbox</span>
+</div>
+<span class="text-caption font-medium text-emerald-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> 12%
+                        </span>
+</div>
+<h3 class="text-caption text-on-surface-variant font-medium">Total Requests</h3>
+<p class="text-headline-lg font-headline-lg font-bold">1,284</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+</div>
+<span class="text-caption font-medium text-amber-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="horizontal_rule">horizontal_rule</span> 0%
+                        </span>
+</div>
+<h3 class="text-caption text-on-surface-variant font-medium">Pending Approvals</h3>
+<p class="text-headline-lg font-headline-lg font-bold">42</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<span class="text-caption font-medium text-emerald-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> 8%
+                        </span>
+</div>
+<h3 class="text-caption text-on-surface-variant font-medium">Approved Returns</h3>
+<p class="text-headline-lg font-headline-lg font-bold">1,102</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container rounded-lg text-on-error-container">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
+</div>
+<span class="text-caption font-medium text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_down">trending_down</span> 4%
+                        </span>
+</div>
+<h3 class="text-caption text-on-surface-variant font-medium">Rejected</h3>
+<p class="text-headline-lg font-headline-lg font-bold">140</p>
+</div>
+</div>
+<!-- Main Data Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Request ID</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Customer</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Order ID</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Product</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Reason</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Type</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Status</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant">Date</th>
+<th class="px-6 py-4 text-label-md font-medium text-on-surface-variant"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 (Active/Selected) -->
+<tr class="table-row-hover transition-colors cursor-pointer bg-secondary-container/10 border-l-4 border-l-primary" onclick="toggleDrawer()">
+<td class="px-6 py-5 font-medium text-primary text-body-md">#RE-1024</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Close-up portrait of a sophisticated male customer for a luxury brand, studio lighting, soft focus background, elegant neutral tones, high fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc48r4klGxhcz9JzheH-3tg-bJVu1eiXAk4Su_2_uMD84r4o229pdYFV7mUx4wA9hXTj6HaG6Mo7qpSyauAYJgxU4LZmiOU4cVT3PXPezJa0QbeBS_NDwo0xIGGNUpa0Ot7j8YswvFuNejXVicu1t1TOTaZnooF-DvsnOE0AdUPIsU81CYkc91Ck6YPYCwFu9H8sBoQQF3X1DDz9KUbCly8VQOZgNJBX0nWfbft9NkkUovK4YYYB-v4g"/>
+<span class="text-body-md font-medium">Alexander Wright</span>
+</div>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant">#ORD-8821</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-end product shot of a minimalist black silk dress shirt, neatly folded on a stone surface, architectural lighting, luxury fabric texture visible, deep contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTXx5IFwjivgOvtPcpW5iyCn4eMaLmMheWbY8nTH2020ek_erFclNh3J7eHXK1X92E1iO76el_jyN3t57aaJo1ZjMkKdLMC5-pvPgRhmiiGGbTLD63c-0bbtczAcRv9XIrktxN5rgS6unYDI5DjeH8KMh-_BI8QP19R6nGNBwTl1SXYs_neKbWjr89Mh8d5RUJ8E7wwrqKJD4loVdO7b1LSPmM5qwWkJhGBI5AscTmnH6vv8Kt5TbGDg"/>
+</div>
+<span class="text-body-md truncate max-w-[120px]">Silk Evening Shirt</span>
+</div>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant italic">Size Issue</td>
+<td class="px-6 py-5 text-body-md">
+<span class="px-2 py-1 rounded bg-surface-container-low text-on-surface-variant font-medium text-[12px]">Exchange</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                        Pending Approval
+                                    </span>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant">Oct 24, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="more_vert">more_vert</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row-hover transition-colors cursor-pointer">
+<td class="px-6 py-5 font-medium text-primary text-body-md">#RE-1023</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Portrait of a young female customer with a minimalist aesthetic, high-end retail profile photo, natural lighting, wearing luxury eyewear, soft beige color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG2V6MBzNO07zDREiDQQNroAaf07b4x82GMUWIGoupx41s-NRBFZPrMH_XA2tHRjC6jA386B8FslftJcVOpvjRGXHc4yZBd4xWvB_yeqlGljBo_KU3IdwZgjtrPWeFyPdO9RZCUwyURawZ7JlA1XxNK7qjdpszldtNPRQ8BLYgwegZwDXKDAgW89TDXfaBJyshqVz2o8Vazcz9uteChuP25HkRUD0XpxXMgTCclulYle8cDmwcrOMtUA"/>
+<span class="text-body-md font-medium">Elena Rossi</span>
+</div>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant">#ORD-8790</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Premium lifestyle photography of a leather briefcase, tanned grain leather, golden hardware, soft directional lighting, luxury accessory style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtwCLUxRs41QLh01QNw-tSgmG9fO7N2dh21rKuOEl9rxzgfMtLGx0W-NaFlP5GJd4BgVzGCgA-KRGhqn2tVQo15QKnTsgyQmio60Cx5RkSsYn0qFt9erunOjXiFxkaUQt3X91ulVJltTDKGhZF2SNDwNM6epzZOQsaejFoQbI_KQOkZjhCnZWrjadjlZv2WskiE9oJNXAs0ruVE6_n0FnBK_1kAWsr-iYQ-8sBRmkIRsbmuuQSTdZIHA"/>
+</div>
+<span class="text-body-md truncate max-w-[120px]">Cognac Leather Briefcase</span>
+</div>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant italic">Damaged on Arrival</td>
+<td class="px-6 py-5 text-body-md">
+<span class="px-2 py-1 rounded bg-surface-container-low text-on-surface-variant font-medium text-[12px]">Return</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                        Approved
+                                    </span>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant">Oct 23, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="more_vert">more_vert</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-hover transition-colors cursor-pointer">
+<td class="px-6 py-5 font-medium text-primary text-body-md">#RE-1022</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Professional profile shot of a middle-aged male customer, sharp jawline, high-end studio lighting, monochromatic gray background, minimalist and powerful presence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnxDlKm76FUrNt27f94BKfvQ-vkXtf5TocH04SfdDgnp-lKSqmJ1Os07gk8MIAhup2Y8i-nahmppsowP8qq_xo_E59PwtmF0nTWEgTsVuW03SgDUsvkL1ma40XtEPVwV4ZefKiWZlQ66FBjP3LjFl6y_afz-xIA7vW67lruTlhVKH5TlPlfevy6AmIRF3PU2DWkJd75kARjrkD35Gw6QzExTMRpzpxJmg6d7JPcyCrOWTYLmu1IHH-FQ"/>
+<span class="text-body-md font-medium">Marcus Chen</span>
+</div>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant">#ORD-8654</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Detailed close-up of a high-end luxury watch, stainless steel band, dark face, moody atmospheric lighting, reflection on glass, high detail macro photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUm5q-_9PZx206PEGPfqOKja3AP5v21UMQSS0HADScMWFUUNYcY9_Z42TQIVBTjWokc8QfVX9w6YTTD6MirIzdk0wIu0nhUyLNVaePZ9DrcB2cFlQ3DJj1YY-yI_0krR63LGZDJg256FEmC-5YoJCXfRvKjDzIl839W9oY1bBW5gRoljysVHFaSTwggwUIt_umA9jkalA2gthBgb7LOg9HMpDTyungXQDw3Sz03LnoGL7cPx-Cv4r7IA"/>
+</div>
+<span class="text-body-md truncate max-w-[120px]">Heritage Chronograph</span>
+</div>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant italic">Changed Mind</td>
+<td class="px-6 py-5 text-body-md">
+<span class="px-2 py-1 rounded bg-surface-container-low text-on-surface-variant font-medium text-[12px]">Return</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                        Rejected
+                                    </span>
+</td>
+<td class="px-6 py-5 text-body-md text-on-surface-variant">Oct 22, 2023</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="more_vert">more_vert</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+<span class="text-caption text-on-surface-variant">Showing 1 to 3 of 1,284 entries</span>
+<div class="flex gap-2">
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="px-3 py-1 border border-primary bg-primary text-on-primary rounded text-caption font-medium">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-caption font-medium">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-caption font-medium">3</button>
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Details Drawer (Side Slide-out Overlay) -->
+<div class="fixed inset-y-0 right-0 w-[500px] bg-white border-l border-outline-variant z-[60] transform transition-transform duration-500 ease-in-out translate-x-full drawer-shadow flex flex-col" id="details-drawer">
+<!-- Drawer Header -->
+<div class="px-space-lg py-space-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<div>
+<span class="text-caption font-bold text-on-surface-variant tracking-wider uppercase">Request Details</span>
+<h2 class="text-headline-md font-headline-md text-primary">#RE-1024</h2>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Drawer Content (Scrollable) -->
+<div class="flex-grow overflow-y-auto p-space-lg space-y-space-xl hide-scrollbar">
+<!-- Section: Customer Info -->
+<section class="space-y-4">
+<h4 class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest border-b border-outline-variant pb-2">Customer Context</h4>
+<div class="flex gap-4 items-center">
+<img class="w-16 h-16 rounded-xl border border-outline-variant shadow-sm" data-alt="Luxury brand customer profile photo, high fashion aesthetic, soft focus studio lighting, neutral tones, premium professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz-iK_h8nMZcF5QBYf60O6Z3jkQyXwU3pBP49OIcn37FwvGBOJE4E_SWoQV3lD1siwcXqZIAc8YUYnKOZHe0USWXzDLiH3r-Mdjd0pgjnnCZv3buTXa0luWzF4aCYZ9iPlYD7pTTr9f_z3UPSGqN7IXZQ9QJh6NEnzvBdY78bm_IiWzNxuJIwSU0BSBNp4JWiz6MIlCQnlSeQaP25kNhIn-Ubirha8u6uX8g3_4WWb78m0909Ss8TYjQ"/>
+<div>
+<p class="text-body-lg font-bold text-primary">Alexander Wright</p>
+<p class="text-body-md text-on-surface-variant">alex.wright@luxury-vibe.com</p>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-tight">Gold Member</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-medium">12 Lifetime Orders</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Product & Reason -->
+<section class="space-y-4">
+<h4 class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest border-b border-outline-variant pb-2">Return Request Data</h4>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant space-y-3">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<img class="w-12 h-12 rounded border border-outline-variant object-cover" data-alt="High-fidelity macro shot of luxury black silk shirt collar, focus on stitch detail and texture, premium editorial style lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZTcw2bx_Pvnyow_zz3aX0WSlP41jGz5XexG9DLCz7lhIc0uC74e8QmvtFRmhZg4slUa7gXVDTLgkCFHcb4ayLf0SxncwLN_ndS3ECPq9chg4_DweIMfRrokHtY1XemFCX99dmOD91rJQoifndW8BIMk_rvPq2VzzLnS53fvRD-BzaSJnFqxxbmyD7Gm8xwWYKPvObj64_-pXWHxsyFKPEs_1eOQh6nGqSXlyrGNLPe-9GCo9W9P8qQ"/>
+<div>
+<p class="text-body-md font-bold text-primary">Silk Evening Shirt - Midnight Black</p>
+<p class="text-caption text-on-surface-variant">SKU: AT-EV-8821-BLK-M</p>
+</div>
+</div>
+<span class="text-body-md font-bold">$495.00</span>
+</div>
+<div class="pt-2 border-t border-outline-variant">
+<p class="text-caption text-on-surface-variant font-bold uppercase mb-1">Reason for Exchange</p>
+<p class="text-body-md italic text-primary">"The sizing runs slightly smaller than the Italian collection. I'd like to exchange for a Large."</p>
+</div>
+<div>
+<p class="text-caption text-on-surface-variant font-bold uppercase mb-2">Visual Proof</p>
+<div class="flex gap-2">
+<div class="w-20 h-20 bg-surface-variant rounded-lg overflow-hidden cursor-pointer border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Smartphone photo of a shirt tag showing size M, luxury fabric context, slightly grainy to look like user-uploaded proof." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkkn6NRwXGfY-raPf7FE6bKYOnArvf8ZrSzhUQzeEETnG_1YQmv0iTRtbCZyvJm2OYDGbRAYMWoF6Hb1rGSaNemEfLWROOOXmmAOY-SLlr6lsnlHZ6MBlKcN1FNqoMmuTQtw7QLGKnOodpNlSZ0F-0x4pD74oqt4RNixdxWgvWm1FRc9j8qMEqX84A_sL9Qxw_BE3zz66oIFTEufC3_E1zEd-Vwduln1X1xBTgF8ysJKT1BwoUVkABiA"/>
+</div>
+<div class="w-20 h-20 bg-surface-variant rounded-lg overflow-hidden cursor-pointer border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Casual mirror selfie photo showing shirt fit on shoulders, representative of a customer return verification photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwzjZT3_B4DnnT_pkX6mpM-ANXVN21wazMyICArsAt6OqmJB2sNyyx7uDAcp6JvGHHaL58fG1Yj4jE1PgAi7743vgM4uua-Hf9eag3h03hqZAoEcBGl5ZkBllWiD3cYnL87HTZni6pksjugVm8eZG4EmAB4jrNx9P5lNZCP7daFlsk3jQuk-UQVY6SwzNI8FpdEJ8mu4yqra5auzvrLDTdxF6ajLxoYfCQpD9GhnNloj7dZLJZoIwGiw"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Logistics & Timeline -->
+<section class="space-y-4">
+<h4 class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest border-b border-outline-variant pb-2">Logistics &amp; History</h4>
+<div class="flex justify-between items-center text-body-md">
+<span class="text-on-surface-variant">Inbound Tracking</span>
+<span class="font-bold text-primary flex items-center gap-1 cursor-pointer hover:underline">
+                        UPS-77281903 <span class="material-symbols-outlined text-[16px]" data-icon="open_in_new">open_in_new</span>
+</span>
+</div>
+<div class="relative space-y-6 mt-4 ml-2">
+<div class="absolute left-0 top-1 bottom-1 w-[2px] bg-outline-variant"></div>
+<!-- Timeline Item -->
+<div class="relative pl-6">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-white"></div>
+<p class="text-caption font-bold text-primary">Oct 24, 14:22</p>
+<p class="text-body-md text-on-surface-variant">Request Received</p>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-6">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-white"></div>
+<p class="text-caption font-bold text-on-surface-variant">Oct 24, 16:45</p>
+<p class="text-body-md text-on-surface-variant">System Automated Verification Pass</p>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-6">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-white"></div>
+<p class="text-caption font-bold text-on-surface-variant">Pending</p>
+<p class="text-body-md text-on-surface-variant italic opacity-60">Waiting for Administrator Action...</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Drawer Footer (Sticky Actions) -->
+<div class="p-space-lg border-t border-outline-variant bg-surface-container-lowest flex flex-col gap-3">
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary py-3 rounded-lg font-bold text-label-md hover:bg-black transition-all flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+                    Approve Exchange
+                </button>
+<button class="bg-surface-container-low border border-outline-variant text-error py-3 rounded-lg font-bold text-label-md hover:bg-error-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="cancel">cancel</span>
+                    Reject
+                </button>
+</div>
+<div class="flex gap-2">
+<button class="flex-grow bg-white border border-outline-variant py-2.5 rounded-lg font-medium text-on-surface-variant text-label-md hover:bg-surface-container-low transition-all">
+                    Issue Refund
+                </button>
+<button class="flex-grow bg-white border border-outline-variant py-2.5 rounded-lg font-medium text-on-surface-variant text-label-md hover:bg-surface-container-low transition-all">
+                    Generate Label
+                </button>
+</div>
+</div>
+</div>
+<!-- Script to toggle drawer -->
+<script>
+        let isDrawerOpen = false;
+        function toggleDrawer() {
+            const drawer = document.getElementById('details-drawer');
+            if (isDrawerOpen) {
+                drawer.classList.add('translate-x-full');
+            } else {
+                drawer.classList.remove('translate-x-full');
+            }
+            isDrawerOpen = !isDrawerOpen;
+        }
+
+        // Close drawer on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isDrawerOpen) toggleDrawer();
+        });
+    </script>
+</body></html>

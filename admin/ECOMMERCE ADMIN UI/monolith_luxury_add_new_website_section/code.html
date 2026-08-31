@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Website Section | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#eae7e9",
+                        "background": "#fcf8fa",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "inverse-primary": "#c0c6db",
+                        "inverse-surface": "#303031",
+                        "surface-dim": "#dcd9db",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "surface-container-low": "#f6f3f4",
+                        "surface": "#fcf8fa",
+                        "secondary-container": "#dce2f3",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1b1d",
+                        "tertiary-fixed": "#f9debf",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dce2f3",
+                        "primary-fixed-dim": "#c0c6db",
+                        "secondary": "#585f6c",
+                        "surface-variant": "#e5e2e3",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dce2f7",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#575e70",
+                        "on-surface-variant": "#45464c",
+                        "primary": "#000000",
+                        "on-secondary-fixed": "#151c27",
+                        "inverse-on-surface": "#f3f0f1",
+                        "on-surface": "#1b1b1d",
+                        "on-secondary-container": "#5e6572",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0edee",
+                        "on-primary-fixed-variant": "#404758",
+                        "on-primary-fixed": "#141b2b",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary-container": "#7d8497",
+                        "surface-container-highest": "#e5e2e3",
+                        "surface-bright": "#fcf8fa",
+                        "tertiary": "#000000",
+                        "outline": "#76777d",
+                        "tertiary-container": "#261906",
+                        "primary-container": "#141b2b",
+                        "on-tertiary-container": "#968065",
+                        "on-tertiary-fixed": "#261906",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "2rem",
+                        "space-xl": "2rem",
+                        "space-sm": "0.5rem",
+                        "gutter": "1.5rem",
+                        "space-lg": "1.5rem",
+                        "space-xs": "0.25rem",
+                        "space-md": "1rem",
+                        "space-2xl": "3rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+                        "display": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .form-card { background: #ffffff; border: 1px solid #E5E7EB; border-radius: 12px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); padding: 24px; margin-bottom: 24px; }
+        .input-standard { height: 40px; border: 1px solid #E5E7EB; border-radius: 6px; padding: 0 12px; font-size: 14px; width: 100%; transition: all 0.2s; }
+        .input-standard:focus { outline: none; border-color: #111827; ring: 2px; ring-color: #111827; }
+        .toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #E5E7EB; transition: .4s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #111827; }
+        input:checked + .slider:before { transform: translateX(20px); }
+        .btn-primary { background-color: #111827; color: #FFFFFF; padding: 10px 20px; border-radius: 6px; font-weight: 500; font-size: 14px; transition: opacity 0.2s; }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-secondary { background-color: #FFFFFF; color: #111827; border: 1px solid #E5E7EB; padding: 10px 20px; border-radius: 6px; font-weight: 500; font-size: 14px; transition: background 0.2s; }
+        .btn-secondary:hover { background-color: #F9FAFB; }
+        .btn-ghost { color: #585f6c; font-weight: 500; font-size: 14px; padding: 10px 20px; transition: color 0.2s; }
+        .btn-ghost:hover { color: #111827; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] border-r border-outline-variant bg-surface flex flex-col p-space-lg z-50">
+<div class="mb-space-2xl">
+<h1 class="text-headline-lg font-headline-lg font-bold tracking-tight text-primary">Atelier Admin</h1>
+<p class="text-label-md font-label-md text-secondary mt-1">Premium Retail Ops</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined">language</span>
+<span class="font-label-md">Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex items-center gap-3 pt-6 border-t border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a boutique manager with a clean minimalist background, soft neutral studio lighting, high resolution, luxury fashion branding aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwCMByQjY4GXfkKn2WkRrHtI6QkOmvgTqsJmdj_3aELpUh0cNk46s4gJK8HMYux0a0lt0ZHFnJEWp0QW3VLF_juctbUTNWfh5Fmw6sOK6vHkwXSLpMV1B7ulepRrSkMMfKaj6jN7b3BJ6SqM0hwib-yUh_rgtV0zKc2xsFgLJgstKSHqTKigQiBvZzVRtCFq5_gP9l0-0OKRyt5IfzZhjtRDiPeaUnaQng86bRZ7kt-16IKEB_avo4OA"/>
+</div>
+<div>
+<p class="text-label-md font-bold">Admin Profile</p>
+<p class="text-caption text-secondary">Editor Access</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 right-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant shadow-sm flex justify-between items-center w-full px-space-xl py-space-sm h-16">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-label-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search orders, products, content..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Header -->
+<div class="px-space-xl pt-space-xl pb-space-lg max-w-[1440px]">
+<h2 class="text-display font-display">Add New Website Section</h2>
+<p class="text-body-lg text-secondary">Create a new section for your website.</p>
+</div>
+<!-- Form & Preview Grid -->
+<div class="px-space-xl pb-space-2xl grid grid-cols-10 gap-gutter max-w-[1440px]">
+<!-- Left Column: Forms (70%) -->
+<div class="col-span-7 space-y-space-lg">
+<!-- Section 1: Information -->
+<div class="form-card">
+<h3 class="text-headline-md font-headline-md mb-space-md pb-space-sm border-b border-outline-variant">Section Information</h3>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Section Name</label>
+<input class="input-standard" placeholder="e.g. Summer Arrivals Hero" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Section Type</label>
+<select class="input-standard">
+<option>Hero</option>
+<option>Collection</option>
+<option>Category</option>
+<option>Products</option>
+<option>Banner</option>
+<option>Image Gallery</option>
+<option>Video</option>
+<option>Brand Story</option>
+<option>Newsletter</option>
+<option>Custom Section</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section 2: Content -->
+<div class="form-card">
+<h3 class="text-headline-md font-headline-md mb-space-md pb-space-sm border-b border-outline-variant">Content</h3>
+<div class="space-y-space-md">
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Main Heading</label>
+<input class="input-standard" id="preview-heading-input" placeholder="The New Standard of Elegance" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Sub Heading</label>
+<input class="input-standard" placeholder="Limited Edition Collection" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Description</label>
+<textarea class="input-standard h-auto py-3" placeholder="Crafted with precision and designed for the modern connoisseur..." rows="4"></textarea>
+</div>
+</div>
+</div>
+<!-- Section 3: Call to Action -->
+<div class="form-card">
+<h3 class="text-headline-md font-headline-md mb-space-md pb-space-sm border-b border-outline-variant">Call to Action</h3>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Primary Button Text</label>
+<input class="input-standard" placeholder="Shop Now" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Primary Button Link</label>
+<input class="input-standard" placeholder="/collections/all" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Secondary Button Text</label>
+<input class="input-standard" placeholder="View Editorial" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Secondary Button Link</label>
+<input class="input-standard" placeholder="/editorial/summer" type="text"/>
+</div>
+</div>
+</div>
+<!-- Section 4: Media -->
+<div class="form-card">
+<h3 class="text-headline-md font-headline-md mb-space-md pb-space-sm border-b border-outline-variant">Media</h3>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-space-xl text-center bg-surface-container-lowest hover:bg-surface-container-low transition-colors cursor-pointer group mb-space-md">
+<span class="material-symbols-outlined text-4xl text-secondary group-hover:scale-110 transition-transform mb-2">upload_file</span>
+<p class="text-label-md font-bold">Drag and drop assets here</p>
+<p class="text-caption text-secondary">Supports JPG, PNG, MP4 (Max 50MB)</p>
+</div>
+<div class="grid grid-cols-4 gap-space-md">
+<div class="aspect-square rounded-lg bg-surface-container-high overflow-hidden border border-outline-variant relative group">
+<img class="w-full h-full object-cover" data-alt="High-end minimalist fashion editorial shot featuring a model in a charcoal silk dress, dramatic soft lighting, monochromatic color palette with subtle warm undertones, professional studio quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUkciB61cgwvs6Q8GJvYSQ382V1wK9VGKmzZsZ6Q6SsCRYogNIBvI3XtDB0JicZB5b3dXhUndufOH5hkPifYyOcfTenDohY0ipLoZS-S3L4FV9r3bEXCjcDUp5JPJnJto7Sr3TZYGl5yWT_ghSdmw1sHVJ3ToSikEGF-p1PURhxv7KfVrNTLQM4HF_Idhqi2HynCBK0pYrRSK67ZMSFIPrYv7z943mqmTc69aEPD2fIdEMd58ddHaHtg"/>
+<button class="absolute top-2 right-2 bg-white/80 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="aspect-square rounded-lg bg-surface-container-high overflow-hidden border border-outline-variant relative group">
+<img class="w-full h-full object-cover" data-alt="Architectural detail of a luxury retail space with marble textures, soft focused lighting, neutral beige and cream tones, clean lines, serene and quiet atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCar9P77seT4I6TFc4m0UQ6nINiF-zps4lStjvTVVOBFtL3RwTEDEz7YsitriSk9fiz7mkmJCqOaUwBVqLQwj0EZal_5dsaOprOFtovlTYrP8DWEHDZc3aLnFaKZyJJpTZ2AqhZ7CdhimJadklD70GhxY1mSt8wg5mzGIv-IWb_shwQ_jxQG7lTILEQHd1qoH0NspRss38eUL6d2XAfVwSSebChreG_qhp4I-8NdhtYplElDXzXDazs4Q"/>
+<button class="absolute top-2 right-2 bg-white/80 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="aspect-square rounded-lg border-2 border-dashed border-outline-variant flex items-center justify-center text-secondary hover:text-primary hover:bg-surface-container-low transition-all cursor-pointer">
+<span class="material-symbols-outlined">add_photo_alternate</span>
+</div>
+</div>
+</div>
+<!-- Section 5: Display Settings -->
+<div class="form-card">
+<h3 class="text-headline-md font-headline-md mb-space-md pb-space-sm border-b border-outline-variant">Display Settings</h3>
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="space-y-0.5">
+<p class="text-label-md font-bold">Show on Homepage</p>
+<p class="text-caption text-secondary">Include this section in the main landing page flow.</p>
+</div>
+<label class="toggle-switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="space-y-0.5">
+<p class="text-label-md font-bold">Enable Section</p>
+<p class="text-caption text-secondary">Set visibility status for all users.</p>
+</div>
+<label class="toggle-switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="space-y-2 pt-2">
+<p class="text-label-md font-bold">Responsive Visibility</p>
+<div class="flex gap-space-lg">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">Desktop</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">Tablet</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-body-md">Mobile</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 6: SEO -->
+<div class="form-card">
+<h3 class="text-headline-md font-headline-md mb-space-md pb-space-sm border-b border-outline-variant">SEO</h3>
+<div class="space-y-space-md">
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Meta Title</label>
+<input class="input-standard" placeholder="Luxury Summer Arrivals | Atelier" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-secondary">Meta Description</label>
+<textarea class="input-standard h-auto py-3" placeholder="Discover our curated selection of luxury arrivals for the summer season." rows="3"></textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Preview (30%) -->
+<div class="col-span-3">
+<div class="sticky top-[88px] space-y-space-lg">
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-space-md py-4 border-b border-outline-variant flex justify-between items-center">
+<h4 class="text-label-md font-bold">Live Preview</h4>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm cursor-pointer hover:text-primary">desktop_windows</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm cursor-pointer hover:text-primary">smartphone</span>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low min-h-[400px] flex items-center justify-center">
+<!-- Mini Hero Preview -->
+<div class="w-full relative rounded-lg overflow-hidden aspect-[4/5] shadow-lg group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Cinematic luxury fashion editorial background, ethereal lighting, high-contrast black and white photography of high-end accessories, grain texture, minimalist avant-garde style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBy2AdyOT82zlr4D2UEq1aApxa8cBgeJ_Pf82Oi_wRcUGzytZV7eXKrhptyQ8zj8_KkNoOpdY7fGuZ2Tz2hRnePO4ywjiuOTmp_h2pxSCPoMnvwmEnW86imQkDp4rshWU2TR4m0IK_6TNIDzdoeChfQZEOWM0p88eaR_JZrIdpKcDGauHtU2nJqGV_dCtJwhNaw1expd2B3LiECVNB_V8i4wbw08vq0NZWnxbXwwnu6xLY7tqZAPUoLWA')"></div>
+<div class="absolute inset-0 bg-black/30 flex flex-col justify-end p-6 text-white">
+<p class="text-[10px] uppercase tracking-widest mb-1 opacity-80">Collection</p>
+<h5 class="text-2xl font-bold leading-tight mb-4" id="preview-heading">Summer Arrivals</h5>
+<div class="flex gap-2">
+<div class="px-4 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-wider rounded-sm">Shop Now</div>
+<div class="px-4 py-2 border border-white/50 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm backdrop-blur-sm">View More</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-space-md py-3 bg-surface-container-lowest border-t border-outline-variant">
+<p class="text-caption text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">info</span>
+                                Preview updates automatically as you type.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Actions -->
+<footer class="mt-auto sticky bottom-0 left-[280px] w-full bg-white/90 backdrop-blur-md border-t border-outline-variant py-4 px-space-xl flex items-center justify-between z-40">
+<div class="flex gap-4">
+<button class="btn-ghost">Preview Website</button>
+</div>
+<div class="flex gap-3">
+<button class="btn-secondary">Save Draft</button>
+<button class="btn-primary">Publish Section</button>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interaction for live preview heading update
+        const headingInput = document.getElementById('preview-heading-input');
+        const previewHeading = document.getElementById('preview-heading');
+
+        headingInput.addEventListener('input', (e) => {
+            previewHeading.textContent = e.target.value || "Summer Arrivals";
+        });
+    </script>
+</body></html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MONOLITH | The Art of Modern Elegance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#4c4546",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-container": "#848484",
+                        "secondary-container": "#dcdddd",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#5f6161",
+                        "on-surface": "#1a1c1c",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-secondary-fixed-variant": "#454747",
+                        "inverse-on-surface": "#f0f1f1",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "on-tertiary-container": "#838484",
+                        "tertiary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "primary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#474747",
+                        "surface": "#f9f9f9",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#000000",
+                        "background": "#f9f9f9",
+                        "tertiary": "#000000",
+                        "secondary": "#5d5f5f",
+                        "outline": "#7e7576",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container": "#eeeeee",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#5e5e5e",
+                        "surface-container-high": "#e8e8e8",
+                        "outline-variant": "#cfc4c5",
+                        "surface-dim": "#dadada",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#1b1b1b",
+                        "tertiary-container": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-low": "#f3f3f4",
+                        "inverse-primary": "#c6c6c6",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3131"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "128px",
+                        "margin-desktop": "64px",
+                        "gutter": "32px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-caps": ["Montserrat"],
+                        "button": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .nav-scrolled {
+            background-color: white !important;
+            color: black !important;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+        .editorial-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .editorial-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out border-b border-outline/10 bg-transparent" id="top-nav">
+<div class="flex justify-between items-center px-margin-desktop py-unit max-w-container-max mx-auto h-20">
+<div class="flex-shrink-0">
+<span class="font-display-lg text-2xl tracking-[0.3em] uppercase select-none">Monolith</span>
+</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">Home</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300 pb-1" href="#collections">Collections</a>
+<div class="group relative">
+<button class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300 pb-1 flex items-center gap-1">
+                        Categories
+                        <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white border border-outline/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-sm">
+<div class="py-4 flex flex-col">
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Men</a>
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Women</a>
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Kids</a>
+</div>
+</div>
+</div>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300 pb-1" href="#">New Arrivals</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-black/20 z-10"></div>
+<div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-1AEfx93nIUVS9dzHjhb6T-CbQAcgoW6tbfB056EV0u7-KxjKYT2KydDSR9eY1W2Sxb6hb13Us0YKjbM986fZinbZlNSuTu9Q9kw6vhoLa31Rj-7oNBfN1JSlU2-hagc_tIt4LwXvWC9YbIyj5G1Ul24yM1GVVtU23gDqkIkwUt05IPkDJUvVkeOfLfovyRKafaXhDVnEi5Il8xdNK8ws0X4tC3ZU4cg36llOzR6pD93VuWHS5vGzxw')"></div>
+<div class="relative z-20 text-center text-white px-margin-mobile md:px-0 max-w-4xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 editorial-reveal visible">The Art of Modern Elegance</h1>
+<p class="font-body-lg text-body-lg mb-10 max-w-2xl mx-auto editorial-reveal delay-100 visible">Discover the new signature collection, where timeless design meets contemporary craft.</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6 editorial-reveal delay-200 visible">
+<a class="w-full md:w-auto px-12 py-4 bg-white text-black font-button text-button uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-500" href="#">Shop Collection</a>
+<a class="w-full md:w-auto px-12 py-4 border border-white text-white font-button text-button uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500" href="#">Explore New Arrivals</a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+<span class="material-symbols-outlined text-white">expand_more</span>
+</div>
+</header>
+<!-- Redesigned Collections: Asymmetric Editorial Layout -->
+<section class="w-full bg-background py-24" id="collections">
+<div class="max-w-[1600px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row gap-8 lg:gap-12">
+<!-- Tall Column -->
+<div class="w-full md:w-7/12 flex flex-col gap-8 lg:gap-12">
+<div class="group relative h-[800px] overflow-hidden cursor-pointer">
+<img alt="Summer Collection" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfVe4sTWNXcAiUmdiIrefO78YBH1vRfmgc0fvOJ3O8eScLTGeHGkMOcttQVjots95sT7ms9y22OcTA-m6z83Hya1RaWhe_xwTEcYGPYm14VwDbkOKOH3IIjg0foPVlcx03N8G1idk4HdCq2VjZXGatA-kjqwpx6MUE3JMJhmJ7aNZVc59fAklM7JHNfFJfnct-pgigsWsPDImvC9gZILgODNrfdLG7LaWeuI7ZfOA59VcaWGWwAake1w">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
+<div class="absolute inset-0 p-12 flex flex-col justify-end text-white z-20">
+<span class="font-label-caps text-[10px] tracking-[0.5em] uppercase mb-4 opacity-80">Collection 01</span>
+<h3 class="font-display-lg text-5xl md:text-6xl mb-6 italic leading-tight">Ephemeral Light</h3>
+<p class="font-body-md text-sm md:text-base max-w-sm mb-8 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">A dialogue between transparency and weight, capturing the fleeting essence of the summer solstice through liquid silks and structured linens.</p>
+<a class="inline-flex items-center gap-4 group/btn" href="#">
+<span class="font-label-caps text-[11px] uppercase tracking-widest border-b border-white pb-1">Explore Collection</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-2">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="group relative h-[500px] overflow-hidden cursor-pointer"><img alt="Modernist Lines" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR7U5-7Fsr12Vz6Os5kscKNLSXqUYM0SY5hwO9DxE2WzfXaS5CWc5n9EHg_EDshXcsl6aFQjFsRwX2_vyMAOeRrmQ499TnSuWGcJGN51QOn77pGDxAGZb1fVhykjN_rrab9WNkmhnmCB-CbTNj1ZcRcsgeHZ4FAH13meqbScsBC-0quLcVAERgA5YWLZwqYCKWgqoRjQPvp_otQV7H4yWHu4RdnH1QdS4osNxbtw0nT7Fm-XtV29fKPw"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div><div class="absolute inset-0 p-10 flex flex-col justify-end text-white z-20"><span class="font-label-caps text-[10px] tracking-[0.5em] uppercase mb-4 opacity-80">Collection 04</span><h3 class="font-display-lg text-3xl md:text-4xl mb-4 italic">Modernist Lines</h3><p class="font-body-md text-xs md:text-sm max-w-xs mb-6 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">Structured silhouettes for the contemporary wardrobe, defined by architectural precision and minimalist restraint.</p><a class="inline-flex items-center gap-4" href="#"><span class="font-label-caps text-[10px] uppercase tracking-widest border-b border-white pb-1">Explore Collection</span></a></div></div></div>
+<!-- Wide/Short Column -->
+<div class="w-full md:w-5/12 flex flex-col gap-8 lg:gap-12 pt-0 md:pt-32">
+<div class="group relative h-[450px] overflow-hidden cursor-pointer">
+<img alt="Signature Series" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6P3LvTpbcepbLXlBcYDTq_SXmZ4LQvWG3F1HrlpPDXtmaLD8e1bPy9brbqxR0bLNtAat9YUu1aLx8pIB4Cru6R2nqif_SV74QwdvfCqPPkkdl5E73wpWF58hxf2Gujj8G_DLZQXXZ9yBXEksiuN3mXa-7X5tDTh0xvI_uo3D-5QkNyntYkr4LuMfvLJ7UFK4WKw2HEc3JmVB-p9wr8cpFyUWexQ60aXwlNI0b8FOu5n6cdPjN09uXdQ">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
+<div class="absolute inset-0 p-10 flex flex-col justify-end text-white z-20">
+<span class="font-label-caps text-[10px] tracking-[0.5em] uppercase mb-4 opacity-80">Collection 02</span>
+<h3 class="font-display-lg text-3xl md:text-4xl mb-4 italic">Structural Grace</h3>
+<p class="font-body-md text-xs md:text-sm max-w-xs mb-6 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">Refined silhouettes that command presence through architectural precision and heritage craftsmanship.</p>
+<a class="inline-flex items-center gap-4" href="#">
+<span class="font-label-caps text-[10px] uppercase tracking-widest border-b border-white pb-1">Explore Collection</span>
+</a>
+</div>
+</div>
+<div class="group relative h-[550px] overflow-hidden cursor-pointer">
+<img alt="The Archive" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD03yYNyAPdt_qsDTHKWPRh49SKI4b6hjDHGvgReLR298F09fFgzwUWtbLQ7rJvf_d78tlfiEtAzNcyF5L98DEMKURC3YpaA1r3SAOeSNePMYCD3goZntJomPn3n4KuT2pbBFzUKxt--nAOa49R8eL2OBc6V0Zky8YBs-hoVcUfT8RE_ml36K5z95hx3mpe-PBfJpMwisinLC09_A9pzyXcyAAByNOLFFP7z1eDd2sXmvG7lT4w_Zy8Ig">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
+<div class="absolute inset-0 p-10 flex flex-col justify-end text-white z-20">
+<span class="font-label-caps text-[10px] tracking-[0.5em] uppercase mb-4 opacity-80">Collection 03</span>
+<h3 class="font-display-lg text-3xl md:text-4xl mb-4 italic">Monolithic Forms</h3>
+<p class="font-body-md text-xs md:text-sm max-w-xs mb-6 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">Timeless outerwear designed to withstand the elements while maintaining a minimalist aesthetic.</p>
+<a class="inline-flex items-center gap-4" href="#">
+<span class="font-label-caps text-[10px] uppercase tracking-widest border-b border-white pb-1">Explore Collection</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. New Arrivals: 4-column grid -->
+<section class="py-section-gap bg-white" id="new-arrivals"><div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop"><div class="flex flex-col md:flex-row justify-between items-end mb-20"><div class="max-w-xl"><span class="font-label-caps text-[10px] tracking-[0.5em] uppercase text-secondary mb-4 block">The New Season</span><h2 class="font-display-lg text-5xl md:text-6xl italic">New Arrivals</h2></div><div class="hidden md:block"><a class="font-label-caps text-[11px] uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity" href="#">View All Pieces</a></div></div><div class="grid grid-cols-1 md:grid-cols-12 gap-x-gutter gap-y-24"><!-- Product 1: Tall Portrait --><div class="md:col-span-4 group cursor-pointer"><div class="relative aspect-[3/4] overflow-hidden rounded-lg mb-8 bg-surface-container-low"><img alt="Silk-Blend Trench" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3rOK7OMn5CCqYhMWh4EfOywq-bjX8AkxzOvzFqd8i3jykbxlOmF6LtXa0BBr0FoTkj13Ys_1VaJFLwURSLx9NKBV9JqiUGJqi3jPKXGHfBrwQxzUobFXGhd9NNoU34C8yreYDluxaLmd66JBI8_EMOUUf5WJUdxpmrGp2RaeHPS-JJTkN62V4i8awdUcRdnbtUe7BruTD-xum2hbT-22Z_ub2M1pQgUUS8Eaws3xOC0ZTqlr59Nxevg"><button class="absolute top-6 right-6 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="material-symbols-outlined text-[20px]">favorite</span></button><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/5"><button class="bg-white text-black font-button text-[10px] uppercase tracking-widest px-8 py-3 hover:bg-black hover:text-white transition-colors">Quick View</button></div></div><div class="space-y-1"><p class="font-label-caps text-[9px] tracking-widest uppercase text-secondary">Outerwear</p><h4 class="font-body-md text-[16px] text-primary">Silk-Blend Trench Coat</h4><p class="font-body-md text-primary pt-2">$1,250</p><button class="mt-4 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">+ Add to Bag</button></div></div><!-- Product 2: Offset Medium --><div class="md:col-span-4 md:mt-32 group cursor-pointer"><div class="relative aspect-[4/5] overflow-hidden rounded-lg mb-8 bg-surface-container-low"><img alt="Wool Trousers" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1wgePncgjSfMvSbwKY-JZPN3QXOTgQrIQb62jlg0lrv69ESwlco4ApX4WGNRg9U3PX8HBGpuvXrSAjhkxgi3nsprFjZfw81VVUuehgEeoFnRAclHs7z_W0RCI7HxZfgHv7JVcF8SNOhqucz3uwHs7LACtT7VJGrDqWYD1_TSNO_ymLEgqYDrIATINBIxvunMLG6SMYjJWb6LhlDxyfGdjJOdKpz9D-6SAY4b5HsEYXAUjZl84pToCHg"><button class="absolute top-6 right-6 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="material-symbols-outlined text-[20px]">favorite</span></button><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/5"><button class="bg-white text-black font-button text-[10px] uppercase tracking-widest px-8 py-3 hover:bg-black hover:text-white transition-colors">Quick View</button></div></div><div class="space-y-1"><p class="font-label-caps text-[9px] tracking-widest uppercase text-secondary">Tailoring</p><h4 class="font-body-md text-[16px] text-primary">Tailored Wool Trousers</h4><p class="font-body-md text-primary pt-2">$550</p><button class="mt-4 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">+ Add to Bag</button></div></div><!-- Product 3: High Offset --><div class="md:col-span-4 group cursor-pointer"><div class="relative aspect-[3/4] overflow-hidden rounded-lg mb-8 bg-surface-container-low"><img alt="Cashmere Knit" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXlpacaQp6sGQEiNID_FNWrhMtJt0kpvt-KztMCKB9eFIiVacCkcIsgTfE6dpU7lY2jaiaH6G3rWQyu9QeohmfKnH8ZrW0vVPR5N1chsBLGiFPZLGwj58LXOF-6w9h1-MQRp9NvxHifvcOogN5hXELxcxHwBw9k-sjm9J7C80YKerBGhhoNih1REgFxRcqHV8U2KM3tlhLmIQHPW1zXQhVtOoIBnMSeSedIK4QPPZHwRsHLJn7HAY3QQ"><button class="absolute top-6 right-6 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span class="material-symbols-outlined text-[20px]">favorite</span></button><div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/5"><button class="bg-white text-black font-button text-[10px] uppercase tracking-widest px-8 py-3 hover:bg-black hover:text-white transition-colors">Quick View</button></div></div><div class="space-y-1"><p class="font-label-caps text-[9px] tracking-widest uppercase text-secondary">Knitwear</p><h4 class="font-body-md text-[16px] text-primary">Pure Cashmere Knit</h4><p class="font-body-md text-primary pt-2">$890</p><button class="mt-4 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary transition-colors">+ Add to Bag</button></div></div></div></div></section>
+<!-- 3. Categories: Exactly THREE cards (Men, Women, Kids) -->
+<section class="bg-black py-section-gap" id="categories">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-20 text-white">
+<h2 class="font-display-lg text-5xl mb-4 italic">The Triptych</h2>
+<p class="font-label-caps text-[11px] tracking-[0.4em] uppercase opacity-60">Identity in Three Acts</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Women -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPGh3NLXUeJtgdP7GK6kUSOeBYQRcBq4xUTKy6-3uHZvXggmyGfsqGyrXbc7naneJ0NtRcsHq_lVeqx7Kf4P8NiY8ZHOqR_wjqcGEihHaVJRWlce7lpmajlMPi38arVHDJ4o9R_KL9VlhyyOSifFY7hASsSEz6sCOFHvKKLHD_a9GrceeKzOaEuGHrTLVtZOIYDKi4wmKpWWzX4SZMPe6A5gpcpkq5dcMi4eLAzh_Ff-prOjbrtPclLg">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-white">
+<h3 class="font-headline-md text-3xl mb-1">Women</h3>
+<p class="font-label-caps text-[9px] tracking-widest uppercase opacity-60">Volume I</p>
+</div>
+</div>
+<!-- Men -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNZmi_RZnL6datlMrPFP75SYRKOzbWNQPiIPXD1e-ymzSzSwrr9Tc3xRFcu6PTn3BPRs266SaUwJoTMsnPLFh9ifFXiSfSgZ0O2_6baVp4gXlO5AS-F4qTon_EwyT3VZMoogWz7q9NBICZ7zNyaS46NrSow3_PsqOw-hkyzXbXcTyVvg-vBNGwrnaSQBjQVcTvwYDawSzZ8VyHUuMpnrlimO5y9WJwqiOX_LJITCeZBS8HelHtLK49Lg">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-white">
+<h3 class="font-headline-md text-3xl mb-1">Men</h3>
+<p class="font-label-caps text-[9px] tracking-widest uppercase opacity-60">Volume II</p>
+</div>
+</div>
+<!-- Kids -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2TCOvLrSu_ZnSas2TATMSGQJzwpbzEWA5N20WXdS4Koyqk3p-JTIrWqRXGbw-xriCFnyFd7KbhvF2LOJMNAEmtKU6fJ_G_4hv-RKWdoTtIwqnQsL9MshjR_tX0ldovjVmtNmCFg4BYg3NJbeBalw6yNit_Lb9ji0Z6Ga4vAtQ458GTkUKe6fNfEm_QPBWHQWpXFDP7cf6NFcmqaNwXV6-1Q5yIl9zeiSn2-0y9N6zaA-niX98AvkFoQ">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-white">
+<h3 class="font-headline-md text-3xl mb-1">Kids</h3>
+<p class="font-label-caps text-[9px] tracking-widest uppercase opacity-60">Volume III</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Accessories Collection -->
+<section class="py-section-gap px-margin-desktop bg-surface-container-low" id="accessories">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-16 border-b border-black/10 pb-8">
+<div>
+<span class="font-label-caps text-[10px] tracking-[0.4em] uppercase text-secondary mb-2 block">Curation</span>
+<h2 class="font-display-lg text-5xl">Accessories</h2>
+</div>
+<a class="font-label-caps text-[11px] uppercase tracking-widest border-b border-black pb-1 hover:opacity-60 transition-opacity" href="#">View Gallery</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="group">
+<div class="aspect-[4/5] bg-white overflow-hidden mb-8 shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5_ok-84xG2vlq-CN8Jqelz54YWkbdkWNibDoJnkfElRzh-XEVnZadRUpxDvyTkNJwyTyEXLAjO_m_ACrYM6DD80P70lFppkivOARZd89FEF_n11-BosDh4soWF92oB43QZ_txiX8YXSddBCza8EF-EfB3iYi_R0jo9DN87Jsm-WQYwd8CfnvhQiEC4WyBUGujNs5F2PuiHxCHSebePGDz9IOgbsv9ZR6FIxlghpqVGAXLwRB7CTI-Zw">
+</div>
+<h5 class="font-label-caps text-[10px] tracking-widest text-secondary uppercase mb-2">The Sculpture Bag</h5>
+<p class="font-headline-md text-[20px] mb-4">Nappa Leather Tote</p>
+<p class="font-body-md text-primary">$1,850</p>
+</div>
+<div class="group">
+<div class="aspect-[4/5] bg-white overflow-hidden mb-8 shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3JxIUw9oyoGaxNTE1oX4OXEaW8vkfx2By_Vq6VAszS-_fcNhj30bzYoGeQ5Bb07pYA0vQewRRcNWqjJmelDNH7LeS0xwRrzyhFOL5sRZxNVQUC2Svhl-eZEsF_bas2zFlh3XKYM40M1AocNA5kRV_G-hZrjin8I6TgI44G27udr5RnkFqHyoLDgnKpCwuQt1Q0zRRpyvuei6c42BYAi3tE2mrZe82HGgwqEcuiWPmSTtq_vQm7wjpUw">
+</div>
+<h5 class="font-label-caps text-[10px] tracking-widest text-secondary uppercase mb-2">Optics</h5>
+<p class="font-headline-md text-[20px] mb-4">Acetate Frame Glasses</p>
+<p class="font-body-md text-primary">$420</p>
+</div>
+<div class="group">
+<div class="aspect-[4/5] bg-white overflow-hidden mb-8 shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcAS1OqaEtXQOf14_uB6STiFz5jP_8rutEWK4hH7W7Yl34aKvVY3V4b3-VEZYPeMGrye7KcDctwrAB1GhBy3WHgKDWD6yvQK2bv36U3iI4JHruvOlmLmYkUFK_on3QMLgYnW0jwp-dpgNz39yY9stKocDiPUNG7KuGp1dPD94s2wNbl8Y3N5X3ZlTRYol4TuZUqt__B7fQb0ZvfQowbLVZwMZYd9KtenEbhEzQzWzNl9gL-vxy1Jf46w">
+</div>
+<h5 class="font-label-caps text-[10px] tracking-widest text-secondary uppercase mb-2">Chronograph</h5>
+<p class="font-headline-md text-[20px] mb-4">Steel Bracelet Watch</p>
+<p class="font-body-md text-primary">$2,400</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Sale Products -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto" id="sale">
+<div class="flex justify-between items-center mb-16">
+<h2 class="font-headline-lg text-headline-lg">Private Sale Archive</h2>
+<span class="font-label-caps text-[10px] tracking-[0.3em] uppercase text-error px-4 py-2 bg-error-container rounded-full">Member Access Only</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+<!-- Sale Item 1 -->
+<div class="group relative bg-surface-container-highest p-4">
+<div class="absolute top-8 right-8 z-10 bg-error text-white px-4 py-1 font-label-caps text-[9px] uppercase tracking-widest">30% OFF</div>
+<div class="aspect-square mb-6 overflow-hidden">
+<img class="w-full h-full object-cover filter brightness-[0.9] group-hover:brightness-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcXoIfvy-TfCWCc5Cj_m4dGA98RMoinP9cJFMukEo7t2DzyVTeW575p2G9YrM_rBMC_ozV9O5paz8CQ7mLeylIFsDVDNJtWcc1rjcPPJLq7X7w4GkWistVnumVDmux36ObtYLJ2aN-D_JnVnYAy_5xn0Pe9WV03dG4RFeCVjTWah-CXI9U_J5Du77z7Jy9AbevHr-AmD_iJaw14lwZiNrPg5EMGcYUks0-szv0gyiZgKe49dlPeT85Vg">
+</div>
+<div class="text-center">
+<h4 class="font-label-caps text-[12px] uppercase mb-2">Architectural Blazer</h4>
+<div class="flex justify-center items-center gap-3">
+<span class="font-body-md text-error font-semibold">$1,470</span>
+<span class="font-body-md text-secondary/40 line-through text-[13px]">$2,100</span>
+</div>
+</div>
+</div>
+<!-- Sale Item 2 -->
+<div class="group relative bg-surface-container-highest p-4">
+<div class="absolute top-8 right-8 z-10 bg-error text-white px-4 py-1 font-label-caps text-[9px] uppercase tracking-widest">40% OFF</div>
+<div class="aspect-square mb-6 overflow-hidden">
+<img class="w-full h-full object-cover filter brightness-[0.9] group-hover:brightness-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAglRx0vvJYz_vQiMBJjOhbBpMXLoBPgktP8HU_fJV6h-uRbdlr9gIlcPXtMToMfo80gQiZC2YseQ9JwoadNS9Ncymyhtndc4-GgRTKep99DAVMsS4g4VMKZ8mFASp5p8YZYPshWPdXO56FSSi7cAfVm_d4Fd3F7pc_Rn6nDjm5GVQthAX2eDsOUoDQpjvN2NfjyWVbw9bqWC00m1UO9Qg0Q440_usBCBoiEKYR1IQ4smcNzzflvEjjBg">
+</div>
+<div class="text-center">
+<h4 class="font-label-caps text-[12px] uppercase mb-2">Volcanic Perfume Oil</h4>
+<div class="flex justify-center items-center gap-3">
+<span class="font-body-md text-error font-semibold">$228</span>
+<span class="font-body-md text-secondary/40 line-through text-[13px]">$380</span>
+</div>
+</div>
+</div>
+<!-- Sale Item 3 -->
+<div class="group relative bg-surface-container-highest p-4">
+<div class="absolute top-8 right-8 z-10 bg-error text-white px-4 py-1 font-label-caps text-[9px] uppercase tracking-widest">20% OFF</div>
+<div class="aspect-square mb-6 overflow-hidden">
+<img class="w-full h-full object-cover filter brightness-[0.9] group-hover:brightness-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIDna9aewN5yz8XoCO1kzxlmogB__LgKHhlqki5lfdKfEvDLbpwo4B56aWrbzElVFh2e03KJhoMgU3VGZGHhooh65BwaM3W7SXTQemBcPwrZj6jyf46Ph1jvWCtl4ZLwbrR4W9yhJRrd7UzHYBy9R0G7Gouv8zRl9bVe1AU0ugTSP2dYaivR-a1-c7LrddXJVl_JVsQP2zAVi9dDHPRB3Ydps5tedDTsJzXclLYp6bnfiNYbetBxdBUg">
+</div>
+<div class="text-center">
+<h4 class="font-label-caps text-[12px] uppercase mb-2">Concrete Art Book</h4>
+<div class="flex justify-center items-center gap-3">
+<span class="font-body-md text-error font-semibold">$120</span>
+<span class="font-body-md text-secondary/40 line-through text-[13px]">$150</span>
+</div>
+</div>
+</div>
+<!-- Sale Item 4 -->
+<div class="group relative bg-surface-container-highest p-4">
+<div class="absolute top-8 right-8 z-10 bg-error text-white px-4 py-1 font-label-caps text-[9px] uppercase tracking-widest">50% OFF</div>
+<div class="aspect-square mb-6 overflow-hidden">
+<img class="w-full h-full object-cover filter brightness-[0.9] group-hover:brightness-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD03yYNyAPdt_qsDTHKWPRh49SKI4b6hjDHGvgReLR298F09fFgzwUWtbLQ7rJvf_d78tlfiEtAzNcyF5L98DEMKURC3YpaA1r3SAOeSNePMYCD3goZntJomPn3n4KuT2pbBFzUKxt--nAOa49R8eL2OBc6V0Zky8YBs-hoVcUfT8RE_ml36K5z95hx3mpe-PBfJpMwisinLC09_A9pzyXcyAAByNOLFFP7z1eDd2sXmvG7lT4w_Zy8Ig">
+</div>
+<div class="text-center">
+<h4 class="font-label-caps text-[12px] uppercase mb-2">Monolith Shell Coat</h4>
+<div class="flex justify-center items-center gap-3">
+<span class="font-body-md text-error font-semibold">$1,600</span>
+<span class="font-body-md text-secondary/40 line-through text-[13px]">$3,200</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Brand Story -->
+<section class="py-section-gap border-t border-outline/10" id="brand-story">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 items-center gap-0 bg-white shadow-xl">
+<div class="col-span-1 md:col-span-6 h-[700px] overflow-hidden">
+<img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcXoIfvy-TfCWCc5Cj_m4dGA98RMoinP9cJFMukEo7t2DzyVTeW575p2G9YrM_rBMC_ozV9O5paz8CQ7mLeylIFsDVDNJtWcc1rjcPPJLq7X7w4GkWistVnumVDmux36ObtYLJ2aN-D_JnVnYAy_5xn0Pe9WV03dG4RFeCVjTWah-CXI9U_J5Du77z7Jy9AbevHr-AmD_iJaw14lwZiNrPg5EMGcYUks0-szv0gyiZgKe49dlPeT85Vg">
+</div>
+<div class="col-span-1 md:col-span-6 px-12 md:px-24 py-20 flex flex-col items-start justify-center">
+<span class="font-label-caps text-[10px] tracking-[0.5em] uppercase text-secondary mb-10 block">Since MCMXCIV</span>
+<h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg mb-8 leading-tight">The Architecture of Identity</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-12 leading-relaxed">
+                    Born from a vision of absolute purity, Monolith was founded on the belief that clothing is the ultimate architecture for the soul. We reject the fleeting trends of the season in favor of enduring structural integrity and the world's most refined natural fibers.
+                </p>
+<a class="px-12 py-5 bg-black text-white font-button text-[12px] uppercase tracking-[0.2em] hover:bg-secondary transition-all duration-300" href="#">Our Philosophy</a>
+</div>
+</div>
+</section>
+<!-- 7. Instagram Gallery -->
+<section class="py-section-gap bg-surface" id="instagram">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center mb-16">
+<h2 class="font-display-lg text-4xl mb-2">#MONOLITH_WORLD</h2>
+<p class="font-label-caps text-[11px] tracking-widest uppercase opacity-60">Curated Moments from Our Community</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-1 px-1 max-w-[1920px] mx-auto">
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3JxIUw9oyoGaxNTE1oX4OXEaW8vkfx2By_Vq6VAszS-_fcNhj30bzYoGeQ5Bb07pYA0vQewRRcNWqjJmelDNH7LeS0xwRrzyhFOL5sRZxNVQUC2Svhl-eZEsF_bas2zFlh3XKYM40M1AocNA5kRV_G-hZrjin8I6TgI44G27udr5RnkFqHyoLDgnKpCwuQt1Q0zRRpyvuei6c42BYAi3tE2mrZe82HGgwqEcuiWPmSTtq_vQm7wjpUw"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcAS1OqaEtXQOf14_uB6STiFz5jP_8rutEWK4hH7W7Yl34aKvVY3V4b3-VEZYPeMGrye7KcDctwrAB1GhBy3WHgKDWD6yvQK2bv36U3iI4JHruvOlmLmYkUFK_on3QMLgYnW0jwp-dpgNz39yY9stKocDiPUNG7KuGp1dPD94s2wNbl8Y3N5X3ZlTRYol4TuZUqt__B7fQb0ZvfQowbLVZwMZYd9KtenEbhEzQzWzNl9gL-vxy1Jf46w"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIDna9aewN5yz8XoCO1kzxlmogB__LgKHhlqki5lfdKfEvDLbpwo4B56aWrbzElVFh2e03KJhoMgU3VGZGHhooh65BwaM3W7SXTQemBcPwrZj6jyf46Ph1jvWCtl4ZLwbrR4W9yhJRrd7UzHYBy9R0G7Gouv8zRl9bVe1AU0ugTSP2dYaivR-a1-c7LrddXJVl_JVsQP2zAVi9dDHPRB3Ydps5tedDTsJzXclLYp6bnfiNYbetBxdBUg"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR7U5-7Fsr12Vz6Os5kscKNLSXqUYM0SY5hwO9DxE2WzfXaS5CWc5n9EHg_EDshXcsl6aFQjFsRwX2_vyMAOeRrmQ499TnSuWGcJGN51QOn77pGDxAGZb1fVhykjN_rrab9WNkmhnmCB-CbTNj1ZcRcsgeHZ4FAH13meqbScsBC-0quLcVAERgA5YWLZwqYCKWgqoRjQPvp_otQV7H4yWHu4RdnH1QdS4osNxbtw0nT7Fm-XtV29fKPw"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd1ucNwIQBNw3tpjFhihDLyaiJ6vOSET954GK0jFNFbkqQfTPFJsJw6VdDZztR_m-pXUl_p_p8EjCowGfYA69C1XhipawJsEk55k5Q9g6dnSJniUSknFLo8FAug62IQkfXT7-pierwSg8RY0VE_Di-U8DcTXBGaa6ur_ue0J91WwR5oMV2qjZkutWSB3_h8R2z5c5YFkQG6vfvMlqlGivAWLgvv3VviVGUO8UqrNjQz5uqQmePz2R_bg"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2TCOvLrSu_ZnSas2TATMSGQJzwpbzEWA5N20WXdS4Koyqk3p-JTIrWqRXGbw-xriCFnyFd7KbhvF2LOJMNAEmtKU6fJ_G_4hv-RKWdoTtIwqnQsL9MshjR_tX0ldovjVmtNmCFg4BYg3NJbeBalw6yNit_Lb9ji0Z6Ga4vAtQ458GTkUKe6fNfEm_QPBWHQWpXFDP7cf6NFcmqaNwXV6-1Q5yIl9zeiSn2-0y9N6zaA-niX98AvkFoQ"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAglRx0vvJYz_vQiMBJjOhbBpMXLoBPgktP8HU_fJV6h-uRbdlr9gIlcPXtMToMfo80gQiZC2YseQ9JwoadNS9Ncymyhtndc4-GgRTKep99DAVMsS4g4VMKZ8mFASp5p8YZYPshWPdXO56FSSi7cAfVm_d4Fd3F7pc_Rn6nDjm5GVQthAX2eDsOUoDQpjvN2NfjyWVbw9bqWC00m1UO9Qg0Q440_usBCBoiEKYR1IQ4smcNzzflvEjjBg"></div>
+<div class="aspect-square overflow-hidden"><img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD03yYNyAPdt_qsDTHKWPRh49SKI4b6hjDHGvgReLR298F09fFgzwUWtbLQ7rJvf_d78tlfiEtAzNcyF5L98DEMKURC3YpaA1r3SAOeSNePMYCD3goZntJomPn3n4KuT2pbBFzUKxt--nAOa49R8eL2OBc6V0Zky8YBs-hoVcUfT8RE_ml36K5z95hx3mpe-PBfJpMwisinLC09_A9pzyXcyAAByNOLFFP7z1eDd2sXmvG7lT4w_Zy8Ig"></div>
+</div>
+</section>
+<!-- 8. Newsletter -->
+<section class="py-16 bg-white border-y border-black/5" id="newsletter">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="text-left">
+<h3 class="font-headline-md text-2xl mb-1 italic">Join the Monolith Circle</h3>
+<p class="font-body-md text-secondary text-sm tracking-wide">Receive seasonal updates and private invitations.</p>
+</div>
+<form class="flex w-full md:w-auto min-w-[400px] border-b border-black">
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-body-md py-4 px-0 placeholder:text-outline/40" placeholder="Your Email Address" type="email">
+<button class="font-label-caps text-[11px] uppercase tracking-[0.3em] pl-8 py-4 hover:opacity-50 transition-opacity" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+<!-- 9. Footer -->
+<footer class="bg-surface pt-section-gap pb-12 border-t border-outline/10">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-24">
+<div class="md:col-span-4 mb-12 md:mb-0">
+<span class="font-display-lg text-xl tracking-[0.3em] uppercase block mb-10 select-none">Monolith</span>
+<p class="font-body-md text-secondary text-sm leading-loose max-w-xs opacity-70">
+                        Curating the finest materials to create a wardrobe of architectural precision and timeless elegance for the modern individual.
+                    </p>
+</div>
+<div class="md:col-span-2">
+<h6 class="font-label-caps text-[11px] uppercase tracking-[0.2em] mb-10">Boutique</h6>
+<ul class="space-y-5">
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Collections</a></li>
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Accessories</a></li>
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Private Sale</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h6 class="font-label-caps text-[11px] uppercase tracking-[0.2em] mb-10">Client Care</h6>
+<ul class="space-y-5">
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Size Guide</a></li>
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li class=""><a class="font-body-md text-[13px] text-secondary hover:text-primary transition-colors" href="#">Store Locator</a></li>
+</ul>
+</div>
+<div class="md:col-span-4">
+<h6 class="font-label-caps text-[11px] uppercase tracking-[0.2em] mb-10">Social Journal</h6>
+<div class="flex space-x-10 mb-12">
+<a class="text-[13px] font-body-md text-secondary hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="text-[13px] font-body-md text-secondary hover:text-primary transition-colors" href="#">Pinterest</a>
+<a class="text-[13px] font-body-md text-secondary hover:text-primary transition-colors" href="#">Vogue</a>
+</div>
+<div class="pt-8 border-t border-outline/10">
+<p class="font-label-caps text-[9px] uppercase tracking-widest text-outline">
+                            © 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Scroll reveal logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.editorial-reveal').forEach(el => observer.observe(el));
+
+        // Navbar transition
+        const nav = document.getElementById('top-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('nav-scrolled');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Initialize editorial reveals
+        setTimeout(() => {
+            document.querySelectorAll('header .editorial-reveal').forEach(el => el.classList.add('visible'));
+        }, 100);
+    </script>
+</body></html>

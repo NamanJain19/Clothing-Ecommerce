@@ -1,0 +1,351 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Orders | MONOLITH LUXURY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "inverse-on-surface": "#f0f1f1",
+                "tertiary-fixed": "#e2e2e2",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed-dim": "#c6c6c6",
+                "primary-fixed-dim": "#c6c6c6",
+                "error-container": "#ffdad6",
+                "secondary-fixed": "#e2e2e2",
+                "outline-variant": "#cfc4c5",
+                "tertiary-container": "#1a1c1c",
+                "surface-container-high": "#e8e8e8",
+                "error": "#ba1a1a",
+                "inverse-surface": "#2f3131",
+                "outline": "#7e7576",
+                "on-secondary": "#ffffff",
+                "on-secondary-container": "#5f6161",
+                "surface-bright": "#f9f9f9",
+                "surface-dim": "#dadada",
+                "surface": "#f9f9f9",
+                "on-tertiary-container": "#838484",
+                "primary-fixed": "#e2e2e2",
+                "secondary-container": "#dcdddd",
+                "on-tertiary-fixed-variant": "#454747",
+                "on-primary-fixed-variant": "#474747",
+                "tertiary": "#000000",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#1a1c1c",
+                "background": "#f9f9f9",
+                "secondary-fixed-dim": "#c6c6c7",
+                "surface-tint": "#5e5e5e",
+                "primary": "#000000",
+                "on-secondary-fixed-variant": "#454747",
+                "surface-container": "#eeeeee",
+                "on-surface-variant": "#4c4546",
+                "surface-container-low": "#f3f3f4",
+                "on-primary-container": "#848484",
+                "surface-variant": "#e2e2e2",
+                "secondary": "#5d5f5f",
+                "on-secondary-fixed": "#1a1c1c",
+                "on-tertiary-fixed": "#1a1c1c",
+                "on-error-container": "#93000a",
+                "on-primary": "#ffffff",
+                "inverse-primary": "#c6c6c6",
+                "primary-container": "#1b1b1b",
+                "on-background": "#1a1c1c",
+                "on-error": "#ffffff",
+                "on-primary-fixed": "#1b1b1b",
+                "surface-container-highest": "#e2e2e2"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-desktop": "64px",
+                "section-gap": "128px",
+                "unit": "8px",
+                "gutter": "32px",
+                "container-max": "1440px",
+                "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                "headline-md": ["Playfair Display"],
+                "body-lg": ["Montserrat"],
+                "label-caps": ["Montserrat"],
+                "display-lg": ["Playfair Display"],
+                "display-lg-mobile": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "button": ["Montserrat"],
+                "body-md": ["Montserrat"]
+            },
+            "fontSize": {
+                "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .order-card {
+            transition: transform 0.3s ease-in-out, border-color 0.3s ease;
+        }
+        .order-card:hover {
+            border-color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop py-6">
+<div class="flex items-center gap-12">
+<a class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary" href="#">MONOLITH</a>
+<nav class="hidden lg:flex gap-8">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Categories</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">New Arrivals</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center border-b border-outline pb-1">
+<span class="material-symbols-outlined text-secondary mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md placeholder:text-secondary-fixed-dim w-48" placeholder="Search" type="text">
+</div>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300 text-primary"><span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span></button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12 lg:py-24">
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Account Sidebar (Shared Component) -->
+<aside class="col-span-12 lg:col-span-3">
+<div class="sticky top-32 space-y-12">
+<div>
+<h2 class="font-headline-md text-headline-md mb-8">My Account</h2>
+<nav class="flex flex-col gap-6"><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                                Dashboard
+                            </a>
+<a class="font-label-caps text-label-caps text-primary flex items-center gap-3 border-l-2 border-primary pl-4 -ml-4" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                                My Orders
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_shipping">local_shipping</span>
+                                Track Orders
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+                                Wishlist
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="home_pin">home_pin</span>
+                                Saved Addresses
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+                                Payment Methods
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                                Account Settings
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+                                Notifications
+                            </a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+                                Help &amp; Support
+                            </a>
+<div class="pt-8 mt-8 border-t border-outline-variant">
+<a class="font-label-caps text-label-caps text-secondary hover:text-error transition-colors flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                                    Logout
+                                </a>
+</div></nav>
+</div>
+</div>
+</aside>
+<!-- Main Content Area: My Orders -->
+<section class="col-span-12 lg:col-span-9 space-y-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-8">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-2">History</p>
+<h1 class="font-headline-lg text-headline-lg">Order Archives</h1>
+</div>
+<div class="mt-6 md:mt-0 flex gap-4">
+<button class="font-label-caps text-label-caps text-primary border-b border-primary pb-1">All Orders</button>
+<button class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors pb-1">In Transit</button>
+<button class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors pb-1">Completed</button>
+</div>
+</div>
+<!-- Orders List -->
+<div class="space-y-gutter">
+<!-- Order 1 -->
+<div class="order-card border border-outline-variant p-8 bg-surface-container-lowest flex flex-col md:flex-row gap-8">
+<div class="w-full md:w-32 h-40 bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A cinematic, studio-lit photograph of a luxury black leather weekend bag placed on a minimalist marble pedestal. The lighting is directional, creating deep shadows and highlighting the rich texture of the pebble-grain leather against a muted grey background. Professional high-fashion editorial photography style, crisp and elegant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVM9Np1t2fsbgfShsEG5W5E2ZvNkATzVBmRAyBKIaKXig3cAxnzzdnxZjgUsfVOYm-OEan4zEF84Xm0rK_7HRSfEoz-8A1_y89aS0tT8ORU9GTowV4bpK_Fn1hUD3GIY0a4HN7g415qqIjeQN7VCZmisjpNehqpaW8uARCxwbwALtNN7hEAdiN4SC-VXkBtxLzQFUCb9O7NIKzaYdX-oNFAVeW2BPdjVJ-4Gl4HQYyTW5x3ayhT78xMA">
+</div>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Order #MN-982310</p>
+<p class="font-headline-md text-[20px]">Elysium Travel Set</p>
+<p class="font-body-md text-secondary">Ordered: Oct 12, 2023</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<p class="font-body-md">Delivered</p>
+</div>
+<p class="font-body-md text-secondary">Arrived on Oct 15, 2023</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Total</p>
+<p class="font-body-md font-bold">$2,450.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 justify-center">
+<button class="font-button text-button bg-primary text-on-primary px-8 py-3 uppercase hover:opacity-90 transition-opacity">Track Order</button>
+<button class="font-button text-button border border-primary text-primary px-8 py-3 uppercase hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+<!-- Order 2 -->
+<div class="order-card border border-outline-variant p-8 bg-surface-container-lowest flex flex-col md:flex-row gap-8">
+<div class="w-full md:w-32 h-40 bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-fashion product shot of a pair of minimalist white sneakers with subtle silver accents, arranged artfully on a reflective surface. The background is a clean off-white studio setting with soft, diffused lighting that emphasizes the clean lines and premium materials. The overall aesthetic is monochrome, modern, and quiet luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDleozLY_knOU6mDRpZPhzY3V8qIe3HO8OFZ-zrc8x5IPhgufFex483BYkuJblY5K5Mpho_1E7YbPVTquQs4kqdqjMaLT1DZb_LC_1qTOffghuAo_0b4jX22jj3W7HlnfNp-Htk19RVmqFAXLvKQjv-lYApYfVurCMvN0046h6L4HqLezTahpYbsERkB6AbmIlHZ8f5AZWqTGsU6dhbBjtVvkmh4PvgOCUGHmYJPgPV6hvaERaWyCY_NQ">
+</div>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Order #MN-982144</p>
+<p class="font-headline-md text-[20px]">Monolith Low-Top V2</p>
+<p class="font-body-md text-secondary">Ordered: Sep 28, 2023</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<p class="font-body-md">In Transit</p>
+</div>
+<p class="font-body-md text-secondary">Est: Sep 30, 2023</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Total</p>
+<p class="font-body-md font-bold">$680.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 justify-center">
+<button class="font-button text-button bg-primary text-on-primary px-8 py-3 uppercase hover:opacity-90 transition-opacity">Track Order</button>
+<button class="font-button text-button border border-primary text-primary px-8 py-3 uppercase hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+<!-- Order 3 -->
+<div class="order-card border border-outline-variant p-8 bg-surface-container-lowest flex flex-col md:flex-row gap-8">
+<div class="w-full md:w-32 h-40 bg-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up, editorial detail shot of a tailored charcoal wool blazer, highlighting the intricate weave of the fabric and the sharp lapel edge. The lighting is soft and top-down, creating a sophisticated play of light and shadow. The image captures a sense of timeless elegance and high-end craftsmanship in a minimalist fashion style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnUj0infTTcXm_YT2pcBl8QMr66HW6NrKsq8x7TQdYRR4KQ12iRDCDvJDUpIB5l0cVQJt4YYOsYjuu4DddJ22sLsNQO1CY3zBEDquy3B_rfcsuiJhkv975IziFM4I-zCGyqeRXbjX8zxXktDmhUo3Ix7vWw0hHGVF23ARghg_1Ev1pA3TRNcfn-ZWg3TDoQgLOghCnSLjXKot6tn97-0uXpQmFyUIk0mboYDiSZePdrGuHvuGE6Mh2gw">
+</div>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Order #MN-979920</p>
+<p class="font-headline-md text-[20px]">Archive Wool Blazer</p>
+<p class="font-body-md text-secondary">Ordered: Aug 15, 2023</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<p class="font-body-md">Delivered</p>
+</div>
+<p class="font-body-md text-secondary">Arrived on Aug 18, 2023</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps text-secondary">Total</p>
+<p class="font-body-md font-bold">$1,200.00</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 justify-center">
+<button class="font-button text-button border border-primary text-primary px-8 py-3 uppercase hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+<!-- Load More CTA -->
+<div class="pt-12 flex justify-center">
+<button class="group flex items-center gap-4 font-label-caps text-label-caps hover:text-primary transition-all">
+                            View Older Orders
+                            <span class="material-symbols-outlined group-hover:translate-y-1 transition-transform" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full mt-section-gap bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline">
+<div class="max-w-container-max mx-auto px-margin-desktop py-section-gap flex flex-col items-center gap-8 text-center">
+<h2 class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-primary">MONOLITH</h2>
+<nav class="flex flex-wrap justify-center gap-x-12 gap-y-6">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Store Locator</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Journal</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Sustainability</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Instagram</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Pinterest</a>
+</nav>
+<p class="font-body-lg text-body-lg text-secondary dark:text-secondary-fixed-dim mt-8">© 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script>
+        // Simple scroll behavior for header
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 50) {
+                header.classList.add('bg-opacity-95', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('bg-opacity-95', 'backdrop-blur-md');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Track Order button interaction
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('Track Order')) {
+                btn.addEventListener('click', () => {
+                    btn.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2" style="font-size: 18px">progress_activity</span>Loading...';
+                    setTimeout(() => {
+                        btn.innerHTML = 'Track Order';
+                        alert('Connecting to global logistics network...');
+                    }, 1200);
+                });
+            }
+        });
+    </script>
+
+
+</body></html>

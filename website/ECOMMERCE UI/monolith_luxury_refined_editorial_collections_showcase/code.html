@@ -1,0 +1,386 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Collections | ELEGANCE LUXURY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1a1c1c",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-primary-fixed": "#1b1b1b",
+                    "inverse-on-surface": "#f0f1f1",
+                    "primary-fixed": "#e2e2e2",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-secondary-container": "#5f6161",
+                    "surface": "#f9f9f9",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-container": "#838484",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#454747",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-primary-container": "#848484",
+                    "surface-container-low": "#f3f3f4",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000000",
+                    "surface-dim": "#dadada",
+                    "tertiary-container": "#1a1c1c",
+                    "surface-variant": "#e2e2e2",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "on-surface-variant": "#4c4546",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#1b1b1b",
+                    "outline": "#7e7576",
+                    "outline-variant": "#cfc4c5",
+                    "inverse-surface": "#2f3131",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#5e5e5e",
+                    "surface-bright": "#f9f9f9",
+                    "secondary": "#5d5f5f",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-primary": "#c6c6c6",
+                    "primary": "#000000",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#dcdddd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "32px",
+                    "margin-mobile": "20px",
+                    "section-gap": "128px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .hover-zoom:hover img {
+        transform: scale(1.05);
+      }
+      .text-outline {
+        -webkit-text-stroke: 1px black;
+        color: transparent;
+      }
+      .nav-glass {
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.7);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-outline/10 transition-all duration-500 ease-in-out nav-glass">
+<div class="flex justify-between items-center px-margin-desktop py-unit max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<a class="font-display-lg text-headline-md uppercase tracking-tighter text-primary" href="#">
+                ELEGANCE
+            </a>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center space-x-10">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">Collections</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors" href="#">Categories</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors" href="#">New Arrivals</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center space-x-6">
+<button class="hover:opacity-70 transition-opacity"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="hover:opacity-70 transition-opacity"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-70 transition-opacity relative">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:opacity-70 transition-opacity"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative w-full flex items-center justify-center overflow-hidden h-[50vh]">
+<div class="absolute inset-0 z-0 scale-105 transition-transform duration-1000 ease-out hover:scale-100">
+<img class="w-full h-full object-cover" data-alt="A high-fashion editorial wide-shot photograph of a model in a stark architectural setting. The lighting is dramatic and high-contrast, reflecting a quiet luxury aesthetic with deep shadows and brilliant highlights. The color palette is monochromatic, primarily whites and greys, with a focus on textile texture and structural form. The mood is authoritative and serene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqEkov0Id13kryuMuIZTnjBhxrT6EuO_ehRRBG6sX05u24WhhzXfuCUe9N8j9HEikil_iyEyKBOfZHCybpPSZmq0mcKJipBSMYB7uADUgRAd4cHCJE1LsK_uUkoNeDyrbBY_wK4wnMXAzQwR9xzMsSTP6Aw7dkcauyDOYi3sK0lZ_f_-3iyAyvLKYX1Wb8Ip45EA5uD_IgTqgHOHzhnLwVhKNExQxVc7v_sJ_JXRhm-ipklD9NsoBpgQ">
+</div>
+<div class="absolute inset-0 bg-black/10 z-10"></div>
+<div class="relative z-20 text-center px-margin-mobile">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6 animate-fade-in uppercase tracking-tighter">
+                The Collections
+            </h1>
+<p class="font-body-lg text-body-lg text-white max-w-xl mx-auto opacity-90">
+                A curated journey through our signature seasonal acts and timeless narratives.
+            </p>
+</div>
+</section>
+<!-- Collection Showcase -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-desktop space-y-gutter">
+<!-- Row 1: Asymmetric (Large Left, Small Right) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto">
+<!-- Summer Collection -->
+<div class="md:col-span-8 relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-[16/9] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A high-end campaign photo for a Summer collection featuring a model in linen drapery against a sun-drenched, minimalist Mediterranean stone wall. The atmosphere is warm yet sophisticated, utilizing high-key lighting and a soft monochromatic beige and white palette. Minimal shadows and crisp details emphasize the luxury fabric textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7AiIV0zqhkUZQi8-w5jGGVJ3-pmm3YwuaYNl4vKcmnwSb9pZasJoShu6YgThq7eYXDqxK_NYDvg39jqAgERcQBgsRlsGcdJUH4Ehmg8rYaqD_D6pnZyf-2WmZxKXfek4sx3AVJUajNAGRCf9bSmsFKQbqMlgT7TP2D08kzteo9yzEKOhFY_1aGcDHbSXVlvHHh3mFnyrr0mqxP4LWIE-RI4qv-wdwzpqGpoT5UUo0REcl6ZY3EtywuQ">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-end p-12 text-white">
+<h3 class="font-headline-lg text-headline-lg mb-4">Summer</h3>
+<p class="font-body-md text-body-md max-w-xs mb-6 opacity-80">Lightweight narratives for the high-noon sun.</p>
+<button class="w-fit font-label-caps text-label-caps uppercase border border-white px-8 py-3 hover:bg-white hover:text-black transition-all">Explore Collection</button>
+</div>
+</div>
+<!-- Winter Collection -->
+<div class="md:col-span-4 relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-[4/5] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="An editorial close-up of heavy wool and cashmere textures for a Winter collection. The model's face is partially obscured by a high collar in a dark charcoal grey. The lighting is moody and directional, highlighting the premium quality of the knitwear. The background is a soft-focus urban concrete setting in winter light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgs6xkL16M24VB-WmvyhxO7Fj8XxDTJKWwtvQwjZdb1nkcoZUyS1iNz7u2RnWcqEdkPfosEp8N_fg5cvlLqoBHVJXUcDTwlgCoFA7QZ0d2lN4w5r2mHqHac4tNSkksZWF-YB53GDlKr0MBkMv2T9q1kTHVwk--rjYEHV8sRvCFfhkKVZHXKqvj9qmggSZcUrBMqUlAwZleWqB8OIB8Fr70iu0V42kT-xofUq5KC7RtV7IXaDDxpWqZxA">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+<h3 class="font-headline-md text-headline-md mb-2">Winter</h3>
+<button class="w-fit font-label-caps text-label-caps uppercase border-b border-white pb-1 hover:opacity-70 transition-opacity">Explore</button>
+</div>
+</div>
+</div>
+<!-- Row 2: Full Width Campaign Banner -->
+<div class="w-full relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-[21/9] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A cinematic full-bleed fashion campaign image for Casual luxury. Two models walk through a modernist glass-walled gallery. The reflection on the glass creates a layered, sophisticated visual. The clothing consists of relaxed but impeccably tailored monochromatic separates in shades of slate and obsidian. High-end editorial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvuwN6WJWgSVJznhqLckf_x1qf-4k__Ipd0zovX4YnLTDu-QTvCQ5vkkeIgeU0_gzQJKxw42QkqbFbPKDD8MY8zr6BMLkLA_4F58BKstLlfa-dhdUffweKxtS4jUgaWOLlDKMQeMQuR7kg5t6OBJPwUu663MBnPg-wDLxeFkm0nKIsgPZzfRoEdq_xTdFKPL4Ol0euORWfht5ufv-dUIcDuFc0rTJlpE7IYi44A7tuPz88fE8wmTbDJw">
+</div>
+<div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-white text-center p-8">
+<span class="font-label-caps text-label-caps uppercase mb-4 tracking-widest">The Daily Dialogue</span>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg-mobile lg:text-display-lg mb-8 uppercase">Casual</h2>
+<button class="font-label-caps text-label-caps uppercase bg-white text-black px-12 py-4 hover:bg-black hover:text-white transition-all">View All Casuals</button>
+</div>
+</div>
+<!-- Row 3: Asymmetric (Small Left, Large Right) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Formal Collection -->
+<div class="md:col-span-5 relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-[3/4] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A formal wear editorial showcasing a sharp tuxedo against a black velvet backdrop. The image is extremely high-contrast, emphasizing the silhouette and the satin lapel. The lighting is focused, creating a dramatic 'spotlight' effect. Minimalist, premium, and authoritative fashion photography in a monochromatic palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTwZ4S54FUsccRMFyv63A--79IGwscXVSzI0qWKSXf4RSb6bP-UW3jU1vNKUpYP1LLIMn4ELvak0S4JMuu5FtYce6-G06fR0TYBAtnVMbrhM9kqaerMiwIZXlUTEdQsGkbP_C9Cb0gMnKNKzsBnAetikdbgwi1J3BmqX6fA4uls71Jhafxi35eFEgA_ZtqLpkLULbXp1gUvJ_GwwS-N70b7raHVPv_ZnRtygi5fwDZs08SDb31lsn_YA">
+</div>
+<div class="absolute inset-0 flex flex-col justify-between p-10">
+<span class="font-label-caps text-label-caps uppercase tracking-[0.3em] text-white/60">04 / Series</span>
+<div class="text-white">
+<h3 class="font-headline-lg text-headline-lg mb-4">Formal</h3>
+<button class="w-fit font-label-caps text-label-caps uppercase border border-white px-8 py-3 hover:bg-white hover:text-black transition-all">The Gala Edit</button>
+</div>
+</div>
+</div>
+<!-- Streetwear Collection -->
+<div class="md:col-span-7 relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-video w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="Streetwear luxury editorial featuring oversized silhouettes and technical fabrics. The setting is a minimalist urban subway station with clean lines and fluorescent lighting. The color palette is dominated by off-whites and cool greys. The photo uses a wide-angle lens to create a sense of scale and modern city life." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfvAdyXuP5l0zIKAKee8-CuqwTwBmTP52kYdyxjb_wzY0xbq4YhPFSLvYBBtzRp6Y1Y5oD4sNTD81WSIeF_oRm5qooe4PxlWbt0hyDljACD4AgbB5L1SeI1mVkc1JI7tph-_5xb5s_c5k8kpZTk-Ds3zVhm2td05T2JlM1_Qbn717JYqRnxTfB-iEf7Gk2NPRDViYO44B6ty9s4NJz02R87Iw1ah3UlWy2EjUl3k-HhsUscEgxX3OknQ">
+</div>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+<div class="absolute top-12 right-12 text-white text-right">
+<h3 class="font-headline-lg text-headline-lg uppercase mb-2">Streetwear</h3>
+<p class="font-body-md text-body-md opacity-80 uppercase tracking-widest">Urban Architectures</p>
+<button class="mt-6 font-label-caps text-label-caps uppercase border-b border-white pb-1">Discover</button>
+</div>
+</div>
+</div>
+<!-- Row 4: Symmetrical Grid for the last two -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Luxury Essentials -->
+<div class="relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-square w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A curated flat-lay or detailed macro shot of high-quality essential items like a silk t-shirt, leather belt, and fine-knit sweater. The textures are incredibly sharp and tactile. Lighting is soft and diffuse, creating a serene, organized aesthetic. Monochromatic white and light grey tones dominate the composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZNKbeC6tbKNKUGYH0u690uKr4J3Glb3K8jjeqsCGTQM60D7HDHloDJxhgkg4xVaDB-Wl-9s2EFsuoU_25p-GLAylUMfbOtZxSfdpGCnd83EFUDcSJiDKHzLf57bngJr893SOSNf_R16IQPuhMTqO-OebVcbtCohbGtdlrO1c4w12JlwHDqgfTvS5U3JgH7UnQCFRLtodIK6iB-UZii4v-l3WvWuIMsyJscbGBzYCpU8ZVhJRxoLdFsw">
+</div>
+<div class="absolute inset-10 flex flex-col justify-end bg-white/10 backdrop-blur-sm p-8 border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500">
+<h3 class="font-headline-md text-headline-md mb-2 text-white">Luxury Essentials</h3>
+<p class="font-body-md text-body-md text-white mb-6">The foundation of the modern wardrobe.</p>
+<button class="w-fit font-label-caps text-label-caps uppercase bg-white text-black px-6 py-2">Shop Essentials</button>
+</div>
+</div>
+<!-- Limited Edition -->
+<div class="relative group overflow-hidden border border-outline/10 hover-zoom">
+<div class="aspect-square w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="A striking portrait of a unique, avant-garde garment from a limited edition collection. The lighting is experimental, using shadows to create geometric shapes on the model's face and clothes. The aesthetic is extremely minimalist and futuristic. High-contrast black and white photography with a sharp focus on intricate design details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6kdqskCDpbfM74zT5PBx4fhS5S2MX-NJ-KF9hW8AfWrQlMu7kwJ8HOHE81K53RFjcZ6xFh4Sn-o8a_4kgeYml4-QY0tbc_DQxLOXduoIK9BpCYb1WVIfRZh8bd7bJP8M99DomdCEwd_r4AnUicaEzMxmQ69hGvawmXCyN6ZSQG6AgdDuQRwg4hXueaDItVfjTr5SB8fEbP77iBWQxwd2X1GOJ4_YZxKcVRLPsMJ0Hnp8p20ASJDXCzQ">
+</div>
+<div class="absolute inset-0 flex items-center justify-center p-8 bg-black/5">
+<div class="text-center">
+<h3 class="font-headline-lg text-headline-lg text-white drop-shadow-lg mb-4">Limited Edition</h3>
+<button class="font-label-caps text-label-caps uppercase bg-black text-white px-10 py-4 hover:bg-white hover:text-black transition-all border border-black">Access Archive</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mid-Page Banner: The Artisan Series -->
+<section class="w-full bg-on-background text-surface py-24 overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<span class="font-label-caps text-label-caps uppercase tracking-[0.4em] text-secondary mb-8 block">Exclusive Series</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-lg mb-8 leading-tight">The Artisan<br>Series</h2>
+<p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-md mb-12">
+                    A tribute to the craft. Each piece in the Artisan Series is meticulously hand-finished by master tailors, ensuring no two narratives are identical.
+                </p>
+<button class="font-button text-button uppercase bg-white text-black px-12 py-5 hover:bg-transparent hover:text-white border border-white transition-all">View the Craftsmanship</button>
+</div>
+<div class="order-1 lg:order-2 relative">
+<div class="aspect-[4/5] border border-outline/20 p-4">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="A detailed close-up shot of a craftsman's hands working with high-quality leather or fabric. The image is moody, monochromatic, and highlights the tactile nature of the material. There are subtle dust motes in a beam of light. The aesthetic is one of heritage, patience, and extreme quality. Editorial style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlPWVmsLpgoW7wCzi30ENpsmgCm-I5QvD3TiMieU99kHgTuwlqzrcEI3UAkn0y9cFEIfkw1nNVzPdRTll22AJ3PagKynPgB-mTXdhTT-BCi-BIwwAR2QRkEWgkiK9Ph0KNqqirW2uRvkL7lwaMjQc7a25uYx15Z_7cAQPxiGWkfi3j-e_CVLa8bHHirX3d-yAPSWNdVrabmEEQNH_MbxmQ0trF9YI8maC74EJBf-9soJpEOa_58Qqdfw">
+</div>
+<div class="absolute -bottom-8 -left-8 bg-surface-container-lowest text-primary p-8 hidden md:block border border-outline/10">
+<p class="font-label-caps text-[10px] tracking-widest uppercase mb-2">Handmade in</p>
+<p class="font-headline-md text-2xl">Florence</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Instagram Gallery -->
+<section class="py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg uppercase mb-2">Moments</h2>
+<p class="font-label-caps text-label-caps text-secondary">#MONOLITH_WORLD</p>
+</div>
+<a class="font-label-caps text-label-caps uppercase border-b border-primary pb-1 hidden md:block" href="#">Follow Us</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+<div class="aspect-square overflow-hidden border border-outline/5 hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Minimalist luxury lifestyle Instagram photo: a glass of water on a marble table with a Monolith catalog. Monochrome aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN7B_chTcsNvX8q_KnTYSFkv17LFPAlXBgC2fo_g5sNu-5ohgNq1mWu-6m_ZPRsd1HChbEEoIDGPUu_adhMlXj3DaWNeZkXMYpmLAm-q1QMPVy7rQZCG8pVAV6WEm1j4JGFUkirW-LDn_RmXm-10JDzkuzpuk6p6x5L6BZKmsTK_jXvgip1fC0STs8a-0tfaa-vAKxCi0xK8iZ996hJOG4c5VBkLNziRnOmFrgxxNjJwy7TqS3qkrVCw">
+</div>
+<div class="aspect-square overflow-hidden border border-outline/5 hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Candid street style photography in a high-end city district. Person wearing a long black coat. Moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8PMJY6f4Np5Cq0JNAjSbk8bp0ZFu24N5UwNYv5NVyJPrUQpOb7NgPcPphcvphU3tG7fcTICJsecLlC2WcvH1E4YHiOY_s2eEbRAh3JyS4SarNpYNishO8ALgGTKTTXtb5Tk1Tt8RoR-B98RHe-6QMRCEj9eMBX7M640DpR4-bHzrM3_hCciBieoT3TJqxZ_QwQHrzqZEy9lVRwYePMPaA33V_kpESW6PUNqd77U4SmCtN4LoR2zZf0A">
+</div>
+<div class="aspect-square overflow-hidden border border-outline/5 hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Architectural detail of a brutalist building in soft morning light. Grey and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa8f2IlQgiRxkaG9LUZe9jYEOVu_sYWcuTrZN3--pyR3gaZE_3l4AjPY9TuFYYZAWxZeewSP-GCDXtZYBGIjv3rpesm9HFXd--JlMFTyMan0Y5GsMrTdOYXUCqK0JiRbGZNWsIIg1ELx89MuFfMLZK70HU7ttAb-xRSJGAtc6Jpo_9AwjFAyZUM3IZdewpnEl5igiL1Cyq_d_V49Yk-CfNPeA1jGPbpsLIBP_m44rf2273pYJKHSnjIw">
+</div>
+<div class="aspect-square overflow-hidden border border-outline/5 hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Close up of a luxury watch and a cufflink on a dark textured surface. Monochromatic high fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi7QAABZGjTsLQ8i4GqdWdVucMK7qCxBwV_y5DtDH2ZdO_-ISi1ahkDiS9mOPDN3zMbjDmDwMBfLVTjagYjLtjX8ijXGAltmejH2OuUEofMz7Y3ncarTNVVWev8Vq3ZetEBH70wa6Wwq_JhG92SFq1Lyw4hUkn53weLhiVDVssCYSl91psCGncl0v3r-kbkDe4hMQtPK5zMwq1WCzsYTe3a5Pn284RPnk-w1EOpAionChbYxi9vS9LzQ">
+</div>
+<div class="aspect-square overflow-hidden border border-outline/5 hover:opacity-90 transition-opacity md:hidden lg:block">
+<img class="w-full h-full object-cover" data-alt="Modernist furniture in a minimalist white apartment. High-key light-mode photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1_nUV4Oynq3fEyDO8d1oDxwWK3Q_jl8bHnKUYoWvlL7IByuktwFHGtrDmFqaUAMZhwIn6H5QvWSqxPd-JBUlti9z5h4Xt5QJmYONfH8IEUwiO0qASc0JvclQFtXA00i-U0D6Wp0zZUK33PEHH51wgXnAjcFX2a2CiMy27tahBAKS3O1vX7sHHlN51HdsMGz02n7RL3B3Svj6e9D_LiWuVfpSaTyrSMM4kJFrgZf8kozi3IdZGs6z-Zg">
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-section-gap border-t border-outline/10">
+<div class="max-w-xl mx-auto px-margin-mobile text-center">
+<h2 class="font-headline-md text-headline-md mb-4">Join the Circle</h2>
+<p class="font-body-md text-body-md text-secondary mb-10">Sign up for early access to limited releases and editorial content.</p>
+<form class="flex flex-col md:flex-row gap-4">
+<input class="flex-grow bg-transparent border-0 border-b border-on-background py-4 px-2 focus:ring-0 placeholder:text-outline-variant font-body-md uppercase text-sm" placeholder="Email Address" type="email">
+<button class="font-label-caps text-label-caps uppercase bg-on-background text-surface px-10 py-4 hover:bg-secondary transition-colors" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<!-- Brand Column -->
+<div class="md:col-span-4">
+<a class="font-display-lg text-display-lg-mobile text-primary block mb-6" href="#">ELEGANCE</a>
+<p class="font-body-md text-body-md font-light text-secondary max-w-xs">
+                    Curating luxury for the modern individual since 2024. A testament to structure, silence, and form.
+                </p>
+</div>
+<!-- Links Columns -->
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-6 text-primary">Collections</h4>
+<ul class="space-y-3 font-body-md text-body-md font-light text-secondary">
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Seasonal</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Limited</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Essentials</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Archival</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-6 text-primary">Company</h4>
+<ul class="space-y-3 font-body-md text-body-md font-light text-secondary">
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Store Locator</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="md:col-span-4">
+<h4 class="font-label-caps text-label-caps uppercase mb-6 text-primary">Support</h4>
+<ul class="space-y-3 font-body-md text-body-md font-light text-secondary">
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:underline underline-offset-4 hover:text-primary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline/10 flex flex-col md:flex-row justify-between items-center text-secondary font-label-caps text-[10px] uppercase tracking-widest">
+<p>© 2024 ELEGANCE LUXURY. ALL RIGHTS RESERVED.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-primary transition-colors" href="#">Pinterest</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll interaction for the Nav Bar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.remove('bg-transparent');
+                nav.classList.add('bg-white/90', 'shadow-sm');
+            } else {
+                nav.classList.add('bg-transparent');
+                nav.classList.remove('bg-white/90', 'shadow-sm');
+            }
+        });
+
+        // Micro-interaction for collection cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const btn = card.querySelector('button');
+                if(btn) btn.classList.add('scale-105');
+            });
+            card.addEventListener('mouseleave', () => {
+                const btn = card.querySelector('button');
+                if(btn) btn.classList.remove('scale-105');
+            });
+        });
+    </script>
+</body></html>

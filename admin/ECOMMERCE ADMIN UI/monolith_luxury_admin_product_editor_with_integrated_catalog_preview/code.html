@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Product | MONOLITH Premium Systems</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E5E7EB;
+            border-radius: 10px;
+        }
+        .drag-over {
+            border-color: #000000 !important;
+            background-color: #F9FAFB !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#141b2b",
+                        "primary": "#000000",
+                        "tertiary": "#000000",
+                        "primary-container": "#141b2b",
+                        "outline": "#76777d",
+                        "surface-container-highest": "#e5e2e3",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf8fa",
+                        "on-primary-container": "#7d8497",
+                        "surface-container-high": "#eae7e9",
+                        "on-tertiary-container": "#968065",
+                        "on-primary-fixed-variant": "#404758",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1b1b1d",
+                        "background": "#fcf8fa",
+                        "surface-container": "#f0edee",
+                        "surface-container-low": "#f6f3f4",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "inverse-surface": "#303031",
+                        "tertiary-fixed": "#f9debf",
+                        "secondary-fixed": "#dce2f3",
+                        "on-background": "#1b1b1d",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-surface-variant": "#45464c",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#261906",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e5e2e3",
+                        "inverse-on-surface": "#f3f0f1",
+                        "on-secondary-fixed": "#151c27",
+                        "secondary-container": "#dce2f3",
+                        "surface-bright": "#fcf8fa",
+                        "on-tertiary-fixed": "#261906",
+                        "surface-tint": "#575e70",
+                        "inverse-primary": "#c0c6db",
+                        "secondary": "#585f6c",
+                        "outline-variant": "#c6c6cd",
+                        "primary-fixed": "#dce2f7",
+                        "on-secondary-container": "#5e6572",
+                        "surface-dim": "#dcd9db",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "primary-fixed-dim": "#c0c6db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-sm": "0.5rem",
+                        "space-xs": "0.25rem",
+                        "space-xl": "2rem",
+                        "space-2xl": "3rem",
+                        "space-md": "1rem",
+                        "space-lg": "1.5rem",
+                        "gutter": "1.5rem",
+                        "container-margin": "2rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background antialiased overflow-x-hidden">
+<!-- Fixed SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col py-space-lg px-space-md z-50">
+<div class="mb-space-xl px-2">
+<h1 class="font-display text-display font-semibold text-primary">MONOLITH</h1>
+<p class="text-on-surface-variant font-label-sm">Premium Operations</p>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto pr-1">
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 bg-secondary-container text-on-secondary-container font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-md">Categories</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">collections</span>
+<span class="font-label-md">Collections</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<span class="font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">reviews</span>
+<span class="font-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-space-lg">
+<div class="flex items-center gap-3 px-4 py-2 mb-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold">A</div>
+<div>
+<p class="font-label-md text-on-surface">Admin User</p>
+<p class="text-caption text-on-surface-variant">Operations Lead</p>
+</div>
+</div>
+<button class="flex items-center gap-3 w-full px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-gutter py-space-sm ml-[280px] bg-background/80 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md" placeholder="Search orders, products..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-on-surface">MONOLITH HQ</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] min-h-[calc(100vh-140px)] p-space-xl pb-[100px]">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Add New Product</h2>
+<p class="text-body-md text-on-surface-variant">Create and publish a new product in the premium catalog.</p>
+</div>
+</div>
+<!-- Restructured Two-Column Grid (70/30) -->
+<div class="grid grid-cols-10 gap-gutter items-start">
+<!-- LEFT COLUMN (70%) -->
+<div class="col-span-10 lg:col-span-7 space-y-gutter">
+<!-- Card 1: Basic Information -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-lg">
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+<h3 class="font-headline-md text-headline-md">Basic Information</h3>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="col-span-2">
+<label class="block font-label-md text-on-surface mb-1.5">Product Name</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest" placeholder="e.g. Minimalist Cashmere Overcoat" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">SKU</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest" placeholder="MON-2024-CASH-01" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Brand</label>
+<select class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest">
+<option>Monolith Signature</option>
+<option>Heritage Collection</option>
+<option>Aether Studio</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Card 2: Description -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-lg">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+<h3 class="font-headline-md text-headline-md">Product Description</h3>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Short Description</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest" placeholder="A brief one-line summary for mobile lists" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Full Description</label>
+<div class="border border-outline-variant rounded-lg overflow-hidden bg-surface-container-lowest">
+<div class="bg-surface-container-low border-b border-outline-variant p-2 flex gap-2">
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+<button class="p-1.5 hover:bg-surface-container-highest rounded transition-colors"><span class="material-symbols-outlined text-[20px]">link</span></button>
+</div>
+<textarea class="w-full border-none focus:ring-0 p-4 font-body-md bg-transparent" placeholder="Describe the materials, fit, and origin..." rows="6"></textarea>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 3: Product Images -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex justify-between items-center mb-space-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">image</span>
+<h3 class="font-headline-md text-headline-md">Product Images</h3>
+</div>
+<button class="text-primary font-label-md hover:underline">Manage Gallery</button>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-space-xl flex flex-col items-center justify-center transition-all cursor-pointer hover:border-primary hover:bg-surface-container-low group" id="drop-zone">
+<div class="w-14 h-14 rounded-full bg-surface-container-low flex items-center justify-center mb-space-md group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[28px]">upload_file</span>
+</div>
+<p class="font-label-md text-on-surface">Drag and drop images here</p>
+<p class="text-caption text-on-surface-variant mt-1">PNG, JPG, WebP up to 10MB. High resolution recommended.</p>
+<button class="mt-space-lg px-space-lg py-2.5 bg-surface-container-high border border-outline-variant text-on-surface rounded-lg font-label-md hover:bg-surface-container-highest transition-colors">Select from Files</button>
+</div>
+<div class="grid grid-cols-4 md:grid-cols-6 gap-4 mt-space-lg">
+<div class="relative aspect-square bg-surface-container rounded-lg border border-outline-variant overflow-hidden group">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfllke_VThzbD6wQ4V3D2KgrV01INRMguy9QT38sb1mNRxoT5J7JWn7KpwNlW-S3NHhw4Wfs9OGbkD22FAj0oPjFVU72ooDfzVhz_XGlFxiv3VDNF60qaWF4EE3PJ7KR6KRNwSRCl_SK8-s6Fgje8p_XFc-vfMeEny1ECnXCnVYSXZCwTQmNG-abPmn-YsxzVTHXRJi4XmJ2J-tc3BFzjQNHQaKSnfvLfLswFhMbRaKkwMt_ee4Igzvw"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity">
+<button class="p-1.5 bg-white rounded-full text-black hover:scale-110 transition-transform"><span class="material-symbols-outlined text-[18px]">star</span></button>
+<button class="p-1.5 bg-white rounded-full text-error hover:scale-110 transition-transform"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+<div class="absolute top-2 left-2 px-2 py-0.5 bg-primary text-on-primary text-[10px] font-bold rounded">PRIMARY</div>
+</div>
+<div class="aspect-square bg-surface-container-low border border-outline-variant border-dashed rounded-lg flex items-center justify-center hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline-variant">add</span>
+</div>
+</div>
+</section>
+<!-- Card 4: Variants -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex justify-between items-center mb-space-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">layers</span>
+<h3 class="font-headline-md text-headline-md">Product Variants</h3>
+</div>
+<button class="flex items-center gap-1.5 text-primary font-label-md hover:bg-surface-container-low px-3 py-1.5 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add Option
+                    </button>
+</div>
+<div class="space-y-space-lg">
+<div class="grid grid-cols-12 gap-space-md items-start">
+<div class="col-span-4">
+<label class="block font-label-md text-on-surface mb-1.5">Option Name</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-low" readonly="" type="text" value="Size"/>
+</div>
+<div class="col-span-8">
+<label class="block font-label-md text-on-surface mb-1.5">Option Values</label>
+<div class="flex flex-wrap gap-2 p-2 border border-outline-variant rounded-lg bg-surface-container-lowest min-h-[44px]">
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-2.5 py-1 rounded text-body-md">Small <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span></span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-2.5 py-1 rounded text-body-md">Medium <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span></span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-2.5 py-1 rounded text-body-md">Large <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span></span>
+<input class="border-none focus:ring-0 flex-1 min-w-[120px] h-7 text-body-md bg-transparent" placeholder="Add value..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 5: Sale Settings (Moved from sidebar) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex justify-between items-center mb-space-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">sell</span>
+<h3 class="font-headline-md text-headline-md">Sale Settings</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 font-label-md text-on-surface">Enable Sale</span>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Regular Price ($)</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest font-medium" placeholder="1250.00" type="number" value="1250.00"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Sale Price ($)</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest font-medium" placeholder="937.50" type="number" value="937.50"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Sale Badge Text</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest" placeholder="SALE" type="text" value="SALE"/>
+</div>
+</div>
+<div class="space-y-space-md">
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">Start Date</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest text-body-md px-3" type="date"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-1.5">End Date</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest text-body-md px-3" type="date"/>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/30 flex flex-col justify-center items-center text-center">
+<span class="text-caption text-on-surface-variant uppercase tracking-wider mb-1">Calculated Discount</span>
+<span class="text-[32px] font-bold text-primary leading-none">-25%</span>
+<p class="text-[11px] text-on-surface-variant mt-2">Saving customers $312.50 per unit</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center gap-2 mb-space-lg">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+<h3 class="font-headline-md text-headline-md">Catalog Preview</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-4">
+<div class="aspect-[4/5] bg-surface-container rounded-lg overflow-hidden relative">
+<img alt="Product Preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK38yx6zZvyh1i7ea5IFX4Tm-tcJHOvkVrYtt75IbALG2U6pn72FH6jtzrEWjsREA7vNRNzDuUN1H95qvfJAuHbV5pHrC9G3wbKzGMo59lItRI7_s_UZgQVuxmqckV9sV6T96n_js-ieTrJ0xT_5BQaNP_dJj8ltobsSHHt07v8kuOPsL_gCaVaoTlWSZOh4rrsOpMCt4fij5jNLmUde5V1zNDsKJYuS9YRfxUwKkylsH2-cJ0muzoQw"/>
+<div class="absolute top-3 left-3 px-2 py-1 bg-primary text-on-primary text-[9px] font-bold tracking-widest rounded uppercase">SALE</div>
+</div>
+</div>
+<div class="md:col-span-8 flex flex-col justify-between py-2">
+<div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-md text-on-surface">Cashmere Overcoat</h4>
+<p class="text-body-md text-on-surface-variant">Winter 2024 / Outerwear</p>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-bold text-primary">$937.50</p>
+<p class="text-caption text-on-surface-variant line-through">$1,250.00</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 mt-6">
+<div class="flex flex-col">
+<span class="text-caption text-on-surface-variant uppercase tracking-wider">Stock Status</span>
+<span class="font-label-md text-on-surface">12 Units Available</span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption text-on-surface-variant uppercase tracking-wider">Product Status</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-label-md text-on-surface">Draft</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/30">
+<p class="text-caption text-on-surface-variant italic">This is a live preview of how your product will appear in the storefront catalog.</p>
+</div>
+</div>
+</div>
+</section></div>
+<!-- RIGHT COLUMN (30%) -->
+<div class="col-span-10 lg:col-span-3 space-y-6">
+<!-- Card 1: Product Status -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-label-md text-on-surface mb-4">Product Status</h3>
+<div class="space-y-4">
+<select class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] font-label-md bg-surface-container-lowest">
+<option value="draft">Draft</option>
+<option value="published">Published</option>
+<option value="archived">Archived</option>
+</select>
+<div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-lg border border-outline-variant/50">
+<div class="w-2.5 h-2.5 rounded-full bg-outline animate-pulse"></div>
+<p class="text-caption text-on-surface-variant">This product is currently hidden from customers.</p>
+</div>
+</div>
+</section>
+<!-- Card 2: Classification -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-label-md text-on-surface mb-4">Classification</h3>
+<div class="space-y-4"><div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Category</label>
+<select class="w-full border-outline-variant rounded-lg h-[44px] text-body-md bg-surface-container-lowest">
+<option>Outerwear</option>
+<option>Knitwear</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Collection</label>
+<select class="w-full border-outline-variant rounded-lg h-[44px] text-body-md bg-surface-container-lowest">
+<option>Winter 2024</option>
+<option>Timeless Essentials</option>
+</select>
+</div></div>
+</section>
+<!-- Card 3: Pricing (Clean - No Sale Fields) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-label-md text-on-surface mb-4">Pricing</h3>
+<div class="space-y-4">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Regular Price ($)</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest font-medium" placeholder="1250.00" type="number"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Cost Price ($)</label>
+<input class="w-full border-outline-variant rounded-lg focus:ring-2 focus:ring-primary h-[44px] bg-surface-container-lowest" placeholder="450.00" type="number"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Tax Class</label>
+<select class="w-full border-outline-variant rounded-lg h-[44px] text-body-md bg-surface-container-lowest">
+<option>Standard (20%)</option>
+<option>Reduced (5%)</option>
+<option>Exempt (0%)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Card 4: Inventory -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-label-md text-on-surface mb-4">Inventory</h3>
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Stock</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest" type="number" value="12"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Low Alert</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest" type="number" value="5"/>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-body-md text-on-surface">Track Inventory</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Card 5: Shipping -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-label-md text-on-surface mb-4">Shipping</h3>
+<div class="space-y-4">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Weight (kg)</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest" placeholder="1.2" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Shipping Class</label>
+<select class="w-full border-outline-variant rounded-lg h-[44px] text-body-md bg-surface-container-lowest">
+<option>Standard Shipping</option>
+<option>Express Delivery</option>
+<option>Heavy Goods</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Card 6: SEO -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-label-md text-on-surface mb-4">Search Engine Listing</h3>
+<div class="space-y-4">
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Page Title</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest" placeholder="Luxury Cashmere Overcoat" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">Meta Description</label>
+<textarea class="w-full border-outline-variant rounded-lg p-3 text-body-md bg-surface-container-lowest" rows="3"></textarea>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface-variant mb-1.5">URL Slug</label>
+<input class="w-full border-outline-variant rounded-lg h-[44px] bg-surface-container-lowest" placeholder="cashmere-overcoat" type="text"/>
+</div>
+</div>
+</section>
+<!-- Card 7: Product Preview (Sticky) -->
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Sticky Footer) -->
+<footer class="fixed bottom-0 left-[280px] right-0 bg-surface-container-lowest/90 backdrop-blur-md border-t border-outline-variant py-space-md px-gutter flex justify-between items-center z-50">
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary font-label-md transition-colors flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">visibility</span>
+            Preview Storefront
+        </button>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-space-lg py-2.5 border border-outline-variant rounded-lg font-label-md text-on-surface hover:bg-surface-container-low transition-colors">
+            Save as Draft
+        </button>
+<button class="px-space-xl py-2.5 bg-primary text-on-primary rounded-lg font-label-md hover:bg-neutral-800 transition-colors shadow-xl shadow-black/10">
+            Publish Product
+        </button>
+</div>
+</footer>
+<script>
+    // Simple micro-interaction for the drag-and-drop zone
+    const dropZone = document.getElementById('drop-zone');
+    
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.add('drag-over'), false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.remove('drag-over'), false);
+    });
+
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        console.log('Files dropped');
+    }
+
+    // Dynamic header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 20) {
+            header.classList.add('bg-background/95');
+            header.classList.remove('bg-background/80');
+        } else {
+            header.classList.add('bg-background/80');
+            header.classList.remove('bg-background/95');
+        }
+    });
+</script>
+</body></html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1b1b1d",
+                    "inverse-surface": "#303031",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#c0c6db",
+                    "primary-fixed": "#dce2f7",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed": "#dce2f3",
+                    "inverse-on-surface": "#f3f0f1",
+                    "on-secondary-fixed": "#151c27",
+                    "on-primary-container": "#7d8497",
+                    "tertiary": "#000000",
+                    "surface-variant": "#e5e2e3",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-primary-fixed": "#141b2b",
+                    "on-background": "#1b1b1d",
+                    "surface-container-highest": "#e5e2e3",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#575e70",
+                    "inverse-primary": "#c0c6db",
+                    "on-primary-fixed-variant": "#404758",
+                    "surface-container-low": "#f6f3f4",
+                    "on-secondary-fixed-variant": "#404754",
+                    "outline": "#76777d",
+                    "on-tertiary-container": "#968065",
+                    "tertiary-container": "#261906",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "background": "#fcf8fa",
+                    "surface-container": "#f0edee",
+                    "tertiary-fixed": "#f9debf",
+                    "primary": "#000000",
+                    "on-tertiary-fixed": "#261906",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#eae7e9",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fcf8fa",
+                    "surface-dim": "#dcd9db",
+                    "secondary-container": "#dce2f3",
+                    "on-surface-variant": "#45464c",
+                    "secondary": "#585f6c",
+                    "surface-bright": "#fcf8fa",
+                    "on-secondary-container": "#5e6572",
+                    "primary-container": "#141b2b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-xs": "0.25rem",
+                    "space-xl": "2rem",
+                    "space-sm": "0.5rem",
+                    "space-2xl": "3rem",
+                    "container-margin": "2rem",
+                    "space-md": "1rem",
+                    "space-lg": "1.5rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #F7F7F7;
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E5E7EB;
+            border-radius: 10px;
+        }
+        .settings-nav-active {
+            background-color: #111827;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Global Layout Wrapper -->
+<div class="flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col p-space-lg z-50">
+<div class="mb-space-xl">
+<h1 class="text-headline-lg font-headline-lg font-bold tracking-tight text-primary">Atelier Admin</h1>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Premium Retail Ops</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Navigation Items map from JSON -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-md font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-label-md font-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-label-md font-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+<span class="text-label-md font-label-md">Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-label-md font-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="text-label-md font-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-space-md border-t border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a premium retail operations manager, shot with soft Rembrandt lighting against a neutral grey background. The individual is wearing a charcoal designer suit, exuding a sense of 'Quiet Authority' and modern professionalism consistent with a high-end luxury brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4OQPAtsUydPUGvNZ3EYh2xnI0vmegyG-tMihfZi2S9onDqDsDBC1SqgwS2GUwCIbzBeqbLBy0eD7kQc9XOQjEvGd_C2VkicxP32ViCIKKGnVpdCg2Ulz24updKUE9U8M8zv7s7FjUTNl6tt0nqLabWb1trih601TdYagzdk8Ld6jo-A5WDtRUo2mAJbVsy67NNStBsVqdgA-xOsw8oL-emuSpeUGpPyT6eIsX6vdbGw2rX5R27jDQLg"/>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-bold">Admin Profile</p>
+<p class="text-caption text-on-surface-variant">System Administrator</p>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 ml-[280px] bg-background">
+<!-- TopAppBar (Shared Component) -->
+<header class="sticky top-0 right-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center w-full px-space-xl py-space-sm h-16">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Search settings, users, or help..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Settings Layout Container -->
+<div class="max-w-[1440px] mx-auto p-space-xl">
+<div class="flex flex-col md:flex-row gap-space-xl">
+<!-- Left Settings Navigation -->
+<nav class="w-full md:w-64 flex-shrink-0 space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant px-4 py-2 uppercase tracking-widest">Configuration</p>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface bg-primary text-white font-semibold rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="tune">tune</span>
+<span class="text-label-md">General</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+<span class="text-label-md">Store Information</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="palette">palette</span>
+<span class="text-label-md">Appearance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="badge">badge</span>
+<span class="text-label-md">Users & Roles</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span class="text-label-md">Taxes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="currency_exchange">currency_exchange</span>
+<span class="text-label-md">Currency</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="translate">translate</span>
+<span class="text-label-md">Language</span>
+</a>
+<p class="text-label-sm font-bold text-on-surface-variant px-4 py-2 mt-6 uppercase tracking-widest">Operations</p>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_shipping">local_shipping</span>
+<span class="text-label-md">Shipping</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+<span class="text-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications_active">notifications_active</span>
+<span class="text-label-md">Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="mail">mail</span>
+<span class="text-label-md">Email Templates</span>
+</a>
+<p class="text-label-sm font-bold text-on-surface-variant px-4 py-2 mt-6 uppercase tracking-widest">System</p>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="search_check">search_check</span>
+<span class="text-label-md">SEO</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="security">security</span>
+<span class="text-label-md">Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="hub">hub</span>
+<span class="text-label-md">Integrations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="backup">backup</span>
+<span class="text-label-md">Backup & Restore</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="key">key</span>
+<span class="text-label-md">API Keys</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="list_alt">list_alt</span>
+<span class="text-label-md">Activity Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="info">info</span>
+<span class="text-label-md">System Information</span>
+</a>
+</nav>
+<!-- Right Settings Content -->
+<div class="flex-1 space-y-space-lg max-w-4xl">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-space-lg">
+<div>
+<h2 class="text-display font-display text-primary">General Settings</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Manage your storefront's core identity and configuration.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">Cancel</button>
+<button class="px-5 py-2 text-label-md font-label-md bg-white border border-outline-variant text-primary hover:bg-surface-container-low rounded-lg transition-all shadow-sm">Reset</button>
+<button class="px-6 py-2 text-label-md font-label-md bg-primary text-white rounded-lg hover:opacity-90 transition-all shadow-md">Save Changes</button>
+</div>
+</div>
+<!-- Section 1: General -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant bg-surface-container-low">
+<h3 class="text-label-md font-bold text-primary uppercase tracking-wider">Store Identity</h3>
+</div>
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Store Name</label>
+<input class="w-full h-10 border border-outline-variant rounded-lg px-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md" type="text" value="Atelier Luxury Boutique"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Timezone</label>
+<select class="w-full h-10 border border-outline-variant rounded-lg px-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md bg-white">
+<option>(GMT-05:00) Eastern Time (US & Canada)</option>
+<option>(GMT+00:00) London</option>
+<option>(GMT+01:00) Paris</option>
+<option>(GMT+09:00) Tokyo</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Store Email</label>
+<input class="w-full h-10 border border-outline-variant rounded-lg px-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md" type="email" value="ops@atelierluxury.com"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Support Email</label>
+<input class="w-full h-10 border border-outline-variant rounded-lg px-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md" type="email" value="support@atelierluxury.com"/>
+</div>
+<div class="space-y-2 md:col-span-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Store Phone</label>
+<input class="w-full h-10 border border-outline-variant rounded-lg px-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md" type="tel" value="+1 (555) 000-8888"/>
+</div>
+</div>
+</div>
+<!-- Section 2: Store Information -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant bg-surface-container-low">
+<h3 class="text-label-md font-bold text-primary uppercase tracking-wider">Business Address & Social</h3>
+</div>
+<div class="p-space-lg space-y-6">
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Primary Address</label>
+<textarea class="w-full border border-outline-variant rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md resize-none" rows="3">721 Fifth Avenue, Suite 402
+New York, NY 10022
+United States</textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Instagram</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-caption">@</span>
+<input class="w-full h-10 border border-outline-variant rounded-lg pl-8 pr-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md" type="text" value="atelier_luxury"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">X / Twitter</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-caption">@</span>
+<input class="w-full h-10 border border-outline-variant rounded-lg pl-8 pr-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md" type="text" value="atelier_official"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Appearance -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant bg-surface-container-low">
+<h3 class="text-label-md font-bold text-primary uppercase tracking-wider">Interface Appearance</h3>
+</div>
+<div class="p-space-lg space-y-8">
+<div class="space-y-4">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Admin Theme</label>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-between p-4 border-2 border-primary rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="light_mode">light_mode</span>
+<span class="text-label-md font-bold">Light Mode</span>
+</div>
+<div class="w-5 h-5 rounded-full border-4 border-primary flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+</button>
+<button class="flex items-center justify-between p-4 border border-outline-variant rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="dark_mode">dark_mode</span>
+<span class="text-label-md font-bold">Dark Mode</span>
+</div>
+<div class="w-5 h-5 rounded-full border border-outline-variant"></div>
+</button>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-label-sm font-bold text-on-surface-variant uppercase">Primary Accent Color</label>
+<div class="flex flex-wrap gap-4">
+<div class="w-10 h-10 rounded-full bg-[#111827] ring-4 ring-offset-2 ring-primary cursor-pointer border border-outline-variant"></div>
+<div class="w-10 h-10 rounded-full bg-[#3B82F6] hover:scale-110 transition-transform cursor-pointer border border-outline-variant"></div>
+<div class="w-10 h-10 rounded-full bg-[#10B981] hover:scale-110 transition-transform cursor-pointer border border-outline-variant"></div>
+<div class="w-10 h-10 rounded-full bg-[#F59E0B] hover:scale-110 transition-transform cursor-pointer border border-outline-variant"></div>
+<div class="w-10 h-10 rounded-full bg-[#EF4444] hover:scale-110 transition-transform cursor-pointer border border-outline-variant"></div>
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-outline-variant cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-caption" data-icon="colorize">colorize</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Security -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant bg-surface-container-low">
+<h3 class="text-label-md font-bold text-primary uppercase tracking-wider">Security & Access</h3>
+</div>
+<div class="p-space-lg space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-label-md font-bold text-primary">Two-Factor Authentication</p>
+<p class="text-caption text-on-surface-variant">Add an extra layer of security to your admin account.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors focus:outline-none ring-2 ring-offset-2 ring-primary">
+<span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-6"></span>
+</button>
+</div>
+<hr class="border-outline-variant"/>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-label-md font-bold text-primary">Session Timeout</p>
+<p class="text-caption text-on-surface-variant">Automatically log out users after a period of inactivity.</p>
+</div>
+<select class="h-10 border border-outline-variant rounded-lg px-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md bg-white w-40">
+<option>15 Minutes</option>
+<option selected="">30 Minutes</option>
+<option>1 Hour</option>
+<option>Never</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer -->
+<div class="h-12"></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-[0.98]');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-[0.98]');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-[0.98]');
+            });
+        });
+
+        // Floating Action Button logic if needed, though suppressed here by mandate for Settings
+    </script>
+</body></html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Architectural Silk Blouson | MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#000000",
+                    "tertiary": "#000000",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#e2e2e2",
+                    "surface-dim": "#dadada",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "secondary": "#5d5f5f",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "secondary-container": "#dcdddd",
+                    "outline": "#7e7576",
+                    "on-surface-variant": "#4c4546",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "surface-variant": "#e2e2e2",
+                    "surface-tint": "#5e5e5e",
+                    "on-tertiary-container": "#838484",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-background": "#1a1c1c",
+                    "inverse-on-surface": "#f0f1f1",
+                    "tertiary-fixed": "#e2e2e2",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#5f6161",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "on-primary-fixed": "#1b1b1b",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-container": "#1a1c1c",
+                    "inverse-surface": "#2f3131",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface": "#f9f9f9",
+                    "on-primary-container": "#848484",
+                    "inverse-primary": "#c6c6c6",
+                    "background": "#f9f9f9",
+                    "primary-container": "#1b1b1b",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container": "#eeeeee",
+                    "surface-bright": "#f9f9f9",
+                    "outline-variant": "#cfc4c5",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1440px",
+                    "margin-desktop": "64px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "section-gap": "128px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-caps": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .zoom-container:hover img {
+            transform: scale(1.05);
+        }
+        .transition-standard {
+            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        .accordion-item.active .icon-plus {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky z-50 bg-background border-b border-outline-variant flat no shadows transition-all duration-500">
+<nav class="flex justify-between items-center h-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-headline-lg text-headline-lg tracking-widest text-primary" href="#">MONOLITH</a>
+<div class="hidden md:flex gap-6">
+<a class="text-secondary font-label-caps hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="text-secondary font-label-caps hover:text-primary transition-colors duration-300" href="#">Collections</a>
+<a class="text-secondary font-label-caps hover:text-primary transition-colors duration-300" href="#">Categories</a>
+<a class="text-secondary font-label-caps hover:text-primary transition-colors duration-300" href="#">New Arrivals</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:text-primary transition-colors duration-300"><span class="material-symbols-outlined">search</span></button>
+<button class="hover:text-primary transition-colors duration-300"><span class="material-symbols-outlined">favorite</span></button>
+<button class="hover:text-primary transition-colors duration-300 relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-2 -right-2 text-[10px] bg-primary text-white w-4 h-4 flex items-center justify-center rounded-full">0</span>
+</button>
+<button class="hover:text-primary transition-colors duration-300"><span class="material-symbols-outlined">person</span></button>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12">
+<!-- Breadcrumb -->
+<nav class="mb-12">
+<ol class="flex items-center gap-2 font-label-caps text-secondary uppercase tracking-widest text-[10px]">
+<li class=""><a class="hover:text-primary" href="#">Home</a></li>
+<li class="opacity-40">/</li>
+<li class=""><a class="hover:text-primary" href="#">Men</a></li>
+<li class="opacity-40">/</li>
+<li class=""><a class="hover:text-primary" href="#">Jackets</a></li>
+<li class="opacity-40">/</li>
+<li class="text-primary font-bold">Architectural Silk Blouson</li>
+</ol>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap">
+<!-- Gallery Left Column -->
+<div class="md:col-span-7 flex flex-col md:flex-row gap-4">
+<!-- Thumbnails -->
+<div class="flex md:flex-col gap-4 order-2 md:order-1 hide-scrollbar overflow-x-auto md:overflow-visible">
+<div class="w-20 aspect-[4/5] border border-primary cursor-pointer transition-standard overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up high-resolution shot of a black architectural silk blouson with a structured collar, displayed in a minimalist, high-key studio setting. The lighting is soft and directional, highlighting the luxurious texture of double-faced mulberry silk. The aesthetic is clean luxury with deep blacks and subtle highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnX1YAjdEsiTUQIGY7fgnD33PdRupxgsj8px373uydXBfZPnWtXJw1xiLYncuw4gfp-PFQeRBwTxxGGQLIICTPDT6GRZO-bEUEEpTaevTk6t5L24ZkaoK49wJg4Zx0ZPZhlDrhIkv-i4391HKOgVrL_D_oD4KWc5Jjx5cIAlkOFnLQ3kC2TD-FkzghMZz46seKUf9wigOO9KFK9dw6aSutsXypu-SJmzxt9U4ft1lqkr-Xypg9Hf8-Zw">
+</div>
+<div class="w-20 aspect-[4/5] border border-outline-variant hover:border-primary cursor-pointer transition-standard overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Detailed view of the sculptural collar and hidden zipper of a black silk blouson. The fabric shows a subtle sheen under studio lights. The background is a soft neutral grey, emphasizing a quiet luxury aesthetic for high-end editorial fashion photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Kiy6PAn46U8SgxkoUqWt4eudTEgmmDZdeMYAbwIwgH0VBbo7QTPbd3Oq6DNFlYmpt7vCh1LDkTrOZtKPxP-Tgm8z_b57RcJq-1E1b1FYaO3ULb8dxF_xu0czRY5G4ulsIDiTotZeg4m7664g_Iv-6xV9-SbeCvDs3_gLqwXN2kb2MbT83qz02Gwi5wZKhWrI-NgQrIEoc3lUXsmEMhpkH5-9793cjsuOOS0_LhbUXiEbVcsnQns5yA">
+</div>
+<div class="w-20 aspect-[4/5] border border-outline-variant hover:border-primary cursor-pointer transition-standard overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A side view of a minimalist black silk jacket showing its structured silhouette and internal pocketing details. The composition is asymmetrical, following an editorial magazine style. High contrast lighting defines the garment's architectural lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF6FBNtKGI4t_ZUbjk1UncN1GniRGkmF1ILI550wbdk-10yOpKeqxROlOrpvi7fQ2qZYLBOIXsvmSvxOcfjDhJy37BiwjzuRQMeX-b-oE_OTCEBjwPAygtpfHzDd9ha9auG3lxuHgOiA2AarNiRB16RlWdI_V_CgcCCRBT_h3CoqcmCBUgqIXeUTlVkwSsVa_o1Wl6Vj6tO-h0bqzwjOhi0o3ngTrrZr0m4yHdcBGIfsJ07HAGHq3fAA">
+</div>
+<div class="w-20 aspect-[4/5] border border-outline-variant hover:border-primary cursor-pointer transition-standard overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Macro photography of double-faced mulberry silk fabric texture in obsidian noir. The weave is tight and elegant, reflecting soft studio lighting. A minimalist fashion shot that conveys quality and tactile sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDQBLDXj9oj2gE1Lwe5SZwIEWGTz7CuXo1bahFHlTdJmNYS32XhyWdBeC0TGBewTVZtVoF04wSUNlTsJuxNgqZSGgewCuxSwKIUJW7T52Gy0XmFePDuLj0x1ywtbao47-XlxPkRz_5idE4Ii03nmUu4lidOtFtEcDTh8uPP3G-DxfrBXlRbicVZvZKqhQYqC6cndDjE_IGwlXUbaJi4ECWJvi65jBOE7NRs4qUZOMlFs4P4zcZqYWNfA">
+</div>
+<div class="w-20 aspect-[4/5] border border-outline-variant hover:border-primary cursor-pointer transition-standard overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A male model from the back wearing the black architectural silk blouson, showcasing the clean hem and tailored shoulders. The setting is a minimalist white gallery with harsh architectural shadows, reinforcing the monolith luxury brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzFFhdgrPAhw6J_S7va3qlDf2afkpyGOXhmAMbd2LUeZ-gw8P553SQTl_K-KrlwtmF96Ir3zSDImwRbnKPuAbKYm9M0z7PEyEolD8qJPVlB_Fsc8O5-Y4RGHcWH_24Bv2_IJVNOvXVeuzSVYl79o_mT_P-ihz1dbh5OPbcgD2rMsMS2kcSf7fm5FymoQxV8fJbxzofB1POwBdZdZ5jhHLAUgLF6LkwDE1j089JhkvCbn3OK7b582ktkA">
+</div>
+</div>
+<!-- Main Image -->
+<div class="flex-grow order-1 md:order-2 zoom-container overflow-hidden border border-outline-variant cursor-zoom-in">
+<img class="w-full h-full object-cover transition-standard" data-alt="Full view of the Architectural Silk Blouson in Obsidian Noir worn by a model in a high-contrast, minimalist studio. The model's pose is stoic and architectural. The lighting is editorial and sophisticated, creating deep shadows and bright highlights on the matte silk fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg3egkwiDKaqH-sfZnCQyQUkNttDFZ1BBcxpx32SFYoRz9YbBd80e7c03J0DGSn4yAyxv4Xb7wNHQ68ECwt2ey1JsVgw8NrFyhvHBHHiDf8zAzhn0ObctyWYGkRiNlxePYIX95AWlfR-4w64ZM98DuTp9wEdRwrYb_50-564c801KuMCrBv-GyzrX_jPt7gxdnZORYfYlH9akQmGMhIXgvssYgvFVw1u4253dVq4PD3tLHtgHTLw4FVw">
+</div>
+</div>
+<!-- Content Right Column -->
+<div class="md:col-span-5 flex flex-col gap-8">
+<div class="border-b border-outline-variant pb-6">
+<p class="font-label-caps text-secondary mb-2 uppercase tracking-widest">The Archive</p>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">Architectural Silk Blouson</h1>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-label-caps text-secondary">4.8 (124 REVIEWS)</span>
+</div>
+<p class="font-headline-md text-headline-md text-primary">$1,850.00</p>
+<p class="text-[10px] text-green-700 font-label-caps mt-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-700"></span> IN STOCK
+                    </p>
+</div>
+<p class="font-body-md text-secondary leading-relaxed">
+                    A definitive statement in structural minimalism. Crafted from double-faced mulberry silk, this blouson features a sculptural collar and hidden internal pocketing.
+                </p>
+<!-- Product Options -->
+<div class="flex flex-col gap-6">
+<div>
+<span class="font-label-caps text-primary block mb-3 uppercase tracking-widest">Color: Obsidian Noir</span>
+<div class="flex gap-3">
+<button class="w-8 h-8 rounded-full bg-[#0a0a0a] ring-2 ring-primary ring-offset-2 transition-standard"></button>
+<button class="w-8 h-8 rounded-full bg-[#4a4a4a] ring-1 ring-outline-variant hover:ring-primary transition-standard"></button>
+<button class="w-8 h-8 rounded-full bg-[#e5e5e5] ring-1 ring-outline-variant hover:ring-primary transition-standard"></button>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-3">
+<span class="font-label-caps text-primary uppercase tracking-widest">Size</span>
+<a class="font-label-caps text-secondary underline hover:text-primary transition-colors duration-300" href="#">Size Guide</a>
+</div>
+<div class="grid grid-cols-6 gap-2">
+<button class="h-10 border border-outline-variant font-label-caps hover:border-primary transition-standard">XS</button>
+<button class="h-10 border border-outline-variant font-label-caps hover:border-primary transition-standard">S</button>
+<button class="h-10 border border-primary bg-primary text-white font-label-caps">M</button>
+<button class="h-10 border border-outline-variant font-label-caps hover:border-primary transition-standard">L</button>
+<button class="h-10 border border-outline-variant font-label-caps hover:border-primary transition-standard">XL</button>
+<button class="h-10 border border-outline-variant font-label-caps hover:border-primary transition-standard">XXL</button>
+</div>
+</div>
+<div>
+<span class="font-label-caps text-primary block mb-3 uppercase tracking-widest">Quantity</span>
+<div class="flex items-center w-32 border border-outline-variant h-12">
+<button class="flex-1 hover:text-primary">-</button>
+<span class="flex-1 text-center font-body-md">1</span>
+<button class="flex-1 hover:text-primary">+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-4 mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-primary">location_on</span>
+<span class="font-label-caps text-primary uppercase tracking-widest">Deliver to</span>
+</div>
+<div class="flex gap-2">
+<div class="flex-grow border border-outline-variant h-12 flex items-center px-4">
+<input class="w-full bg-transparent border-none focus:ring-0 font-label-caps text-[10px] p-0" placeholder="ENTER PINCODE" type="text">
+</div>
+<button class="px-6 h-12 border border-primary font-button uppercase text-[10px] hover:bg-primary hover:text-white transition-standard">Check</button>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[10px] text-green-700 font-label-caps flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+      DELIVERY AVAILABLE
+    </p>
+<p class="font-body-md text-xs text-secondary">
+<span class="opacity-60">Estimated Delivery:</span> <span class="text-primary">12 Aug – 15 Aug</span>
+</p>
+</div>
+</div><div class="flex flex-col gap-3">
+<button class="w-full h-14 bg-primary text-white font-button uppercase hover:opacity-90 transition-standard">Add to Cart</button>
+<button class="w-full h-14 border border-primary text-primary font-button uppercase hover:bg-primary hover:text-white transition-standard">Buy Now</button>
+<div class="flex gap-4 mt-2 justify-center">
+<button class="flex items-center gap-2 font-label-caps text-secondary hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-lg">favorite</span> Wishlist
+                        </button>
+<button class="flex items-center gap-2 font-label-caps text-secondary hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-lg">share</span> Share
+                        </button>
+</div>
+</div>
+<!-- Delivery Cards -->
+</div>
+</div>
+<!-- Accordions -->
+<div class="max-w-4xl mx-auto mb-section-gap">
+<div class="accordion-item border-b border-outline-variant group" onclick="this.classList.toggle('active')">
+<button class="w-full flex justify-between items-center py-8 text-left transition-standard">
+<span class="font-label-caps text-lg uppercase tracking-widest">Description</span>
+<span class="material-symbols-outlined transition-standard icon-plus">add</span>
+</button>
+<div class="accordion-content">
+<div class="pb-8 font-body-md text-secondary leading-loose">
+                        The Architectural Silk Blouson reimagines the classic silhouette through the lens of structural geometry. Each panel is meticulously cut from heavyweight mulberry silk, providing enough body to hold its form while maintaining a fluid, luxurious hand-feel. The piece is part of 'The Archive' collection, focusing on timeless silhouettes that transcend seasons.
+                    </div>
+</div>
+</div>
+<div class="accordion-item border-b border-outline-variant group" onclick="this.classList.toggle('active')">
+<button class="w-full flex justify-between items-center py-8 text-left transition-standard">
+<span class="font-label-caps text-lg uppercase tracking-widest">Product Details</span>
+<span class="material-symbols-outlined transition-standard icon-plus">add</span>
+</button>
+<div class="accordion-content">
+<div class="pb-8 font-body-md text-secondary leading-loose">
+<ul class="list-disc list-inside flex flex-col gap-2">
+<li class="">Double-faced 30mm Mulberry Silk</li>
+<li class="">Matte finish with subtle structural sheen</li>
+<li class="">Internal welded seams for zero-chafing</li>
+<li class="">Two internal passport-sized pockets</li>
+<li class="">Two discrete external welt pockets</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="accordion-item border-b border-outline-variant group" onclick="this.classList.toggle('active')">
+<button class="w-full flex justify-between items-center py-8 text-left transition-standard">
+<span class="font-label-caps text-lg uppercase tracking-widest">Material &amp; Fabric</span>
+<span class="material-symbols-outlined transition-standard icon-plus">add</span>
+</button>
+<div class="accordion-content">
+<div class="pb-8 font-body-md text-secondary leading-loose">
+                        Sourced from the historic silk mills of Lake Como, Italy. This specific weight of silk is achieved by double-weaving high-density fibers, creating a technical yet natural performance fabric that is both wind-resistant and exceptionally breathable.
+                    </div>
+</div>
+</div>
+<div class="accordion-item border-b border-outline-variant group" onclick="this.classList.toggle('active')">
+<button class="w-full flex justify-between items-center py-8 text-left transition-standard">
+<span class="font-label-caps text-lg uppercase tracking-widest">Care Instructions</span>
+<span class="material-symbols-outlined transition-standard icon-plus">add</span>
+</button>
+<div class="accordion-content">
+<div class="pb-8 font-body-md text-secondary leading-loose">
+                        Professional dry clean only. Store on a wide-shouldered cedar hanger to maintain the sculptural integrity of the collar. Avoid direct sunlight for prolonged periods.
+                    </div>
+</div>
+</div>
+</div>
+<!-- Customer Reviews -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Customer Perspective</h2>
+<p class="font-label-caps text-secondary uppercase tracking-widest">124 Verified Reviews</p>
+</div>
+<button class="font-label-caps text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-standard">Write a Review</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="p-8 border border-outline-variant bg-surface">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-primary mb-1">MARCUS K. <span class="text-[10px] text-secondary ml-2 opacity-50">VERIFIED</span></p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<span class="text-[10px] text-secondary font-label-caps">2 WEEKS AGO</span>
+</div>
+<p class="font-body-md italic text-primary leading-relaxed">"The definition of quiet luxury. The way it holds its shape while moving is unlike any other silk garment I've owned."</p>
+</div>
+<div class="p-8 border border-outline-variant bg-surface">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-primary mb-1">ELENA R. <span class="text-[10px] text-secondary ml-2 opacity-50">VERIFIED</span></p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<span class="text-[10px] text-secondary font-label-caps">1 MONTH AGO</span>
+</div>
+<p class="font-body-md italic text-primary leading-relaxed">"Worth every penny. The hidden internal pockets are a masterstroke of design. It feels like wearing architecture."</p>
+</div>
+</div>
+</section>
+<!-- Product Recommendations Sections -->
+<div class="flex flex-col gap-section-gap">
+<!-- Section 1: Complete The Look -->
+<section class="mb-section-gap">
+<h3 class="font-headline-md text-headline-md text-primary mb-12 text-center uppercase tracking-widest">Complete The Look</h3>
+<div class="flex flex-col md:flex-row gap-12 items-stretch">
+<!-- Left Side: Featured Main Product -->
+<div class="md:w-1/2 relative group overflow-hidden border border-outline-variant">
+<img alt="Architectural Silk Blouson" class="w-full h-full object-cover transition-standard group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg3egkwiDKaqH-sfZnCQyQUkNttDFZ1BBcxpx32SFYoRz9YbBd80e7c03J0DGSn4yAyxv4Xb7wNHQ68ECwt2ey1JsVgw8NrFyhvHBHHiDf8zAzhn0ObctyWYGkRiNlxePYIX95AWlfR-4w64ZM98DuTp9wEdRwrYb_50-564c801KuMCrBv-GyzrX_jPt7gxdnZORYfYlH9akQmGMhIXgvssYgvFVw1u4253dVq4PD3tLHtgHTLw4FVw">
+<div class="absolute bottom-8 left-8 bg-white/90 p-6 border border-primary">
+<p class="font-label-caps text-[10px] text-secondary mb-1 uppercase tracking-widest">The Foundation</p>
+<h4 class="font-headline-md text-lg">Architectural Silk Blouson</h4>
+<p class="font-label-caps text-primary mt-2">$1,850.00</p>
+</div>
+</div>
+<!-- Right Side: Vertical Stack of Accessories -->
+<div class="md:w-1/2 flex flex-col gap-4">
+<!-- Item 1 -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant hover:border-primary transition-standard group cursor-pointer">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+<img alt="Leather Chelsea Boot" class="w-full h-full object-cover group-hover:scale-110 transition-standard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcfO5ZRjmIbhrLPOlzwTa8SP3UHHBuiX5lMs7ofBQgZgqoqX-NvgC-jT94GTxAFIY1nShvoS2yUsKB1Fc-dD990qf4Z-WYA71crMlK6uC2GJopiSc39AGS4o4ehIkQiNi97BWDmvziCD-1cB7cw4ZUODtH4chUEu7HXZouuE4aj_CwZDrJLBq_MeA6rPmsnpojuP4511SsGQgaXrvZahprz0HUJKRDHosIyNwv7dB3oZTVHZghAG5qMg">
+</div>
+<div class="flex-grow">
+<p class="font-label-caps text-[10px] text-secondary uppercase tracking-widest">Footwear</p>
+<h5 class="font-headline-md text-sm">Leather Chelsea Boot</h5>
+</div>
+<p class="font-label-caps text-primary">$950.00</p>
+</div>
+<div class="flex justify-center py-1">
+<span class="material-symbols-outlined text-outline opacity-40">add</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant hover:border-primary transition-standard group cursor-pointer">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+<img alt="Minimalist Tote" class="w-full h-full object-cover group-hover:scale-110 transition-standard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxojRwkGfrqjbq7Kyr36Iih_yAFpVs7uuenIITWo8blZbQrmNz8IFaYcxIKkH6iZfj_EohgjHaXHJ44STU549WB8b1XUZrPgbhcJcHhcaRZ2DekLsAto4H9nOYpRO2Rnf-2XmNdMRgDc3_3XbTeDhQ_CCEj3j_ks_4aQFgpYzBw17PL4TsOwAua2P95HBOQQVkchDaA1WD46Y1G9318CcGtjQDd2aE8tePWiijU__cKQX2n2usll_p_w">
+</div>
+<div class="flex-grow">
+<p class="font-label-caps text-[10px] text-secondary uppercase tracking-widest">Carry</p>
+<h5 class="font-headline-md text-sm">Minimalist Leather Tote</h5>
+</div>
+<p class="font-label-caps text-primary">$1,200.00</p>
+</div>
+<div class="flex justify-center py-1">
+<span class="material-symbols-outlined text-outline opacity-40">add</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant hover:border-primary transition-standard group cursor-pointer">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary">watch</span>
+</div>
+<div class="flex-grow">
+<p class="font-label-caps text-[10px] text-secondary uppercase tracking-widest">Timepiece</p>
+<h5 class="font-headline-md text-sm">Minimalist Steel Watch</h5>
+</div>
+<p class="font-label-caps text-primary">$650.00</p>
+</div>
+<div class="flex justify-center py-1">
+<span class="material-symbols-outlined text-outline opacity-40">add</span>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant hover:border-primary transition-standard group cursor-pointer">
+<div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+<img alt="Architectural Belt" class="w-full h-full object-cover group-hover:scale-110 transition-standard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcdaVIkjUWHLixhE0SIe-6Vdg0rpeLKB6L1z7C8kcQcDffPzaXdj1KShUGY65DWMwp-egryNix2p5i9blk6sTQOStJN0rbtBhGkxMqzG4z4DUe6CaBx5bSxMc6gj3ykaao-maPXOe2L58gOnipWV1n0_QToYqX5t2NZCBvY1j8Za9iysEcs7INc-stZSX74kIovPlUdNodJtlFgrAZpWmTO7HNX3E7orLaTCrRXvI_lJq6-Nb_BCBf_w">
+</div>
+<div class="flex-grow">
+<p class="font-label-caps text-[10px] text-secondary uppercase tracking-widest">Accessory</p>
+<h5 class="font-headline-md text-sm">Architectural Leather Belt</h5>
+</div>
+<p class="font-label-caps text-primary">$320.00</p>
+</div>
+</div>
+</div>
+<!-- Bottom Bar: Consolidated Summary -->
+<div class="mt-12 border-t border-primary pt-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start">
+<p class="font-label-caps text-secondary uppercase tracking-widest mb-1">Total Outfit Value</p>
+<p class="font-headline-md text-3xl text-primary">$4,970.00</p>
+</div>
+<button class="w-full md:w-auto px-24 h-16 bg-primary text-white font-button uppercase hover:opacity-90 transition-standard tracking-widest">
+      Shop the Look
+    </button>
+</div>
+</section>
+<!-- Section 2: Recently Viewed -->
+<section>
+<h3 class="font-headline-md text-headline-md text-primary mb-12 text-center uppercase tracking-widest">Recently Viewed</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Heavyweight tailored wool trousers in charcoal grey with a sharp permanent crease. Minimalist studio setup with soft key lighting and deep contrast, emphasizing the architectural tailoring of the garment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZcsa_yQlPWH512j0uX2oU6PAKvjTE8ZMOuQ-WNEQColYzkh5125CHgiSYOT6LuurfPxm4umFEdRWdAli9ScR1uyjqZKOOpURSju14A-kO4XWfUoUVgZCV37ACpZwr-3_AXHLTWJ1Dp4BWW0HQIhUR8_L2vQXhpp5vTaKwXvtZCUKWzDa5EyNzBQDnQStDCjyKWAWTPGadCpcx4X0iI9CVOSojp_0uZie6TPanFkzMdgrTgGHtOkIbWQ">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Tailored Wool Trouser</h4>
+<p class="font-label-caps text-secondary text-[11px]">$890.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="A premium Pima cotton white t-shirt, folded perfectly in a minimalist manner. The fabric looks incredibly soft and high-quality. Lighting is high-key and clean, following an editorial brand style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvNpwBOs_mAOTuGoj230xhUlqoG-urnVk5r5aLgrLw1inGBOEiz6rAo_AIuS78_HKo1QVxBIIuC8pllRubDjdq1B2whqAhiVKDWeMyZNftVWxMXgowogxH8h07hIw9frafXpbC54JWCyTlFPKUKTvI8LBdKs8A9K0F_EZMn0zC6BK1aWb_0ZohvP5ZyJcJRpoiGpRdxfrj3jnZIXWcUT2IDyBOpy3orQ7oUkkUlDmpConzcWLtEPCI-g">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Pima Cotton Tee</h4>
+<p class="font-label-caps text-secondary text-[11px]">$180.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="A raw twill cotton overshirt in bone white, showing intricate stitching details. The image is a sharp fashion editorial shot with clear shadows and a modern, high-contrast aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC4fZ4gic1hTaX7eSPjVoj9Yb7TeEKyxJ2kJYMWgY6InbadZtF3rfzaqmX4ytU5JPRsL92pnosu-ZvM6GQpVCd2nWcj1Wg02RwLxRrvMuPDBeZpIwQsCsVqT-a0ghpSbpvVLFhztKHA1z9kU2pbqkVEjqWb9rd2MlQqWO3oD60G5110KC8-ofdi96mG3Mj61x-hza_I5xaFjVqF7DkV9AMa2euJLVu1xVjzJ6I45pyoWIx5HXtFw0_9g">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Raw Twill Overshirt</h4>
+<p class="font-label-caps text-secondary text-[11px]">$640.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="A large black technical nylon travel duffel bag with leather accents. The bag sits in a minimalist concrete space with a single beam of light hitting the texture, creating a premium luxury feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhq0L55XNo3cQT_MOxTPd1RzgwMetqyq0sBNhMyNbILi_39QxKI60tfrXwTjjyeRLBomnWOmeZGQIP5YY621RoacF-RV0Zj-nw15OyXEWlM53iNdh9c1l8ER5sINwlTUvo2HoUd9pDU-Lc3J2Dcd-c0D9wPq9BWUqDtv_c3Ebnw8DfZn_le9MLJgvgfHzgxQDdfDe8NZ4pcacgpjcEoP3mhQRm1WRa7KitzPd4Eqzhd7Aw5gn2j1hzSw">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Monolith Travel Duffel</h4>
+<p class="font-label-caps text-secondary text-[11px]">$1,450.00</p>
+</div>
+</div>
+</section>
+<!-- Section 3: You May Also Like -->
+<section>
+<h3 class="font-headline-md text-headline-md text-primary mb-12 text-center uppercase tracking-widest">You May Also Like</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Long-line cashmere overcoat in deep obsidian noir. The coat has a structured shoulder and a clean hidden button placket. Photographed on a model in an architectural setting with strong sunlight and shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQm-G1adztpoC9w4xt9Zk3ljFAkgZsHeTBiKrl5xxinilkKOdXKMubX9-Av7Oh2PiLOXCaPQ5ZmhE_AlVnunlxMNzUJXESQuG7qS74PvtywCKAW8Id7q8UtSetXMvGAxKYofqgX1CDghmnIQtW_rkoblY9ntxs1Vx6yKC1ziJo563ncj1zSX9OyGNBIqv0Qs7UyyeCArPW1h5gwvexNZQnnW8wUAwgvy_ovfIFc2eFLbd1CMlfP28mYg">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Cashmere Overcoat</h4>
+<p class="font-label-caps text-secondary text-[11px]">$2,800.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="A structural knit sweater in heavy gauge black wool. The knit pattern is geometric and subtle. High contrast lighting makes the texture pop against a neutral grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwqxYfsXsGIGh1W6wVrLWfN-Nn3jYvkPwsidMXSYvK0x56Kg8x2HCbPHkGmrfytXadWJsZA5ULyOUyWKdct-fq3vPyp2VfiPtnE8QhIIWPXIU7ILIA4_InIaQgyoUboqcIfaJX3IHo0qfZMc5agMQyUFxG6fU87Ouvc08lyJPpJnvMpDz_sQbzGBwHpxmwF6JaIqsziTgqNr95w2inIZLiIAfiU15ickstABmC1xNUgNSjIoEZJkRTmA">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Structural Knit Sweater</h4>
+<p class="font-label-caps text-secondary text-[11px]">$820.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Technical field jacket in a bone white waterproof fabric. The jacket features multiple utility pockets with sharp angular flaps. Modern editorial fashion photography with a minimalist edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRtN0NEVduX8n6iK_wc0rih4wSFY9DEtNRtsophRlHVFidzadwoQ7bjnDZm6zBbTZu_CFVIsSWLqZqltIbn32Q6i-OBYY0OETFIMej9HI474MtJo1manyfB1PQDDipjnRX9cbkPXjAQiNlJNVO49XGTr6kZH0uBgxU5J_57wPvtDTgfhKvYOFfPIvY3hdRN0jvmh8sogAtI5a_Yaoxw7G0isXalLeMig88Hzj9n1vy2nYP5okrnIwIQg">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Technical Field Jacket</h4>
+<p class="font-label-caps text-secondary text-[11px]">$1,600.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Heavy ribbed cashmere scarf in obsidian noir, wrapped around a minimalist stone bust. The texture of the wool is incredibly detailed under soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnCIpp5GN2l61pNw6Kf1Xqz5gT2lnn9mkDLMcLCJk7-CnVSITu4Vebeaa778o_nakbWo10ud-ro36rguWqMuxZygZPFE94iIAi4-n6RIz7w2X8tPS4I-8q9BdHULRc5ddi7X1-oAgeAC-nCamhgF_rKqObid4YomrT_OKIczcPawGLRYhw9sQ3dE8-LsEA1BcQBPrk6_50ERgLznq8x0M-Pscl6a_cIHEv4T1mrS0Y2rFlGqx7hlJ8qg">
+</div>
+<h4 class="font-headline-md text-sm mb-1">Heavy Ribbed Scarf</h4>
+<p class="font-label-caps text-secondary text-[11px]">$520.00</p>
+</div>
+</div>
+</section><section class="mt-section-gap">
+<h3 class="font-headline-md text-headline-md text-primary mb-12 text-center uppercase tracking-widest">EXPLORE MORE PRODUCTS</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Minimalist black leather belt with a sculptural silver buckle. Editorial fashion photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcfO5ZRjmIbhrLPOlzwTa8SP3UHHBuiX5lMs7ofBQgZgqoqX-NvgC-jT94GTxAFIY1nShvoS2yUsKB1Fc-dD990qf4Z-WYA71crMlK6uC2GJopiSc39AGS4o4ehIkQiNi97BWDmvziCD-1cB7cw4ZUODtH4chUEu7HXZouuE4aj_CwZDrJLBq_MeA6rPmsnpojuP4511SsGQgaXrvZahprz0HUJKRDHosIyNwv7dB3oZTVHZghAG5qMg">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-standard flex flex-col justify-end p-4">
+<div class="flex gap-2">
+<button class="flex-grow bg-white text-primary py-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-standard uppercase">Add to Cart</button>
+<button class="bg-white/90 text-primary p-2 flex items-center justify-center hover:bg-white transition-standard">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<h4 class="font-headline-md text-sm mb-1">Sculptural Belt</h4>
+<p class="font-label-caps text-secondary text-[11px]">$320.00</p>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Matte black acetate sunglasses with a thick architectural frame. High-end luxury eyewear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxojRwkGfrqjbq7Kyr36Iih_yAFpVs7uuenIITWo8blZbQrmNz8IFaYcxIKkH6iZfj_EohgjHaXHJ44STU549WB8b1XUZrPgbhcJcHhcaRZ2DekLsAto4H9nOYpRO2Rnf-2XmNdMRgDc3_3XbTeDhQ_CCEj3j_ks_4aQFgpYzBw17PL4TsOwAua2P95HBOQQVkchDaA1WD46Y1G9318CcGtjQDd2aE8tePWiijU__cKQX2n2usll_p_w">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-standard flex flex-col justify-end p-4">
+<div class="flex gap-2">
+<button class="flex-grow bg-white text-primary py-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-standard uppercase">Add to Cart</button>
+<button class="bg-white/90 text-primary p-2 flex items-center justify-center hover:bg-white transition-standard">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<h4 class="font-headline-md text-sm mb-1">Architectural Frames</h4>
+<p class="font-label-caps text-secondary text-[11px]">$480.00</p>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Heavyweight black cotton hoodie with a structured fit and hidden seams." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcdaVIkjUWHLixhE0SIe-6Vdg0rpeLKB6L1z7C8kcQcDffPzaXdj1KShUGY65DWMwp-egryNix2p5i9blk6sTQOStJN0rbtBhGkxMqzG4z4DUe6CaBx5bSxMc6gj3ykaao-maPXOe2L58gOnipWV1n0_QToYqX5t2NZCBvY1j8Za9iysEcs7INc-stZSX74kIovPlUdNodJtlFgrAZpWmTO7HNX3E7orLaTCrRXvI_lJq6-Nb_BCBf_w">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-standard flex flex-col justify-end p-4">
+<div class="flex gap-2">
+<button class="flex-grow bg-white text-primary py-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-standard uppercase">Add to Cart</button>
+<button class="bg-white/90 text-primary p-2 flex items-center justify-center hover:bg-white transition-standard">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<h4 class="font-headline-md text-sm mb-1">Structural Hoodie</h4>
+<p class="font-label-caps text-secondary text-[11px]">$550.00</p>
+</div>
+<!-- Product 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Minimalist black leather card holder with four slots and a central compartment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVbq-hHcz14hqIpqZ0dM0TZVxf-2CmjRhBAztoLdcE3203JvsmnpPM9Kag8IRvzeHaZqM6r7ZOkjRDeMk23DetXuQi3e6QHi-qkogdoEDQNPxgUBg8K-fpgMqNYRCu8XRPrVNcTel_Gs5hnaWepHKcLCqf7tVNOz4nGkvC0gjQBZd39eSOETxVt7D-uoOzhVMAQEotUtToPNnyTgEy3EjeZNgAT_nnRd0pNl2X7k-T2iJeF6szwWpRtA">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-standard flex flex-col justify-end p-4">
+<div class="flex gap-2">
+<button class="flex-grow bg-white text-primary py-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-standard uppercase">Add to Cart</button>
+<button class="bg-white/90 text-primary p-2 flex items-center justify-center hover:bg-white transition-standard">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<h4 class="font-headline-md text-sm mb-1">Minimalist Card Holder</h4>
+<p class="font-label-caps text-secondary text-[11px]">$180.00</p>
+</div>
+<!-- Product 5 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Tailored black wool vest with a clean front and adjustable back strap." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZcsa_yQlPWH512j0uX2oU6PAKvjTE8ZMOuQ-WNEQColYzkh5125CHgiSYOT6LuurfPxm4umFEdRWdAli9ScR1uyjqZKOOpURSju14A-kO4XWfUoUVgZCV37ACpZwr-3_AXHLTWJ1Dp4BWW0HQIhUR8_L2vQXhpp5vTaKwXvtZCUKWzDa5EyNzBQDnQStDCjyKWAWTPGadCpcx4X0iI9CVOSojp_0uZie6TPanFkzMdgrTgGHtOkIbWQ">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-standard flex flex-col justify-end p-4">
+<div class="flex gap-2">
+<button class="flex-grow bg-white text-primary py-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-standard uppercase">Add to Cart</button>
+<button class="bg-white/90 text-primary p-2 flex items-center justify-center hover:bg-white transition-standard">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<h4 class="font-headline-md text-sm mb-1">Tailored Wool Vest</h4>
+<p class="font-label-caps text-secondary text-[11px]">$620.00</p>
+</div>
+<!-- Product 6 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] relative overflow-hidden border border-outline-variant mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-standard" data-alt="Sleek black technical nylon backpack with a roll-top closure and minimalist branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhq0L55XNo3cQT_MOxTPd1RzgwMetqyq0sBNhMyNbILi_39QxKI60tfrXwTjjyeRLBomnWOmeZGQIP5YY621RoacF-RV0Zj-nw15OyXEWlM53iNdh9c1l8ER5sINwlTUvo2HoUd9pDU-Lc3J2Dcd-c0D9wPq9BWUqDtv_c3Ebnw8DfZn_le9MLJgvgfHzgxQDdfDe8NZ4pcacgpjcEoP3mhQRm1WRa7KitzPd4Eqzhd7Aw5gn2j1hzSw">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-standard flex flex-col justify-end p-4">
+<div class="flex gap-2">
+<button class="flex-grow bg-white text-primary py-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-standard uppercase">Add to Cart</button>
+<button class="bg-white/90 text-primary p-2 flex items-center justify-center hover:bg-white transition-standard">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<h4 class="font-headline-md text-sm mb-1">Technical Backpack</h4>
+<p class="font-label-caps text-secondary text-[11px]">$890.00</p>
+</div>
+</div>
+<div class="flex justify-center mt-12">
+<button class="px-12 h-14 bg-primary text-white font-button uppercase hover:opacity-90 transition-standard tracking-widest">LOAD MORE PRODUCTS</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface-container-low border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-4 flex flex-col gap-8">
+<h2 class="font-headline-md text-headline-md text-primary">MONOLITH</h2>
+<p class="font-body-md text-secondary max-w-xs leading-relaxed">Defining the intersection of architecture and apparel. A study in structural minimalism since 2024.</p>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-primary uppercase tracking-widest">Newsletter</span>
+<div class="flex border-b border-primary max-w-xs">
+<input class="bg-transparent border-none focus:ring-0 w-full font-label-caps text-[10px] py-2" placeholder="YOUR EMAIL ADDRESS" type="email">
+<button class="font-label-caps text-[10px] hover:opacity-50 transition-standard">JOIN</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-primary mb-6 uppercase tracking-widest">Shop</h4>
+<ul class="flex flex-col gap-3 font-body-md text-secondary text-sm">
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Men</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Women</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Accessories</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">New Arrivals</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-primary mb-6 uppercase tracking-widest">Company</h4>
+<ul class="flex flex-col gap-3 font-body-md text-secondary text-sm">
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Brand Story</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Sustainability</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Careers</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Press</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-primary mb-6 uppercase tracking-widest">Support</h4>
+<ul class="flex flex-col gap-3 font-body-md text-secondary text-sm">
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Contact</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Shipping</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Returns</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Size Guide</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-primary mb-6 uppercase tracking-widest">Legal</h4>
+<ul class="flex flex-col gap-3 font-body-md text-secondary text-sm">
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Terms of Service</a></li>
+<li class=""><a class="hover:text-primary transition-colors duration-300" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+<div class="md:col-span-12 pt-12 mt-12 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-label-caps text-[10px] text-secondary">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-6">
+<a class="text-primary hover:opacity-50 transition-standard" href="#"><span class="font-label-caps text-[10px]">INSTAGRAM</span></a>
+<a class="text-primary hover:opacity-50 transition-standard" href="#"><span class="font-label-caps text-[10px]">TIKTOK</span></a>
+<a class="text-primary hover:opacity-50 transition-standard" href="#"><span class="font-label-caps text-[10px]">PINTEREST</span></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('click', (e) => {
+                // Simple ripple/click effect would go here if needed
+            });
+        });
+
+        // Gallery Thumbnail Logic
+        const thumbnails = document.querySelectorAll('.flex-shrink-0');
+        const mainImage = document.querySelector('.zoom-container img');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('border-primary'));
+                thumbnails.forEach(t => t.classList.add('border-outline-variant'));
+                thumb.classList.remove('border-outline-variant');
+                thumb.classList.add('border-primary');
+                
+                const thumbImg = thumb.querySelector('img');
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.src = thumbImg.src;
+                    mainImage.dataset.alt = thumbImg.dataset.alt;
+                    mainImage.style.opacity = '1';
+                }, 200);
+            });
+        });
+
+        // Simple Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>

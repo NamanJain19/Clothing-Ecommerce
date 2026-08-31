@@ -1,0 +1,238 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MONOLITH | Verification</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-error-container": "#93000a",
+                "secondary-fixed": "#e2e2e2",
+                "on-secondary-fixed-variant": "#454747",
+                "error-container": "#ffdad6",
+                "on-surface-variant": "#4c4546",
+                "on-primary": "#ffffff",
+                "tertiary-fixed": "#e2e2e2",
+                "on-tertiary-fixed": "#1a1c1c",
+                "on-primary-container": "#848484",
+                "on-tertiary": "#ffffff",
+                "inverse-on-surface": "#f0f1f1",
+                "surface-bright": "#f9f9f9",
+                "surface-variant": "#e2e2e2",
+                "secondary-container": "#dcdddd",
+                "on-error": "#ffffff",
+                "primary-container": "#1b1b1b",
+                "background": "#f9f9f9",
+                "secondary": "#5d5f5f",
+                "on-primary-fixed-variant": "#474747",
+                "inverse-primary": "#c6c6c6",
+                "primary-fixed-dim": "#c6c6c6",
+                "on-tertiary-container": "#838484",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#1b1b1b",
+                "outline": "#7e7576",
+                "primary": "#000000",
+                "surface-container-highest": "#e2e2e2",
+                "on-surface": "#1a1c1c",
+                "on-background": "#1a1c1c",
+                "surface-container-low": "#f3f3f4",
+                "outline-variant": "#cfc4c5",
+                "surface-tint": "#5e5e5e",
+                "inverse-surface": "#2f3131",
+                "surface-container": "#eeeeee",
+                "error": "#ba1a1a",
+                "primary-fixed": "#e2e2e2",
+                "on-secondary-container": "#5f6161",
+                "tertiary": "#000000",
+                "surface": "#f9f9f9",
+                "surface-dim": "#dadada",
+                "secondary-fixed-dim": "#c6c6c7",
+                "surface-container-high": "#e8e8e8",
+                "on-tertiary-fixed-variant": "#454747",
+                "on-secondary-fixed": "#1a1c1c",
+                "tertiary-fixed-dim": "#c6c6c6",
+                "on-secondary": "#ffffff",
+                "tertiary-container": "#1a1c1c"
+            },
+            "borderRadius": {
+                "DEFAULT": "0rem",
+                "lg": "0rem",
+                "xl": "0rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "8px",
+                "margin-mobile": "20px",
+                "container-max": "1440px",
+                "margin-desktop": "64px",
+                "gutter": "32px",
+                "section-gap": "128px"
+            },
+            "fontFamily": {
+                "label-caps": ["Montserrat"],
+                "headline-lg": ["Playfair Display"],
+                "display-lg-mobile": ["Playfair Display"],
+                "body-md": ["Montserrat"],
+                "headline-md": ["Playfair Display"],
+                "body-lg": ["Montserrat"],
+                "display-lg": ["Playfair Display"],
+                "button": ["Montserrat"]
+            },
+            "fontSize": {
+                "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                "display-lg-mobile": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                "body-lg": ["18px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                "display-lg": ["72px", { "lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                "button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .otp-input:focus {
+            border-bottom: 2px solid black !important;
+            outline: none;
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left: Editorial Column -->
+<section class="hidden md:block md:w-1/2 h-screen relative overflow-hidden bg-surface-container">
+<div class="absolute inset-0 z-10 bg-black/5"></div>
+<img class="w-full h-full object-cover grayscale transition-transform duration-[3000ms] hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4">
+<div class="absolute top-margin-desktop left-margin-desktop z-20">
+<span class="font-headline-md text-headline-md tracking-widest text-on-primary-fixed mix-blend-difference">MONOLITH</span>
+</div>
+</section>
+<!-- Right: Verification Form Column -->
+<section class="w-full md:w-1/2 flex items-center justify-center bg-surface px-margin-mobile md:px-margin-desktop py-12">
+<div class="max-w-md w-full fade-in">
+<!-- Header -->
+<div class="mb-section-gap">
+<h1 class="font-headline-md text-headline-md text-primary mb-4">Verify Your Identity</h1>
+<p class="font-body-md text-body-md text-secondary max-w-sm">
+                        We've sent a 6-digit verification code to your registered email address.
+                    </p>
+</div>
+<!-- OTP Form -->
+<form class="space-y-12" id="otp-form">
+<div class="flex justify-between gap-2 md:gap-4">
+<input autofocus="" class="otp-input w-12 h-16 md:w-14 md:h-20 text-center font-headline-md text-headline-md border-b border-outline-variant bg-transparent transition-all duration-300" maxlength="1" type="number">
+<input class="otp-input w-12 h-16 md:w-14 md:h-20 text-center font-headline-md text-headline-md border-b border-outline-variant bg-transparent transition-all duration-300" maxlength="1" type="number">
+<input class="otp-input w-12 h-16 md:w-14 md:h-20 text-center font-headline-md text-headline-md border-b border-outline-variant bg-transparent transition-all duration-300" maxlength="1" type="number">
+<input class="otp-input w-12 h-16 md:w-14 md:h-20 text-center font-headline-md text-headline-md border-b border-outline-variant bg-transparent transition-all duration-300" maxlength="1" type="number">
+<input class="otp-input w-12 h-16 md:w-14 md:h-20 text-center font-headline-md text-headline-md border-b border-outline-variant bg-transparent transition-all duration-300" maxlength="1" type="number">
+<input class="otp-input w-12 h-16 md:w-14 md:h-20 text-center font-headline-md text-headline-md border-b border-outline-variant bg-transparent transition-all duration-300" maxlength="1" type="number">
+</div>
+<!-- Actions Area -->
+<div class="space-y-8">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary" id="timer">
+                                Resend Code in <span id="time">00:25</span>
+</span>
+<div class="hidden flex gap-6" id="post-timer-links">
+<button class="font-label-caps text-label-caps text-primary hover:opacity-70 transition-opacity" type="button">RESEND OTP</button>
+<button class="font-label-caps text-label-caps text-primary hover:opacity-70 transition-opacity" type="button">CHANGE EMAIL</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary py-5 font-button text-button hover:bg-secondary transition-colors duration-300" type="submit">
+                                VERIFY OTP
+                            </button>
+<button class="w-full border border-primary text-primary py-5 font-button text-button hover:bg-surface-container transition-colors duration-300" type="button">
+                                BACK
+                            </button>
+</div>
+</div>
+</form>
+</div>
+</section>
+</main>
+<script>
+        // OTP Input Auto-advance logic
+        const inputs = document.querySelectorAll('.otp-input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length > 1) {
+                    e.target.value = e.target.value.slice(0, 1);
+                }
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Countdown Timer Logic
+        let timeLeft = 45;
+        const timerText = document.getElementById('time');
+        const timerContainer = document.getElementById('timer');
+        const postLinks = document.getElementById('post-timer-links');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerText.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerContainer.classList.add('hidden');
+                postLinks.classList.remove('hidden');
+                postLinks.classList.add('flex');
+            }
+        }, 1000);
+
+        // Form Submit Interaction
+        document.getElementById('otp-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = 'VERIFYING...';
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+            
+            setTimeout(() => {
+                // Simulate success
+                window.location.reload(); 
+            }, 1500);
+        });
+    </script>
+</body></html>

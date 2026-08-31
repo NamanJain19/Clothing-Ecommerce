@@ -1,0 +1,430 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Checkout | MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#838484",
+                    "background": "#f9f9f9",
+                    "tertiary": "#000000",
+                    "primary-container": "#1b1b1b",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#e2e2e2",
+                    "primary": "#000000",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-surface-variant": "#4c4546",
+                    "on-background": "#1a1c1c",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-variant": "#e2e2e2",
+                    "secondary": "#5d5f5f",
+                    "on-surface": "#1a1c1c",
+                    "inverse-surface": "#2f3131",
+                    "surface-container": "#eeeeee",
+                    "outline-variant": "#cfc4c5",
+                    "on-secondary-container": "#5f6161",
+                    "tertiary-container": "#1a1c1c",
+                    "surface-tint": "#5e5e5e",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f0f1f1",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "outline": "#7e7576",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#848484",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "surface-container-low": "#f3f3f4",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-primary-fixed-variant": "#474747",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary-container": "#dcdddd",
+                    "surface-dim": "#dadada",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "surface-bright": "#f9f9f9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "unit": "8px",
+                    "gutter": "32px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "section-gap": "128px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Montserrat"],
+                    "button": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus {
+            outline: none;
+            border-bottom-color: #000000 !important;
+            box-shadow: none !important;
+        }
+        .step-transition {
+            transition: all 0.5s ease-in-out;
+        }
+        /* Custom scrollbar for sticky side */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E5E5E5;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md">
+<!-- TopNavBar (Shared Component Identity) -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
+<nav class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-serif tracking-widest text-primary">MONOLITH</span>
+<div class="hidden lg:flex gap-6">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Men</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Women</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Kids</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Accessories</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary">search</button>
+<button class="material-symbols-outlined text-primary">favorite</button>
+<button class="material-symbols-outlined text-primary">shopping_bag</button>
+<button class="material-symbols-outlined text-primary">person</button>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<header class="mb-12">
+<h1 class="font-headline-lg text-headline-lg mb-2">Checkout</h1>
+<p class="font-body-lg text-body-lg text-secondary">Complete your order securely.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Multi-step Form -->
+<form class="lg:col-span-7 space-y-12">
+<!-- Step 1: Contact Information -->
+<section class="space-y-6 transition-all duration-700 ease-out opacity-100 translate-y-0">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-label-caps text-label-caps bg-primary text-on-primary w-8 h-8 flex items-center justify-center">01</span>
+<h2 class="font-headline-md text-headline-md">Contact Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative">
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Email Address</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="email@example.com" type="email">
+</div>
+<div class="relative">
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Phone Number</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+</div>
+</section>
+<!-- Step 2: Shipping Address -->
+<section class="space-y-6 transition-all duration-700 ease-out opacity-100 translate-y-0">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-label-caps text-label-caps bg-primary text-on-primary w-8 h-8 flex items-center justify-center">02</span>
+<h2 class="font-headline-md text-headline-md">Shipping Address</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Full Name</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="Johnathan Doe" type="text">
+</div>
+<div>
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Country</label>
+<select class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md focus:ring-0 focus:border-primary">
+<option>United States</option>
+<option>United Kingdom</option>
+<option>France</option>
+<option>Japan</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">State / Province</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="California" type="text">
+</div>
+<div>
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">City</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="Los Angeles" type="text">
+</div>
+<div>
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Postal Code</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="90210" type="text">
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Full Address</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="Street name and house number" type="text">
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Landmark (Optional)</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="Near Central Park" type="text">
+</div>
+</div>
+</section>
+<!-- Step 3: Shipping Method -->
+<section class="space-y-6 transition-all duration-700 ease-out opacity-100 translate-y-0">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-label-caps text-label-caps bg-primary text-on-primary w-8 h-8 flex items-center justify-center">03</span>
+<h2 class="font-headline-md text-headline-md">Shipping Method</h2>
+</div>
+<div class="space-y-4">
+<label class="flex items-center justify-between p-6 border border-outline-variant cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<input checked="" class="text-primary focus:ring-0" name="shipping" type="radio">
+<div>
+<p class="font-label-caps text-label-caps">Standard Delivery</p>
+<p class="text-secondary text-sm">Estimated 5-7 business days</p>
+</div>
+</div>
+<span class="font-label-caps">FREE</span>
+</label>
+<label class="flex items-center justify-between p-6 border border-outline-variant cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<input class="text-primary focus:ring-0" name="shipping" type="radio">
+<div>
+<p class="font-label-caps text-label-caps">Express Delivery</p>
+<p class="text-secondary text-sm">Estimated 1-2 business days</p>
+</div>
+</div>
+<span class="font-label-caps">$25.00</span>
+</label>
+</div>
+</section>
+<!-- Step 4: Gift Options -->
+<section class="space-y-6 transition-all duration-700 ease-out opacity-100 translate-y-0">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-label-caps text-label-caps bg-primary text-on-primary w-8 h-8 flex items-center justify-center">04</span>
+<h2 class="font-headline-md text-headline-md">Gift Options</h2>
+</div>
+<div class="p-6 border border-outline-variant">
+<label class="flex items-center gap-3 cursor-pointer mb-6">
+<input class="text-primary focus:ring-0 border-outline-variant" id="giftToggle" onchange="toggleGiftOptions()" type="checkbox">
+<span class="font-label-caps text-label-caps">This order is a gift</span>
+</label>
+<div class="hidden space-y-6 pt-4 border-t border-outline-variant" id="giftOptions">
+<div class="flex items-center gap-3 cursor-pointer">
+<input class="text-primary focus:ring-0 border-outline-variant" type="checkbox">
+<span class="font-body-md text-sm">Premium Gift Wrap (+$10.00)</span>
+</div>
+<div>
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Gift Message</label>
+<textarea class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary resize-none transition-all" placeholder="Enter your personalized message..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="text-primary focus:ring-0 border-outline-variant" type="checkbox">
+<span class="font-body-md text-sm text-secondary">Gift Receipt (Hide Price)</span>
+</label>
+<div>
+<label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Delivery Note</label>
+<input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="Instructions for the courier" type="text">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 5: Payment Method -->
+<section class="space-y-6 transition-all duration-700 ease-out opacity-100 translate-y-0"><div class="flex items-center gap-4 mb-8"><span class="font-label-caps text-label-caps bg-primary text-on-primary w-8 h-8 flex items-center justify-center">05</span><h2 class="font-headline-md text-headline-md">Payment Method</h2></div><div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6"><label class="border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary transition-all peer-checked:bg-primary-container peer-checked:text-on-primary-container"><input checked="" class="hidden peer" name="payment" type="radio" value="credit"><span class="material-symbols-outlined text-2xl">credit_card</span><span class="text-[10px] font-label-caps text-center">Credit Card</span></label><label class="border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary transition-all"><input class="hidden" name="payment" type="radio" value="debit"><span class="material-symbols-outlined text-2xl">payments</span><span class="text-[10px] font-label-caps text-center">Debit Card</span></label><label class="border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary transition-all"><input class="hidden" name="payment" type="radio" value="netbanking"><span class="material-symbols-outlined text-2xl">account_balance</span><span class="text-[10px] font-label-caps text-center">Net Banking</span></label><label class="border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary transition-all"><input class="hidden" name="payment" type="radio" value="upi"><span class="material-symbols-outlined text-2xl">qr_code_2</span><span class="text-[10px] font-label-caps text-center">UPI</span></label><label class="border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary transition-all"><input class="hidden" name="payment" type="radio" value="cod"><span class="material-symbols-outlined text-2xl">local_shipping</span><span class="text-[10px] font-label-caps text-center">COD</span></label><label class="border border-outline-variant p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-primary transition-all"><input class="hidden" name="payment" type="radio" value="wallet"><span class="material-symbols-outlined text-2xl">account_balance_wallet</span><span class="text-[10px] font-label-caps text-center">Wallet</span></label></div><div class="p-6 bg-surface-container-low border border-outline-variant space-y-6" id="paymentDetails"><div class="space-y-6"><div class="relative"><label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Cardholder Name</label><input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="Johnathan Doe" type="text"></div><div class="relative"><label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Card Number</label><input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="0000 0000 0000 0000" type="text"></div><div class="grid grid-cols-2 gap-6"><div class="relative"><label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">Expiry Date</label><input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="MM/YY" type="text"></div><div class="relative"><label class="block font-label-caps text-[10px] uppercase mb-1 text-secondary">CVV</label><input class="w-full border-0 border-b border-outline-variant bg-transparent py-3 px-0 font-body-md placeholder:text-outline focus:border-primary transition-all" placeholder="123" type="text"></div></div></div></div><div class="flex items-center justify-center gap-2 mt-6 text-secondary"><span class="material-symbols-outlined text-sm">lock</span><span class="font-label-caps text-[10px] tracking-widest uppercase">100% Secure Payment</span></div></section>
+<div class="pt-8">
+<button class="w-full py-6 bg-primary text-on-primary font-button uppercase tracking-widest hover:bg-primary/90 transition-all" type="submit">
+                        Place Order • $1,420.00
+                    </button>
+<p class="text-center text-[11px] text-secondary mt-4 px-8 leading-relaxed">
+                        By clicking "Place Order", you agree to our Terms of Use and Privacy Policy. All transactions are encrypted and secure.
+                    </p>
+</div>
+</form>
+<!-- Right Column: Sticky Order Summary -->
+<aside class="lg:col-span-5 lg:sticky lg:top-28 space-y-8">
+<div class="p-8 bg-white border border-outline-variant">
+<h3 class="font-headline-md text-headline-md mb-8 border-b border-outline-variant pb-4">Order Summary</h3>
+<!-- Free Shipping Status -->
+<div class="mb-8 space-y-2">
+<div class="flex justify-between font-label-caps text-[10px]">
+<span class="">Free Shipping Eligibility</span>
+<span class="">$1,420 / $500</span>
+</div>
+<div class="h-[2px] w-full bg-surface-container">
+<div class="h-full bg-primary" style="width: 100%;"></div>
+</div>
+<p class="text-[11px] text-secondary italic">Your order qualifies for complimentary express shipping.</p>
+</div>
+<!-- Products List -->
+<div class="space-y-6 max-h-[400px] overflow-y-auto custom-scrollbar pr-4 mb-8">
+<!-- Product 1 -->
+<div class="flex gap-4">
+<div class="w-24 h-32 flex-shrink-0">
+<img class="w-full h-full object-cover grayscale" data-alt="A high-end editorial product shot of a minimalist black silk evening dress draped elegantly on a white mannequin. The lighting is dramatic, high-contrast, typical of luxury fashion photography. The background is a clean, neutral gray, emphasizing the texture of the fabric. Quiet luxury aesthetic with refined shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAZn7mvjkaxbIauf4b9Zx2swYeF7-f9q_KjXCcFgR3_t16VSVycsruo4ZXdZe6CN-r_O0gZviBXVlnawRRtG8Q7HwAzEnHk98wobSlDxZ_1WIoe7-JAPiZmGXFVgDvIOsdFW4QudSBh3cFDwqlert2WoiWloPHBxDBXq7sDRTCN0qhUemiKaZrxTvxBQ_lww8OazjzSdAUZKNL20h3SsGZKgQ_B5r6MohFSIQ-hBnh6avSwvKVq4yELw">
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h4 class="font-headline-md text-base">Silk Evening Column Gown</h4>
+<p class="text-[11px] text-secondary font-label-caps mt-1">BLACK / SIZE M</p>
+<p class="text-sm mt-1">Qty: 1</p>
+</div>
+<span class="font-label-caps text-sm">$890.00</span>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex gap-4">
+<div class="w-24 h-32 flex-shrink-0">
+<img class="w-full h-full object-cover grayscale" data-alt="Close-up studio photography of handcrafted Italian leather boots in a rich matte charcoal finish. The boots feature sharp architectural lines and a subtle gloss on the toe. Lighting is soft and directional, highlighting the premium leather grain. Minimalist, sophisticated mood against an off-white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN-TnRFVDOLJaqtD-5XxfuD79lZgYlhhdKuJ8vGewzhc-UQ195D8Gbv7QF18DjcNfPUAlsQ4n4NEzIBFN_THDtDhqxMiNh3tiGqLAoqaXJ35-LeN8tbUn1lCahjtP-le6FHDlvM7YfsabQy4iAyhYjWCJ6hN2Wn5c-ICf9epQgRGp9uJqvSk1r81O5FQJZ7L9FdPoJ4b9bnA1isqKnU9esufqSD41cPAaJFujs8C8zDQSM5gA1Q1BayA">
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h4 class="font-headline-md text-base">Structured Leather Boots</h4>
+<p class="text-[11px] text-secondary font-label-caps mt-1">CHARCOAL / SIZE 42</p>
+<p class="text-sm mt-1">Qty: 1</p>
+</div>
+<span class="font-label-caps text-sm">$530.00</span>
+</div>
+</div>
+</div>
+<!-- Financials -->
+<div class="space-y-4 border-t border-outline-variant pt-8">
+<div class="flex justify-between font-body-md text-sm">
+<span class="">Subtotal</span>
+<span class="">$1,420.00</span>
+</div>
+<div class="flex justify-between font-body-md text-sm text-secondary">
+<span class="">Shipping (Express)</span>
+<span class="text-primary">FREE</span>
+</div>
+<div class="flex justify-between font-body-md text-sm text-secondary">
+<span class="">Tax (Estimated)</span>
+<span class="">$0.00</span>
+</div>
+<!-- Promo Input -->
+<div class="flex items-center gap-2 py-4">
+<input class="flex-grow border-0 border-b border-outline-variant bg-transparent py-2 px-0 font-body-md text-sm placeholder:text-outline focus:border-primary transition-all" placeholder="Promo Code" type="text">
+<button class="font-label-caps text-[10px] border border-primary px-4 py-2 hover:bg-primary hover:text-on-primary transition-all" type="button">APPLY</button>
+</div>
+<div class="flex justify-between items-end border-t border-outline-variant pt-6">
+<span class="font-label-caps text-label-caps">Total Amount</span>
+<span class="font-headline-md text-2xl">$1,420.00</span>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="mt-8 pt-8 border-t border-outline-variant flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<div>
+<p class="text-[11px] font-label-caps leading-tight">Secure Checkout</p>
+<p class="text-[10px] text-secondary">256-bit SSL Encrypted Transaction</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<div>
+<p class="text-[11px] font-label-caps leading-tight">Estimated Delivery</p>
+<p class="text-[10px] text-secondary">Tuesday, Oct 24th - Thursday, Oct 26th</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Help Card -->
+<div class="p-6 border border-outline-variant flex flex-col items-center text-center gap-2">
+<p class="font-label-caps text-[10px] text-secondary">Need Assistance?</p>
+<a class="font-body-md border-b border-primary text-sm hover:text-secondary hover:border-secondary transition-all" href="tel:+1800MONOLITH">+1 (800) MONOLITH</a>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full pt-section-gap pb-12 bg-surface-container border-t border-outline-variant">
+<div class="flex flex-col items-center gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<span class="font-headline-md text-headline-md text-primary tracking-widest font-serif">MONOLITH</span>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-all underline decoration-transparent hover:decoration-primary" href="#">Sustainability</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-all underline decoration-transparent hover:decoration-primary" href="#">Contact</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-all underline decoration-transparent hover:decoration-primary" href="#">Shipping &amp; Returns</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-all underline decoration-transparent hover:decoration-primary" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-all underline decoration-transparent hover:decoration-primary" href="#">Size Guide</a>
+</div>
+<p class="font-label-caps text-[10px] text-on-tertiary-container tracking-widest mt-4">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script>
+        function toggleGiftOptions() {
+            const checkbox = document.getElementById('giftToggle');
+            const options = document.getElementById('giftOptions');
+            if (checkbox.checked) {
+                options.classList.remove('hidden');
+                options.classList.add('block');
+            } else {
+                options.classList.add('hidden');
+                options.classList.remove('block');
+            }
+        }
+
+        // Simple Smooth Reveal for form sections on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out');
+            observer.observe(section);
+        });
+    </script>
+
+
+</body></html>

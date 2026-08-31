@@ -1,0 +1,227 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Forgot Password | MONOLITH LUXURY</title>
+<!-- Google Fonts: Playfair Display for headlines, Montserrat for body/buttons -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols for icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#7e7576",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#e2e2e2",
+                    "primary": "#000000",
+                    "surface-container-high": "#e8e8e8",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "outline-variant": "#cfc4c5",
+                    "on-secondary-container": "#5f6161",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-primary-container": "#848484",
+                    "tertiary": "#000000",
+                    "surface-dim": "#dadada",
+                    "on-tertiary-container": "#838484",
+                    "inverse-surface": "#2f3131",
+                    "surface-container": "#eeeeee",
+                    "on-surface": "#1a1c1c",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f9f9f9",
+                    "on-error": "#ffffff",
+                    "secondary": "#5d5f5f",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary-fixed-variant": "#474747",
+                    "tertiary-container": "#1a1c1c",
+                    "inverse-primary": "#c6c6c6",
+                    "surface": "#f9f9f9",
+                    "background": "#f9f9f9",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-container-low": "#f3f3f4",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-tint": "#5e5e5e",
+                    "primary-fixed": "#e2e2e2",
+                    "secondary-container": "#dcdddd",
+                    "on-surface-variant": "#4c4546",
+                    "primary-container": "#1b1b1b",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#c6c6c6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "32px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "section-gap": "128px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-underline {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #000000;
+            background: transparent;
+            padding-left: 0;
+            padding-right: 0;
+            border-radius: 0;
+        }
+        .form-input-underline:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom: 2px solid #000000;
+        }
+        .transition-slow {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<main class="flex flex-col md:flex-row min-h-screen w-full">
+<!-- Left Section: Editorial Image -->
+<section class="hidden md:block md:w-1/2 h-screen sticky top-0 overflow-hidden">
+<div class="w-full h-full relative group">
+<div class="absolute inset-0 bg-primary/5 z-10 transition-opacity duration-700 group-hover:opacity-0"></div>
+<img alt="High-end editorial fashion photography, solo model in a minimalist architectural setting" class="w-full h-full object-cover grayscale transition-transform duration-1000 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4">
+<!-- Brand Overlay -->
+<div class="absolute top-margin-desktop left-margin-desktop z-20">
+<h1 class="font-display-lg text-headline-lg tracking-tighter text-primary">
+                        MONOLITH
+                    </h1>
+</div>
+</div>
+</section>
+<!-- Right Section: Recovery Form -->
+<section class="w-full md:w-1/2 flex items-center justify-center bg-background px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Mobile Logo -->
+<div class="md:hidden mb-12">
+<h1 class="font-display-lg text-headline-lg tracking-tighter text-primary">
+                        MONOLITH
+                    </h1>
+</div>
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Forgot Password</h2>
+<p class="font-body-md text-body-md text-secondary max-w-sm">
+                        Enter your registered email address to receive a reset link.
+                    </p>
+</div>
+<form class="space-y-10" id="recoveryForm" onsubmit="handleRecovery(event)">
+<div class="group relative">
+<label class="font-label-caps text-label-caps text-secondary block mb-2 transition-colors group-focus-within:text-primary" for="email">
+                            Email Address
+                        </label>
+<input class="w-full form-input-underline font-body-md text-body-md placeholder:text-outline-variant py-3" id="email" name="email" placeholder="NAME@DOMAIN.COM" required="" type="email">
+</div>
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary font-button text-button py-5 px-8 uppercase transition-slow hover:bg-secondary active:scale-[0.98]" type="submit">
+                            Send Reset Link
+                        </button>
+</div>
+</form>
+<div class="mt-12 flex flex-col items-center gap-6">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Back to Login
+                    </a>
+</div>
+<!-- Footer Copyright for Mobile -->
+<div class="mt-section-gap md:mt-32 pt-8 border-t border-outline-variant text-center">
+<p class="font-label-caps text-[10px] tracking-widest text-outline">
+                        © 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        function handleRecovery(event) {
+            event.preventDefault();
+            const button = event.target.querySelector('button');
+            const originalText = button.innerText;
+            
+            // Visual feedback
+            button.disabled = true;
+            button.innerText = "SENDING...";
+            button.style.opacity = "0.7";
+
+            setTimeout(() => {
+                button.innerText = "LINK SENT";
+                button.classList.remove('bg-primary');
+                button.classList.add('bg-on-tertiary-container');
+                
+                // Show success state (simulated)
+                const form = document.getElementById('recoveryForm');
+                form.innerHTML = `
+                    <div class="text-center py-8 animate-in fade-in duration-500">
+                        <span class="material-symbols-outlined text-[48px] text-primary mb-4" style="font-variation-settings: 'FILL' 1">check_circle</span>
+                        <p class="font-body-md text-body-md text-primary mb-2">Instructions Sent</p>
+                        <p class="font-body-md text-body-md text-secondary">Please check your inbox at ${document.getElementById('email').value}</p>
+                        <button onclick="location.reload()" class="mt-8 font-label-caps text-label-caps text-primary underline underline-offset-8">Try Again</button>
+                    </div>
+                `;
+            }, 1500);
+        }
+
+        // Handle focus states for luxury feel
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.style.transform = 'translateY(-2px)';
+                input.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

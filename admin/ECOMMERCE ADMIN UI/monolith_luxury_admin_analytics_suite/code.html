@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analytics | Monolith Luxury Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#c0c6db",
+                    "surface-dim": "#dcd9db",
+                    "on-primary-fixed-variant": "#404758",
+                    "primary-container": "#141b2b",
+                    "error-container": "#ffdad6",
+                    "surface": "#fcf8fa",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-surface": "#1b1b1d",
+                    "secondary-fixed": "#dce2f3",
+                    "tertiary": "#000000",
+                    "surface-container-highest": "#e5e2e3",
+                    "secondary-container": "#dce2f3",
+                    "on-secondary-fixed-variant": "#404754",
+                    "on-secondary-container": "#5e6572",
+                    "inverse-primary": "#c0c6db",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#261906",
+                    "primary": "#000000",
+                    "surface-variant": "#e5e2e3",
+                    "surface-container-low": "#f6f3f4",
+                    "surface-container-high": "#eae7e9",
+                    "tertiary-container": "#261906",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "outline": "#76777d",
+                    "on-primary-fixed": "#141b2b",
+                    "on-secondary-fixed": "#151c27",
+                    "tertiary-fixed": "#f9debf",
+                    "on-background": "#1b1b1d",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#303031",
+                    "on-surface-variant": "#45464c",
+                    "surface-tint": "#575e70",
+                    "outline-variant": "#c6c6cd",
+                    "on-primary-container": "#7d8497",
+                    "on-primary": "#ffffff",
+                    "secondary": "#585f6c",
+                    "on-tertiary-container": "#968065",
+                    "surface-container": "#f0edee",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f3f0f1",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#dce2f7",
+                    "background": "#fcf8fa",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "surface-bright": "#fcf8fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-xs": "0.25rem",
+                    "space-sm": "0.5rem",
+                    "space-lg": "1.5rem",
+                    "container-margin": "2rem",
+                    "space-xl": "2rem",
+                    "space-2xl": "3rem",
+                    "space-md": "1rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .chart-container { height: 300px; position: relative; }
+        .bar-hover:hover { fill: #111827; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        .premium-card { border: 1px solid #E5E7EB; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (from JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface-container-lowest border-r border-outline-variant flex flex-col py-space-xl px-space-md gap-space-sm z-50">
+<div class="mb-space-xl px-4">
+<h1 class="text-headline-md font-headline-md font-bold text-primary">Monolith Luxury</h1>
+<p class="text-label-sm text-secondary">Atelier Admin</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-label-md active:opacity-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-colors duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-colors duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-colors duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined">group</span>
+                Customers
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-colors duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined">sell</span>
+                Coupons
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-colors duration-200 rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto px-4 py-4 border-t border-outline-variant flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A sophisticated professional portrait of a senior administrator in a high-end luxury fashion office. Soft natural light, minimalist background, wearing a tailored charcoal suit. Professional and authoritative atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtw1pMMTSd45uVgATeIHQYV-sIXKX5f4mgn7UAGojPtN-mvxjfULIRV2WzMNVXO68v6RbiV--1QXxZhpjzkxr2cKdnT7S2XRSttelrKhL6SAL28zbWOgFNOc0SdvDvoWNHZesmHXNDkG0gGLCT9fIJ858f32A7UJyUe4NR_wCkY7milI0d7XDNW_K9rGNFHVkpu9C4Y6T6vTniVJorpsp-wOHaDaJUIF2lazOoLWUKBUgn_UXZ3z7T-g"/>
+<div>
+<p class="font-label-md text-on-surface">Alex Mercer</p>
+<p class="text-caption text-secondary">Head of Operations</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (from JSON) -->
+<header class="flex justify-between items-center h-16 w-full pl-[280px] pr-space-xl bg-surface/80 backdrop-blur-md z-40 fixed top-0 border-b border-outline-variant">
+<div class="flex items-center gap-space-lg">
+<div class="relative w-64">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-secondary text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary" placeholder="Search Atelier..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-4 w-[1px] bg-outline-variant mx-2"></div>
+<button class="font-label-md text-primary hover:opacity-70 transition-opacity">Support</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-space-xl">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-space-xl gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Analytics</h2>
+<p class="font-body-md text-body-md text-secondary">Track your store performance and business growth.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-label-md text-on-surface hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Oct 1, 2023 - Oct 31, 2023
+                    </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md hover:bg-opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Top Filter Bar -->
+<div class="premium-card bg-surface-container-lowest rounded-xl p-space-md mb-space-lg flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="text-label-sm text-secondary">Compare:</span>
+<div class="w-10 h-5 bg-surface-container-highest rounded-full relative cursor-pointer">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform translate-x-5"></div>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<select class="border-none bg-transparent font-label-md text-on-surface-variant focus:ring-0">
+<option>All Categories</option>
+<option>Ready-to-Wear</option>
+<option>Accessories</option>
+</select>
+<select class="border-none bg-transparent font-label-md text-on-surface-variant focus:ring-0">
+<option>All Collections</option>
+<option>Autumn/Winter 23</option>
+<option>Heritage</option>
+</select>
+</div>
+<div class="text-caption text-secondary">
+                    Data refreshed 2 minutes ago
+                </div>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-md mb-space-xl">
+<!-- KPI Card 1 -->
+<div class="premium-card bg-surface-container-lowest p-space-md rounded-xl">
+<p class="text-label-sm text-secondary mb-1">Total Revenue</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-headline-md font-bold">$1,284,500</h3>
+<span class="text-label-sm text-green-600">+12.5%</span>
+</div>
+</div>
+<!-- KPI Card 2 -->
+<div class="premium-card bg-surface-container-lowest p-space-md rounded-xl">
+<p class="text-label-sm text-secondary mb-1">Orders</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-headline-md font-bold">12,482</h3>
+<span class="text-label-sm text-green-600">+8.2%</span>
+</div>
+</div>
+<!-- KPI Card 3 -->
+<div class="premium-card bg-surface-container-lowest p-space-md rounded-xl">
+<p class="text-label-sm text-secondary mb-1">Customers</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-headline-md font-bold">8,940</h3>
+<span class="text-label-sm text-green-600">+15.1%</span>
+</div>
+</div>
+<!-- KPI Card 4 -->
+<div class="premium-card bg-surface-container-lowest p-space-md rounded-xl">
+<p class="text-label-sm text-secondary mb-1">Products Sold</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-headline-md font-bold">45,210</h3>
+<span class="text-label-sm text-green-600">+10.4%</span>
+</div>
+</div>
+<!-- KPI Card 5 -->
+<div class="premium-card bg-surface-container-lowest p-space-md rounded-xl">
+<p class="text-label-sm text-secondary mb-1">Conversion Rate</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-headline-md font-bold">3.42%</h3>
+<span class="text-label-sm text-green-600">+0.5%</span>
+</div>
+</div>
+<!-- KPI Card 6 -->
+<div class="premium-card bg-surface-container-lowest p-space-md rounded-xl">
+<p class="text-label-sm text-secondary mb-1">Avg. Order Value</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-headline-md font-bold">$102.90</h3>
+<span class="text-label-sm text-green-600">+2.1%</span>
+</div>
+</div>
+</div>
+<!-- Revenue Trend (Main Analytics) -->
+<div class="premium-card bg-surface-container-lowest rounded-xl mb-space-xl overflow-hidden">
+<div class="px-space-lg py-space-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-md text-on-surface">Revenue Trend</h3>
+<div class="flex bg-surface-container p-1 rounded-lg">
+<button class="px-3 py-1 text-label-sm rounded-md transition-colors">7 Days</button>
+<button class="px-3 py-1 text-label-sm rounded-md bg-white shadow-sm font-bold">30 Days</button>
+<button class="px-3 py-1 text-label-sm rounded-md transition-colors">90 Days</button>
+<button class="px-3 py-1 text-label-sm rounded-md transition-colors">12 Months</button>
+</div>
+</div>
+<div class="p-space-lg relative h-[360px]">
+<!-- Chart Placeholder with visual SVG implementation -->
+<div class="absolute inset-x-8 top-12 bottom-12 flex items-end justify-between gap-1">
+<!-- Simplified Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-t border-outline h-0 w-full"></div>
+<div class="border-t border-outline h-0 w-full"></div>
+<div class="border-t border-outline h-0 w-full"></div>
+<div class="border-t border-outline h-0 w-full"></div>
+</div>
+<!-- Decorative Line Chart -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 300">
+<path d="M0,250 Q100,200 200,220 T400,150 T600,180 T800,80 T1000,120" fill="none" stroke="#111827" stroke-width="2"></path>
+<path d="M0,250 Q100,200 200,220 T400,150 T600,180 T800,80 T1000,120 V300 H0 Z" fill="url(#gradient)" opacity="0.05"></path>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#111827;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#111827;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-0 inset-x-0 flex justify-between text-caption text-secondary px-2">
+<span>Oct 1</span><span>Oct 8</span><span>Oct 15</span><span>Oct 22</span><span>Oct 29</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Second Row: Bar Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl mb-space-xl">
+<!-- Sales by Category -->
+<div class="premium-card bg-surface-container-lowest rounded-xl p-space-lg">
+<h3 class="font-headline-md mb-space-lg">Sales by Category</h3>
+<div class="flex flex-col gap-6">
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span>Ready-to-Wear</span>
+<span>$482,000</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span>Accessories</span>
+<span>$321,000</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[55%] rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span>Footwear</span>
+<span>$295,000</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%] rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span>Leather Goods</span>
+<span>$186,500</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[30%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Collections -->
+<div class="premium-card bg-surface-container-lowest rounded-xl p-space-lg">
+<h3 class="font-headline-md mb-space-lg">Top Collections</h3>
+<div class="flex items-end justify-around h-[200px] gap-4">
+<div class="flex flex-col items-center gap-4 flex-1">
+<div class="w-full bg-primary h-[85%] rounded-t-lg transition-all hover:opacity-80"></div>
+<span class="text-caption text-secondary text-center truncate w-full">A/W 23</span>
+</div>
+<div class="flex flex-col items-center gap-4 flex-1">
+<div class="w-full bg-primary h-[60%] rounded-t-lg transition-all hover:opacity-80"></div>
+<span class="text-caption text-secondary text-center truncate w-full">Heritage</span>
+</div>
+<div class="flex flex-col items-center gap-4 flex-1">
+<div class="w-full bg-primary h-[45%] rounded-t-lg transition-all hover:opacity-80"></div>
+<span class="text-caption text-secondary text-center truncate w-full">Essentials</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Third Row: Lists -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl mb-space-xl">
+<!-- Top Selling Products -->
+<div class="premium-card bg-surface-container-lowest rounded-xl">
+<div class="px-space-lg py-space-md border-b border-outline-variant">
+<h3 class="font-headline-md">Top Selling Products</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Product</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Units</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider text-right">Revenue</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded bg-surface object-cover" data-alt="A high-end luxury silk dress in ivory white, elegantly draped on a minimalist mannequin. Studio lighting, soft shadows, high fashion catalog style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ7VHTDT7y1rqzoqqji4cymNrrdCazsMMkDOmE_wuh3BYGjWoiKvYg6bv8qAR-KAglESSfpZBABy6y0tY6Tcj3IzzMnZfBs6bD72v_TjyQGtqupGJ0WrxjyiZXd4ATVkNmzEmSAZycwUUSW6_c6IW_dYq8mS_Lz4EYhuWgVKL8q6F7Cev7kePateQa-oUKgNaQF0pWujs5JJ2Ax4BvTRG1FXEQoEn_8JmArYb34k21k22bzvTnQG4-Iw"/>
+<span class="text-label-md">Monolith Silk Gown</span>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md">1,240</td>
+<td class="px-6 py-4 text-body-md text-right font-medium">$248,000</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded bg-surface object-cover" data-alt="Close-up shot of a premium black leather handbag with gold hardware. Luxury craftsmanship, soft grain texture visible, studio lighting on a neutral grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZKB5IPQHUt-WELaKnkuIgF24T1_rNe9TChF1flT7eDB7nIwH-dgBt8B78RM0h-f7Rbx8QZ3rG0-5BvAFiA5HJzHetKXfpChKPsah-SWvsq1vPGNGhCxvXssmf15MoYc_hnIDmea5rGp-LF8Xd7iWq3dCPc0D16txuOtUC3f50ooXlrKUxbyg99lDZne1l8U0TuQxXBcwZm4pMUy36NAtzZR1DjDIbvgdJ1VYeDy6P_THoeTt2RupUsQ"/>
+<span class="text-label-md">Atelier Tote XL</span>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md">890</td>
+<td class="px-6 py-4 text-body-md text-right font-medium">$195,800</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded bg-surface object-cover" data-alt="A pair of minimalist white leather sneakers with subtle branding. Clean lines, soft light, luxury aesthetic, showcased on a marble surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuWHTN6CZgzq9Ro3cdRkSrp1yzKmUjMHVEfg9Zn0goKS0VKfBLZ9JXh_RUbWvBHvmvVo80edsc2RG4EQrVZy_hSWRjSYwf3qrnlHQMv2UT5aRldfWKnJbAAD4rkiKoogUELHHwwB5o53DGi5mfwWmPJNsxICjhS3fYyHuoS_tEyhLRmtHJyKfw_6O6YTst6iZ2z-KGNtfElrcbbh8SxkBx-CAj8gzVKfGAUkmJNxtyu-4P5jQ7cI8PRw"/>
+<span class="text-label-md">Urban Classic Sneaker</span>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md">2,105</td>
+<td class="px-6 py-4 text-body-md text-right font-medium">$126,300</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Top Customers -->
+<div class="premium-card bg-surface-container-lowest rounded-xl">
+<div class="px-space-lg py-space-md border-b border-outline-variant">
+<h3 class="font-headline-md">Top Customers</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Customer</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Orders</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider text-right">Spent</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Close up portrait of an elegant woman with a sophisticated look, natural makeup, soft studio lighting, neutral background, luxury fashion vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWNHiRw60mjTMlBXUDEwVdcmZ_IWy4sL0UaRrZTHOClk1XpjYm9ZzeyHVULSIs24AQwqaLrtl9Kr9NrdwU_dW9e6pvP_JQEqL9B9025Nu0A4TVbXmg2ghyvbNaU1AjduVbK4vGjX7xStg3mKbU0pew_rq2Z0GQviVozo9zEJfv1ltd7g-hLym17uCRsHlYyStqYXCEgfEz7bF_HhNlNlFbifPKq46GzPcCVB8Jb67NaYtL_uU308cXIw"/>
+<span class="text-label-md">Elena Rodriguez</span>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md">42</td>
+<td class="px-6 py-4 text-body-md text-right font-medium">$84,500</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a well-dressed man in a luxury knit sweater, minimalist style, sharp focus, bright studio lighting, professional and polished." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfjYRz4rSY7dtqnHpne9udQu3DnymhuHahtA8zWIL65rAQFogJRpaLBqXVlzeOdEzT-J-g2orNVhzAg6aPS1xVGVrfmZfwni4GxH0K-clncaYrqrpY-lAcKuUy3LAFmzQWugIpy94iv32qzHZxqGt2vsOrkYWEctEMja7kMGi7AQFMZvbUC20n14gUxS5K6wqFqsDodEVUUBK3-hKTlkxeS-A-PSAOt18e-nmQuGJhp-385vtOYpISPw"/>
+<span class="text-label-md">Julian Voss</span>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md">28</td>
+<td class="px-6 py-4 text-body-md text-right font-medium">$62,100</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Modern professional headshot of a woman in a minimalist white blazer, soft warm lighting, expensive aesthetic, clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi9fVSBYhNxAbOd7Gq2eHbeDaWYujJNLCorHP3H_IpYj5ouRpXi9Mnsm_cuPceHfls3nHTcOtqbEMJdui1hgtySF5KKIMF1XfhIyFiNzjWDgiWqEH7L9vKDEIBg9TLN1eSBVBeNlu9fIZL3NoqkFXWqYXU9LtEnlN-mi5Lay5yb04jJkpYv-jBuAMdx-GXrJlznUXYGSRUgF2GCUBpEINWYTpOWUnrFrwcJMhuUB1STFOrXwMT2q9g6Q"/>
+<span class="text-label-md">Sarah Chen</span>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md">15</td>
+<td class="px-6 py-4 text-body-md text-right font-medium">$58,900</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Fourth Row: Recent Activity -->
+<div class="premium-card bg-surface-container-lowest rounded-xl mb-space-xl">
+<div class="px-space-lg py-space-md border-b border-outline-variant">
+<h3 class="font-headline-md">Recent Sales Activity</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Order ID</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Timestamp</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Customer</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-label-sm text-secondary uppercase tracking-wider text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="px-6 py-4 font-label-md">#ML-89420</td>
+<td class="px-6 py-4 text-body-md">Oct 31, 2:45 PM</td>
+<td class="px-6 py-4 text-body-md">Michael Weber</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[11px] font-bold rounded-full uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-body-md text-right font-bold">$4,250.00</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-label-md">#ML-89419</td>
+<td class="px-6 py-4 text-body-md">Oct 31, 2:12 PM</td>
+<td class="px-6 py-4 text-body-md">Sophia Grant</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[11px] font-bold rounded-full uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-body-md text-right font-bold">$1,890.00</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-label-md">#ML-89418</td>
+<td class="px-6 py-4 text-body-md">Oct 31, 1:55 PM</td>
+<td class="px-6 py-4 text-body-md">Liam Neeson</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[11px] font-bold rounded-full uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-body-md text-right font-bold">$840.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bottom Section: Revenue Summary -->
+<div class="flex justify-end">
+<div class="premium-card bg-surface-container-lowest rounded-xl p-space-lg w-full md:w-[400px]">
+<h3 class="font-headline-md mb-space-lg border-b border-outline-variant pb-2">Revenue Summary</h3>
+<div class="space-y-4">
+<div class="flex justify-between text-body-md">
+<span class="text-secondary">Gross Sales</span>
+<span>$1,420,000.00</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-secondary">Discounts (-)</span>
+<span class="text-error">-$84,200.00</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-secondary">Shipping (+)</span>
+<span>$12,450.00</span>
+</div>
+<div class="flex justify-between text-body-md pb-4 border-b border-outline-variant">
+<span class="text-secondary">Refunds (-)</span>
+<span class="text-error">-$63,750.00</span>
+</div>
+<div class="flex justify-between items-baseline pt-2">
+<span class="font-bold text-on-surface">Net Revenue</span>
+<span class="text-headline-md font-bold text-primary">$1,284,500.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.style.transform = 'scale(0.98)';
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.style.transform = 'scale(1)';
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

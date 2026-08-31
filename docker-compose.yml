@@ -1,0 +1,79 @@
+services:
+  # MongoDB Database Service
+  mongodb:
+    image: mongo:7.0
+    container_name: monolith_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: luxury_fashion_ecommerce
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - monolith_network
+
+  # Backend API Service (Port 3011)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: monolith_backend
+    restart: unless-stopped
+    ports:
+      - "3011:3011"
+    environment:
+      PORT: 3011
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongodb:27017/luxury_fashion_ecommerce
+      JWT_SECRET: ${JWT_SECRET:-luxury_production_jwt_secret_key_2026_secure}
+      JWT_EXPIRES_IN: 7d
+      FRONTEND_URL: http://localhost:3008
+      ADMIN_URL: http://localhost:3009
+      ALLOWED_ORIGINS: http://localhost:3008,http://localhost:3009
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID:-rzp_test_monolith_luxury_2026}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET:-monolith_luxury_test_secret_key_2026}
+    depends_on:
+      - mongodb
+    networks:
+      - monolith_network
+
+  # Customer Website Service (Port 3008)
+  website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:3011/api
+    container_name: monolith_website
+    restart: unless-stopped
+    ports:
+      - "3008:3008"
+    depends_on:
+      - backend
+    networks:
+      - monolith_network
+
+  # Admin Panel Service (Port 3009)
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:3011/api
+    container_name: monolith_admin
+    restart: unless-stopped
+    ports:
+      - "3009:3009"
+    depends_on:
+      - backend
+    networks:
+      - monolith_network
+
+networks:
+  monolith_network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local

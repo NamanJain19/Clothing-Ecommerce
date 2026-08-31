@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Email Templates | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1b1d",
+                        "surface-container-high": "#eae7e9",
+                        "on-primary-fixed": "#141b2b",
+                        "on-primary-fixed-variant": "#404758",
+                        "on-primary-container": "#7d8497",
+                        "on-secondary-fixed": "#151c27",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dce2f7",
+                        "secondary-container": "#dce2f3",
+                        "surface-dim": "#dcd9db",
+                        "surface-tint": "#575e70",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#c0c6db",
+                        "tertiary": "#000000",
+                        "on-error-container": "#93000a",
+                        "surface": "#fcf8fa",
+                        "surface-variant": "#e5e2e3",
+                        "secondary": "#585f6c",
+                        "primary": "#000000",
+                        "on-secondary-fixed-variant": "#404754",
+                        "tertiary-container": "#261906",
+                        "on-tertiary-container": "#968065",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "outline": "#76777d",
+                        "on-secondary-container": "#5e6572",
+                        "inverse-surface": "#303031",
+                        "tertiary-fixed": "#f9debf",
+                        "on-surface-variant": "#45464c",
+                        "surface-container": "#f0edee",
+                        "on-tertiary-fixed": "#261906",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e5e2e3",
+                        "inverse-primary": "#c0c6db",
+                        "secondary-fixed": "#dce2f3",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "surface-container-low": "#f6f3f4",
+                        "surface-bright": "#fcf8fa",
+                        "outline-variant": "#c6c6cd",
+                        "on-surface": "#1b1b1d",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#141b2b",
+                        "background": "#fcf8fa",
+                        "inverse-on-surface": "#f3f0f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-sm": "0.5rem",
+                        "space-2xl": "3rem",
+                        "gutter": "1.5rem",
+                        "space-lg": "1.5rem",
+                        "container-margin": "2rem",
+                        "space-xs": "0.25rem",
+                        "space-xl": "2rem",
+                        "space-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col py-space-xl px-space-md z-50">
+<div class="mb-space-2xl px-space-sm">
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-on-surface">Atelier Admin</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Luxury Operations</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Inventory
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">shopping_bag</span> Orders
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 font-label-md text-label-md text-primary font-bold border-r-2 border-primary bg-surface-container-low active:scale-[0.99] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">mail_outline</span> Email Templates
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">diamond</span> Atelier Assets
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="mt-auto space-y-1 pt-space-xl">
+<button class="w-full mb-space-lg flex items-center justify-center gap-2 bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md transition-transform hover:scale-[1.02] active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">add</span> New Template
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span> Sign Out
+            </a>
+</div>
+</aside>
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant z-40 flex justify-between items-center px-space-xl">
+<div class="flex items-center flex-grow max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-md font-body-md focus:outline-none focus:ring-1 focus:ring-primary transition-all" placeholder="Search templates..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-4 border-r border-outline-variant pr-space-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface">Admin User</p>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant">Manager</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional studio portrait of a high-end luxury operations manager in a minimalist black outfit, looking confident and composed. The background is a clean, neutral gray with soft, professional three-point lighting. The overall aesthetic is sleek, corporate, and sophisticated, matching the quiet authority of the Atelier brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSinFKSvBhSCfRzzk_Tba_avARQTbsE8TS-ET8aPm1zuBLsblpY7drc6Hxid-E_4trwJ8TJfNPTMx9781CWRx2EvjFvrVc15lWjjAFiYioOsUzfQhFgzVeIFdB4E1pcvX6F4JIlTWaZgBeD5OzgRVsbJPJhYc0QPEdTUmANTXzlBVWb1nI9SUYfBvdnN2Ybxa5YT35keIPZ8xPw410B6klFY0lX40BcYomP5V916kZTRcpo1qkF00OMQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[280px] pt-24 h-screen overflow-y-auto px-space-xl pb-space-2xl">
+<!-- Header & Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg mb-space-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Email Templates</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage automated email communications and brand messaging.</p>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-surface border border-outline-variant rounded-lg px-4 py-2 font-label-md text-label-md text-on-surface focus:ring-1 focus:ring-primary">
+<option>All Categories</option>
+<option>Transactional</option>
+<option>Marketing</option>
+<option>Security</option>
+</select>
+<select class="bg-surface border border-outline-variant rounded-lg px-4 py-2 font-label-md text-label-md text-on-surface focus:ring-1 focus:ring-primary">
+<option>Status: All</option>
+<option>Active</option>
+<option>Draft</option>
+</select>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity" onclick="toggleModal('editor-modal')">
+                    + Create Template
+                </button>
+</div>
+</div>
+<!-- Template Overview Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-space-lg">
+<!-- Template Cards -->
+<script>
+                const templates = [
+                    { name: "Welcome Email", updated: "2h ago", status: "Active", type: "Onboarding" },
+                    { name: "Order Confirmation", updated: "5h ago", status: "Active", type: "Transaction" },
+                    { name: "Order Shipped", updated: "1d ago", status: "Active", type: "Shipping" },
+                    { name: "Order Delivered", updated: "3d ago", status: "Active", type: "Shipping" },
+                    { name: "Order Cancelled", updated: "1w ago", status: "Draft", type: "Transaction" },
+                    { name: "Refund Approved", updated: "2w ago", status: "Active", type: "Finance" },
+                    { name: "Password Reset", updated: "1m ago", status: "Active", type: "Security" },
+                    { name: "Email Verification", updated: "1m ago", status: "Active", type: "Security" },
+                    { name: "Newsletter", updated: "Oct 24, 2023", status: "Draft", type: "Marketing" },
+                    { name: "Gift Card", updated: "Sep 12, 2023", status: "Active", type: "Finance" }
+                ];
+
+                document.write(templates.map(t => `
+                    <div class="group relative bg-surface border border-outline-variant rounded-xl p-space-lg hover:border-primary transition-all duration-300 hover:shadow-sm">
+                        <div class="flex justify-between items-start mb-space-md">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-on-primary-container bg-primary-fixed px-2 py-0.5 rounded-full">${t.type}</span>
+                                <h3 class="font-headline-md text-headline-md mt-2">${t.name}</h3>
+                                <p class="font-caption text-caption text-on-surface-variant">Last updated ${t.updated}</p>
+                            </div>
+                            <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full ${t.status === 'Active' ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container-high text-on-surface-variant'} font-label-sm text-label-sm">
+                                <span class="w-1.5 h-1.5 rounded-full ${t.status === 'Active' ? 'bg-green-600' : 'bg-gray-400'}"></span>
+                                ${t.status}
+                            </span>
+                        </div>
+                        
+                        <div class="h-32 bg-surface-container-low rounded-lg mb-space-lg flex items-center justify-center overflow-hidden border border-outline-variant/30">
+                           <div class="w-24 h-32 bg-white shadow-sm border border-outline-variant scale-90 translate-y-4 rounded-t p-2 space-y-1">
+                                <div class="w-full h-2 bg-surface-container-high"></div>
+                                <div class="w-2/3 h-1.5 bg-surface-container"></div>
+                                <div class="w-full h-8 bg-surface-container-low"></div>
+                                <div class="w-1/2 h-2 mx-auto bg-primary rounded-full mt-2"></div>
+                           </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-space-md border-t border-outline-variant group-hover:border-primary/20 transition-colors">
+                            <div class="flex gap-1">
+                                <button class="p-2 rounded-lg hover:bg-surface-container transition-colors" title="Preview">
+                                    <span class="material-symbols-outlined text-[20px]">visibility</span>
+                                </button>
+                                <button onclick="toggleModal('editor-modal')" class="p-2 rounded-lg hover:bg-surface-container transition-colors" title="Edit">
+                                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                                </button>
+                            </div>
+                            <div class="flex gap-1">
+                                <button class="p-2 rounded-lg hover:bg-surface-container transition-colors" title="Duplicate">
+                                    <span class="material-symbols-outlined text-[20px]">content_copy</span>
+                                </button>
+                                <button class="p-2 rounded-lg hover:bg-error-container text-error transition-colors" title="Disable">
+                                    <span class="material-symbols-outlined text-[20px]">block</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join(''));
+            </script>
+</div>
+</main>
+<!-- Email Editor Modal -->
+<div class="fixed inset-0 z-[60] hidden" id="editor-modal">
+<div class="absolute inset-0 bg-on-background/40 backdrop-blur-sm" onclick="toggleModal('editor-modal')"></div>
+<div class="absolute right-0 top-0 h-full w-full max-w-[1200px] bg-background shadow-2xl flex flex-col transform transition-transform duration-300 translate-x-full" id="modal-content">
+<!-- Modal Header -->
+<div class="h-16 border-b border-outline-variant flex items-center justify-between px-space-xl bg-surface">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors" onclick="toggleModal('editor-modal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div>
+<h3 class="font-headline-md text-headline-md">Edit Template</h3>
+<p class="font-caption text-caption text-on-surface-variant">Order Confirmation Template</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">Send Test Email</button>
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">Save Draft</button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Publish</button>
+</div>
+</div>
+<!-- Modal Content -->
+<div class="flex-grow flex overflow-hidden">
+<!-- Left: Form Editor -->
+<div class="w-1/2 border-r border-outline-variant overflow-y-auto p-space-xl space-y-space-lg bg-surface">
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">General Details</h4>
+<div>
+<label class="block font-label-md text-label-md mb-2">Subject Line</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:ring-2 focus:ring-primary" type="text" value="Thank you for your order, {{customer_name}}"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">Preheader Text</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:ring-2 focus:ring-primary" type="text" value="Your order #{{order_number}} is confirmed and processing."/>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Content</h4>
+<div>
+<label class="block font-label-md text-label-md mb-2">Email Banner</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center bg-background/50 hover:bg-background transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[40px] text-on-surface-variant group-hover:text-primary transition-colors">add_photo_alternate</span>
+<p class="mt-2 font-label-md text-label-md">Click to upload or drag and drop</p>
+<p class="text-[11px] text-on-surface-variant">SVG, PNG, JPG (max. 1200x400px)</p>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">Rich Text Body</label>
+<div class="border border-outline-variant rounded-lg overflow-hidden">
+<div class="bg-surface-container-low px-2 py-1.5 flex gap-1 border-b border-outline-variant">
+<button class="p-1.5 hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<button class="p-1.5 hover:bg-surface-container rounded ml-auto"><span class="material-symbols-outlined text-[18px]">code</span></button>
+</div>
+<textarea class="w-full bg-background border-none p-4 font-body-md focus:ring-0" rows="8">Hello {{customer_name}},
+
+Thank you for choosing Atelier. We're pleased to confirm that we've received your order and our team is currently preparing it for shipment.
+
+You can track your order status at any time using the link below.</textarea>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md mb-2">Button Text</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:ring-2 focus:ring-primary" type="text" value="View Order Status"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">Button URL</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:ring-2 focus:ring-primary" type="text" value="https://atelier.com/orders/{{order_id}}"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md mb-2">Footer Text</label>
+<textarea class="w-full bg-background border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:ring-2 focus:ring-primary" rows="3">Need help? Contact our concierge team at support@atelierluxury.com.
+© 2023 Atelier Global Inc.</textarea>
+</div>
+</div>
+<!-- Right: Live Preview -->
+<div class="w-1/2 bg-surface-container-low flex flex-col p-space-xl">
+<div class="flex items-center justify-between mb-space-lg">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Live Preview</h4>
+<div class="flex bg-surface border border-outline-variant rounded-lg p-1">
+<button class="px-4 py-1.5 rounded-md font-label-md text-label-md bg-primary text-on-primary transition-all" id="desktop-btn" onclick="togglePreview('desktop')">
+<span class="material-symbols-outlined text-[18px] align-middle mr-2">desktop_windows</span>Desktop
+                            </button>
+<button class="px-4 py-1.5 rounded-md font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all" id="mobile-btn" onclick="togglePreview('mobile')">
+<span class="material-symbols-outlined text-[18px] align-middle mr-2">phone_iphone</span>Mobile
+                            </button>
+</div>
+</div>
+<!-- Email Render Canvas -->
+<div class="flex-grow flex items-center justify-center overflow-hidden">
+<div class="bg-white shadow-xl transition-all duration-500 w-full max-w-[600px] h-full rounded-lg overflow-y-auto border border-outline-variant" id="preview-frame">
+<div class="w-full h-40 bg-surface-container flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="A high-contrast, professional promotional banner for a luxury fashion brand. The image features close-up texture of high-quality black silk draped over a minimalist white architectural element. Soft, directional natural light creates deep, elegant shadows. The composition is clean, centered, and sophisticated, reflecting a high-end atelier aesthetic with a monochrome color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseBRGDRaVnbJuGHGDMUo4101mifKKnezN0YLAaAxVwV0PAPV_jMCFk3qLFU6ZDvOmFJDnbBZ6A48MUmjJz99H2jsw7gphxM89AdILTz0zsEb_9hGMpxT06QoELj1JA3irgSXF5fcY7-yWSrAGSaFNUdbMRQaKTnEs6uAfiYAD5fAkG2PHJ1V6I37GUGtjRYU15Q1jCb8U5LYgcWad95XQnHqiDP8ArGFRW1_oNGipXH2GDZFUW05hVw"/>
+<div class="absolute inset-0 bg-black/10"></div>
+</div>
+<div class="p-8 space-y-6">
+<div class="text-center">
+<h2 class="text-[28px] font-bold tracking-tight text-on-background">Atelier</h2>
+<div class="w-12 h-0.5 bg-primary mx-auto mt-2"></div>
+</div>
+<div class="space-y-4 text-on-surface">
+<p class="font-body-lg text-body-lg">Hello John Doe,</p>
+<p class="leading-relaxed">Thank you for choosing Atelier. We're pleased to confirm that we've received your order and our team is currently preparing it for shipment.</p>
+<p class="leading-relaxed">You can track your order status at any time using the link below.</p>
+</div>
+<div class="flex justify-center py-4">
+<a class="bg-primary text-on-primary px-8 py-3 rounded-none font-bold uppercase tracking-widest text-[13px] hover:opacity-90 transition-opacity" href="#">
+                                        View Order Status
+                                    </a>
+</div>
+<div class="border-t border-outline-variant pt-8">
+<div class="flex justify-between text-[13px] text-on-surface font-medium uppercase tracking-wider mb-4">
+<span>Items Ordered</span>
+<span>Order #88392</span>
+</div>
+<div class="flex gap-4 items-center">
+<div class="w-16 h-16 bg-surface-container rounded border border-outline-variant"></div>
+<div class="flex-grow">
+<p class="font-bold">Sartorial Wool Blazer</p>
+<p class="text-on-surface-variant text-[12px]">Midnight Blue / 48</p>
+</div>
+<p class="font-bold">$1,450.00</p>
+</div>
+</div>
+<div class="pt-12 text-center text-[11px] text-on-surface-variant uppercase tracking-[0.2em] space-y-2">
+<p>Need help? Contact our concierge team at support@atelierluxury.com</p>
+<p>© 2023 Atelier Global Inc.</p>
+<div class="flex justify-center gap-4 pt-4">
+<span class="material-symbols-outlined text-[18px]">public</span>
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            const content = document.getElementById('modal-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                content.classList.add('translate-x-full');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function togglePreview(type) {
+            const frame = document.getElementById('preview-frame');
+            const dBtn = document.getElementById('desktop-btn');
+            const mBtn = document.getElementById('mobile-btn');
+
+            if (type === 'mobile') {
+                frame.style.maxWidth = '375px';
+                mBtn.classList.add('bg-primary', 'text-on-primary');
+                mBtn.classList.remove('text-on-surface-variant');
+                dBtn.classList.remove('bg-primary', 'text-on-primary');
+                dBtn.classList.add('text-on-surface-variant');
+            } else {
+                frame.style.maxWidth = '600px';
+                dBtn.classList.add('bg-primary', 'text-on-primary');
+                dBtn.classList.remove('text-on-surface-variant');
+                mBtn.classList.remove('bg-primary', 'text-on-primary');
+                mBtn.classList.add('text-on-surface-variant');
+            }
+        }
+    </script>
+</body></html>

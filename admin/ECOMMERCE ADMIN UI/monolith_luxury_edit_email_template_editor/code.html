@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Email Template - Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1b1b1d",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#eae7e9",
+                    "on-secondary-fixed": "#151c27",
+                    "tertiary": "#000000",
+                    "secondary-container": "#dce2f3",
+                    "tertiary-fixed": "#f9debf",
+                    "on-surface-variant": "#45464c",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#303031",
+                    "tertiary-container": "#261906",
+                    "on-primary-fixed": "#141b2b",
+                    "on-primary-container": "#7d8497",
+                    "on-tertiary-container": "#968065",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#c0c6db",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "secondary-fixed": "#dce2f3",
+                    "inverse-on-surface": "#f3f0f1",
+                    "surface-container-low": "#f6f3f4",
+                    "primary": "#000000",
+                    "primary-fixed": "#dce2f7",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#c0c6db",
+                    "surface-tint": "#575e70",
+                    "outline": "#76777d",
+                    "surface-bright": "#fcf8fa",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "surface": "#fcf8fa",
+                    "primary-container": "#141b2b",
+                    "background": "#fcf8fa",
+                    "on-background": "#1b1b1d",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-highest": "#e5e2e3",
+                    "on-primary-fixed-variant": "#404758",
+                    "surface-dim": "#dcd9db",
+                    "on-secondary-fixed-variant": "#404754",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f0edee",
+                    "on-secondary-container": "#5e6572",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e5e2e3",
+                    "secondary": "#585f6c",
+                    "on-tertiary-fixed": "#261906"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-lg": "1.5rem",
+                    "gutter": "1.5rem",
+                    "space-sm": "0.5rem",
+                    "space-md": "1rem",
+                    "container-margin": "2rem",
+                    "space-xl": "2rem",
+                    "space-2xl": "3rem",
+                    "space-xs": "0.25rem"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display": ["Inter"],
+                    "caption": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased flex">
+<!-- SideNavBar (Suppressed as per rules: Transactional/Task-Focused page) -->
+<!-- Main Content Canvas -->
+<main class="flex-1 min-w-0 max-w-[1440px] mx-auto p-space-xl flex flex-col gap-space-lg">
+<!-- Header -->
+<header class="flex items-center justify-between pb-space-md border-b border-outline-variant">
+<div>
+<div class="flex items-center gap-space-sm mb-2 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="font-label-md">Back to Templates</span>
+</div>
+<h1 class="font-display text-display font-semibold tracking-tight text-on-surface">Edit Email Template</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Modify and update your automated email template.</p>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="font-label-md text-label-md flex items-center gap-space-sm px-4 py-2 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                    Preview Full Email
+                </button>
+</div>
+</header>
+<!-- Main Form Area -->
+<div class="flex flex-col lg:flex-row gap-space-lg">
+<!-- Left Column: Form Sections -->
+<div class="flex-1 flex flex-col gap-space-lg max-w-3xl">
+<!-- Template Information -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-space-sm mb-space-md">Template Information</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Template Name</label>
+<input class="h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md" type="text" value="Order Confirmation - Standard"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Email Category</label>
+<select class="h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md">
+<option>Order Confirmation</option>
+<option>Shipping Update</option>
+<option>Marketing Newsletter</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Email Details -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-space-sm mb-space-md">Email Details</h2>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Subject Line</label>
+<input class="h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md w-full" type="text" value="Your Monolith Order #12345"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Preheader Text</label>
+<input class="h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md w-full" type="text" value="Thank you for your purchase. Your order is being processed."/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sender Name</label>
+<input class="h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md" type="text" value="Monolith Luxury"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Reply Email</label>
+<input class="h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md" type="email" value="concierge@monolith.luxury"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Modules -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<div class="flex justify-between items-center border-b border-outline-variant pb-space-sm mb-space-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Content Modules</h2>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">add</span></button>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Banner Module -->
+<div class="border border-outline-variant rounded-lg p-space-sm bg-surface-container-low">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Hero Banner Image</span>
+<div class="flex gap-2">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="text-on-surface-variant hover:text-error"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</div>
+</div>
+<div class="h-32 bg-surface-container rounded-md overflow-hidden relative border border-outline-variant">
+<div class="bg-cover bg-center w-full h-full opacity-80" data-alt="A close-up macro shot of the texture of a premium black leather handbag with subtle gold hardware details. The lighting is moody and luxurious, emphasizing the high-quality material. The overall aesthetic is dark, minimal, and sophisticated, fitting a high-end luxury brand's visual identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqYFLPhepZ9gRwrW4_dHqJ2I-YRgOWi1p-fQCsqbBhOeEZGrA-q-hBRv4Db_2pFcYUgR-mWtHB8yvr5yScCLFVDzm_itfWEWktSW2mbfN3CwQBi5IYbrjC_bBQJv0n3v6qH3w0594C6ily8JDLZ8jAMf3m6MzJEuRLaU5qT24Bf5HYXqRt35xkpWSW4U5-9o_Qn2XgEBd7zSw9xGhsMkM8cB6g3Sh7t0FSkzb5J6MCe2PJs3GlUbxtfA')"></div>
+</div>
+</div>
+<!-- Rich Text Module -->
+<div class="border border-outline-variant rounded-lg p-space-sm bg-surface-container-low">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Body Text</span>
+</div>
+<div class="border border-outline-variant bg-surface-container-lowest rounded-md flex flex-col">
+<div class="flex items-center gap-2 p-2 border-b border-outline-variant bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-primary">format_bold</span>
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-primary">format_italic</span>
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-primary">format_underlined</span>
+<div class="w-[1px] h-4 bg-outline-variant mx-1"></div>
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-primary">format_align_left</span>
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-primary">format_align_center</span>
+</div>
+<textarea class="w-full min-h-[120px] p-3 outline-none resize-none bg-transparent font-body-md text-on-surface" placeholder="Enter email body text...">Dear {{CustomerName}},
+
+Thank you for choosing Monolith. We have received your order and it is currently being processed by our atelier.
+
+Your order details are enclosed below.</textarea>
+</div>
+</div>
+<!-- CTA Module -->
+<div class="border border-outline-variant rounded-lg p-space-sm bg-surface-container-low flex flex-col gap-2">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Call to Action Button</span>
+</div>
+<div class="flex gap-space-md">
+<div class="flex-1 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Button Text</label>
+<input class="h-[32px] px-2 rounded-md border border-outline-variant bg-surface-container-lowest text-on-surface text-sm outline-none w-full" type="text" value="View Order Details"/>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">URL Link</label>
+<input class="h-[32px] px-2 rounded-md border border-outline-variant bg-surface-container-lowest text-on-surface text-sm outline-none w-full" type="text" value="{{OrderLink}}"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Previews & Actions -->
+<div class="flex flex-col gap-space-lg w-full lg:w-[400px]">
+<!-- Action Buttons Panel -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<button class="w-full h-[40px] bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-tertiary transition-colors">
+                        Save Changes
+                    </button>
+<div class="flex gap-space-sm">
+<button class="flex-1 h-[40px] border border-outline-variant bg-surface-container-lowest text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+                            Save as Draft
+                        </button>
+<button class="flex-1 h-[40px] border border-outline-variant bg-surface-container-lowest text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+                            Duplicate
+                        </button>
+</div>
+<button class="w-full mt-2 h-[40px] bg-error-container text-error rounded-lg font-label-md text-label-md hover:bg-error/20 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                        Delete Template
+                    </button>
+</div>
+<!-- Live Preview Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm sticky top-space-xl">
+<div class="flex justify-between items-center border-b border-outline-variant pb-space-sm mb-space-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Live Preview</h3>
+<div class="flex bg-surface-container p-1 rounded-lg">
+<button class="p-1 rounded bg-surface-container-lowest shadow-sm text-primary"><span class="material-symbols-outlined text-[18px]">desktop_windows</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">smartphone</span></button>
+</div>
+</div>
+<div class="border border-outline-variant rounded-lg overflow-hidden bg-[#F7F7F7] min-h-[400px] flex justify-center py-4 relative">
+<!-- Simulated Email Client Container -->
+<div class="w-[90%] bg-surface-container-lowest shadow-sm border border-outline-variant/50">
+<!-- Email Header -->
+<div class="text-center py-6 border-b border-outline-variant/30">
+<h1 class="font-display text-[20px] font-bold tracking-widest text-primary uppercase">Monolith</h1>
+</div>
+<!-- Email Banner -->
+<div class="w-full h-32 relative">
+<div class="bg-cover bg-center w-full h-full opacity-80" data-alt="Same macro texture of premium black leather with subtle gold hardware, used as an email banner mockup." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0MhSnC2RzSyff5tSPzJ349a7SL7nexrKDH6YgyEPvDB2rOqtjX7SwpNq8v-WKgA3gFCyHFB8mfXwO72HwmR3Vzyh8xm1iHoMsQsAhkAd0s_Dc0QRwZqDyXQONlJdxXh5V_HHBahqlIvUwWb8YhnDfeMGB76Bu_Sdhb7xRIBahhq8PqI2ka6MGWtixEyTqyck9Y9Zm74ljx0uzenPnDAVI51EdPqJLsguCHl4VTZt3yUsxknkVY8pPxQ')"></div>
+</div>
+<!-- Email Body -->
+<div class="p-6 text-center">
+<p class="font-body-md text-[13px] text-on-surface mb-6 leading-relaxed">
+                                    Dear Valued Client,<br/><br/>
+                                    Thank you for choosing Monolith. We have received your order and it is currently being processed by our atelier.<br/><br/>
+                                    Your order details are enclosed below.
+                                </p>
+<button class="px-6 py-3 bg-primary text-on-primary font-label-sm text-[11px] uppercase tracking-wider">
+                                    View Order Details
+                                </button>
+</div>
+<!-- Email Footer -->
+<div class="p-4 bg-surface-container text-center border-t border-outline-variant/30">
+<p class="font-caption text-[10px] text-on-surface-variant">© 2024 Monolith Luxury. All rights reserved.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Test Email Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Send Test Email</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Send a preview of this template to your inbox.</p>
+<div class="flex gap-2">
+<input class="flex-1 h-[40px] px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow font-body-md" placeholder="email@address.com" type="email"/>
+<button class="h-[40px] px-4 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors whitespace-nowrap">
+                            Send Test
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Track Your Order | MONOLITH</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "inverse-primary": "#c6c6c6",
+                "surface-dim": "#dadada",
+                "on-error": "#ffffff",
+                "inverse-on-surface": "#f0f1f1",
+                "tertiary": "#000000",
+                "outline": "#7e7576",
+                "on-surface-variant": "#4c4546",
+                "on-primary-fixed": "#1b1b1b",
+                "secondary-container": "#dcdddd",
+                "background": "#f9f9f9",
+                "secondary-fixed-dim": "#c6c6c7",
+                "outline-variant": "#cfc4c5",
+                "tertiary-fixed": "#e2e2e2",
+                "on-primary-container": "#848484",
+                "error-container": "#ffdad6",
+                "primary-fixed-dim": "#c6c6c6",
+                "on-surface": "#1a1c1c",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed-variant": "#454747",
+                "on-tertiary-container": "#838484",
+                "on-tertiary-fixed-variant": "#454747",
+                "tertiary-container": "#1a1c1c",
+                "surface-container-high": "#e8e8e8",
+                "secondary": "#5d5f5f",
+                "surface": "#f9f9f9",
+                "on-secondary-container": "#5f6161",
+                "surface-container-low": "#f3f3f4",
+                "on-secondary-fixed": "#1a1c1c",
+                "on-tertiary-fixed": "#1a1c1c",
+                "inverse-surface": "#2f3131",
+                "secondary-fixed": "#e2e2e2",
+                "surface-tint": "#5e5e5e",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#e2e2e2",
+                "surface-variant": "#e2e2e2",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed-dim": "#c6c6c6",
+                "error": "#ba1a1a",
+                "surface-bright": "#f9f9f9",
+                "primary-fixed": "#e2e2e2",
+                "on-error-container": "#93000a",
+                "on-tertiary": "#ffffff",
+                "primary": "#000000",
+                "primary-container": "#1b1b1b",
+                "on-primary-fixed-variant": "#474747",
+                "on-background": "#1a1c1c",
+                "surface-container": "#eeeeee"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-desktop": "64px",
+                "margin-mobile": "20px",
+                "section-gap": "128px",
+                "gutter": "32px",
+                "unit": "8px",
+                "container-max": "1440px"
+            },
+            "fontFamily": {
+                "label-caps": ["Montserrat"],
+                "button": ["Montserrat"],
+                "display-lg": ["Playfair Display"],
+                "headline-lg": ["Playfair Display"],
+                "body-lg": ["Montserrat"],
+                "body-md": ["Montserrat"],
+                "headline-md": ["Playfair Display"]
+            },
+            "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+        }
+        .editorial-border {
+            border: 1px solid #E5E5E5;
+        }
+        .progress-line {
+            height: 1px;
+            background: #E5E5E5;
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            z-index: 0;
+        }
+        .progress-line-active {
+            height: 1px;
+            background: #000;
+            position: absolute;
+            top: 14px;
+            left: 0;
+            width: 60%;
+            z-index: 1;
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant fixed top-0 left-0 w-full z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-display-lg text-headline-md tracking-tighter text-primary" href="#">MONOLITH</a>
+<div class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors duration-300" href="#">MEN</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors duration-300" href="#">WOMEN</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors duration-300" href="#">KIDS</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors duration-300" href="#">ACCESSORIES</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">favorite</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity border-b border-primary pb-1">person</span>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-section-gap max-w-container-max mx-auto px-margin-desktop">
+<!-- Page Header -->
+<section class="mb-16">
+<h1 class="font-headline-lg text-headline-lg mb-4">Track Your Order</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl">Stay updated with your order's journey from confirmation to delivery.</p>
+</section>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Main Tracking & Details -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Order Progress Tracker -->
+<div class="bg-surface-container-lowest p-10 editorial-border">
+<h3 class="font-label-caps text-label-caps mb-12">ORDER PROGRESS</h3>
+<div class="relative flex justify-between">
+<div class="progress-line"></div>
+<div class="progress-line-active" id="order-progress-bar"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center gap-4 bg-surface-container-lowest px-2">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'wght' 400">check</span>
+</div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary">CONFIRMED</span>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center gap-4 bg-surface-container-lowest px-2">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'wght' 400">check</span>
+</div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary">PROCESSING</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center gap-4 bg-surface-container-lowest px-2">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'wght' 400">check</span>
+</div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary">PACKED</span>
+</div>
+<!-- Step 4 (Current) -->
+<div class="relative z-10 flex flex-col items-center gap-4 bg-surface-container-lowest px-2">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-primary/10">
+<span class="material-symbols-outlined text-sm animate-pulse">local_shipping</span>
+</div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary">SHIPPED</span>
+</div>
+<!-- Step 5 -->
+<div class="relative z-10 flex flex-col items-center gap-4 bg-surface-container-lowest px-2 opacity-30">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center"></div>
+<span class="font-label-caps text-[10px] tracking-widest">OUT FOR DELIVERY</span>
+</div>
+<!-- Step 6 -->
+<div class="relative z-10 flex flex-col items-center gap-4 bg-surface-container-lowest px-2 opacity-30">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center"></div>
+<span class="font-label-caps text-[10px] tracking-widest">DELIVERED</span>
+</div>
+</div>
+</div>
+<!-- Order Items -->
+<div class="bg-surface-container-lowest p-10 editorial-border">
+<h3 class="font-label-caps text-label-caps mb-10">ORDER ITEMS (2)</h3>
+<div class="space-y-8">
+<!-- Item 1 -->
+<div class="flex gap-8 items-center border-b border-outline-variant pb-8">
+<div class="w-32 h-40 bg-surface-container-high shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up studio photography of a luxurious long black silk evening column gown hanging elegantly. The lighting is high-contrast, dramatic fashion editorial style, highlighting the shimmering texture of the silk fabric. The background is a clean, neutral white, maintaining the quiet luxury aesthetic of the Monolith brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7CykBeFvvk6aR5v-SL-9_TwupXbGxypRlgomSaSZlB6n92kmQ3fO6QxdsZo-h7qzDTzgpZJVy2KFm4-DrdqwluxfJuYGo_HUlGBfMZQnHjs7pZhPP2_RQm-l4FyBmj00k1mfdh_UVAVOjlX4dju9pKAw8lAN1QA_ChbFXC4t0J1OTUdZp6YglgmQNq-BLxvQ8pQQy3Lx2aeyoK8GoaQ92_jq9gCkFEhq3LP3uDKn_5xbs2oF8TrKYDw">
+</div>
+<div class="flex-grow grid grid-cols-2">
+<div>
+<h4 class="font-headline-md text-body-lg mb-1">Silk Evening Column Gown</h4>
+<p class="font-body-md text-secondary text-sm">Midnight Black | Size 38</p>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps mb-1">QTY: 1</p>
+<p class="font-label-caps text-label-caps">$890.00</p>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-8 items-center">
+<div class="w-32 h-40 bg-surface-container-high shrink-0">
+<img class="w-full h-full object-cover" data-alt="Professional studio shot of structured black leather boots with a sharp silhouette and high-quality finish. The boots are presented from a side profile against a minimalist grey and white background. The lighting is soft but defined, capturing the fine grain of the leather in a premium editorial fashion style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqH1_TsRU1MVCj-PKWaTxw5CB4fgCl3F2wSPaXj1hjdYETZ7M7AqYJ7h6Ymv03LagI6GTQYeq_7f2BDd7w9JMDnA9vY4EPFFYUQS2nkOIfl4jKqRp5o9M4StC7onXqWfcALvmpTVVH_cS32nesuoyfX5MQrwlWDoqt1WM8mMSX6Qkb4RcmxqN7AgfhYMDLxY49xfnFNaCtTRBORgEC_ykyK_dlO6MBMhX_1u1OQuEteyV_f1qikDrocA">
+</div>
+<div class="flex-grow grid grid-cols-2">
+<div>
+<h4 class="font-headline-md text-body-lg mb-1">Structured Leather Boots</h4>
+<p class="font-body-md text-secondary text-sm">Onyx Leather | Size 42</p>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps mb-1">QTY: 1</p>
+<p class="font-label-caps text-label-caps">$530.00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Support Actions -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<button class="editorial-border py-4 px-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">support_agent</span> CONTACT SUPPORT
+                    </button>
+<button class="editorial-border py-4 px-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">chat_bubble</span> LIVE CHAT
+                    </button>
+<button class="editorial-border py-4 px-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">undo</span> RETURN REQUEST
+                    </button>
+<button class="editorial-border py-4 px-2 font-label-caps text-[10px] hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span> DOWNLOAD INVOICE
+                    </button>
+</div>
+</div>
+<!-- Right Column: Info Cards -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Order Summary Detail -->
+<div class="bg-surface-container-lowest p-8 editorial-border">
+<h3 class="font-label-caps text-label-caps mb-6">ORDER INFORMATION</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-secondary text-sm">Order Number</span>
+<span class="font-medium text-sm">MNL-89234</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary text-sm">Date</span>
+<span class="font-medium text-sm">Oct 24, 2024</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary text-sm">Status</span>
+<span class="bg-primary text-white text-[10px] px-3 py-1 font-label-caps tracking-widest">SHIPPED</span>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="text-secondary text-sm">Payment</span>
+<span class="text-sm">Visa ending in 4242</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps">TOTAL</span>
+<span class="font-label-caps text-label-caps text-lg">$1,420.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Shipment Info -->
+<div class="bg-surface-container-lowest p-8 editorial-border">
+<h3 class="font-label-caps text-label-caps mb-6">SHIPMENT INFORMATION</h3>
+<div class="space-y-4 mb-8">
+<div>
+<p class="text-secondary text-[10px] font-label-caps tracking-widest mb-1">COURIER</p>
+<p class="text-sm font-medium">DHL Express</p>
+</div>
+<div>
+<p class="text-secondary text-[10px] font-label-caps tracking-widest mb-1">TRACKING NUMBER</p>
+<p class="text-sm font-medium">1Z999AA1012345678</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-secondary text-[10px] font-label-caps tracking-widest mb-1">METHOD</p>
+<p class="text-sm font-medium">Express</p>
+</div>
+<div>
+<p class="text-secondary text-[10px] font-label-caps tracking-widest mb-1">SHIP DATE</p>
+<p class="text-sm font-medium">Oct 26, 2024</p>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary text-white font-label-caps text-label-caps py-4 hover:opacity-90 transition-opacity">
+                        TRACK SHIPMENT
+                    </button>
+</div>
+<!-- Delivery Address -->
+<div class="bg-surface-container-lowest p-8 editorial-border">
+<h3 class="font-label-caps text-label-caps mb-6">DELIVERY ADDRESS</h3>
+<div class="text-sm space-y-1">
+<p class="font-semibold text-lg mb-2">Alexander Sterling</p>
+<p class="text-secondary">724 Fifth Avenue, Suite 1201</p>
+<p class="text-secondary">New York, NY 10019</p>
+<p class="text-secondary">United States</p>
+</div>
+</div>
+<!-- Order Summary Breakdown -->
+<div class="bg-surface-container-lowest p-8 editorial-border">
+<h3 class="font-label-caps text-label-caps mb-6">FINANCIAL SUMMARY</h3>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between">
+<span class="text-secondary">Subtotal</span>
+<span>$1,420.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-secondary">Shipping</span>
+<span class="text-primary">FREE</span>
+</div>
+<div class="flex justify-between">
+<span class="text-secondary">Discount</span>
+<span>$0.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-secondary">Tax</span>
+<span>$0.00</span>
+</div>
+<div class="flex justify-between pt-4 border-t border-outline-variant font-semibold">
+<span>Total Paid</span>
+<span>$1,420.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- You May Also Like Section -->
+<section class="mt-section-gap">
+<h2 class="font-headline-md text-headline-md mb-12 text-center">You May Also Like</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="group cursor-pointer hover-lift">
+<div class="aspect-[3/4] bg-surface-container-high mb-4 editorial-border overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-end fashion photography of a minimalist white cashmere sweater displayed on a gallery-style pedestal. The lighting is soft and neutral, emphasizing the luxury fabric texture. Monochrome aesthetic, high-key lighting, editorial style for Monolith luxury brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW4k9jg5bc4CnhMYwrYnTdE3rh8BE_BoSemlRzvOCmJlvi0FIlIhSMMH-tUf9fN665eVhCuvA3Sb6vfwH_1brDuiXApALBUfV7rZNy6sWeIGrvVI6aRjWGbVCEFTaUwka-15eSSlowoGW7hLjv79czQpQBZQpHBDwom66TJn274fCAhnaQkSbOFgf6IMlAuG23mUsD6iaBrEja7sNFYBbmBdUSjNYlg1UO6gCvMFY_WXzUJ8RHW00K0w">
+</div>
+<h3 class="font-headline-md text-body-lg mb-1">Essential Cashmere</h3>
+<p class="font-label-caps text-[10px] tracking-widest text-secondary">$420.00</p>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer hover-lift">
+<div class="aspect-[3/4] bg-surface-container-high mb-4 editorial-border overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close-up of a structured black leather handbag with silver hardware. The product is shot in a stark, high-contrast studio setting with deep shadows and bright highlights on the leather surface. Luxury fashion product photography, clean white background, minimalist presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT1vYvWhbfCwgNG5IfeLw6T_6txgMX0T9I2HixBkrMjn8UjLMMSdy97l4Z-1xWq1eioYEvxAwgoL5XyuLiLweD1bkPdwu3-jGH9rM7qKcrHRnyaLuFUeaO8SmmGOJSe3L0r0k4t1Wt-DnlxwllBQAwjgbp0Oqp7vtqA9zIb8txuqvUBY8_B0pXFSHzmiZemH3f0ncJxOydRVXZ_Ic3Ash1C6FweggGnP6C4CuhflvstrqPnma54aEZsQ">
+</div>
+<h3 class="font-headline-md text-body-lg mb-1">Architectural Tote</h3>
+<p class="font-label-caps text-[10px] tracking-widest text-secondary">$1,200.00</p>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer hover-lift">
+<div class="aspect-[3/4] bg-surface-container-high mb-4 editorial-border overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Fashion editorial shot of tailored wool trousers in charcoal grey. The garment is draped elegantly in a bright, airy studio environment. The composition follows the golden ratio, highlighting the craftsmanship and silhouette. Minimalist, premium, quiet luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFaGh3MvMj-gRt71KFeb1BzkJv2wRUJnOIOeLmO2AMY20L1-DYIZm2T93oSGTMhffhSpLqrITAHzLuc6aqE6TNyyDziJa-m9VZDc4f5-5sQJ0JObhvOmYcCCVL1PBXCDVM--DnITas2h5GYU4tR9XeOPvkQv3LrdnT9fppJFlo75rYBYNpt5vYBf2twVQYR9EcPzbjeKkuMGUXcbFAqFaA-RWQPEBum7eDA2JiEKoe0uKeh2KqgH377A">
+</div>
+<h3 class="font-headline-md text-body-lg mb-1">Tailored Wool Trouser</h3>
+<p class="font-label-caps text-[10px] tracking-widest text-secondary">$580.00</p>
+</div>
+<!-- Product 4 -->
+<div class="group cursor-pointer hover-lift">
+<div class="aspect-[3/4] bg-surface-container-high mb-4 editorial-border overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Luxury accessory photography of a delicate gold chain necklace with a small geometric pendant. Shot in a high-density backdrop blur setting with soft light-mode illumination. The image is sophisticated and understated, typical of a high-end fashion boutique catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_jwhwJ0MqSHpfTvsrjNDQOgmoLmNJTJ5pJoUIxDa2s5psIKmKpr3W6ZbzDPZd0yOP76E_RSy9ZoxCqouiLuUsAlzjJZfpUh7iGxIEyATAxArwtekvqxdbkQ55G2o8mM7dB2KPt_WHA5-bOphv2PcGhXonrYhkVrDYs89jsvNHrXaO0W8Qj_IEl2awxDLfsaooUSACJYEow_Zm3hNQCYpwZ9tP5ZOdFdjrMCetDbEQPKnbHVBvVGXMMg">
+</div>
+<h3 class="font-headline-md text-body-lg mb-1">Unity Chain Necklace</h3>
+<p class="font-label-caps text-[10px] tracking-widest text-secondary">$850.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Global Newsletter -->
+<section class="bg-surface-container-low py-24 border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col items-center text-center">
+<h2 class="font-headline-md text-headline-md mb-4">The Monolith Journal</h2>
+<p class="text-secondary mb-10 max-w-lg">Subscribe to receive curated updates, early access to new collections, and editorial features.</p>
+<form class="flex flex-col md:flex-row w-full max-w-xl gap-4">
+<input class="flex-grow bg-transparent border-b border-primary py-4 px-2 focus:outline-none font-label-caps text-xs" placeholder="EMAIL ADDRESS" type="email">
+<button class="bg-primary text-white px-10 py-4 font-label-caps text-label-caps hover:opacity-90 transition-opacity" type="submit">JOIN</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-12 gap-8 max-w-container-max mx-auto">
+<div class="font-display-lg text-headline-md text-primary">MONOLITH</div>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-secondary hover:underline transition-all duration-300" href="#">PRIVACY POLICY</a>
+<a class="font-label-caps text-label-caps text-secondary hover:underline transition-all duration-300" href="#">TERMS OF SERVICE</a>
+<a class="font-label-caps text-label-caps text-primary hover:underline transition-all duration-300" href="#">TRACK ORDER</a>
+<a class="font-label-caps text-label-caps text-secondary hover:underline transition-all duration-300" href="#">CONTACT</a>
+</div>
+<div class="font-label-caps text-label-caps text-secondary">
+                © 2024 MONOLITH. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+<script>
+        // Progress bar interaction
+        window.addEventListener('load', () => {
+            const progressBar = document.getElementById('order-progress-bar');
+            if (progressBar) {
+                // Animate to 60% which aligns with 'Shipped' step
+                progressBar.style.width = '60%';
+            }
+        });
+
+        // Hover lift effect for interaction
+        const interactiveElements = document.querySelectorAll('.hover-lift');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.classList.add('opacity-80');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('opacity-80');
+            });
+        });
+    </script>
+</body></html>

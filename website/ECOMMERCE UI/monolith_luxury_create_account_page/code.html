@@ -1,0 +1,234 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MONOLITH | Join the Monolith</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#7e7576",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#000000",
+                        "surface-container-high": "#e8e8e8",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "outline-variant": "#cfc4c5",
+                        "on-secondary-container": "#5f6161",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#848484",
+                        "tertiary": "#000000",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#838484",
+                        "inverse-surface": "#2f3131",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#474747",
+                        "tertiary-container": "#1a1c1c",
+                        "inverse-primary": "#c6c6c6",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "on-primary-fixed": "#1b1b1b",
+                        "surface-container-low": "#f3f3f4",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-tint": "#5e5e5e",
+                        "primary-fixed": "#e2e2e2",
+                        "secondary-container": "#dcdddd",
+                        "on-surface-variant": "#4c4546",
+                        "primary-container": "#1b1b1b",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#c6c6c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "section-gap": "128px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "button": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "label-caps": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input:focus {
+            outline: none;
+            border-bottom-color: #000000 !important;
+            box-shadow: none !important;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #000000;
+            border-color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary-fixed selection:text-primary">
+<main class="flex min-h-screen">
+<!-- Left Section: Editorial Imagery -->
+<div class="hidden md:block md:w-1/2 lg:w-[60%] sticky top-0 h-screen overflow-hidden">
+<div class="absolute inset-0 z-10 bg-black/5 pointer-events-none"></div>
+<img alt="MONOLITH Luxury Editorial" class="w-full h-full object-cover grayscale brightness-95" src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4">
+<!-- Branding Overlay -->
+<div class="absolute top-12 left-12 z-20">
+<a class="font-display-lg text-headline-lg tracking-tighter text-on-primary" href="/">MONOLITH</a>
+</div>
+</div>
+<!-- Right Section: Registration Form -->
+<div class="w-full md:w-1/2 lg:w-[40%] flex items-center justify-center bg-surface px-margin-mobile md:px-margin-desktop py-12 overflow-y-auto">
+<div class="w-full max-w-md fade-in">
+<!-- Mobile Branding -->
+<div class="md:hidden mb-12 flex justify-center">
+<span class="font-display-lg text-headline-lg tracking-tighter text-primary">MONOLITH</span>
+</div>
+<div class="mb-12">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Join the Monolith.</h1>
+<p class="font-body-md text-body-md text-secondary">Create your account to experience curated luxury.</p>
+</div>
+<form action="#" class="space-y-8" method="POST">
+<!-- Full Name -->
+<div class="relative">
+<label class="font-label-caps text-label-caps text-secondary mb-2 block" for="full_name">Full Name</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-3 font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-all" id="full_name" name="full_name" placeholder="ALEXANDER VOGUE" required="" type="text">
+</div>
+<!-- Email Address -->
+<div class="relative">
+<label class="font-label-caps text-label-caps text-secondary mb-2 block" for="email">Email Address</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-3 font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-all" id="email" name="email" placeholder="CONTACT@MONOLITH.COM" required="" type="email">
+</div>
+<!-- Phone Number -->
+<div class="relative">
+<label class="font-label-caps text-label-caps text-secondary mb-2 block" for="phone">Phone Number</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-3 font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-all" id="phone" name="phone" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+<!-- Password -->
+<div class="relative">
+<label class="font-label-caps text-label-caps text-secondary mb-2 block" for="password">Password</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-3 font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-all" id="password" name="password" placeholder="••••••••••••" required="" type="password">
+</div>
+<!-- Confirm Password -->
+<div class="relative">
+<label class="font-label-caps text-label-caps text-secondary mb-2 block" for="confirm_password">Confirm Password</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-3 font-body-md text-body-md placeholder:text-secondary-fixed-dim transition-all" id="confirm_password" name="confirm_password" placeholder="••••••••••••" required="" type="password">
+</div>
+<!-- Terms Checkbox -->
+<div class="flex items-start gap-3 mt-4">
+<div class="flex items-center h-5">
+<input class="custom-checkbox w-4 h-4 rounded-none border-outline text-primary focus:ring-0" id="terms" required="" type="checkbox">
+</div>
+<label class="font-body-md text-[14px] text-secondary leading-tight" for="terms">
+                            I accept the <a class="text-primary underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity" href="#">Terms &amp; Conditions</a> and Privacy Policy.
+                        </label>
+</div>
+<!-- Create Account Button -->
+<button class="w-full bg-primary text-on-primary py-4 font-button text-button uppercase hover:opacity-90 transition-all duration-300 transform active:scale-[0.98]" type="submit">
+                        Create Account
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant"></div></div>
+<div class="relative flex justify-center text-label-caps uppercase"><span class="bg-surface px-4 text-secondary-fixed-dim">Or continue with</span></div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 border border-outline-variant py-3 px-4 font-button text-button uppercase hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="google">google</span>
+                        Google
+                    </button>
+<button class="flex items-center justify-center gap-2 border border-outline-variant py-3 px-4 font-button text-button uppercase hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="apple">file_download</span>
+                        Apple
+                    </button>
+</div>
+<!-- Footer Link -->
+<div class="mt-12 text-center">
+<p class="font-body-md text-secondary">
+                        Already have an account? 
+                        <a class="text-primary font-medium underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity ml-1" href="#">Sign In</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    const label = input.previousElementSibling;
+                    if (label) label.style.color = '#000000';
+                });
+                
+                input.addEventListener('blur', () => {
+                    const label = input.previousElementSibling;
+                    if (label) label.style.color = '#5d5f5f';
+                });
+            });
+        });
+    </script>
+</body></html>

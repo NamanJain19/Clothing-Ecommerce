@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monolith | Order Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#f0edee",
+                    "tertiary-container": "#261906",
+                    "tertiary": "#000000",
+                    "surface-bright": "#fcf8fa",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#eae7e9",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "surface-container-low": "#f6f3f4",
+                    "on-primary-fixed-variant": "#404758",
+                    "inverse-on-surface": "#f3f0f1",
+                    "tertiary-fixed": "#f9debf",
+                    "surface-variant": "#e5e2e3",
+                    "on-secondary-container": "#5e6572",
+                    "primary-container": "#141b2b",
+                    "secondary-container": "#dce2f3",
+                    "primary-fixed": "#dce2f7",
+                    "on-primary-fixed": "#141b2b",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#261906",
+                    "outline": "#76777d",
+                    "surface-container-highest": "#e5e2e3",
+                    "surface": "#fcf8fa",
+                    "inverse-primary": "#c0c6db",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "on-primary-container": "#7d8497",
+                    "primary": "#000000",
+                    "primary-fixed-dim": "#c0c6db",
+                    "on-tertiary-container": "#968065",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#dce2f3",
+                    "on-surface": "#1b1b1d",
+                    "background": "#fcf8fa",
+                    "on-secondary-fixed-variant": "#404754",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1b1b1d",
+                    "inverse-surface": "#303031",
+                    "on-secondary-fixed": "#151c27",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-surface-variant": "#45464c",
+                    "secondary": "#585f6c",
+                    "surface-tint": "#575e70",
+                    "surface-dim": "#dcd9db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-sm": "0.5rem",
+                    "space-md": "1rem",
+                    "space-xs": "0.25rem",
+                    "space-xl": "2rem",
+                    "space-lg": "1.5rem",
+                    "space-2xl": "3rem",
+                    "container-margin": "2rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "display": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .details-drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .details-drawer.open { transform: translateX(0); }
+        .drawer-overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+        .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+        .no-border-shell { border-bottom: none !important; border-top: none !important; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface border-r border-outline-variant flex flex-col py-space-xl px-space-md z-50">
+<div class="mb-space-2xl px-space-md">
+<h1 class="font-headline-lg text-headline-lg tracking-tighter text-primary">MONOLITH</h1>
+<p class="text-secondary text-caption opacity-70 uppercase tracking-widest mt-1">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-space-md py-3 text-secondary hover:bg-surface-container-low transition-colors rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 text-secondary hover:bg-surface-container-low transition-colors rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 text-primary font-semibold border-r-2 border-primary bg-surface-container-low transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 text-secondary hover:bg-surface-container-low transition-colors rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 text-secondary hover:bg-surface-container-low transition-colors rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<div class="pt-space-xl mt-space-xl border-t border-outline-variant">
+<a class="flex items-center gap-3 px-space-md py-3 text-secondary hover:bg-surface-container-low transition-colors rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<div class="mt-auto px-space-md py-space-md bg-surface-container-low rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a professional male administrator in a high-end fashion boutique environment. The lighting is crisp and cool, reflecting a clean office atmosphere. The individual is wearing a charcoal designer suit, looking directly at the camera with quiet authority. The aesthetic is modern and premium, matching a luxury retail brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0iciX9oDBivmMyZUcCNkrR7qmsOyIk5LEJblBtcuNGxnUS8hk2hZA3nnaHRduOBq67Uxq0alvifTw-8nfi8ds0_OJslYnI-3UpcZJgq3D6F207icwrCPRRl024UGIoY9R6MK9dqPFE2L-AI4yVFWNQ0eUjCJIScSPrDyOxU1AvB9Op5wRxG8W3M4grt8lmFRxBPb7CsNFwcYFGydyKXGvo7W1x33GCcS_8Sr4OPEy9n4CctBZGby8Bg"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Alex Sterling</p>
+<p class="text-[10px] text-secondary uppercase tracking-tighter">Super Admin</p>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 w-full bg-surface/80 backdrop-blur-md shadow-sm flex justify-between items-center h-16 px-space-xl">
+<div class="flex items-center gap-space-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-none rounded-full text-body-md focus:ring-2 focus:ring-primary/10 transition-all outline-none placeholder:text-outline" placeholder="Search orders, customers, or items..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="p-2 text-secondary hover:text-primary transition-all duration-300 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-all duration-300">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-on-surface">Store: NYC Flagship</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-space-xl space-y-space-xl max-w-[1440px] w-full mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display text-display text-on-surface">Orders</h2>
+<p class="text-body-md text-secondary mt-1">Manage, process, and track customer orders.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border border-outline-variant text-on-surface font-label-md rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Export Orders
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-on-primary font-label-md rounded-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">add</span>
+                        New Order
+                    </button>
+</div>
+</div>
+<!-- Order Summary Cards -->
+<div class="grid grid-cols-4 gap-space-lg">
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary">list_alt</span>
+</div>
+<span class="text-success font-label-sm flex items-center gap-1 text-green-600">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> 12%
+                        </span>
+</div>
+<p class="text-secondary font-label-md">Total Orders</p>
+<h3 class="text-display font-display mt-1">1,284</h3>
+</div>
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-fixed/30 rounded-lg">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">pending_actions</span>
+</div>
+<span class="text-error font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> 4%
+                        </span>
+</div>
+<p class="text-secondary font-label-md">Pending Orders</p>
+<h3 class="text-display font-display mt-1">42</h3>
+</div>
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-fixed/30 rounded-lg">
+<span class="material-symbols-outlined text-primary">sync</span>
+</div>
+</div>
+<p class="text-secondary font-label-md">Processing</p>
+<h3 class="text-display font-display mt-1">156</h3>
+</div>
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-[0_1px_3px_0_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-green-100 rounded-lg">
+<span class="material-symbols-outlined text-green-700">task_alt</span>
+</div>
+<span class="text-secondary font-label-sm">v. Yesterday</span>
+</div>
+<p class="text-secondary font-label-md">Delivered Today</p>
+<h3 class="text-display font-display mt-1">89</h3>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface border border-outline-variant p-3 rounded-xl flex items-center gap-4 flex-wrap">
+<div class="flex-1 min-w-[200px] flex items-center gap-3">
+<select class="bg-transparent border-none font-label-md text-on-surface focus:ring-0 cursor-pointer">
+<option>All Status</option>
+<option>Confirmed</option>
+<option>Shipped</option>
+<option>Delivered</option>
+</select>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<select class="bg-transparent border-none font-label-md text-on-surface focus:ring-0 cursor-pointer">
+<option>Payment: All</option>
+<option>Paid</option>
+<option>Unpaid</option>
+<option>Refunded</option>
+</select>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2 px-3 text-secondary">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+<span class="font-label-md text-on-surface">Last 30 Days</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-caption text-secondary">Sort by:</span>
+<select class="bg-transparent border-none font-label-md text-on-surface focus:ring-0 cursor-pointer pr-8">
+<option>Newest First</option>
+<option>Oldest First</option>
+<option>Highest Value</option>
+</select>
+</div>
+</div>
+<!-- Orders Table Container -->
+<div class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-4 px-6 w-12">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+</th>
+<th class="py-4 px-4 font-label-md text-secondary">Order ID</th>
+<th class="py-4 px-4 font-label-md text-secondary">Customer</th>
+<th class="py-4 px-4 font-label-md text-secondary">Products</th>
+<th class="py-4 px-4 font-label-md text-secondary">Total</th>
+<th class="py-4 px-4 font-label-md text-secondary">Order Status</th>
+<th class="py-4 px-4 font-label-md text-secondary">Payment</th>
+<th class="py-4 px-4 font-label-md text-secondary">Date</th>
+<th class="py-4 px-4 font-label-md text-secondary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Order Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="py-5 px-6">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" onclick="event.stopPropagation()" type="checkbox"/>
+</td>
+<td class="py-5 px-4">
+<span class="font-label-md text-primary">#MON-4829</span>
+</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold">EM</div>
+<div>
+<p class="font-label-md text-on-surface">Eleanor Mason</p>
+<p class="text-caption text-secondary">e.mason@gmail.com</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-md border-2 border-surface bg-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro studio shot of a luxury minimal black leather wallet on a pristine white background. High contrast, sharp focus, magazine quality photography reflecting the premium aesthetic of Monolith products." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTKxI2fmPzY6Wsd9OMG5seKVjZyGGhbiUAmNnm3Ls9TAHNS7ou8FhD-Gjtro-1g3S1k171FiXv8-X4VDnKNxp1PSi_TStXE7pcRV8B_W9F-rQFem5E-l7oW5KvUpgg4nrTq_KFq3IyfWaFjZ_IWOjx7l8Zw4u8n0ls8EnMzzoJyVkD2TJkFdtuwF6XLuBcWNTdbd4US2SQbzk5wwHEx6tuFOO5kpkliIzirhCxP3qCdmtDmRFLUnj7eA"/>
+</div>
+<div class="w-8 h-8 rounded-md border-2 border-surface bg-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up of a brushed titanium wristwatch with a dark grey silicone strap, presented on a minimal marble surface. The lighting is soft and architectural, emphasizing luxury and high-end design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-63dYWUzvea_kF3Bryh3-vU4OdXDAue6OJhhcjry_7WnAocg3AOljHGPAcm6QKtO4JdKlcnxnFoky7ZTB3Ur0MukO9nuOs10czw6ltqDYCCyA9Kgb3-r7ryMVcoYr3ntTMIuqVuut5841fXUdIDo4JGSZX9WIxK1KHu_oggGwUkpBXTV-fOB5lVqi7whC0IhIBS6QFN_GesfiX39kefF32uAGYxQue16QMT0slgwHk4_nf9mCHpr-gw"/>
+</div>
+<div class="w-8 h-8 rounded-md border-2 border-surface bg-surface-container-high flex items-center justify-center text-[10px] text-secondary font-bold">+1</div>
+</div>
+</td>
+<td class="py-5 px-4">
+<span class="font-label-md text-on-surface">$2,450.00</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                                        Processing
+                                    </span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-green-700">
+                                        Paid
+                                    </span>
+</td>
+<td class="py-5 px-4">
+<p class="font-body-md text-on-surface">Oct 24, 2023</p>
+<p class="text-caption text-secondary">14:32 PM</p>
+</td>
+<td class="py-5 px-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="py-5 px-6">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" onclick="event.stopPropagation()" type="checkbox"/>
+</td>
+<td class="py-5 px-4">
+<span class="font-label-md text-primary">#MON-4830</span>
+</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold">JW</div>
+<div>
+<p class="font-label-md text-on-surface">Julian Weber</p>
+<p class="text-caption text-secondary">j.weber@icloud.com</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-4">
+<div class="w-8 h-8 rounded-md border-2 border-surface bg-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Studio photography of a sleek, modern silver fountain pen on a textured dark paper background. Professional lighting highlighting the metallic curves and premium craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_4ld5llLOCPt3e7xTcjse9RzcpOpcKaMDDBr71pNk25gFTKkAJyDrKPRyrhv088Qv34jcKRNAaq4ZsKPFgZmgdSDNZdIHVNP8NQUaNPUfcopqMkGxbxjeZUbF6ykGHOt6z-9Lr6x4YLWjaR5ylNLXLdIbdR-xnMACvaAtv4zE-2kY65C8YFae8ip8shxf0GBN_ia6-zuGcSKW_-LMdro7FdlM1KljcJ7B-h2-6CRIGWgW5HB4a5zE-A"/>
+</div>
+</td>
+<td class="py-5 px-4">
+<span class="font-label-md text-on-surface">$1,200.00</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-700">
+                                        Confirmed
+                                    </span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-green-700">
+                                        Paid
+                                    </span>
+</td>
+<td class="py-5 px-4">
+<p class="font-body-md text-on-surface">Oct 24, 2023</p>
+<p class="text-caption text-secondary">15:10 PM</p>
+</td>
+<td class="py-5 px-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="py-5 px-6">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" onclick="event.stopPropagation()" type="checkbox"/>
+</td>
+<td class="py-5 px-4">
+<span class="font-label-md text-primary">#MON-4831</span>
+</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold">SL</div>
+<div>
+<p class="font-label-md text-on-surface">Sienna Laurent</p>
+<p class="text-caption text-secondary">s.laurent@luxury.fr</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-4">
+<div class="w-8 h-8 rounded-md border-2 border-surface bg-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-end designer silk scarf with gold and navy abstract patterns, draped elegantly over a minimalist white display stand. Luxury fashion catalog style, soft professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsPGenjcEtWMlbXS1_KwoCikrAIkkgnhKrs_4S7FMApXSCY54H_rSNgCMydhaR5dfbwpf8m3si5PxD73OmDez5IUCRZtGYLjQTJBL-U4EREiX9DX9rhLmVFQ0uBMpKxRB-y7n-XHFlHDG3nxj7Hrhs-jmckJQPnuGC_ZERSon5Xk2NgZ7LWH2eUHHxq0rNwmQ9kBsGuFNBydR_rnhqGvhf5058IEjApMomcAZDF5W83q22UZWphrJ7Lg"/>
+</div>
+</td>
+<td class="py-5 px-4">
+<span class="font-label-md text-on-surface">$850.00</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                                        Shipped
+                                    </span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-green-700">
+                                        Paid
+                                    </span>
+</td>
+<td class="py-5 px-4">
+<p class="font-body-md text-on-surface">Oct 23, 2023</p>
+<p class="text-caption text-secondary">09:45 AM</p>
+</td>
+<td class="py-5 px-4 text-right">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Pagination -->
+<div class="bg-surface p-4 border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="text-body-md text-secondary">Rows per page:</span>
+<select class="bg-transparent border border-outline-variant rounded px-2 py-1 text-label-md focus:ring-0">
+<option>10</option>
+<option>25</option>
+<option>50</option>
+</select>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-body-md text-secondary">1-10 of 1,284</span>
+<div class="flex items-center gap-1">
+<button class="p-1 hover:bg-surface-container-low disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 hover:bg-surface-container-low">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Details Drawer Overlay -->
+<div class="drawer-overlay fixed inset-0 bg-black/20 backdrop-blur-sm z-[60]" id="drawer-overlay" onclick="toggleDrawer(false)"></div>
+<!-- Details Drawer -->
+<div class="details-drawer fixed right-0 top-0 h-full w-[600px] bg-surface z-[70] shadow-2xl flex flex-col" id="details-drawer">
+<!-- Drawer Header -->
+<div class="p-space-lg border-b border-outline-variant flex justify-between items-center bg-white">
+<div>
+<div class="flex items-center gap-3">
+<h2 class="font-headline-md text-headline-md">Order #MON-4829</h2>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                        Processing
+                    </span>
+</div>
+<p class="text-caption text-secondary mt-1">Placed on Oct 24, 2023 at 14:32 PM</p>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors" onclick="toggleDrawer(false)">
+<span class="material-symbols-outlined text-outline">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto p-space-lg space-y-space-xl">
+<!-- Quick Actions -->
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-2.5 rounded-lg font-label-md hover:opacity-90">Approve Order</button>
+<button class="flex-1 border border-outline-variant py-2.5 rounded-lg font-label-md hover:bg-surface-container-low">Download Invoice</button>
+</div>
+<!-- Customer & Shipping Bento Section -->
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 border border-outline-variant rounded-xl">
+<p class="text-label-sm text-secondary uppercase tracking-wider mb-3">Customer Info</p>
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-xs font-bold">EM</div>
+<div>
+<p class="font-label-md text-on-surface">Eleanor Mason</p>
+<p class="text-caption text-secondary">Customer since 2021</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface">e.mason@gmail.com</p>
+<p class="text-body-md text-on-surface">+1 (555) 234-8890</p>
+</div>
+<div class="p-4 border border-outline-variant rounded-xl">
+<p class="text-label-sm text-secondary uppercase tracking-wider mb-3">Shipping Address</p>
+<p class="text-body-md text-on-surface font-medium">Eleanor Mason</p>
+<p class="text-body-md text-on-surface">724 Fifth Avenue</p>
+<p class="text-body-md text-on-surface">New York, NY 10019</p>
+<p class="text-body-md text-on-surface">United States</p>
+</div>
+</div>
+<!-- Products List -->
+<div>
+<p class="text-label-sm text-secondary uppercase tracking-wider mb-4">Ordered Products (3)</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg border border-outline-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Macro product photography of a premium black leather wallet, showing fine stitching and high-quality grain detail against a soft grey background. Minimalist and elegant design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb3IutRdzndBGhE7Rmo3Xq-xyuIt2UwlLkcGpi06F8ZxPpI0_8uDTUJD7ixrGfIlF-4kbZJ_un5YchIjgU2-H4f1S9Cmez2ggEpGbXv-n1UkMEsZ15dgIz3WtiZaFIcU7vcOXTEo-UZRratTDmBCGTd416d3CgdqB3dE36_yhMGstG8b-VGJq-tCIviGXpPsCZheKWNzYTHtCInOipTjMa_FWpPpjW92-ITnoLoOmmfRksInE1I2hhXw"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Vanguard Slim Wallet — Black</p>
+<p class="text-caption text-secondary">SKU: WLT-VG-01</p>
+</div>
+<div class="text-right">
+<p class="font-label-md text-on-surface">x1</p>
+<p class="font-label-md text-on-surface">$450.00</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg border border-outline-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-end titanium wristwatch with a dark anthracite dial and sapphire glass, presented in a minimal display. Dramatic side-lighting highlighting the brushed metal textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzyycVOuisDDSWnyGDEu70IIxx3SqCfs-0i6U6YEV-vJItPT9pWY8tB3GgVmd40N58e7zm36PNSY8jRaVbE_ep6z7UgyArK9kooiFhU8BXtRHrwkRb_6Y7WlgHyBujJjKAgvew6IYvI7wd3Zdp1v1TFd_VGV0sch0El9_-uWcmnuWJ-4oSwvuehD1DSoInFQCqZTOYB3dhW9fw2Ubgbpqhdpv2O-P026peIwudnJWjsQ5P9Rz2d8-5eg"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface">Apex Chronograph — Titanium</p>
+<p class="text-caption text-secondary">SKU: CHR-AX-24</p>
+</div>
+<div class="text-right">
+<p class="font-label-md text-on-surface">x1</p>
+<p class="font-label-md text-on-surface">$1,850.00</p>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant space-y-2">
+<div class="flex justify-between text-body-md">
+<span class="text-secondary">Subtotal</span>
+<span>$2,300.00</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-secondary">Shipping (Express)</span>
+<span>$50.00</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-secondary">Tax (VAT 4.5%)</span>
+<span>$100.00</span>
+</div>
+<div class="flex justify-between font-headline-md pt-2">
+<span>Total Amount</span>
+<span>$2,450.00</span>
+</div>
+</div>
+</div>
+<!-- Order Timeline -->
+<div>
+<p class="text-label-sm text-secondary uppercase tracking-wider mb-6">Order Timeline</p>
+<div class="relative space-y-8 pl-8">
+<!-- Vertical Line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-[2px] bg-outline-variant"></div>
+<!-- Steps -->
+<div class="relative">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white z-10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<p class="font-label-md text-on-surface">Order Confirmed</p>
+<p class="text-caption text-secondary">Oct 24, 14:32 PM • By System</p>
+</div>
+<div class="relative">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white z-10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+<p class="font-label-md text-on-surface">Payment Verified</p>
+<p class="text-caption text-secondary">Oct 24, 14:40 PM • Stripe Checkout</p>
+</div>
+<div class="relative">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-outline-variant flex items-center justify-center text-white z-10">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+<p class="font-label-md text-on-surface text-secondary">Sent to Warehouse</p>
+<p class="text-caption text-secondary">Pending...</p>
+</div>
+</div>
+</div>
+<!-- Internal Notes -->
+<div class="p-4 bg-surface-container-low rounded-xl">
+<div class="flex justify-between items-center mb-3">
+<p class="text-label-sm text-secondary uppercase tracking-wider">Internal Notes</p>
+<button class="text-primary text-caption font-semibold">Edit</button>
+</div>
+<p class="text-body-md italic text-secondary">"High-priority shipping requested. Customer mentioned this is a gift for an anniversary. Please include a handwritten card if possible."</p>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="p-space-lg border-t border-outline-variant bg-white flex gap-3">
+<button class="flex-1 border border-error text-error py-2.5 rounded-lg font-label-md hover:bg-error/5 transition-colors">Cancel Order</button>
+<button class="flex-1 bg-surface border border-outline-variant text-on-surface py-2.5 rounded-lg font-label-md hover:bg-surface-container-low transition-colors">Print Label</button>
+</div>
+</div>
+<script>
+        function toggleDrawer(open) {
+            const drawer = document.getElementById('details-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            if (open) {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close drawer on ESC key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleDrawer(false);
+        });
+    </script>
+</body></html>

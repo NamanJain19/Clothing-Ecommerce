@@ -1,0 +1,241 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>404 - NOT FOUND | MONOLITH</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#dcdddd",
+                    "surface-tint": "#5e5e5e",
+                    "tertiary": "#000000",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary-container": "#1b1b1b",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-container": "#eeeeee",
+                    "outline-variant": "#cfc4c5",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#4c4546",
+                    "secondary": "#5d5f5f",
+                    "surface-dim": "#dadada",
+                    "on-primary-fixed": "#1b1b1b",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "secondary-fixed": "#e2e2e2",
+                    "inverse-primary": "#c6c6c6",
+                    "primary-fixed": "#e2e2e2",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-container-low": "#f3f3f4",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface": "#f9f9f9",
+                    "inverse-surface": "#2f3131",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "background": "#f9f9f9",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-container": "#838484",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "primary": "#000000",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-container": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "outline": "#7e7576",
+                    "on-secondary-container": "#5f6161",
+                    "on-primary-container": "#848484"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "container-max": "1440px",
+                    "section-gap": "128px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Montserrat"],
+                    "button": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            overflow-x: hidden;
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .editorial-line {
+            height: 1px;
+            background-color: #000000;
+            width: 0;
+            transition: width 0.8s ease-in-out;
+        }
+        .hero-container:hover .editorial-line {
+            width: 100px;
+        }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary-fixed selection:text-primary">
+<!-- Top Navigation Bar (Shared Component Reference) -->
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant h-20 px-margin-desktop flex justify-between items-center max-w-container-max mx-auto left-0 right-0">
+<div class="text-headline-md font-headline-md tracking-widest text-primary">MONOLITH</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">COLLECTIONS</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">MEN</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">WOMEN</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">EDITORIAL</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-opacity duration-300" href="#">ARCHIVE</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:opacity-70 transition-opacity duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="min-h-screen pt-20 flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop bg-surface">
+<div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center hero-container">
+<!-- Left Side: Abstract Illustration / Graphic -->
+<div class="md:col-span-7 fade-in" style="animation-delay: 0.2s;">
+<div class="relative w-full aspect-[4/5] border border-outline-variant overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-fashion minimalist editorial photograph for a luxury brand. The image features an abstract architectural shadow cast across a pristine white gallery wall, creating sharp geometric contrast in black and white. The mood is silent, sophisticated, and authoritative, echoing the quiet luxury aesthetic of the MONOLITH brand. Soft ambient lighting fills the space, emphasizing texture and form without visual clutter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK7_A418B5CcinM9cZh_wQ1peiUq23AStvhG2et0UU7xalYtJFO34iTivQlM2I5AjcWh3t-XYcegkHs0uZQkzBqqRy7FBw6So6dRkIIUnapbpyloxMVd-FjgW9cIHdqrAqzaFMGK0nk6wMQzcSWYIGQtNwosrrNa4SQfLRWYWOZaIi9CVGDRJXziJFMdbQwrRgUSzX4RIxhKQRIs3BeN8CkFWXVPu67PI3q0E5fE_vlaKtuaeVuhPHjA">
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+</div>
+</div>
+<!-- Right Side: 404 Messaging -->
+<div class="md:col-span-5 flex flex-col items-start space-y-8 fade-in" style="animation-delay: 0.4s;">
+<div class="flex flex-col space-y-2">
+<span class="font-label-caps text-label-caps text-secondary tracking-[0.3em]">ERROR CODE</span>
+<h1 class="font-display-lg text-display-lg md:text-[120px] leading-none tracking-tighter text-primary">404</h1>
+<div class="editorial-line mt-4"></div>
+</div>
+<div class="space-y-4">
+<h2 class="font-headline-md text-headline-md text-primary">Oops! The page you're looking for doesn't exist.</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-sm">
+                        The collection has moved or the link is broken. Let us guide you back to the curated path.
+                    </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+<a class="bg-primary text-on-primary px-10 py-4 font-button text-button uppercase tracking-widest hover:bg-secondary transition-all duration-300 text-center" href="/">
+                        Back to Home
+                    </a>
+<a class="border border-primary text-primary px-10 py-4 font-button text-button uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all duration-300 text-center" href="/shop">
+                        Continue Shopping
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component Reference) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="md:col-span-4 flex flex-col space-y-6">
+<div class="font-headline-md text-headline-md tracking-tighter text-primary">MONOLITH</div>
+<p class="font-body-md text-body-md text-secondary max-w-xs">
+                    Curated essentials for the modern minimalist. Structural integrity meets high-fashion editorial.
+                </p>
+</div>
+<div class="md:col-span-2 flex flex-col space-y-4">
+<span class="font-label-caps text-label-caps text-primary border-b border-primary pb-2 w-fit">SHOP</span>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline" href="#">NEW ARRIVALS</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline" href="#">COLLECTIONS</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline" href="#">ARCHIVE</a>
+</div>
+<div class="md:col-span-3 flex flex-col space-y-4">
+<span class="font-label-caps text-label-caps text-primary border-b border-primary pb-2 w-fit">INFORMATION</span>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline uppercase" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline uppercase" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline uppercase" href="#">Shipping &amp; Returns</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-all duration-300 hover:underline uppercase" href="#">Contact</a>
+</div>
+<div class="md:col-span-3 flex flex-col space-y-6">
+<span class="font-label-caps text-label-caps text-primary border-b border-primary pb-2 w-fit">NEWSLETTER</span>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-primary py-2 font-body-md text-body-md focus:ring-0 focus:border-primary-container placeholder:text-secondary-fixed-dim" placeholder="YOUR EMAIL ADDRESS" type="email">
+<button class="absolute right-0 bottom-2 text-primary">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-12 pt-12 flex justify-between items-center border-t border-outline-variant mt-12">
+<p class="font-label-caps text-label-caps text-secondary">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+<div class="flex space-x-6">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary transition-colors">language</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary transition-colors">share</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the page title mouse movement
+        document.addEventListener('mousemove', (e) => {
+            const h1 = document.querySelector('h1');
+            if(h1) {
+                const x = (window.innerWidth / 2 - e.pageX) / 50;
+                const y = (window.innerHeight / 2 - e.pageY) / 50;
+                h1.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        });
+
+        // Entrance animation trigger
+        window.addEventListener('DOMContentLoaded', () => {
+            const line = document.querySelector('.editorial-line');
+            setTimeout(() => {
+                line.style.width = '60px';
+            }, 800);
+        });
+    </script>
+</body></html>

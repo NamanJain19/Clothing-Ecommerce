@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Banner Management | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1b1b1d",
+                    "surface-dim": "#dcd9db",
+                    "on-primary-container": "#7d8497",
+                    "on-tertiary-fixed": "#261906",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#404754",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#dce2f3",
+                    "surface-variant": "#e5e2e3",
+                    "on-surface-variant": "#45464c",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#f9debf",
+                    "primary-fixed": "#dce2f7",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f6f3f4",
+                    "primary": "#000000",
+                    "on-secondary-fixed": "#151c27",
+                    "on-primary-fixed": "#141b2b",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#eae7e9",
+                    "tertiary": "#000000",
+                    "surface-container-highest": "#e5e2e3",
+                    "outline": "#76777d",
+                    "surface-container": "#f0edee",
+                    "surface": "#fcf8fa",
+                    "surface-tint": "#575e70",
+                    "background": "#fcf8fa",
+                    "on-secondary-container": "#5e6572",
+                    "inverse-surface": "#303031",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "secondary": "#585f6c",
+                    "primary-fixed-dim": "#c0c6db",
+                    "on-primary-fixed-variant": "#404758",
+                    "inverse-primary": "#c0c6db",
+                    "on-surface": "#1b1b1d",
+                    "primary-container": "#141b2b",
+                    "tertiary-container": "#261906",
+                    "inverse-on-surface": "#f3f0f1",
+                    "secondary-container": "#dce2f3",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-tertiary-container": "#968065",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "surface-bright": "#fcf8fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-xl": "2rem",
+                    "space-md": "1rem",
+                    "container-margin": "2rem",
+                    "space-lg": "1.5rem",
+                    "space-sm": "0.5rem",
+                    "space-xs": "0.25rem",
+                    "space-2xl": "3rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F7F7F7;
+            font-family: 'Inter', sans-serif;
+            color: #111827;
+        }
+        .sidebar-active {
+            background-color: #f0edee;
+            color: #000000;
+            font-weight: 700;
+            border-radius: 0.5rem;
+        }
+        .banner-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            transition: all 0.2s ease;
+        }
+        .banner-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-color: #D1D5DB;
+        }
+        .drawer-shadow {
+            box-shadow: -10px 0 30px -5px rgba(0, 0, 0, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E5E7EB;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background overflow-x-hidden">
+<!-- SideNavBar (Shared Component Anchor) -->
+<aside class="w-[280px] h-full fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-space-xl px-space-md z-50">
+<div class="mb-space-2xl px-space-sm">
+<h1 class="font-display text-display tracking-tight text-primary">Atelier Admin</h1>
+<p class="font-label-md text-label-md text-secondary mt-1">Luxury Retail Ops</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 sidebar-active text-primary font-bold bg-surface-container rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">web</span>
+<span>Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span>Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span>Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-space-sm py-2.5 text-secondary hover:bg-surface-container-low transition-colors rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex items-center gap-3 p-space-sm border-t border-outline-variant pt-space-lg">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a high-end fashion executive administrator with a sophisticated, clean-cut look. The person wears a minimalist charcoal blazer against a soft, neutral grey background. The lighting is diffused and professional, conveying a sense of quiet authority and luxury leadership. High-key modern photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWt8AUVKGJDdiSF5H2QxLm7QCOf6VlWHoqxhzvOOIvBeqX4v3kuRXex8g-SQ1I3DIOfUtrO5pIvGYmT7vnvWUHlV3R6HYFwW2zTmG3CVhrHXjLP_4AQqEOK59XL5vulIZ2Txsr2iu8zzMpXId9ua9PbdAGNTdKpT5Eg5uX68Tr-xCnrkAycDcjY8SLLPF-UtYQpAfJM-2hVDVk4Np96ftlLaQyK8j2rIfwzlrO6Qc57ceuzMDHUd7zRw"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Atelier Admin</p>
+<p class="font-caption text-caption text-secondary">Super Admin</p>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (Shared Component Anchor) -->
+<header class="h-16 sticky top-0 z-40 bg-surface border-b border-outline-variant flex justify-between items-center w-full px-space-xl ml-[280px] max-w-[calc(100vw-280px)]">
+<div class="flex items-center gap-6">
+<h2 class="font-headline-lg text-headline-lg font-black text-on-surface">Atelier Interface</h2>
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg py-2 pl-10 pr-4 text-body-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Search orders, inventory, or banners..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-secondary">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] p-space-xl min-h-[calc(100vh-64px)] relative">
+<!-- Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface">Banner Management</h1>
+<p class="font-body-md text-body-md text-secondary mt-1">Create and manage promotional banners across the website.</p>
+</div>
+<button class="bg-[#111827] text-[#FFFFFF] px-6 py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Create Banner
+            </button>
+</div>
+<!-- Action Bar -->
+<div class="bg-surface-container-lowest border border-outline-variant p-space-md rounded-xl mb-8 flex items-center gap-4">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full border border-outline-variant rounded-lg py-2 pl-10 pr-4 text-body-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Filter by banner name..." type="text"/>
+</div>
+<select class="border border-outline-variant rounded-lg py-2 px-4 text-body-md bg-surface-container-lowest focus:ring-2 focus:ring-primary">
+<option>All Types</option>
+<option>Homepage Hero</option>
+<option>Category Header</option>
+<option>Promotional Popup</option>
+</select>
+<select class="border border-outline-variant rounded-lg py-2 px-4 text-body-md bg-surface-container-lowest focus:ring-2 focus:ring-primary">
+<option>Status: All</option>
+<option>Active</option>
+<option>Scheduled</option>
+<option>Expired</option>
+</select>
+<select class="border border-outline-variant rounded-lg py-2 px-4 text-body-md bg-surface-container-lowest focus:ring-2 focus:ring-primary">
+<option>Sort: Latest</option>
+<option>Oldest</option>
+<option>Alphabetical</option>
+</select>
+</div>
+<!-- Banner Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-space-lg">
+<!-- Card 1 (Active) -->
+<div class="banner-card rounded-xl overflow-hidden flex flex-col">
+<div class="aspect-[2/1] relative overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end cinematic photograph of luxury gold watches arranged on a dark marble surface. The lighting is moody and dramatic with golden highlights glinting off the metal. The style is ultra-minimalist and premium, intended for a main homepage hero banner. Deep black background with sharp focus on fine details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSRtQ9MxX7pySdQjrChTT9_x4deW0ScLh4Ftj1z0p222mYhSx9G7XQNxmG31xZ7WeaxTw12rTNGGdCbBBODbCC52DT4yzXevQtwhsSGIWlmHEdHB97wgc6M6PAtjJJHSzhLDTA0HS3Sob6NL_EfXCnxjpOAjhf8pyVYux_M86oyBz7boHcR5mmW18f6VVr7e8oBYyb23aDh3W2DJWcQjqomfoY6CsE03wFIj6CJeBLv3WOKy6abDbGXg"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#ECFDF5] text-[#047857] px-3 py-1 rounded-full text-caption font-bold border border-[#A7F3D0]">Active</span>
+</div>
+</div>
+<div class="p-space-md flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Summer Chrono Collection</h3>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container rounded uppercase tracking-wider text-secondary">Hero</span>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-body-md">Homepage</span>
+</div>
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-body-md">Jun 01 - Aug 31, 2024</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Preview">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Duplicate">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<div class="flex gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Disable">
+<span class="material-symbols-outlined">block</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-secondary transition-colors" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 (Scheduled) -->
+<div class="banner-card rounded-xl overflow-hidden flex flex-col ring-2 ring-primary">
+<div class="aspect-[2/1] relative overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious interior design scene showcasing a minimalist living room with beige velvet furniture and floor-to-ceiling windows. Warm, soft morning light fills the space. A single elegant floor lamp creates a focal point. The aesthetic is clean, quiet, and high-end, representing a Fall Interior Launch campaign for a luxury brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBii8xChvA6G86tJeXtEiauivpXfbw-rBfMYfm3oMshVDDnChyz-1JmaH__jHRckvDuQJ8EUnFVoS1LZNkKTRow6PtV9mUbJ0jRbG16D0WLwu-Bym-VM0QvU1DKpbI0_KX2NzhHSPV0Qepa-Ov3p78qRSZL9VUdgghxchqsMGaS1K2gsPOAYC_r_XGMteNIEBnRvzC480nalLfYXqrmMAUzYHneb-l8SrTPer-dXcLAzvQ8TD5VsyhA5w"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#EFF6FF] text-[#1D4ED8] px-3 py-1 rounded-full text-caption font-bold border border-[#DBEAFE]">Scheduled</span>
+</div>
+</div>
+<div class="p-space-md flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Fall Interior Launch</h3>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container rounded uppercase tracking-wider text-secondary">Promo</span>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-body-md">Category: Home</span>
+</div>
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-body-md">Sep 15 - Oct 30, 2024</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Preview">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 bg-surface-container rounded-lg text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">edit</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Duplicate">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<div class="flex gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Enable">
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-secondary transition-colors" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 (Expired) -->
+<div class="banner-card rounded-xl overflow-hidden flex flex-col opacity-75 grayscale-[0.2]">
+<div class="aspect-[2/1] relative overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A group of models in high-fashion winter coats standing against a brutalist concrete architectural background. The palette is muted greys, navys, and forest greens. The lighting is overcast and soft, creating a serious and architectural mood. High-quality fashion editorial style for a winter collection archive banner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2SxLga9ghArjU7WakbLMioE6D-WWB12KYllPFhM0fJtT3tCqAHRQRqzkGpOrLDRgvbqBUpnY36KMLs-y_rQQovIJBlERKnlUQeN0DNfxij9p0303hjtbtUOfS0J0YRnhV1gOIOEXWb4M_sO-ZZzsWS6t2RRYXgYf94gKgZNOlqthUS7qMZrxq4wKgbmEzmJwIFzHm78dmtuDHq3RwoZZaePWRRotPDBiLn0W3UCYiLuDunzOh-e0Xqg"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#F3F4F6] text-[#4B5563] px-3 py-1 rounded-full text-caption font-bold border border-[#E5E7EB]">Expired</span>
+</div>
+</div>
+<div class="p-space-md flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Winter Solstice Archive</h3>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container rounded uppercase tracking-wider text-secondary">Hero</span>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-body-md">Homepage</span>
+</div>
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-body-md">Dec 01 - Jan 31, 2024</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Preview">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Duplicate">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<div class="flex gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg text-secondary transition-colors" title="Re-enable">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-secondary transition-colors" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Edit Banner Side Drawer (Open State) -->
+<div class="fixed inset-0 z-50 flex justify-end" id="edit-drawer">
+<!-- Overlay -->
+<div class="absolute inset-0 bg-on-background/20 backdrop-blur-sm transition-opacity duration-300" onclick="toggleDrawer()"></div>
+<!-- Drawer Content -->
+<div class="relative w-[500px] h-full bg-surface-container-lowest drawer-shadow flex flex-col animate-slide-in">
+<div class="p-space-lg border-b border-outline-variant flex justify-between items-center">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Edit Banner</h2>
+<p class="font-label-sm text-label-sm text-secondary">Modify details for 'Fall Interior Launch'</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-space-lg custom-scrollbar">
+<div class="space-y-6">
+<!-- Banner Image Preview & Change -->
+<div class="space-y-3">
+<label class="font-label-md text-label-md font-bold block">Banner Image</label>
+<div class="aspect-[2/1] rounded-xl overflow-hidden relative group border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A luxurious interior design scene showcasing a minimalist living room with beige velvet furniture and floor-to-ceiling windows. Warm, soft morning light fills the space. A single elegant floor lamp creates a focal point. The aesthetic is clean, quiet, and high-end, representing a Fall Interior Launch campaign for a luxury brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXjzt-NCoA5-8CjpMuNmJ2hTQvvsfvwKPn1l8XTEYrkIkoOo7GuR2v4Gz25AMLTgPZ2g424vUuYbqf2_vgo5-zPL55O4qY6wb-5cuqOJvqxSucIK5ybNn56Yz3TqRBHoWqt_1fFoJPNd650XlCrLZPkZ7WM4M2V4jlvunZuol2-LQzk_GX1KrqS8mN_7qnZUBi62DFIdxj3GtHr1aUijpWCzOgXMqXUzc16ZBtutj4cNKiUGU0uTMp9A"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-white text-on-background px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+                                        Change Image
+                                    </button>
+</div>
+</div>
+<p class="font-caption text-caption text-secondary">Recommended size: 2400 x 1200px. Max size: 2MB.</p>
+</div>
+<!-- Basic Info -->
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">Banner Title</label>
+<input class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md focus:ring-2 focus:ring-primary" type="text" value="Fall Interior Launch"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">Subtitle</label>
+<textarea class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md focus:ring-2 focus:ring-primary" rows="3">Redefine your living space with the season's most curated textures and forms.</textarea>
+</div>
+</div>
+<!-- CTA & Link -->
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">CTA Button Text</label>
+<input class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md focus:ring-2 focus:ring-primary" type="text" value="Explore Collection"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">Link URL</label>
+<input class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md focus:ring-2 focus:ring-primary" type="text" value="/collections/fall-2024"/>
+</div>
+</div>
+<!-- Settings -->
+<div class="space-y-4 pt-4 border-t border-outline-variant">
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">Display Location</label>
+<select class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md bg-surface-container-lowest focus:ring-2 focus:ring-primary">
+<option>Homepage</option>
+<option selected="">Category: Home &amp; Decor</option>
+<option>Checkout Success</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">Start Date</label>
+<div class="relative">
+<input class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md focus:ring-2 focus:ring-primary" type="date" value="2024-09-15"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-bold block">End Date</label>
+<div class="relative">
+<input class="w-full border border-outline-variant rounded-lg py-2.5 px-4 text-body-md focus:ring-2 focus:ring-primary" type="date" value="2024-10-30"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Actions -->
+<div class="p-space-lg border-t border-outline-variant bg-surface-container-low flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md font-bold hover:opacity-90 transition-opacity">
+                        Save Changes
+                    </button>
+<button class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-surface py-3 rounded-lg font-label-md text-label-md font-bold hover:bg-surface-container-high transition-colors" onclick="toggleDrawer()">
+                        Cancel
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('edit-drawer');
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    drawer.querySelector('.animate-slide-in').style.transform = 'translateX(0)';
+                    drawer.querySelector('.bg-on-background\\/20').style.opacity = '1';
+                }, 10);
+            } else {
+                drawer.querySelector('.animate-slide-in').style.transform = 'translateX(100%)';
+                drawer.querySelector('.bg-on-background\\/20').style.opacity = '0';
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Initialize state
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContent = document.querySelector('.animate-slide-in');
+            drawerContent.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            drawerContent.style.transform = 'translateX(0)';
+        });
+    </script>
+<style>
+        .animate-slide-in {
+            transform: translateX(100%);
+        }
+    </style>
+</body></html>

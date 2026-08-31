@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shipping Management | Atelier Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8fa;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#55442d",
+                      "surface-tint": "#575e70",
+                      "on-secondary-fixed-variant": "#404754",
+                      "surface-container-highest": "#e5e2e3",
+                      "tertiary": "#000000",
+                      "surface-container-low": "#f6f3f4",
+                      "tertiary-fixed": "#f9debf",
+                      "surface-dim": "#dcd9db",
+                      "secondary-fixed": "#dce2f3",
+                      "on-primary-fixed-variant": "#404758",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#dce2f3",
+                      "on-background": "#1b1b1d",
+                      "surface-container": "#f0edee",
+                      "tertiary-container": "#261906",
+                      "on-primary-fixed": "#141b2b",
+                      "on-surface": "#1b1b1d",
+                      "on-error": "#ffffff",
+                      "primary": "#000000",
+                      "surface-bright": "#fcf8fa",
+                      "on-primary": "#ffffff",
+                      "secondary": "#585f6c",
+                      "on-secondary-fixed": "#151c27",
+                      "secondary-fixed-dim": "#c0c7d6",
+                      "primary-fixed-dim": "#c0c6db",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-high": "#eae7e9",
+                      "surface": "#fcf8fa",
+                      "on-tertiary-fixed": "#261906",
+                      "on-secondary-container": "#5e6572",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed-dim": "#dcc2a4",
+                      "inverse-surface": "#303031",
+                      "background": "#fcf8fa",
+                      "outline-variant": "#c6c6cd",
+                      "on-primary-container": "#7d8497",
+                      "surface-variant": "#e5e2e3",
+                      "on-tertiary-container": "#968065",
+                      "inverse-primary": "#c0c6db",
+                      "on-error-container": "#93000a",
+                      "outline": "#76777d",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f3f0f1",
+                      "primary-fixed": "#dce2f7",
+                      "on-surface-variant": "#45464c",
+                      "primary-container": "#141b2b",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "space-xl": "2rem",
+                      "space-sm": "0.5rem",
+                      "space-2xl": "3rem",
+                      "space-xs": "0.25rem",
+                      "space-md": "1rem",
+                      "gutter": "1.5rem",
+                      "container-margin": "2rem",
+                      "space-lg": "1.5rem"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "display": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col p-space-lg z-50">
+<div class="mb-space-xl">
+<h1 class="text-headline-lg font-headline-lg font-bold tracking-tight text-primary">Atelier Admin</h1>
+<p class="text-label-md font-label-md text-secondary mt-1">Premium Retail Ops</p>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="text-label-md font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-label-md font-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-label-md font-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+<span class="text-label-md font-label-md">Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-label-md font-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="text-label-md font-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-space-lg border-t border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up professional portrait of a boutique store manager in a minimalist studio setting, clean lighting, high-end fashion professional look, neutral grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABOxCltQ9G7z4ZaAQKDmwbMh3wwPtWq5y_vH6iLxHS7J0oDPAVGmCkbiPENYDBzyF9UmFsZs2z7eCtR7BGrMfip3KiU4TBeWq4dxJHqXjxAB-IS4k5VcQXUQT3eq6yKER_HTqy5yyrL6Eb5efjhBbG1BFeOk6DQhr_M0tpraprUHqh0ZgFNfF71MGDkUU6jKwqmNAQAWDlSOPHbm0bpRkcpTg7HFmnqfAizJpS_HC_p0A89iX9pxQHDw"/>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Alex Rivera</p>
+<p class="text-caption text-secondary">Operations Lead</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center w-full px-space-xl py-space-sm h-16">
+<div class="flex items-center gap-space-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary scale-90" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Search shipping methods..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-space-xl max-w-[1440px] mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-space-xl">
+<div>
+<h2 class="text-display font-display text-primary">Shipping Management</h2>
+<p class="text-body-md text-secondary mt-1">Manage shipping methods, delivery charges, courier partners, and delivery rules.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-surface border border-outline-variant text-primary font-label-md rounded-lg flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined scale-75" data-icon="filter_list">filter_list</span>
+                        Filters
+                    </button>
+<button class="px-4 py-2 bg-primary text-on-primary font-label-md rounded-lg flex items-center gap-2 hover:bg-opacity-90 transition-all shadow-sm" onclick="toggleDrawer()">
+<span class="material-symbols-outlined scale-75" data-icon="add">add</span>
+                        Add Shipping Method
+                    </button>
+</div>
+</div>
+<!-- Overview Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl">
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="local_shipping">local_shipping</span>
+<span class="text-label-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full">Active</span>
+</div>
+<p class="text-headline-lg font-bold text-on-surface">12</p>
+<p class="text-label-md text-secondary">Active Shipping Methods</p>
+</div>
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="public">public</span>
+</div>
+<p class="text-headline-lg font-bold text-on-surface">48</p>
+<p class="text-label-md text-secondary">Delivery Zones</p>
+</div>
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="handshake">handshake</span>
+</div>
+<p class="text-headline-lg font-bold text-on-surface">06</p>
+<p class="text-label-md text-secondary">Courier Partners</p>
+</div>
+<div class="bg-surface border border-outline-variant p-space-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="pending_actions">pending_actions</span>
+<span class="text-label-sm text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full">+4 New</span>
+</div>
+<p class="text-headline-lg font-bold text-on-surface">142</p>
+<p class="text-label-md text-secondary">Pending Shipments</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Table Section -->
+<div class="lg:col-span-2 space-y-gutter">
+<!-- Shipping Methods Table -->
+<section class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/50">
+<h3 class="text-headline-md font-bold text-on-surface">Shipping Methods</h3>
+<button class="text-primary text-label-md hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low/30">
+<tr>
+<th class="px-space-lg py-4 text-label-md font-medium text-secondary">Method</th>
+<th class="px-space-lg py-4 text-label-md font-medium text-secondary">Courier</th>
+<th class="px-space-lg py-4 text-label-md font-medium text-secondary">Delivery</th>
+<th class="px-space-lg py-4 text-label-md font-medium text-secondary">Charge</th>
+<th class="px-space-lg py-4 text-label-md font-medium text-secondary">Status</th>
+<th class="px-space-lg py-4 text-label-md font-medium text-secondary"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="text-body-md font-semibold text-on-surface">Standard Delivery</div>
+<div class="text-caption text-secondary">All India</div>
+</td>
+<td class="px-space-lg py-5 text-body-md text-on-surface">Delhivery</td>
+<td class="px-space-lg py-5 text-body-md text-on-surface">3-5 Days</td>
+<td class="px-space-lg py-5 text-body-md font-medium text-on-surface">₹99.00</td>
+<td class="px-space-lg py-5">
+<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-caption font-medium border border-green-100">Active</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-secondary">
+<span class="material-symbols-outlined scale-75" data-icon="edit">edit</span>
+</button>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-secondary">
+<span class="material-symbols-outlined scale-75" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="text-body-md font-semibold text-on-surface">Express Shipping</div>
+<div class="text-caption text-secondary">Metro Cities Only</div>
+</td>
+<td class="px-space-lg py-5 text-body-md text-on-surface">Blue Dart</td>
+<td class="px-space-lg py-5 text-body-md text-on-surface">Next Day</td>
+<td class="px-space-lg py-5 text-body-md font-medium text-on-surface">₹249.00</td>
+<td class="px-space-lg py-5">
+<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-caption font-medium border border-green-100">Active</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-secondary">
+<span class="material-symbols-outlined scale-75" data-icon="edit">edit</span>
+</button>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-secondary">
+<span class="material-symbols-outlined scale-75" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="text-body-md font-semibold text-on-surface">Economy Bulk</div>
+<div class="text-caption text-secondary">Orders &gt; 5kg</div>
+</td>
+<td class="px-space-lg py-5 text-body-md text-on-surface">Gati-KWE</td>
+<td class="px-space-lg py-5 text-body-md text-on-surface">7-10 Days</td>
+<td class="px-space-lg py-5 text-body-md font-medium text-on-surface">₹149.00</td>
+<td class="px-space-lg py-5">
+<span class="px-2 py-1 bg-surface-container-highest text-secondary rounded-full text-caption font-medium">Inactive</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-secondary">
+<span class="material-symbols-outlined scale-75" data-icon="edit">edit</span>
+</button>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-secondary">
+<span class="material-symbols-outlined scale-75" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Delivery Zones Section -->
+<section class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-md font-bold text-on-surface">Delivery Zones</h3>
+<button class="text-primary text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined scale-75" data-icon="add">add</span> New Zone
+                            </button>
+</div>
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">North India Metro</h4>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] uppercase font-bold rounded">Primary</span>
+</div>
+<p class="text-caption text-secondary mb-4">Delhi NCR, Chandigarh, Jaipur, Lucknow</p>
+<div class="flex justify-between items-center text-label-sm border-t border-outline-variant pt-3">
+<span class="flex items-center gap-1 text-secondary"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> 2-3 Days</span>
+<span class="font-bold text-on-surface">₹49 Base</span>
+</div>
+</div>
+<div class="p-4 border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">West Coastal Hubs</h4>
+</div>
+<p class="text-caption text-secondary mb-4">Mumbai, Pune, Goa, Ahmedabad</p>
+<div class="flex justify-between items-center text-label-sm border-t border-outline-variant pt-3">
+<span class="flex items-center gap-1 text-secondary"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> 3-4 Days</span>
+<span class="font-bold text-on-surface">₹59 Base</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar Content -->
+<div class="space-y-gutter">
+<!-- Courier Partners Grid -->
+<section class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant">
+<h3 class="text-headline-md font-bold text-on-surface">Courier Partners</h3>
+</div>
+<div class="p-space-lg space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-white rounded border border-outline-variant flex items-center justify-center p-1">
+<img class="w-full object-contain" data-alt="Minimalist vector logo of Delhivery courier service, professional branding on white background, sharp lines, industrial logistics aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQRfqy5BjLGYhq8quksJYJpwVjh9FJAhOMRKbCZ8_F8FGZQ8mpeUtga9XmR2a-5LfIduu5MkfgtqeBHKk70-IE8hKJTqbx-tCOUrlAkEn4xV7OdaWMc3IXrLJ9aeXvqzzRToOXSMztzHar_a3HUYsdsM8VoY_mDm10DLnsPRNrqtyNcgsZA0WHsBImdS7J_WXHS-bJpJs93f7qccQ4npssxAmskV-vpY455vBZWMJKu2bCWGVklQk4Ew"/>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Delhivery</p>
+<p class="text-caption text-green-600">Connected</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-white rounded border border-outline-variant flex items-center justify-center p-1">
+<img class="w-full object-contain" data-alt="Minimalist vector logo of Blue Dart courier service, premium yellow and blue color scheme, logistics company branding, professional studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJexVAFeZpX5NnfR-PztIZW_e_jKMnKnPCX81cylyC7XrHTgLWrQJ6jvvItRM0Nnyft_YZGlLeXw7bSmv9TAfZgrdDbO4KZ68EdDfODHtZV9pkuCXxka5q5-OKTBWwab6tT0TuIvBeU__Z9V2oIq-rEgtkHT0f3j-rcDHiDtNzj1IAe1aqkY70QRVrNFtfJybZfAP7Fp-_6bH9X7VmfWp9NTPeJwfhVKaVC1Gprk3JgUb2yAa63mdYxA"/>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Blue Dart</p>
+<p class="text-caption text-green-600">Connected</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-white rounded border border-outline-variant flex items-center justify-center p-1">
+<img class="w-full object-contain" data-alt="Minimalist vector logo of DTDC courier service, corporate branding, professional logistics identity on white background, sharp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBNoc7t6dOuSMfeIEK4S6vNm87npeVvqP6tB7YalimS8sY7BF5MiSoxUjl4l0SS5UPwSKyQS-veG7tyJrRdorRsRUJD1NGoXzbKf2TFYi_Wa1j3H50LyT-5jNkVX2TdOR0V2x92Veed6vtYSL3R967GdVHeebJTFcdIvGtHKzQn1iZ0nDs052XEvVTycsp5IfmHLdZrTk-rMTCyJiKyqh1ihIdBxYPmg2IRPOVXPv7qlpjnHUR0Uyo_g"/>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">DTDC</p>
+<p class="text-caption text-secondary">Disconnected</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Delivery Rules -->
+<section class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-4 border-b border-outline-variant">
+<h3 class="text-headline-md font-bold text-on-surface">Global Delivery Rules</h3>
+</div>
+<div class="p-space-lg space-y-5">
+<div class="flex items-start gap-3 p-3 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg">
+<span class="material-symbols-outlined scale-90 mt-0.5" data-icon="auto_awesome">auto_awesome</span>
+<div>
+<p class="text-label-md font-bold">Free Shipping Active</p>
+<p class="text-caption opacity-80">Free shipping applies to orders over ₹2,999.00 across all active zones.</p>
+</div>
+</div>
+<div class="space-y-4 pt-2">
+<div class="flex justify-between items-center pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary scale-75" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-body-md">Cash on Delivery</span>
+</div>
+<span class="text-label-sm font-bold bg-surface-container-highest px-2 py-0.5 rounded">Restricted</span>
+</div>
+<div class="flex justify-between items-center pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary scale-75" data-icon="flight">flight</span>
+<span class="text-body-md">International Shipping</span>
+</div>
+<span class="text-label-sm font-bold bg-surface-container-highest px-2 py-0.5 rounded">Disabled</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary scale-75" data-icon="timer">timer</span>
+<span class="text-body-md">Express Threshold</span>
+</div>
+<span class="text-label-sm font-bold text-on-surface">₹4,999.00</span>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-highest text-on-surface font-label-md rounded-lg hover:bg-outline-variant transition-colors">
+                                Edit Global Rules
+                            </button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Side Drawer (Add Shipping Method) -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0" id="side-drawer-overlay" onclick="toggleDrawer()"></div>
+<div class="fixed right-0 top-0 h-screen w-full max-w-[480px] bg-surface shadow-2xl z-[70] translate-x-full transition-transform duration-300 ease-in-out p-space-xl flex flex-col" id="side-drawer">
+<div class="flex items-center justify-between mb-space-xl pb-space-md border-b border-outline-variant">
+<div>
+<h3 class="text-headline-lg font-bold text-on-surface">Add Shipping Method</h3>
+<p class="text-body-md text-secondary">Configure a new fulfillment option.</p>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors" onclick="toggleDrawer()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar space-y-gutter pr-2">
+<div class="space-y-4">
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-2">Method Name</label>
+<input class="w-full p-2.5 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="e.g. Standard Premium Delivery" type="text"/>
+</div>
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-2">Courier Partner</label>
+<select class="w-full p-2.5 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+<option>Delhivery</option>
+<option>Blue Dart</option>
+<option>XpressBees</option>
+<option>Shiprocket</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-2">Base Charge (₹)</label>
+<input class="w-full p-2.5 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="99" type="number"/>
+</div>
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-2">Free Threshold (₹)</label>
+<input class="w-full p-2.5 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="2999" type="number"/>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-bold text-on-surface mb-2">Estimated Delivery Time</label>
+<input class="w-full p-2.5 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="e.g. 3-5 Working Days" type="text"/>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<div class="flex items-center justify-between mb-4">
+<div>
+<p class="text-label-md font-bold text-on-surface">Enable Cash on Delivery</p>
+<p class="text-caption text-secondary">Allow customers to pay at delivery.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-label-md font-bold text-on-surface">Mark as Default Method</p>
+<p class="text-caption text-secondary">Pre-select this method on checkout.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-space-lg flex gap-4">
+<button class="flex-1 py-3 border border-outline-variant text-on-surface font-label-md rounded-lg hover:bg-surface-container-low transition-colors" onclick="toggleDrawer()">
+                Cancel
+            </button>
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md rounded-lg hover:bg-opacity-90 transition-all shadow-md">
+                Create Method
+            </button>
+</div>
+</div>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('side-drawer');
+            const overlay = document.getElementById('side-drawer-overlay');
+            
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        // Ripple Effect or micro-interactions could be added here
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function(e) {
+                this.classList.add('scale-[0.98]');
+            });
+            button.addEventListener('mouseup', function(e) {
+                this.classList.remove('scale-[0.98]');
+            });
+        });
+    </script>
+</body></html>

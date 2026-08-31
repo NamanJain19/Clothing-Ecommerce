@@ -1,0 +1,388 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Account | MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for minimalist feel */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #f9f9f9; }
+        ::-webkit-scrollbar-thumb { background: #000; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5d5f5f",
+                        "outline-variant": "#cfc4c5",
+                        "surface-container": "#eeeeee",
+                        "secondary-container": "#dcdddd",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4c4546",
+                        "surface-tint": "#5e5e5e",
+                        "on-primary-container": "#848484",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "tertiary-container": "#1a1c1c",
+                        "on-primary-fixed-variant": "#474747",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-low": "#f3f3f4",
+                        "tertiary-fixed": "#e2e2e2",
+                        "primary-fixed": "#e2e2e2",
+                        "outline": "#7e7576",
+                        "on-tertiary-container": "#838484",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#000000",
+                        "primary-container": "#1b1b1b",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-dim": "#dadada",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "inverse-primary": "#c6c6c6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-container": "#5f6161",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "surface": "#f9f9f9",
+                        "secondary-fixed": "#e2e2e2",
+                        "background": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "section-gap": "128px",
+                        "margin-mobile": "20px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "button": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="flex-1 flex gap-8 items-center">
+<nav class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors duration-300" href="#">Categories</a>
+<a class="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors duration-300" href="#">New Arrivals</a>
+</nav>
+<button class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="flex-1 text-center">
+<a class="font-headline-lg text-headline-lg tracking-tighter text-primary" href="#">MONOLITH</a>
+</div>
+<div class="flex-1 flex justify-end items-center gap-6">
+<div class="hidden lg:flex items-center border-b border-primary pb-1">
+<span class="material-symbols-outlined text-secondary text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-[10px] font-label-caps w-32 placeholder-secondary" placeholder="SEARCH" type="text">
+</div>
+<button class="text-primary hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-primary border-b border-primary pb-1">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<!-- Page Header -->
+<header class="mb-16">
+<h1 class="font-headline-lg text-headline-lg mb-2">My Account</h1>
+<p class="font-body-lg text-body-lg text-secondary">Manage your profile, orders, addresses, and preferences.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Navigation -->
+<aside class="md:col-span-3">
+<nav class="flex flex-col gap-1 border-l border-outline-variant"><a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-primary -ml-[1px] text-primary" href="#">Dashboard</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">My Orders</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Track Orders</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Wishlist</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Saved Addresses</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Payment Methods</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Account Settings</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Notifications</a>
+<a class="pl-6 py-4 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary" href="#">Help &amp; Support</a>
+<a class="pl-6 py-4 mt-8 font-label-caps text-label-caps uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-error hover:opacity-70" href="#">Logout</a></nav>
+</aside>
+<!-- Right Column: Content -->
+<div class="md:col-span-9 space-y-16">
+<!-- Profile Card -->
+<section class="border border-outline-variant p-8 md:p-12 flex flex-col md:flex-row items-center gap-12 bg-surface-container-lowest">
+<div class="relative">
+<div class="w-32 h-32 rounded-full border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated black and white portrait of a modern man with sharp features and a clean-shaven look, styled for a luxury fashion brand. The lighting is dramatic, high-contrast, and editorial, casting soft shadows while highlighting a minimalist aesthetic. The background is a clean, neutral studio grey, emphasizing the subject's quiet elegance and authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTIU17M8xmnMI3cv5GDrxEhixD4sj3JYa17RBT99qRTTMYbg6td7wjk3TlPG92bJC2wiw0p6WXtef2_JbrHP-pa29YedL-elhING22nMoiHmfSE1FwnIkLJP-AliOwsBSg1V15ehmdn1fM2Bl3DEhT5AgIttE1Fi5ky3eTWJXNoQuAihMilPs64PgHmaf1D-nLbEwOBp6NUGMlEtF-_fl21l99-TzJmubaRmCz6MCya48HPJXOQWXPrg">
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary w-8 h-8 flex items-center justify-center rounded-full border border-surface shadow-md">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 text-center md:text-left space-y-2">
+<h2 class="font-headline-md text-headline-md">Alexander Sterling</h2>
+<p class="font-body-md text-secondary">alexander.sterling@monolith.com</p>
+<p class="font-body-md text-secondary">+1 (555) 012-3456</p>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 font-button text-button uppercase hover:bg-secondary transition-colors duration-500">Edit Profile</button>
+</section>
+<!-- Account Overview -->
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="border border-outline-variant p-6 text-center group hover:bg-primary transition-colors duration-500">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-2 group-hover:text-surface-container transition-colors">Total Orders</p>
+<p class="font-headline-md text-headline-md group-hover:text-on-primary transition-colors">12</p>
+</div>
+<div class="border border-outline-variant p-6 text-center group hover:bg-primary transition-colors duration-500">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-2 group-hover:text-surface-container transition-colors">Active Orders</p>
+<p class="font-headline-md text-headline-md group-hover:text-on-primary transition-colors">1</p>
+</div>
+<div class="border border-outline-variant p-6 text-center group hover:bg-primary transition-colors duration-500">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-2 group-hover:text-surface-container transition-colors">Wishlist Items</p>
+<p class="font-headline-md text-headline-md group-hover:text-on-primary transition-colors">8</p>
+</div>
+<div class="border border-outline-variant p-6 text-center group hover:bg-primary transition-colors duration-500">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-2 group-hover:text-surface-container transition-colors">Saved Addresses</p>
+<p class="font-headline-md text-headline-md group-hover:text-on-primary transition-colors">2</p>
+</div>
+</section>
+<!-- Recent Orders -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h3 class="font-headline-md text-headline-md">Recent Orders</h3>
+<a class="font-label-caps text-label-caps border-b border-primary hover:opacity-60 transition-opacity" href="#">VIEW ALL</a>
+</div>
+<div class="overflow-x-auto border border-outline-variant">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-6 font-label-caps text-label-caps uppercase">Order #</th>
+<th class="p-6 font-label-caps text-label-caps uppercase">Date</th>
+<th class="p-6 font-label-caps text-label-caps uppercase">Status</th>
+<th class="p-6 font-label-caps text-label-caps uppercase">Total</th>
+<th class="p-6 font-label-caps text-label-caps uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-6 font-body-md font-medium">#MON-9821</td>
+<td class="p-6 font-body-md text-secondary">Oct 12, 2024</td>
+<td class="p-6 font-body-md"><span class="px-3 py-1 bg-surface-container-high font-label-caps text-[10px]">SHIPPED</span></td>
+<td class="p-6 font-body-md">$1,240.00</td>
+<td class="p-6 text-right space-x-4">
+<button class="font-label-caps text-[10px] underline hover:text-primary transition-colors">DETAILS</button>
+<button class="font-label-caps text-[10px] underline hover:text-primary transition-colors">TRACK</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-6 font-body-md font-medium">#MON-9784</td>
+<td class="p-6 font-body-md text-secondary">Oct 01, 2024</td>
+<td class="p-6 font-body-md"><span class="px-3 py-1 bg-surface-container-high font-label-caps text-[10px]">DELIVERED</span></td>
+<td class="p-6 font-body-md">$450.00</td>
+<td class="p-6 text-right space-x-4">
+<button class="font-label-caps text-[10px] underline hover:text-primary transition-colors">DETAILS</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-6 font-body-md font-medium">#MON-9655</td>
+<td class="p-6 font-body-md text-secondary">Sep 15, 2024</td>
+<td class="p-6 font-body-md"><span class="px-3 py-1 bg-surface-container-high font-label-caps text-[10px]">DELIVERED</span></td>
+<td class="p-6 font-body-md">$2,100.00</td>
+<td class="p-6 text-right space-x-4">
+<button class="font-label-caps text-[10px] underline hover:text-primary transition-colors">DETAILS</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Two column grid for Addresses and Payments -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Saved Addresses -->
+<section class="border border-outline-variant p-8 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md mb-6">Saved Addresses</h3>
+<div class="mb-8">
+<p class="font-label-caps text-label-caps text-secondary mb-2">PRIMARY DELIVERY</p>
+<p class="font-body-md font-bold">Alexander Sterling</p>
+<p class="font-body-md text-secondary">4287 Fifth Avenue, Suite 12B</p>
+<p class="font-body-md text-secondary">New York, NY 10018</p>
+<p class="font-body-md text-secondary">United States</p>
+</div>
+</div>
+<button class="border border-primary text-primary px-6 py-3 font-button text-button uppercase hover:bg-primary hover:text-on-primary transition-all duration-500 w-full">Add New Address</button>
+</section>
+<!-- Payment Methods -->
+<section class="border border-outline-variant p-8 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md mb-6">Payment Methods</h3>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-4 p-4 border border-outline-variant">
+<span class="material-symbols-outlined text-2xl">credit_card</span>
+<div class="flex-1">
+<p class="font-body-md font-medium">Visa Ending in 4421</p>
+<p class="text-[10px] font-label-caps text-secondary">EXP 04/27</p>
+</div>
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<div class="flex items-center gap-4 p-4 border border-outline-variant">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+<div class="flex-1">
+<p class="font-body-md font-medium">UPI / Apple Pay</p>
+<p class="text-[10px] font-label-caps text-secondary">CONNECTED</p>
+</div>
+</div>
+</div>
+</div>
+<button class="border border-primary text-primary px-6 py-3 font-button text-button uppercase hover:bg-primary hover:text-on-primary transition-all duration-500 w-full">Manage Payments</button>
+</section>
+</div>
+<!-- Account Settings -->
+<section>
+<h3 class="font-headline-md text-headline-md mb-8">Account Settings</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<a class="group border border-outline-variant p-8 hover:bg-primary transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-3xl mb-4 group-hover:text-on-primary">lock</span>
+<p class="font-label-caps text-label-caps uppercase group-hover:text-surface-container mb-1">Security</p>
+<p class="font-body-md font-bold group-hover:text-on-primary">Change Password</p>
+</a>
+<a class="group border border-outline-variant p-8 hover:bg-primary transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-3xl mb-4 group-hover:text-on-primary">notifications</span>
+<p class="font-label-caps text-label-caps uppercase group-hover:text-surface-container mb-1">Preferences</p>
+<p class="font-body-md font-bold group-hover:text-on-primary">Notifications</p>
+</a>
+<a class="group border border-outline-variant p-8 hover:bg-primary transition-all duration-500" href="#">
+<span class="material-symbols-outlined text-3xl mb-4 group-hover:text-on-primary">visibility_off</span>
+<p class="font-label-caps text-label-caps uppercase group-hover:text-surface-container mb-1">Legal</p>
+<p class="font-body-md font-bold group-hover:text-on-primary">Privacy Settings</p>
+</a>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Monolith Journal Newsletter -->
+<section class="bg-surface-container border-t border-b border-outline-variant py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 items-center gap-gutter">
+<div class="md:col-span-6">
+<h2 class="font-headline-lg text-headline-lg mb-4">The Monolith Journal</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-lg">Curation, insights, and exclusive collection previews delivered directly to your inbox. Subscribe to our weekly editorial.</p>
+</div>
+<div class="md:col-span-6">
+<form class="flex flex-col sm:flex-row gap-0 border-b border-primary">
+<input class="flex-1 bg-transparent border-none focus:ring-0 px-0 py-4 font-label-caps text-label-caps placeholder-secondary" placeholder="YOUR EMAIL ADDRESS" type="email">
+<button class="font-label-caps text-label-caps uppercase py-4 sm:px-8 hover:tracking-widest transition-all duration-500" type="submit">SUBSCRIBE</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface text-primary border-t border-outline-variant w-full mt-section-gap">
+<div class="grid grid-cols-12 gap-gutter px-margin-desktop py-section-gap w-full max-w-container-max mx-auto">
+<div class="col-span-12 md:col-span-4 mb-12 md:mb-0">
+<a class="font-headline-md text-headline-md text-primary block mb-6" href="#">MONOLITH</a>
+<p class="font-body-md text-secondary max-w-xs leading-relaxed">
+                    A destination for modern minimalism and timeless luxury fashion since 2012. Curating the future of aesthetic integrity.
+                </p>
+</div>
+<div class="col-span-6 md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-6">Explore</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-md text-secondary hover:text-primary transition-colors underline decoration-1 underline-offset-4" href="#">About</a></li>
+<li class=""><a class="font-body-md text-secondary hover:text-primary transition-colors underline decoration-1 underline-offset-4" href="#">Journal</a></li>
+<li class=""><a class="font-body-md text-secondary hover:text-primary transition-colors underline decoration-1 underline-offset-4" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div class="col-span-6 md:col-span-2">
+<h4 class="font-label-caps text-label-caps uppercase mb-6">Assistance</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-md text-secondary hover:text-primary transition-colors underline decoration-1 underline-offset-4" href="#">Shipping</a></li>
+<li class=""><a class="font-body-md text-secondary hover:text-primary transition-colors underline decoration-1 underline-offset-4" href="#">Returns</a></li>
+<li class=""><a class="font-body-md text-secondary hover:text-primary transition-colors underline decoration-1 underline-offset-4" href="#">Newsletter</a></li>
+</ul>
+</div>
+<div class="col-span-12 md:col-span-4 flex md:justify-end items-end">
+<p class="font-body-md text-secondary text-sm">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll interaction for the navigation
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                header.classList.remove('shadow-sm');
+                return;
+            }
+            if (currentScroll > lastScroll) {
+                // Downscroll
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Upscroll
+                header.style.transform = 'translateY(0)';
+                header.classList.add('shadow-sm');
+            }
+            lastScroll = currentScroll;
+            header.style.transition = 'transform 0.4s ease-in-out';
+        });
+    </script>
+
+
+</body></html>

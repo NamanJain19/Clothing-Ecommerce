@@ -1,0 +1,232 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reset Password | MONOLITH LUXURY</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#7e7576",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#e2e2e2",
+                    "primary": "#000000",
+                    "surface-container-high": "#e8e8e8",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "outline-variant": "#cfc4c5",
+                    "on-secondary-container": "#5f6161",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-primary-container": "#848484",
+                    "tertiary": "#000000",
+                    "surface-dim": "#dadada",
+                    "on-tertiary-container": "#838484",
+                    "inverse-surface": "#2f3131",
+                    "surface-container": "#eeeeee",
+                    "on-surface": "#1a1c1c",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f9f9f9",
+                    "on-error": "#ffffff",
+                    "secondary": "#5d5f5f",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-primary-fixed-variant": "#474747",
+                    "tertiary-container": "#1a1c1c",
+                    "inverse-primary": "#c6c6c6",
+                    "surface": "#f9f9f9",
+                    "background": "#f9f9f9",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-container-low": "#f3f3f4",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-tint": "#5e5e5e",
+                    "primary-fixed": "#e2e2e2",
+                    "secondary-container": "#dcdddd",
+                    "on-surface-variant": "#4c4546",
+                    "primary-container": "#1b1b1b",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#c6c6c6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "32px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "section-gap": "128px",
+                    "margin-mobile": "20px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* Smooth subtle focus ring for luxury feel */
+        .input-underlined:focus {
+            outline: none;
+            border-bottom-color: #000000;
+        }
+
+        /* Fade-in animation for editorial content */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<main class="min-h-screen grid grid-cols-1 md:grid-cols-2">
+<!-- Left Section: Editorial Image -->
+<section class="hidden md:block relative h-screen sticky top-0 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4');">
+<!-- Subtle Tonal Layering Overlay -->
+<div class="absolute inset-0 bg-black/5 mix-blend-multiply"></div>
+</div>
+<!-- Branding Overlay -->
+<div class="absolute top-12 left-12 z-10">
+<a class="font-display-lg text-headline-lg tracking-tighter text-on-primary mix-blend-difference" href="/">
+                    MONOLITH
+                </a>
+</div>
+<!-- Image Caption/Detail -->
+<div class="absolute bottom-12 left-12 z-10 max-w-xs animate-fade-in">
+<span class="font-label-caps text-label-caps text-on-primary mix-blend-difference block mb-2">COLLECTION 2024</span>
+<p class="font-body-md text-on-primary mix-blend-difference text-sm opacity-80 leading-relaxed">
+                    Architectural silhouettes and structured wools redefine the modern wardrobe.
+                </p>
+</div>
+</section>
+<!-- Right Section: Reset Form -->
+<section class="flex items-center justify-center bg-background px-6 py-12 md:px-margin-desktop">
+<div class="w-full max-w-md flex flex-col gap-10 animate-fade-in">
+<!-- Logo for Mobile -->
+<div class="md:hidden mb-4">
+<span class="font-display-lg text-headline-lg tracking-tighter text-primary">MONOLITH</span>
+</div>
+<!-- Header -->
+<div class="flex flex-col gap-3">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Reset Password</h1>
+<p class="font-body-lg text-body-lg text-secondary">
+                        Please create a new secure password for your account.
+                    </p>
+</div>
+<!-- Form -->
+<form class="flex flex-col gap-8" onsubmit="event.preventDefault();">
+<!-- Password Field -->
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-secondary" for="new_password">New Password</label>
+<div class="relative flex items-center">
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-4 px-0 font-body-md text-primary placeholder:text-outline-variant focus:border-primary focus:ring-0 transition-colors input-underlined" id="new_password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-0 text-secondary hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password Field -->
+<div class="flex flex-col gap-2 relative">
+<label class="font-label-caps text-label-caps text-secondary" for="confirm_password">Confirm Password</label>
+<div class="relative flex items-center">
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant py-4 px-0 font-body-md text-primary placeholder:text-outline-variant focus:border-primary focus:ring-0 transition-colors input-underlined" id="confirm_password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-0 text-secondary hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Security Note -->
+<div class="flex items-start gap-3 py-4 border-t border-b border-surface-container">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="info">info</span>
+<p class="text-xs font-body-md text-secondary leading-relaxed">
+                            Passwords must be at least 12 characters and contain a mix of letters, numbers, and symbols to ensure maximum account protection.
+                        </p>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-on-primary py-5 font-button text-button uppercase tracking-widest hover:bg-neutral-800 transition-all duration-500 ease-in-out">
+                        Update Password
+                    </button>
+</form>
+<!-- Footer Navigation -->
+<div class="flex flex-col items-center gap-6 mt-4">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-2 group" href="/login">
+<span class="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform" data-icon="arrow_back">arrow_back</span>
+                        Back to Login
+                    </a>
+</div>
+<!-- Copyright Footer -->
+<div class="mt-auto pt-12 text-center md:text-left">
+<p class="font-label-caps text-[10px] text-outline-variant tracking-widest">
+                        © 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple Interaction: Toggle password visibility
+        document.querySelectorAll('button[type="button"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                const icon = this.querySelector('.material-symbols-outlined');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.textContent = 'visibility_off';
+                } else {
+                    input.type = 'password';
+                    icon.textContent = 'visibility';
+                }
+            });
+        });
+    </script>
+</body></html>

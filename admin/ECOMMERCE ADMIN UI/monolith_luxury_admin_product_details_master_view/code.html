@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Details Master | MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8fa;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e5e2e3;
+            border-radius: 10px;
+        }
+        /* Custom interactions */
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#000000",
+                        "background": "#fcf8fa",
+                        "tertiary-fixed": "#f9debf",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "on-primary-fixed": "#141b2b",
+                        "outline": "#76777d",
+                        "surface-container": "#f0edee",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#575e70",
+                        "secondary-fixed": "#dce2f3",
+                        "on-background": "#1b1b1d",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#45464c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fcf8fa",
+                        "on-secondary-container": "#5e6572",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c0c6db",
+                        "primary-fixed": "#dce2f7",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f6f3f4",
+                        "on-primary-fixed-variant": "#404758",
+                        "surface-container-highest": "#e5e2e3",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3f0f1",
+                        "tertiary": "#000000",
+                        "surface-variant": "#e5e2e3",
+                        "surface-container-high": "#eae7e9",
+                        "secondary-container": "#dce2f3",
+                        "surface-bright": "#fcf8fa",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-container": "#968065",
+                        "inverse-surface": "#303031",
+                        "surface-dim": "#dcd9db",
+                        "secondary": "#585f6c",
+                        "on-tertiary-fixed": "#261906",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-secondary-fixed-variant": "#404754",
+                        "primary-container": "#141b2b",
+                        "on-surface": "#1b1b1d",
+                        "tertiary-container": "#261906",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "on-primary-container": "#7d8497",
+                        "on-secondary-fixed": "#151c27",
+                        "primary-fixed-dim": "#c0c6db",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-md": "1rem",
+                        "space-xl": "2rem",
+                        "gutter": "1.5rem",
+                        "space-2xl": "3rem",
+                        "container-margin": "2rem",
+                        "space-xs": "0.25rem",
+                        "space-sm": "0.5rem",
+                        "space-lg": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col p-space-md z-50">
+<div class="mb-space-2xl px-4">
+<h1 class="font-display text-display font-black tracking-tighter text-on-surface">MONOLITH</h1>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-widest text-[10px]">Admin Terminal</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Active Tab: Products -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-md">Categories</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">collections</span>
+<span class="font-label-md">Collections</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<span class="font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Analytics</span>
+</a>
+</nav>
+<div class="pt-space-md border-t border-outline-variant mt-space-md">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- MAIN WRAPPER -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- HEADER -->
+<header class="sticky top-0 z-40 w-full h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-space-xl">
+<div class="flex items-center gap-space-md w-1/2">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-label-md focus:ring-1 focus:ring-primary" placeholder="Search operations, products, or orders..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-space-lg">
+<div class="text-right">
+<p class="font-label-md text-on-surface font-bold">Julian Vane</p>
+<p class="text-caption text-on-surface-variant">Chief Operations</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container-highest" data-alt="A professional studio portrait of a high-end luxury retail manager, wearing a clean black turtleneck, soft cinematic lighting, neutral gray background, modern professional aesthetic for a corporate dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw3HqX9Iis5FIIyB8bVKbVvnI0QyEpm_ECADR55wX-lCKr2F4vZ9dpi39KzOD-aKSHU3LtfVP6V3XjBGOtkCHy_2yzS3v59Sh36e6_SDnTICpl2AlvOAtuZEwtJ8ECTSvBMZqNmRujuOm_5nuTJJgjWsgc0GttEir0_7gWgCJqnlWKLXi4JEtmv7MQNoRi7n0j4H_Od8m6y5fD9_GDO0uGVVyO67fJBvfZdTzTCnvEGZoCE74-T13Q0Q"/>
+</div>
+</div>
+</header>
+<!-- CONTENT CANVAS -->
+<div class="flex-1 p-space-xl max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs & Header Actions -->
+<div class="flex justify-between items-end mb-space-xl">
+<div>
+<div class="flex items-center gap-2 text-caption text-on-surface-variant mb-2">
+<span>Catalogue</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Outerwear</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-medium">Merino Wool Overcoat</span>
+</div>
+<h2 class="font-display text-display font-bold text-primary tracking-tight">Merino Wool Overcoat</h2>
+<p class="text-on-surface-variant font-body-md mt-1">SKU: MW-OC-2024-BK • Winter 24 Collection</p>
+</div>
+<div class="flex gap-space-md">
+<button class="px-space-lg py-2.5 bg-surface border border-outline-variant text-primary rounded-lg font-label-md hover:bg-surface-container-low transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+                        Duplicate
+                    </button>
+<button class="px-space-xl py-2.5 bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary/90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                        Edit Product
+                    </button>
+</div>
+</div>
+<!-- TWO COLUMN GRID -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN (70%) -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Product Gallery -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6">
+<div class="grid grid-cols-5 gap-4">
+<div class="col-span-4 relative group overflow-hidden rounded-lg bg-surface-container-low aspect-[4/3]">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 cursor-zoom-in" data-alt="A high-end editorial product shot of a charcoal black Merino Wool Overcoat, draped elegantly on a minimalist mannequin. Soft directional lighting highlights the rich texture of the wool. The background is a clean, neutral architectural space, modern luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZIIBx-Fw_e5kSVhyXr0wCsDUCn8tVH0suiOWEb3H9YLXZ2j8Ch_5-6EakvUdrID7a8JUGvd1PQ1Xck76bbd_Hieqj6yYn-9iyUMwcFlmAhWWQSYsUuMb1pqACdnnSWqk6yjo-uZlZ83uyF6e45pqrB2scT1Wiv-PWpbZROtwNkDYWn_AjHNJ8gRadN81095lTE2URFr57j4FE9xNShpu62R_NNNmyOut2uuq0oxyet5PsScLphLyR8g"/>
+<button class="absolute bottom-4 right-4 bg-surface/80 backdrop-blur-md p-2 rounded-lg text-primary shadow-sm">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+</div>
+<div class="col-span-1 space-y-4">
+<div class="aspect-square rounded-lg border-2 border-primary overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Close-up detail of high-quality merino wool fabric, charcoal black, soft lighting, luxury texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD428Xxv5LRionj4bQLzNMGqDsW8peML7ozuhDn0HaUJ6dL8CPZ2HQcIRoF84X_qy7_dJG0W7T3GbBx4AJxHBqY4cFQI8r8m2Ltfyto7hlGAgcDguhZyCb0veCT7PaiNM8tisPJKJJ33IOW1aSewTceH-_9GFHrxPjmXmrMjvdoJ2seaNUynofmVH3-gS5mWBNM8h3qF7zswhXkNq07qTx5UiWlrW5UfZxPne2sfGA9pT0GrUVjiS2EPg"/>
+</div>
+<div class="aspect-square rounded-lg border border-outline-variant overflow-hidden cursor-pointer hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="Side profile view of a long charcoal wool overcoat, professional studio lighting, minimalist fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxIVjtVh1tcEWfK0GowHNzglUgmvdKp2HglAZHmLoqsJRZm0OuUwUOzHJmUzakYcSGYM42YH1lfH0wk3aMwDuS8DN4uk92niirIU5oC25JtqKGi4dn85Aq2-LFqNAWvzHTnN5EsHTzPA_fhT4UVJ1o2TAh5Mvf9exQ6cnmNAqysA2RzUkuPrNsFNQq-UkUHXuCyIOZDAGonyCJrL3Kw6_iKAZA4YBdFn1m-svFp_ArSAxoKFr384sE0A"/>
+</div>
+<div class="aspect-square rounded-lg border border-outline-variant overflow-hidden cursor-pointer hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="Interior lining detail of a luxury overcoat showing silk finish and internal pocket, high-end craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa1orUusML865tgOhLDiVdn9PDE41-xuKZKOYYkvm41d8j1P5PLf4I4TCsodbCgEw4ynMNXGTJn5UJZA2BlT0VifYWn0ezESNMPtIaBadhSGMw1QTunjBcEe_7F4hyN0WKOBr-SgXGsVVEEuE09Nc96tka7YJSTZPa0PR1HH2P31HoCVsmIo3Z7f2zQqnt98DHVc0I4fzhipApDyyXe7LfdzMvcvq-9Mk0J9iq3D9ha5fF_GdeqtPkFA"/>
+</div>
+<button class="w-full aspect-square rounded-lg border border-dashed border-outline-variant flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">add_a_photo</span>
+<span class="text-[10px] font-medium mt-1">Add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Product Information -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-primary">Core Details</h3>
+<span class="text-caption text-on-surface-variant">Last updated 2h ago</span>
+</div>
+<div class="grid grid-cols-2 gap-x-space-xl gap-y-space-lg">
+<div>
+<label class="block text-caption font-medium text-on-surface-variant uppercase mb-1">Brand</label>
+<p class="font-body-lg font-semibold">MONOLITH Signature</p>
+</div>
+<div>
+<label class="block text-caption font-medium text-on-surface-variant uppercase mb-1">Gender</label>
+<p class="font-body-lg font-semibold">Unisex / Menswear</p>
+</div>
+<div class="col-span-2">
+<label class="block text-caption font-medium text-on-surface-variant uppercase mb-2">Description</label>
+<div class="font-body-md text-on-surface-variant space-y-3 leading-relaxed">
+<p>Our definitive Winter 24 overcoat is crafted from 100% sustainably sourced Italian Merino wool. Designed with a structured shoulder and a slightly oversized silhouette to allow for effortless layering over tailored knitwear.</p>
+<ul class="list-disc pl-5 space-y-1">
+<li>Double-breasted front with horn buttons</li>
+<li>Internal silk-blend lining in deep obsidian</li>
+<li>Dual exterior welt pockets and hidden interior chest pocket</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant">
+<h4 class="font-label-md font-bold mb-4">Configurations &amp; Variants</h4>
+<div class="flex flex-wrap gap-8">
+<div>
+<label class="block text-caption text-on-surface-variant mb-2">Available Sizes</label>
+<div class="flex gap-2">
+<span class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant font-label-md">XS</span>
+<span class="w-10 h-10 flex items-center justify-center rounded-lg border border-primary bg-primary text-on-primary font-label-md">S</span>
+<span class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant font-label-md">M</span>
+<span class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant font-label-md">L</span>
+<span class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant font-label-md opacity-40">XL</span>
+</div>
+</div>
+<div>
+<label class="block text-caption text-on-surface-variant mb-2">Colorway</label>
+<div class="flex gap-2">
+<div class="w-10 h-10 rounded-full bg-[#111827] ring-2 ring-offset-2 ring-primary cursor-pointer" title="Obsidian Black"></div>
+<div class="w-10 h-10 rounded-full bg-[#374151] hover:scale-110 transition-transform cursor-pointer" title="Slate Grey"></div>
+<div class="w-10 h-10 rounded-full bg-[#E5E7EB] hover:scale-110 transition-transform cursor-pointer" title="Pearl White"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Orders -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-primary">Sales Velocity</h3>
+<a class="text-label-md text-primary font-bold hover:underline" href="#">View All Sales</a>
+</div>
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Order ID</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Customer</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Qty</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Status</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Date</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-mono text-sm">#MN-88219</td>
+<td class="px-6 py-4 font-medium">Alexander Wright</td>
+<td class="px-6 py-4">01</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Fulfilled</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">Oct 24, 2024</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-mono text-sm">#MN-88204</td>
+<td class="px-6 py-4 font-medium">Elena Rossi</td>
+<td class="px-6 py-4">02</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-wider">In Transit</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">Oct 23, 2024</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-mono text-sm">#MN-88198</td>
+<td class="px-6 py-4 font-medium">Hiroshi Sato</td>
+<td class="px-6 py-4">01</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Fulfilled</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-sm">Oct 22, 2024</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- Customer Reviews -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-2">
+<h3 class="font-headline-md text-primary">Market Sentiment</h3>
+<div class="flex items-center gap-2">
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star_half</span>
+</div>
+<span class="font-bold text-label-md">4.8</span>
+<span class="text-on-surface-variant text-caption">(42 Reviews)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant hover-lift">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold">SM</div>
+<div>
+<p class="text-label-md font-bold">Sarah Miller</p>
+<div class="flex items-center gap-1 text-[10px] text-green-600 font-bold uppercase">
+<span class="material-symbols-outlined text-[12px]">verified</span> Verified Buyer
+                                            </div>
+</div>
+</div>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant">The cut is impeccable. It feels like a bespoke piece from Savile Row. Heavy enough for true winter but breathes exceptionally well.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant hover-lift">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold">JD</div>
+<div>
+<p class="text-label-md font-bold">James Dupont</p>
+<div class="flex items-center gap-1 text-[10px] text-green-600 font-bold uppercase">
+<span class="material-symbols-outlined text-[12px]">verified</span> Verified Buyer
+                                            </div>
+</div>
+</div>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+<span class="material-symbols-outlined text-[14px]">star_outline</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant">Stunning overcoat. Only minor issue was shipping delay to Geneva, but customer service was excellent.</p>
+</div>
+</div>
+</section>
+<!-- Bottom Actions -->
+<div class="pt-8 border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-space-lg">
+<button class="text-label-md text-on-surface-variant hover:text-error transition-colors font-medium">Archive Product</button>
+<button class="text-label-md text-error hover:underline transition-colors font-bold">Delete Permanently</button>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 text-label-md font-medium text-on-surface-variant">Discard Changes</button>
+<button class="px-8 py-2 bg-primary text-on-primary rounded-lg font-bold">Save Master Record</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (30%) -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Sticky Summary Card -->
+<div class="sticky top-24 space-y-gutter">
+<section class="bg-primary text-on-primary rounded-xl p-6 shadow-xl">
+<div class="flex justify-between items-center mb-6">
+<span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-green-500/30">Active • Live</span>
+<span class="material-symbols-outlined cursor-pointer hover:rotate-90 transition-transform">more_vert</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="text-caption opacity-70">Retail Price</span>
+<span class="font-display text-2xl font-bold">$1,250.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="opacity-70">Wholesale Cost</span>
+<span class="font-medium">$420.00</span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-white/10">
+<span class="font-bold text-green-400">Net Profit</span>
+<span class="font-bold text-green-400">+$830.00 (66.4%)</span>
+</div>
+</div>
+<button class="w-full mt-6 bg-white text-primary py-3 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+                                Update Inventory
+                            </button>
+</section>
+<!-- Inventory Details -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6">
+<h4 class="font-label-md font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">warehouse</span>
+                                Stock Management
+                            </h4>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">In Stock</span>
+<span class="text-xl font-bold">142</span>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<span class="block text-[10px] uppercase text-on-surface-variant font-bold">Reserved</span>
+<span class="text-xl font-bold">08</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Low Stock Alert</span>
+<span class="font-bold">At 15 Units</span>
+</div>
+<div class="flex justify-between text-sm items-center">
+<span class="text-on-surface-variant">Barcode (EAN)</span>
+<span class="font-mono bg-surface-container-low px-2 py-1 rounded text-xs">8829100428</span>
+</div>
+</div>
+</section>
+<!-- Shipping Logistics -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6">
+<h4 class="font-label-md font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                                Logistics
+                            </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Package Weight</span>
+<span class="font-medium">1.85 kg</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Dimensions</span>
+<span class="font-medium">60 x 40 x 10 cm</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Shipping Class</span>
+<span class="font-bold px-2 py-0.5 bg-secondary-container rounded text-xs">Luxury Express</span>
+</div>
+</div>
+</section>
+<!-- SEO Module -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6">
+<h4 class="font-label-md font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">search_insights</span>
+                                SEO Search Preview
+                            </h4>
+<div class="space-y-4">
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Meta Title</label>
+<div class="text-blue-700 font-medium text-sm hover:underline cursor-pointer">Merino Wool Overcoat | Luxury Outerwear | MONOLITH</div>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">URL Slug</label>
+<div class="flex items-center text-green-700 text-xs">
+<span>monolith.com/products/</span>
+<span class="bg-green-50 px-1 font-medium">merino-wool-overcoat-winter-24</span>
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Meta Description</label>
+<p class="text-xs text-on-surface-variant line-clamp-2">Discover the definitive Merino Wool Overcoat from MONOLITH's Winter 24 collection. Sustainably sourced Italian wool...</p>
+</div>
+<button class="text-xs text-primary font-bold hover:underline">Edit SEO Data</button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<footer class="mt-auto h-16 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center px-space-xl text-caption text-on-surface-variant">
+<div>
+                © 2024 MONOLITH Luxury Retail Operations. All rights reserved.
+            </div>
+<div class="flex gap-space-lg">
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                    System Status
+                </a>
+</div>
+</footer>
+</main>
+<script>
+        // Simple interactive micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('opacity-70', 'scale-[0.98]');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('opacity-70', 'scale-[0.98]');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('opacity-70', 'scale-[0.98]');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/10');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/10');
+        });
+    </script>
+</body></html>

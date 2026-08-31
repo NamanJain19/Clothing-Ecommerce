@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Montserrat", "Inter", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "Montserrat", "Inter", monospace;
+  --font-headline-md: "Playfair Display", Georgia, serif;
+  --font-headline-lg: "Playfair Display", Georgia, serif;
+  --font-label-caps: "Montserrat", sans-serif;
+  --font-button: "Montserrat", sans-serif;
+  --font-body-md: "Montserrat", sans-serif;
+  --font-display-lg-mobile: "Playfair Display", Georgia, serif;
+  --font-display-lg: "Playfair Display", Georgia, serif;
+  --font-body-lg: "Montserrat", sans-serif;
+
+  --color-error: #ba1a1a;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-bright: #f9f9f9;
+  --color-on-surface-variant: #4c4546;
+  --color-surface-variant: #e2e2e2;
+  --color-on-primary-container: #848484;
+  --color-secondary-container: #dcdddd;
+  --color-on-tertiary-fixed-variant: #454747;
+  --color-surface-container-highest: #e2e2e2;
+  --color-on-background: #1a1c1c;
+  --color-error-container: #ffdad6;
+  --color-on-secondary-container: #5f6161;
+  --color-on-surface: #1a1c1c;
+  --color-on-secondary: #ffffff;
+  --color-on-primary-fixed: #1b1b1b;
+  --color-on-secondary-fixed-variant: #454747;
+  --color-inverse-on-surface: #f0f1f1;
+  --color-primary-fixed-dim: #c6c6c6;
+  --color-on-tertiary-container: #838484;
+  --color-tertiary-fixed: #e2e2e2;
+  --color-tertiary-fixed-dim: #c6c6c6;
+  --color-primary-fixed: #e2e2e2;
+  --color-on-primary-fixed-variant: #474747;
+  --color-surface: #f9f9f9;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary: #ffffff;
+  --color-primary: #000000;
+  --color-background: #f9f9f9;
+  --color-tertiary: #000000;
+  --color-secondary: #5d5f5f;
+  --color-outline: #7e7576;
+  --color-on-tertiary-fixed: #1a1c1c;
+  --color-surface-container: #eeeeee;
+  --color-on-secondary-fixed: #1a1c1c;
+  --color-surface-tint: #5e5e5e;
+  --color-surface-container-high: #e8e8e8;
+  --color-outline-variant: #cfc4c5;
+  --color-surface-dim: #dadada;
+  --color-on-error-container: #93000a;
+  --color-primary-container: #1b1b1b;
+  --color-tertiary-container: #1a1c1c;
+  --color-secondary-fixed-dim: #c6c6c7;
+  --color-surface-container-low: #f3f3f4;
+  --color-inverse-primary: #c6c6c6;
+  --color-secondary-fixed: #e2e2e2;
+  --color-on-error: #ffffff;
+  --color-inverse-surface: #2f3131;
+
+  --spacing-section-gap: 128px;
+  --spacing-margin-desktop: 64px;
+  --spacing-gutter: 32px;
+  --spacing-container-max: 1440px;
+  --spacing-unit: 8px;
+  --spacing-margin-mobile: 20px;
+
+  --font-headline-md: "Playfair Display", serif;
+  --font-headline-lg: "Playfair Display", serif;
+  --font-label-caps: "Montserrat", sans-serif;
+  --font-button: "Montserrat", sans-serif;
+  --font-body-md: "Montserrat", sans-serif;
+  --font-display-lg-mobile: "Playfair Display", serif;
+  --font-display-lg: "Playfair Display", serif;
+  --font-body-lg: "Montserrat", sans-serif;
+
+  --text-headline-md: 32px;
+  --text-headline-md--line-height: 40px;
+  --text-headline-md--font-weight: 400;
+
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 48px;
+  --text-headline-lg--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.15em;
+  --text-label-caps--font-weight: 600;
+
+  --text-button: 14px;
+  --text-button--line-height: 20px;
+  --text-button--letter-spacing: 0.1em;
+  --text-button--font-weight: 500;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-display-lg-mobile: 48px;
+  --text-display-lg-mobile--line-height: 56px;
+  --text-display-lg-mobile--letter-spacing: -0.01em;
+  --text-display-lg-mobile--font-weight: 400;
+
+  --text-display-lg: 72px;
+  --text-display-lg--line-height: 84px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 400;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 32px;
+  --text-body-lg--letter-spacing: 0.01em;
+  --text-body-lg--font-weight: 300;
+}
+
+@utility text-display-lg {
+  font-size: 72px;
+  line-height: 84px;
+  letter-spacing: -0.02em;
+  font-family: "Playfair Display", serif;
+}
+
+@utility text-display-lg-mobile {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.01em;
+  font-family: "Playfair Display", serif;
+}
+
+@utility text-headline-lg {
+  font-size: 40px;
+  line-height: 48px;
+  font-family: "Playfair Display", serif;
+}
+
+@utility text-headline-md {
+  font-size: 32px;
+  line-height: 40px;
+  font-family: "Playfair Display", serif;
+}
+
+@utility text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+@utility text-button {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+}
+
+@utility text-body-lg {
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: 0.01em;
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+}
+
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+}
+
+@utility max-w-container-max {
+  max-width: 1440px;
+}
+
+@utility px-margin-desktop {
+  padding-left: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+}
+
+@utility px-margin-mobile {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@utility py-section-gap {
+  padding-top: clamp(48px, 6vw, 96px);
+  padding-bottom: clamp(48px, 6vw, 96px);
+}
+
+@utility pt-section-gap {
+  padding-top: clamp(48px, 5vw, 80px);
+}
+
+@utility pb-section-gap {
+  padding-bottom: clamp(48px, 5vw, 80px);
+}
+
+@utility gap-gutter {
+  gap: clamp(16px, 2.5vw, 32px);
+}
+
+@utility font-display-lg {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+@utility font-display-lg-mobile {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+@utility font-headline-lg {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+@utility font-headline-md {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+@utility font-label-caps {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.15em;
+}
+
+@utility font-button {
+  font-family: "Montserrat", sans-serif;
+}
+
+@utility font-body-lg {
+  font-family: "Montserrat", sans-serif;
+}
+
+@utility font-body-md {
+  font-family: "Montserrat", sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.nav-scrolled {
+  background-color: white !important;
+  color: black !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+
+.editorial-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================================
+   GLOBAL GOOGLE FONTS & TABULAR NUMERALS (ALL DIGITS & TEXT)
+   ======================================================== */
+
+body {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings & Titles in Refined Luxury Normal Weight (400) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-headline-lg,
+.font-headline-md,
+.font-display-lg,
+.font-display-lg-mobile,
+.font-editorial,
+.font-serif {
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-weight: 400 !important;
+  letter-spacing: normal;
+}
+
+/* Tabular lining digits for all prices (₹), quantities, order numbers, and stats */
+input,
+button,
+select,
+textarea,
+table,
+.font-mono {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ========================================================
+   DARK MODE LUXURY STYLING TOKENS & OVERRIDES
+   ======================================================== */
+
+.dark {
+  color-scheme: dark;
+  --color-background: #090a0b;
+  --color-surface: #111214;
+  --color-surface-container: #17181a;
+  --color-surface-container-low: #131415;
+  --color-surface-container-lowest: #0c0d0e;
+  --color-surface-container-high: #1f2124;
+  --color-surface-container-highest: #282a2e;
+  --color-primary: #f5f5f5;
+  --color-on-primary: #0a0a0a;
+  --color-secondary: #9ca3af;
+  --color-on-surface: #f3f4f6;
+  --color-on-background: #ffffff;
+  --color-outline: #4b5563;
+  --color-outline-variant: #272a2e;
+}
+
+.dark body {
+  background-color: #090a0b !important;
+  color: #ededed !important;
+}
+
+.dark .bg-background {
+  background-color: #090a0b !important;
+}
+
+.dark .bg-white {
+  background-color: #131416 !important;
+  color: #ededed !important;
+}
+
+.dark .text-primary {
+  color: #f5f5f5 !important;
+}
+
+.dark .text-secondary {
+  color: #9ca3af !important;
+}
+
+.dark .text-on-surface {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-black,
+.dark .text-neutral-900 {
+  color: #f5f5f5 !important;
+}
+
+.dark .text-neutral-800,
+.dark .text-neutral-700 {
+  color: #e5e5e5 !important;
+}
+
+.dark .text-neutral-600,
+.dark .text-neutral-500 {
+  color: #9ca3af !important;
+}
+
+.dark .border-outline-variant {
+  border-color: #272a2e !important;
+}
+
+.dark .border-outline {
+  border-color: #3f4246 !important;
+}
+
+.dark .border-black,
+.dark .border-black\/5,
+.dark .border-black\/10,
+.dark .border-black\/20 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark .bg-surface {
+  background-color: #111214 !important;
+}
+
+.dark .bg-surface-container {
+  background-color: #17181a !important;
+}
+
+.dark .bg-surface-container-low {
+  background-color: #131415 !important;
+}
+
+.dark .bg-surface-container-lowest {
+  background-color: #0c0d0e !important;
+}
+
+.dark .bg-surface-container-high {
+  background-color: #1f2124 !important;
+}
+
+.dark .bg-surface-container-highest {
+  background-color: #282a2e !important;
+}
+
+.dark .bg-neutral-50,
+.dark .bg-neutral-100 {
+  background-color: #16171a !important;
+}
+
+.dark .bg-neutral-200 {
+  background-color: #1f2124 !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #141517 !important;
+  color: #f4f4f5 !important;
+  border-color: #2e3238 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark .nav-scrolled {
+  background-color: #0f1012 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.7);
+  border-bottom-color: #222428 !important;
+}
+
+.dark aside nav {
+  border-color: #272a2e !important;
+}
+
+.dark .bg-primary {
+  background-color: #f5f5f5 !important;
+  color: #0a0a0a !important;
+}
+
+.dark .bg-primary:hover {
+  background-color: #e5e5e5 !important;
+}
+
+.dark .bg-primary .text-white,
+.dark button.bg-primary {
+  color: #0a0a0a !important;
+}
+
+.dark button.bg-primary:hover {
+  color: #000000 !important;
+}
+
+.dark .btn-hero-primary {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.dark .btn-hero-primary:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}

@@ -1,0 +1,425 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Wishlist | MONOLITH</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#4c4546",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface": "#f9f9f9",
+                    "tertiary": "#000000",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#5e5e5e",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-variant": "#e2e2e2",
+                    "primary-fixed": "#e2e2e2",
+                    "primary-container": "#1b1b1b",
+                    "surface-dim": "#dadada",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#5f6161",
+                    "on-primary-fixed": "#1b1b1b",
+                    "error-container": "#ffdad6",
+                    "outline": "#7e7576",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-error": "#ffffff",
+                    "background": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#dcdddd",
+                    "surface-container-highest": "#e2e2e2",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "surface-container-high": "#e8e8e8",
+                    "on-tertiary-container": "#838484",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary-container": "#1a1c1c",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-container": "#eeeeee",
+                    "secondary": "#5d5f5f",
+                    "outline-variant": "#cfc4c5",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-primary-container": "#848484",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary": "#000000",
+                    "inverse-surface": "#2f3131",
+                    "on-background": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "unit": "8px",
+                    "section-gap": "128px",
+                    "margin-desktop": "64px",
+                    "gutter": "32px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .wishlist-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+        body {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 transition-all duration-500 ease-in-out border-b border-outline/10 bg-transparent" id="top-nav">
+<div class="flex justify-between items-center px-margin-desktop py-unit max-w-container-max mx-auto h-20">
+<!-- Brand Logo Left -->
+<div class="flex-shrink-0">
+<a href="#" class="font-headline-lg text-[24px] uppercase tracking-widest text-primary">MONOLITH</a>
+</div>
+<!-- Navigation Links Center -->
+<div class="hidden md:flex items-center space-x-10">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">Home</a>
+<div class="group relative">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300 pb-1" href="#">Collections</a>
+</div>
+<div class="group relative">
+<button class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300 pb-1 flex items-center gap-1">
+                        Categories
+                        <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white border border-outline/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-sm">
+<div class="py-4 flex flex-col">
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Men</a>
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Women</a>
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Kids</a>
+<a class="px-6 py-2 font-label-caps text-[10px] uppercase tracking-widest text-secondary hover:text-primary hover:bg-surface transition-colors" href="#">Accessories</a>
+</div>
+</div>
+</div>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-300 pb-1" href="#">New Arrivals</a>
+</div>
+<!-- Actions Right -->
+<div class="flex items-center space-x-6">
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="search">search</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+</div>
+</div>
+</nav>
+<!-- Wishlist Header -->
+<header class="pt-48 pb-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center md:text-left flex flex-col gap-4">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg">Wishlist</h2>
+<p class="font-body-lg text-secondary-fixed-dim max-w-xl">Save your favorite pieces and shop them anytime.</p>
+</div>
+<!-- Action Bar -->
+<div class="mt-20 flex flex-col md:flex-row justify-between items-end md:items-center border-b border-outline/10 pb-6 gap-6">
+<span class="font-label-caps text-label-caps text-primary">12 Items Saved</span>
+<div class="flex items-center gap-gutter">
+<div class="relative group">
+<button class="font-label-caps text-label-caps flex items-center gap-2 uppercase tracking-widest">
+                        Sort By <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<button class="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors">Clear Wishlist</button>
+</div>
+</div>
+</header>
+<!-- Empty State (Conditional/Hidden by default - shown via logic) -->
+<section class="hidden py-section-gap px-margin-desktop text-center flex-col items-center gap-unit" id="empty-state">
+<div class="w-64 h-64 mb-8">
+
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile">Your Wishlist is Empty</h3>
+<p class="font-body-lg text-secondary mb-12">Discover our latest collections and find something you love.</p>
+<a class="bg-primary text-on-primary px-12 py-4 font-button text-button uppercase tracking-widest hover:bg-on-surface transition-colors" href="#">Continue Shopping</a>
+</section>
+<!-- Wishlist Grid -->
+<main class="px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-gutter gap-y-16">
+<!-- Product Card 1 -->
+<div class="group relative wishlist-card">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden border border-[#E5E5E5]">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A professional studio fashion photograph of a minimalist architectural wool coat in charcoal grey. High-contrast lighting creates dramatic shadows on the sharp tailoring. The background is a clean, neutral white studio setting, emphasizing the garment's structural integrity and premium texture. Sophisticated and authoritative aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASnX_GTdK8OwqTUbIUfzchVMhgvxZtpDVZcb2OQ9Gz2jvxK-LSKwj4_5VrOVYv4qz6N3J8A-s6XuYW_RXjFptpwEdfttWxJPJqMaTZFFK8PnnBmYE5wiB7VLuT1g-tLUVsaRZONMSSW-1z8snbboR22BfWUGlQ0DFEzdLwOpyIE3FqAhms6ztAGy-tkrHu73OkR-urfm2Hy-I-4n1f3IES8KQs_8bGMgl_mG0dXrdXyeWiz7r13MGYsQ">
+<button class="absolute top-4 right-4 z-10 material-symbols-outlined filled-icon text-primary bg-white/80 p-2 rounded-full">favorite</button>
+<div class="card-overlay absolute inset-0 bg-black/5 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none group-hover:pointer-events-auto">
+<button class="bg-primary text-on-primary px-8 py-3 font-button text-button uppercase tracking-widest mb-4 hover:scale-105 transition-transform">Add to Cart</button>
+<button class="flex items-center gap-2 text-primary font-label-caps text-label-caps bg-white/90 px-4 py-2 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span> Quick View
+                        </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-[20px] md:text-headline-md leading-tight">Sculptural Wool Overcoat</h4>
+<p class="font-label-caps text-label-caps text-secondary mt-1">Outerwear</p>
+</div>
+<p class="font-body-md text-primary">$1,250</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative wishlist-card">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden border border-[#E5E5E5]">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Close-up editorial shot of a handcrafted black leather structured tote bag. The leather has a subtle pebbled texture and semi-matte finish. Soft directional lighting highlights the clean edges and silver hardware accents. Minimalist background in soft grey, reflecting a quiet luxury aesthetic and high-end fashion craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7hJm5cbGHfV_uLBAz3HpQn8LUEAqL37xh8OjbGYx8PY5Pdkzl_6yA64bTEGC2yshd2GAI5_sAK1sN801hzjfnCdvGOq6tWdjnzXfvq32t9QfdjpMquEelimWt7HsqZo9vzMna0CQUo-N7PRj8i2fWU3KUyc4WHC2IK8vZsikdu_DL8HPACnQZtye6nSX-94uOWFWOI5bApBU0hbGN1z0SphRMNMrno4afKvwXZx1oMzXGIgRfSrnWFA">
+<button class="absolute top-4 right-4 z-10 material-symbols-outlined filled-icon text-primary bg-white/80 p-2 rounded-full">favorite</button>
+<div class="card-overlay absolute inset-0 bg-black/5 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none group-hover:pointer-events-auto">
+<button class="bg-primary text-on-primary px-8 py-3 font-button text-button uppercase tracking-widest mb-4 hover:scale-105 transition-transform">Add to Cart</button>
+<button class="flex items-center gap-2 text-primary font-label-caps text-label-caps bg-white/90 px-4 py-2 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span> Quick View
+                        </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-[20px] md:text-headline-md leading-tight">Monolith Frame Tote</h4>
+<p class="font-label-caps text-label-caps text-secondary mt-1">Accessories</p>
+</div>
+<p class="font-body-md text-primary">$890</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative wishlist-card">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden border border-[#E5E5E5]">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="High-fashion model wearing an ivory silk bias-cut slip dress in a minimalist stone room. The dress has a liquid-like sheen under soft, diffused natural light. The composition uses wide whitespace and asymmetrical framing to create an editorial, magazine-like feel. Palette of ivory, beige, and warm greys. Quiet luxury mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr-XrPm8xIFtaeNKJt5I1gPlozWl0ptqkGUiHv6ifsfMnh_vVHhrIEEncQiAuULJnIa69wVW7XlQk-jZmXQaDJ8zlynztyENqsrf4CTlc3hepAqHO0DtbpH7t7PuzmHU8m6nTSvqT0ovAKOFbAUx0XfOieCD8TaLDx074k3aD_3E-XqkcnJyiLilvbm4Vh504bpD0cNOkX8o6sMF3owb05AJdOZW-7AZ2jEf7hsu5Nkee4-j_et4s4_A">
+<button class="absolute top-4 right-4 z-10 material-symbols-outlined filled-icon text-primary bg-white/80 p-2 rounded-full">favorite</button>
+<div class="card-overlay absolute inset-0 bg-black/5 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none group-hover:pointer-events-auto">
+<button class="bg-primary text-on-primary px-8 py-3 font-button text-button uppercase tracking-widest mb-4 hover:scale-105 transition-transform">Add to Cart</button>
+<button class="flex items-center gap-2 text-primary font-label-caps text-label-caps bg-white/90 px-4 py-2 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span> Quick View
+                        </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h4 class="font-headline-md text-[20px] md:text-headline-md leading-tight">Liquid Silk Evening Dress</h4>
+<p class="font-label-caps text-label-caps text-secondary mt-1">Dresses</p>
+</div>
+<p class="font-body-md text-primary">$1,800</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Recently Viewed (Horizontal Scroll) -->
+<section class="bg-surface-container-low py-section-gap px-margin-desktop overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-12">Recently Viewed</h3>
+<div class="flex gap-gutter overflow-x-auto custom-scrollbar pb-8">
+<!-- Item 1 -->
+<div class="min-w-[300px] md:min-w-[380px] group">
+<div class="aspect-[4/5] bg-white overflow-hidden border border-[#E5E5E5] relative">
+<img class="w-full h-full object-cover" data-alt="Close-up of a pair of minimalist white leather sneakers with clean lines and no visible branding. Shot on a textured concrete surface with sharp afternoon shadows. The lighting is bright and modern. The overall aesthetic is industrial-chic and high-end streetwear. Black and white contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB52-9G3t6kJ7pQXZVd_DCkuWD2eLQ40073YpOFVw6smZ1V_QacjQ8eNZAdCEoB7vcBrBLPujSRoW9JOrQn1j-dO4f5STjc0uHoXNHOigRrLuBQWccMk4VXVRiNeVVALcvKE9hK1jbIV1FZyxC0cWJXK0lXTKh689ZhhPlKXg-t2mpJK3-NGP1G1iz5n-IAJLvAK1BVZl_iA2sQcagGs-YDPxS_UMo5GVfGCTQRKkh8-khJsCIYOj8G6Q">
+<button class="absolute top-4 right-4 material-symbols-outlined text-primary bg-white/80 p-2 rounded-full">favorite</button>
+</div>
+<div class="mt-4 flex justify-between">
+<span class="font-label-caps text-label-caps uppercase">Linear Sneaker</span>
+<span class="font-body-md">$450</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="min-w-[300px] md:min-w-[380px] group">
+<div class="aspect-[4/5] bg-white overflow-hidden border border-[#E5E5E5] relative">
+<img class="w-full h-full object-cover" data-alt="Detailed shot of a fine knit cashmere turtleneck sweater in oatmeal color. The camera focus is on the soft fiber texture and the ribbing at the neck. The background is a soft-focus interior with warm, ambient lighting. Editorial style, high-end knitwear presentation. Quiet luxury vibes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH8XcZDy3AQ2xt_80qwhEqiywVcYstl14W7uUdrZzGIVU3zpvS6ZOGdcn8-BT4cWveWtxyQ0ulYkPeZgHyR2feIABKk4RQFOqSQffgVxh6pgCOh-hpcybuJrq41xQpezFohHC3d2ZnVCV1VYN2NmemI0kbRTf1Hf46bvQYH3yPgnE4lHVoRFi1IXEwn8D_abDM4IGUyklFYwOlNYUN6JQXVnsGJwOl5q2XAdsLfDiX0u7qDDhBxNG88g">
+<button class="absolute top-4 right-4 material-symbols-outlined text-primary bg-white/80 p-2 rounded-full">favorite</button>
+</div>
+<div class="mt-4 flex justify-between">
+<span class="font-label-caps text-label-caps uppercase">Cashmere Turtleneck</span>
+<span class="font-body-md">$620</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="min-w-[300px] md:min-w-[380px] group">
+<div class="aspect-[4/5] bg-white overflow-hidden border border-[#E5E5E5] relative">
+<img class="w-full h-full object-cover" data-alt="Tailored black trousers hung on a minimalist metal rack against a stark white wall. Strong vertical lines and high-contrast black on white. Modernist fashion editorial aesthetic. The fabric is a crisp wool blend with a visible crease down the leg." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR6z-JkYEv16i-H7R9Xc9ym9VYW11v5wWSUQd_twQvog-2LWWqzyWHzXEcgKuw9ejIFABjTzffALDRPEe9xTMmfndhEHqLR_pqMeh5re-crWTZcNjzF9bbfg5MBrqdfxrXhAOe_B2dyBp7q48YMCLhGg0zT8P1MNhwcm1vH478E1fjGNzihOIHk_B11x9zmM9yRxeclZaSw5GRFkbrX01k5qHDemHSjOLkCUNSQcnLQcbhUoWJIxJQwQ">
+<button class="absolute top-4 right-4 material-symbols-outlined text-primary bg-white/80 p-2 rounded-full">favorite</button>
+</div>
+<div class="mt-4 flex justify-between">
+<span class="font-label-caps text-label-caps uppercase">Pleated Trouser</span>
+<span class="font-body-md">$380</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="min-w-[300px] md:min-w-[380px] group">
+<div class="aspect-[4/5] bg-white overflow-hidden border border-[#E5E5E5] relative">
+<img class="w-full h-full object-cover" data-alt="Sleek black rectangular sunglasses on a mirrored surface reflecting a bright blue sky with a single white cloud. High-fashion accessory photography with sharp focus and vibrant contrast. Minimalist and futuristic look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiv6z64wN3d6jxmizD90QI2DpGekShQSXbLJtiB5XoR_Ya-NEXE4CAdlvasFWvmbivhvOV7GI0zNiqNBtMT8B2Ti2r6dBfZVFa9OL1ZUBWw2M83IzRC37ssFSOpFnOVtDXCs6vvM2MOGmhdZPFWmSv0N2MqSeT-naWtA0P4--6pGPta4rluVr72UJnr9E_krllxiL7Vh0shlZBFCxnzjOXnQ8SUSB8oUrnGKA2u8Sn1JwtOVhr5-rHJA">
+<button class="absolute top-4 right-4 material-symbols-outlined text-primary bg-white/80 p-2 rounded-full">favorite</button>
+</div>
+<div class="mt-4 flex justify-between">
+<span class="font-label-caps text-label-caps uppercase">Obscura Shades</span>
+<span class="font-body-md">$290</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Curated Recommendations (Bento-ish Grid) -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-12 text-center">You May Also Like</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-2 group relative overflow-hidden h-[600px] border border-[#E5E5E5]">
+<img class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" data-alt="Full body fashion shot of a woman in an oversized beige trench coat standing in a minimalist concrete courtyard. The wind catches the hem of the coat, creating dynamic movement. Soft afternoon light. Monochromatic palette with beige and grey tones. Quiet luxury and elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-EPqxQerVjTwX4Z91pKWuL2MdnfG7MP4ACCJYK_LaFlmBXCajZ5CAx9eohL93zzSozoR2Gyzqa1Ux4BdREFieEpp8SbPBgWepoRojvNk7tmhJtj8ZOQONRxWeDIOfQChpVoR96mKUEU6yXfA9psFgSYCxPVWAdFLqPtHpaaiwCJk-NJo7udUFQlfUrQVIgs3_K4v6_dpCsc2ZX_OqJ_RTj5mmRgT5IhQuxAMQoJB3vpjZk3ZMtO17yQ">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-10 text-on-primary">
+<h5 class="font-headline-md text-headline-md mb-2">The Seasonal Edit</h5>
+<p class="font-body-md mb-6 opacity-80">Explore our curated selection of timeless transition pieces.</p>
+<a class="font-label-caps text-label-caps uppercase tracking-widest underline underline-offset-8" href="#">Shop Collection</a>
+</div>
+</div>
+<div class="flex flex-col gap-gutter md:col-span-1">
+<div class="group h-[284px] bg-white border border-[#E5E5E5] relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Macro shot of a silver architectural ring on a clean, white background. The design is sculptural and chunky with a polished finish. Reflective surface. Minimalist high-end jewelry photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_UYVLsGRRTYgrI1P4mkDFF6UxX2LNpHEOrUVIUJESgC76qoh1AYoGPBKRyBB53M_WuNCGyP6dhbdW311SJuLdcQL3YFj83oUfmNUlieDWJ-W4wpO3nc2JGvF0ojKAOAGJJpvBqtfXmfHyBnyHYHU7WDSNApjWnZl6IL4QRyjSSGrB0yiZqqOAvtZQdwhDANMX6a_mkhGsVycdQwc52JypvCtXc-fFGXWaEH9CRW5L2uCYLuIAtyTsoQ">
+</div>
+<div class="group h-[284px] bg-white border border-[#E5E5E5] relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pair of elegant black leather pointed-toe mules resting on a marble step. High-contrast lighting. Editorial luxury footwear photography. Minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbEYVRREgwJ3wy11DeXSPA2TgzDetYaLMyXp9qeDwXLmVbr6htlE7sHkpUACIcCf6Tk3wMIpRGxn5quBjCb7O28e2NmW_kpKeHW9TVoYMTy1UCoee0AA42qlE6cryJzO89i82Rvj_Fhq4L3eVq71Y-fFB66Bgr2oLDlfQqsIr2SEbz_5L-iJi1tpvfbbD1G9RNaDUZedYU0vqcQOBGlPjjpSseTNU3AaYL86sjcPVWlo5yH8G2zbCvFg">
+</div>
+</div>
+<div class="md:col-span-1 group relative h-[600px] border border-[#E5E5E5] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Dramatic high-angle shot of a leather accessory collection laid out on a charcoal grey surface. Geometric arrangements of wallets, cardholders, and belts. High-key lighting creates sharp shadows. Authoritative minimalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA67_ik-4fd4s0o3mWsXvoBvZkJ7i9zBkvPGT0kHUc3bPX_tPcMpuCeYHs_QgECNY3qb-SOjFZT2iGyuJ4B126w2jbSIvJnH3rx0pC5NtSLsUjePOB56hUh6HZ1bFBV-KaH-2ZV2jPBNZhYlVxYp45PbnWYGlegyabBW1o1huXULkoUkQUAUfZeAy_fIVh-nSbXVDVOjgqOJGlBj3Ld4_ENnfBtMfKa_dBW8vkVnKcFzIrprkwU1PlPsg">
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="bg-white px-6 py-2 font-label-caps text-label-caps uppercase">View All</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="bg-primary text-on-primary py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<h3 class="font-display-lg text-display-lg-mobile md:text-headline-lg uppercase mb-6">Monolith Journal</h3>
+<p class="font-body-lg mb-12 max-w-lg mx-auto opacity-70">Insights into the craft of luxury, exclusive drops, and curated aesthetics delivered to your inbox.</p>
+<form class="flex flex-col md:flex-row max-w-2xl mx-auto border-b border-white/30">
+<input class="flex-grow bg-transparent border-none py-4 px-0 text-white placeholder-white/40 focus:ring-0 font-label-caps text-label-caps uppercase" placeholder="ENTER YOUR EMAIL" type="email">
+<button class="font-button text-button uppercase tracking-widest py-4 px-8 hover:opacity-70 transition-opacity" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="md:col-span-4 flex flex-col gap-6">
+<h2 class="font-headline-lg text-display-lg-mobile text-primary uppercase tracking-widest">MONOLITH</h2>
+<p class="font-body-md font-light text-secondary">A study in structural integrity and timeless minimalism. Crafting the future of quiet luxury.</p>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<h6 class="font-label-caps text-label-caps uppercase text-primary">Service</h6>
+<a class="font-body-md text-secondary hover:text-primary transition-colors hover:underline underline-offset-4" href="#">Contact Us</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors hover:underline underline-offset-4" href="#">Shipping</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors hover:underline underline-offset-4" href="#">Returns</a>
+</div>
+<div class="md:col-span-2 flex flex-col gap-4">
+<h6 class="font-label-caps text-label-caps uppercase text-primary">Legal</h6>
+<a class="font-body-md text-secondary hover:text-primary transition-colors hover:underline underline-offset-4" href="#">Sustainability</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors hover:underline underline-offset-4" href="#">Privacy Policy</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors hover:underline underline-offset-4" href="#">Terms of Service</a>
+</div>
+<div class="md:col-span-4 flex flex-col gap-4 md:items-end">
+<h6 class="font-label-caps text-label-caps uppercase text-primary">Follow</h6>
+<div class="flex gap-6">
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Pinterest</a>
+<a class="font-body-md text-secondary hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+</div>
+<div class="md:col-span-12 pt-16 border-t border-outline/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md font-light text-secondary text-[12px] uppercase tracking-widest">© 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary text-[18px]">payments</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">encrypted</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-md');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-md');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Toggle Wishlist State (Simulator)
+        function toggleEmptyState(isEmpty) {
+            const grid = document.querySelector('main');
+            const empty = document.getElementById('empty-state');
+            const headerActions = document.querySelector('header .mt-20');
+            
+            if(isEmpty) {
+                grid.classList.add('hidden');
+                headerActions.classList.add('hidden');
+                empty.classList.remove('hidden');
+                empty.classList.add('flex');
+            } else {
+                grid.classList.remove('hidden');
+                headerActions.classList.remove('hidden');
+                empty.classList.add('hidden');
+                empty.classList.remove('flex');
+            }
+        }
+        
+        // Demo clear action
+        document.querySelector('button.text-secondary.hover\\:text-primary').addEventListener('click', () => {
+            if(confirm('Are you sure you want to clear your wishlist?')) {
+                toggleEmptyState(true);
+            }
+        });
+    </script>
+
+
+</body></html>

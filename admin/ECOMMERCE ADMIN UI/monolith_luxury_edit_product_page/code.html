@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Product | MONOLITH Premium Systems</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#76777d",
+                        "on-tertiary-fixed": "#261906",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e5e2e3",
+                        "tertiary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5e6572",
+                        "surface-container-high": "#eae7e9",
+                        "secondary-container": "#dce2f3",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "tertiary-fixed": "#f9debf",
+                        "on-secondary-fixed-variant": "#404754",
+                        "surface-tint": "#575e70",
+                        "on-secondary-fixed": "#151c27",
+                        "inverse-surface": "#303031",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f6f3f4",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dce2f7",
+                        "surface-container": "#f0edee",
+                        "secondary": "#585f6c",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "on-tertiary-container": "#968065",
+                        "secondary-fixed": "#dce2f3",
+                        "surface": "#fcf8fa",
+                        "on-background": "#1b1b1d",
+                        "primary-container": "#141b2b",
+                        "surface-container-highest": "#e5e2e3",
+                        "tertiary-container": "#261906",
+                        "primary-fixed-dim": "#c0c6db",
+                        "background": "#fcf8fa",
+                        "on-primary-container": "#7d8497",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1b1b1d",
+                        "inverse-on-surface": "#f3f0f1",
+                        "surface-dim": "#dcd9db",
+                        "surface-bright": "#fcf8fa",
+                        "primary": "#000000",
+                        "inverse-primary": "#c0c6db",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45464c",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#141b2b",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary-fixed-variant": "#404758"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-xs": "0.25rem",
+                        "space-xl": "2rem",
+                        "gutter": "1.5rem",
+                        "space-md": "1rem",
+                        "space-2xl": "3rem",
+                        "container-margin": "2rem",
+                        "space-lg": "1.5rem",
+                        "space-sm": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .sidebar-active { background-color: #dce2f3; color: #151c27; font-weight: 500; }
+        .card-shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- SideNavBar (Full-height) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col py-space-lg px-space-md z-50">
+<div class="mb-space-xl px-space-sm">
+<h1 class="font-display text-display font-semibold text-primary">MONOLITH</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Premium Operations</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container font-medium rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Products
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">category</span> Categories
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">collections</span> Collections
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">shopping_cart</span> Orders
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">group</span> Customers
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">warehouse</span> Inventory
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">confirmation_number</span> Coupons
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">reviews</span> Reviews
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-space-md">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a high-end fashion retail administrator in a minimal studio setting. They wear a tailored black suit against a clean, light grey concrete background, embodying the quiet authority and premium aesthetic of the Monolith brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6e3nQg46MWqcH2bUFprMy7E0RHLBg0xPAuS-KkED9vvLkQ65gGkpew19kWXoI4FXzx0oXonTwA5UyN6sb0be0jucAT8_oYzPJhZRm0a-6JQDVrC_yoLGKyI42KcX5MKlLBVXtJT2mDbVtidK9hNHnSrJu38rqHPduxa0R0uDPt7ycxYu2Oe4EXeBkc7HalUeYmNJI1-rpNe0gHdTxE7X-praxMDYu_heHkiY0M8tk1hdPob0YR6LhBg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Admin User</span>
+<span class="font-caption text-caption text-on-surface-variant">Admin Panel</span>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md mt-2" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopNavBar (Sticky) -->
+<header class="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md border-b border-outline-variant shadow-sm px-gutter py-space-sm flex justify-between items-center">
+<div class="flex items-center gap-space-md">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary transition-all" placeholder="Search orders, products..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<button class="relative p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-background"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface font-semibold">MONOLITH</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-space-xl max-w-[1440px] mx-auto w-full flex-1">
+<!-- Breadcrumbs & Title -->
+<div class="mb-space-lg">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-2">
+<a class="hover:text-primary transition-colors" href="#">Products</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Edit Product</span>
+</nav>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Edit Product</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Update product information and inventory.</p>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Form Sections -->
+<div class="col-span-12 lg:col-span-8 space-y-space-lg">
+<!-- Basic Information Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md text-on-surface">Basic Information</h3>
+</div>
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Product Name</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="text" value="Cashmere Overcoat"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">SKU</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md bg-surface-container-low text-on-surface-variant cursor-not-allowed" readonly="" type="text" value="MON-2024-CASH-01"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Brand</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="text" value="Monolith Signature"/>
+</div>
+</div>
+</section>
+<!-- Media Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Product Images</h3>
+<button class="font-label-md text-label-md text-primary flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">add</span> Add Image
+                            </button>
+</div>
+<div class="p-space-lg">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="col-span-2 row-span-2 relative aspect-[4/5] rounded-lg overflow-hidden border border-outline-variant group">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="p-2 bg-surface-container-lowest rounded-full shadow-lg text-primary hover:bg-secondary-container"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-2 bg-surface-container-lowest rounded-full shadow-lg text-error hover:bg-error-container"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</div>
+<span class="absolute top-3 left-3 px-2 py-1 bg-primary text-on-primary font-label-sm text-label-sm rounded uppercase tracking-wider">Primary</span>
+</div>
+<div class="relative aspect-square bg-surface-container border border-dashed border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[32px] mb-2">upload</span>
+<span class="font-label-sm text-label-sm">Upload</span>
+</div>
+<div class="relative aspect-square bg-surface-container border border-dashed border-outline-variant rounded-lg flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing & Inventory -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md text-on-surface">Pricing</h3>
+</div>
+<div class="p-space-lg space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Regular Price</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md">$</span>
+<input class="w-full h-10 pl-8 pr-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="text" value="1,250.00"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Cost Price</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md">$</span>
+<input class="w-full h-10 pl-8 pr-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="text" value="450.00"/>
+</div>
+<p class="mt-2 font-caption text-caption text-secondary">Margin: 64% ($800.00 profit)</p>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md text-on-surface">Inventory</h3>
+</div>
+<div class="p-space-lg space-y-space-md">
+<div class="flex justify-between items-center py-2">
+<span class="font-label-md text-label-md text-on-surface">Track Inventory</span>
+<button class="w-10 h-6 bg-primary rounded-full relative transition-colors">
+<span class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Stock Level</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="number" value="42"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Threshold</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="number" value="10"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Category & Attributes -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md text-on-surface">Organization</h3>
+</div>
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Category</label>
+<select class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md">
+<option selected="">Outerwear</option>
+<option>Knitwear</option>
+<option>Accessories</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Collection</label>
+<select class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md">
+<option selected="">Winter 2024</option>
+<option>Core Collection</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Gender</label>
+<div class="flex gap-2">
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">Male</button>
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">Female</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md">Unisex</button>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Status</label>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 font-label-md text-label-md rounded-full border border-green-200">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                    Published
+                                </span>
+</div>
+</div>
+</section>
+<!-- Variants Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Variants</h3>
+<button class="font-label-md text-label-md text-primary flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit Variants
+                            </button>
+</div>
+<div class="p-space-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead class="text-on-surface-variant font-label-md border-b border-outline-variant">
+<tr>
+<th class="py-3 px-2">Size</th>
+<th class="py-3 px-2">SKU Suffix</th>
+<th class="py-3 px-2">Stock</th>
+<th class="py-3 px-2 text-right">Price Offset</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="py-4 px-2 font-medium">Small</td>
+<td class="py-4 px-2">S</td>
+<td class="py-4 px-2">12</td>
+<td class="py-4 px-2 text-right">+$0.00</td>
+</tr>
+<tr>
+<td class="py-4 px-2 font-medium">Medium</td>
+<td class="py-4 px-2">M</td>
+<td class="py-4 px-2">15</td>
+<td class="py-4 px-2 text-right">+$0.00</td>
+</tr>
+<tr>
+<td class="py-4 px-2 font-medium">Large</td>
+<td class="py-4 px-2">L</td>
+<td class="py-4 px-2">10</td>
+<td class="py-4 px-2 text-right">+$0.00</td>
+</tr>
+<tr>
+<td class="py-4 px-2 font-medium">XL</td>
+<td class="py-4 px-2">XL</td>
+<td class="py-4 px-2">5</td>
+<td class="py-4 px-2 text-right">+$50.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Shipping Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md text-on-surface">Shipping &amp; Dimensions</h3>
+</div>
+<div class="p-space-lg grid grid-cols-1 md:grid-cols-4 gap-space-lg">
+<div class="md:col-span-1">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Weight</label>
+<div class="relative">
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md pr-12" type="text" value="1.2"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-caption">kg</span>
+</div>
+</div>
+<div class="md:col-span-3 grid grid-cols-3 gap-2">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">L (cm)</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="number" value="60"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">W (cm)</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="number" value="40"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">H (cm)</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="number" value="10"/>
+</div>
+</div>
+</div>
+</section>
+<!-- SEO Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md text-on-surface">Search Engine Optimization</h3>
+</div>
+<div class="p-space-lg space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Meta Title</label>
+<input class="w-full h-10 px-4 border border-outline-variant rounded-lg font-body-md text-body-md" type="text" value="Premium Italian Cashmere Overcoat | Monolith Luxury Outerwear"/>
+<p class="mt-1 font-caption text-caption text-on-surface-variant">62 / 70 characters</p>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Meta Description</label>
+<textarea class="w-full p-4 border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-primary focus:border-primary" rows="3">Discover the pinnacle of luxury with our signature Cashmere Overcoat. Hand-tailored in Italy from sustainable 100% cashmere, this timeless piece offers unparalleled warmth and architectural elegance.</textarea>
+<p class="mt-1 font-caption text-caption text-on-surface-variant">194 / 320 characters</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Summary -->
+<aside class="col-span-12 lg:col-span-4 lg:sticky lg:top-[100px] space-y-space-lg">
+<!-- Summary Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl card-shadow overflow-hidden">
+<div class="aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4"/>
+</div>
+<div class="p-space-lg">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Cashmere Overcoat</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">MON-2024-CASH-01</p>
+</div>
+<span class="px-2 py-1 bg-primary text-on-primary font-label-sm text-label-sm rounded uppercase tracking-wider">Active</span>
+</div>
+<div class="space-y-3 pt-4 border-t border-outline-variant">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant">Price</span>
+<span class="text-on-surface font-semibold">$1,250.00</span>
+</div>
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant">Stock Availability</span>
+<span class="text-on-surface">42 units</span>
+</div>
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface-variant">Last Updated</span>
+<span class="text-on-surface">Oct 24, 2024</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low border-t border-outline-variant flex justify-center">
+<button class="font-label-md text-label-md text-primary flex items-center gap-2 hover:underline">
+<span class="material-symbols-outlined text-[20px]">visibility</span> View on Storefront
+                            </button>
+</div>
+</div>
+<!-- Action Helpers -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg card-shadow">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold mb-4">Utility Actions</h4>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md">
+<span class="flex items-center gap-3"><span class="material-symbols-outlined">content_copy</span> Duplicate Product</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors font-body-md text-body-md">
+<span class="flex items-center gap-3"><span class="material-symbols-outlined">archive</span> Archive Product</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors font-body-md text-body-md">
+<span class="flex items-center gap-3"><span class="material-symbols-outlined">delete</span> Delete Product</span>
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<!-- Sticky Bottom Bar -->
+<footer class="sticky bottom-0 w-full bg-surface-container-lowest border-t border-outline-variant py-space-md px-gutter z-30 ml-[-280px] lg:ml-0">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-space-lg">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">visibility</span> Preview Product
+                    </button>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-on-surface-variant font-caption text-caption italic mr-4">Unsaved changes...</span>
+<button class="px-6 py-2.5 border border-outline-variant bg-white text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container transition-all">
+                        Save as Draft
+                    </button>
+<button class="px-8 py-2.5 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 active:scale-[0.98] transition-all shadow-md shadow-black/10">
+                        Save Changes
+                    </button>
+</div>
+</div>
+</footer>
+<!-- Admin Footer -->
+<div class="bg-surface-container-low py-space-md px-gutter flex justify-between items-center border-t border-outline-variant font-caption text-caption text-secondary">
+<span class="font-display text-label-md font-bold text-on-surface">MONOLITH</span>
+<span>© 2024 MONOLITH Premium Systems</span>
+<div class="flex gap-space-lg">
+<a class="hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="hover:underline transition-all" href="#">Terms of Service</a>
+<a class="hover:underline transition-all" href="#">Support</a>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions for toggle buttons
+        document.querySelectorAll('button[class*="rounded-full relative"]').forEach(btn => {
+            btn.onclick = function() {
+                const circle = this.querySelector('span');
+                const isOff = circle.classList.contains('right-1');
+                if (isOff) {
+                    circle.classList.remove('right-1');
+                    circle.classList.add('left-1');
+                    this.classList.remove('bg-primary');
+                    this.classList.add('bg-outline-variant');
+                } else {
+                    circle.classList.remove('left-1');
+                    circle.classList.add('right-1');
+                    this.classList.remove('bg-outline-variant');
+                    this.classList.add('bg-primary');
+                }
+            }
+        });
+    </script>
+</body></html>

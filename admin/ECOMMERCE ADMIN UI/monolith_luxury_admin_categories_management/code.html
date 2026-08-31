@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MONOLITH | Categories Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#141b2b",
+                    "surface": "#fcf8fa",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "surface-bright": "#fcf8fa",
+                    "on-secondary-fixed": "#151c27",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#968065",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#261906",
+                    "primary-container": "#141b2b",
+                    "on-secondary-fixed-variant": "#404754",
+                    "secondary": "#585f6c",
+                    "surface-tint": "#575e70",
+                    "outline-variant": "#c6c6cd",
+                    "on-background": "#1b1b1d",
+                    "surface-container-highest": "#e5e2e3",
+                    "on-secondary-container": "#5e6572",
+                    "on-tertiary-fixed": "#261906",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-primary-container": "#7d8497",
+                    "surface-container": "#f0edee",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "on-surface-variant": "#45464c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f6f3f4",
+                    "background": "#fcf8fa",
+                    "tertiary": "#000000",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#303031",
+                    "inverse-on-surface": "#f3f0f1",
+                    "on-surface": "#1b1b1d",
+                    "surface-dim": "#dcd9db",
+                    "inverse-primary": "#c0c6db",
+                    "surface-container-high": "#eae7e9",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#404758",
+                    "primary": "#000000",
+                    "primary-fixed-dim": "#c0c6db",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e5e2e3",
+                    "secondary-fixed": "#dce2f3",
+                    "secondary-container": "#dce2f3",
+                    "outline": "#76777d",
+                    "primary-fixed": "#dce2f7",
+                    "tertiary-fixed": "#f9debf",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-lg": "1.5rem",
+                    "space-2xl": "3rem",
+                    "space-sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "space-xl": "2rem",
+                    "space-xs": "0.25rem",
+                    "space-md": "1rem",
+                    "container-margin": "2rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F7F7F7; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .sidebar-item { transition: all 0.2s ease-in-out; }
+        .data-table-row { transition: background-color 0.15s ease; }
+        .data-table-row:hover { background-color: #F9FAFB; }
+        .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-active { background-color: #ECFDF5; color: #065F46; }
+        .badge-hidden { background-color: #F3F4F6; color: #374151; }
+        .drawer-blur { backdrop-filter: blur(4px); }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #111827; ring: 2px; --tw-ring-color: #111827; }
+    </style>
+</head>
+<body class="bg-surface">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col p-space-md z-50">
+<div class="mb-space-xl px-4">
+<h1 class="font-display text-display font-black tracking-tighter text-on-surface dark:text-inverse-on-surface">MONOLITH</h1>
+<p class="font-label-sm text-on-surface-variant opacity-60 uppercase tracking-widest">Admin Terminal</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Products
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg font-medium font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">category</span> Categories
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">collections</span> Collections
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_cart</span> Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span> Customers
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">warehouse</span> Inventory
+            </a>
+<div class="pt-4 pb-2 px-4 font-label-sm text-outline uppercase tracking-widest text-[10px]">Marketing</div>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">confirmation_number</span> Coupons
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-space-md">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+</div>
+</aside>
+<!-- Main Viewport Shell -->
+<div class="ml-[280px] min-h-screen flex flex-col bg-[#F7F7F7]">
+<!-- TopAppBar Anchor -->
+<header class="sticky top-0 z-40 bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center h-20 px-space-xl">
+<div class="flex items-center gap-space-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-md focus:border-primary transition-all" placeholder="Global search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-md text-on-surface leading-none">Alexander Vane</p>
+<p class="font-caption text-on-surface-variant text-[11px]">Senior Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="Close-up studio portrait of a sophisticated male executive with silver hair, wearing a high-end black charcoal suit and a crisp white shirt. The background is a clean, minimalist studio grey with professional soft lighting, emphasizing a luxury corporate aesthetic and authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoVWeycO0x0YGNChfDuFgmkFwXTgEYA_LcfLpvtUsXI50aeRCew0gN4TnLLTAO2aSBZJl3rZfBi1ANgD37nHqcnIrVjb3Sg-rdTL5AMX8PVXnMI2S65Dr0-UesxgY-hnFYdKMIVO4FDuLvVklDcSjJZlawkLC9xIXbC9ye09O757qXGrLfkOs1-nOs-B6ILTAgxlVl_MPEriSyAEQuRaEg0sHO6iw-gG0-FRxpolBodKyl5m1LzwblZg"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-space-xl max-w-[1440px]">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-space-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Categories</h2>
+<p class="font-body-md text-on-surface-variant">Organize and manage product categories.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm" onclick="document.getElementById('add-drawer').classList.remove('translate-x-full')">
+<span class="material-symbols-outlined text-[20px]">add</span> Add Category
+                </button>
+</div>
+<!-- Management Card -->
+<div class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<!-- Action Bar -->
+<div class="p-space-md border-b border-outline-variant flex flex-wrap gap-4 items-center justify-between bg-white">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative max-w-xs w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-md" placeholder="Search categories..." type="text"/>
+</div>
+<select class="bg-surface border border-outline-variant rounded-lg px-4 py-2 text-body-md focus:ring-1">
+<option>All Status</option>
+<option>Active</option>
+<option>Hidden</option>
+</select>
+<select class="bg-surface border border-outline-variant rounded-lg px-4 py-2 text-body-md focus:ring-1">
+<option>Sort By: Name</option>
+<option>Sort By: Count</option>
+<option>Sort By: Date</option>
+</select>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>Showing 12 categories</span>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="text-left px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Category</th>
+<th class="text-left px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Slug</th>
+<th class="text-left px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Parent</th>
+<th class="text-left px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Count</th>
+<th class="text-left px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Status</th>
+<th class="text-left px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Created Date</th>
+<th class="text-right px-6 py-4 font-label-md text-outline uppercase tracking-wider text-[11px]">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="data-table-row">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg border border-outline-variant overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional product photography shot of a luxury black tailored suit jacket on a minimalist dark grey wooden hanger against an architectural concrete background. High-contrast lighting highlights the fine wool texture and sharp lapel lines, embodying a premium menswear aesthetic with cool, neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC72Cv5o_BEkSgfHiyu3F7JBuvJn4VD7NVM-gFYrYjs-25ny3Tv5gwYsBDr5YPV_cm_n-EbdJoIkcTg4XTtuQqeaXVLYoHlytXBcIv1SveSbm9y1F6IDD8_VJh3ixutdxTbTiPcgTGDzv3VYrY0A5OssWMca_9AwSYjm562XtmmiOdYansK6ufkmhJ_APl08XuBH_eqLWIWE5s8sIectMjWDIgxK8we3ao1a0hXVv2oVQiXbNG0Ev5kFA"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Menswear</p>
+<p class="font-caption text-on-surface-variant truncate max-w-[200px]">Collection of premium apparel.</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface-variant">menswear</td>
+<td class="px-6 py-4 font-body-md text-outline">—</td>
+<td class="px-6 py-4 font-body-md text-on-surface">450</td>
+<td class="px-6 py-4">
+<span class="badge badge-active">Active</span>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface-variant">Oct 12, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="data-table-row">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg border border-outline-variant overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A top-down artistic arrangement of luxury leather accessories including a tan wallet, a gold watch, and a slim leather belt on a white marble surface. Bright, clean high-key lighting with soft shadows creates a pristine, upscale look. The color palette is dominated by warm leather tones and clean whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnAaTkcFgePNqKCl5-utagqg6oqPnhceqwcSFFmlBUARH3lYuC8hnU8l7niftUQQKulZmIhZLBFUN2BDqqErbklVQgAIoI_qrbGKue4kUiu8umwP6JNQbwCSxp9tfEA4lU0GMceAaRsW9--5_rRYR0dsKnoUEQI0JtCUP2y2HYNeT727Ue22c5ob99l5vFuQtAk513rdc86E2CX9YQ8tjrEuf9D7TabT2UYlTYyXB2zxLcfq-15OoYnA"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Accessories</p>
+<p class="font-caption text-on-surface-variant truncate max-w-[200px]">Luxury leather goods and jewelry.</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface-variant">accessories</td>
+<td class="px-6 py-4 font-body-md text-outline">—</td>
+<td class="px-6 py-4 font-body-md text-on-surface">120</td>
+<td class="px-6 py-4">
+<span class="badge badge-active">Active</span>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface-variant">Nov 05, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="data-table-row">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg border border-outline-variant overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="An atmospheric, cinematic shot of falling snow in a dense pine forest during twilight. The image features deep blues and frosty whites, with a single warm orange light glow in the distance. The mood is silent, exclusive, and seasonally evocative, suited for high-end winter fashion branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi_V6-or-y3Qoo0h3hslLgR9jgb0_mwrZ49iUV27DaYPAGqN1vzgF8L0a88BblvCmB9Pq2mcEcMI3017wi77u8X9wB_CIIbzSqiVZzL4VTb-eRl8rhBglRiI_RPDlfiowzlcHHmUjRXpNcQFqyjBb3IU7XQoSDmT6uxxcpwd8g9gPTCGc5L0qg73mKOx2UI7dmnXIlMIVNEy_aAIC8Pf8v69mtfMa10w2NHG_VNRNLZqeF4jMoMVAeqg"/>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Seasonal</p>
+<p class="font-caption text-on-surface-variant truncate max-w-[200px]">Limited edition winter drops.</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface-variant">seasonal</td>
+<td class="px-6 py-4 font-body-md text-outline">Collection</td>
+<td class="px-6 py-4 font-body-md text-on-surface">0</td>
+<td class="px-6 py-4">
+<span class="badge badge-hidden">Hidden</span>
+</td>
+<td class="px-6 py-4 font-body-md text-on-surface-variant">Dec 01, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Pagination -->
+<div class="px-6 py-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+<p class="font-caption text-on-surface-variant">Page 1 of 3</p>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 border border-outline-variant rounded-lg font-label-md text-on-surface opacity-50 cursor-not-allowed">Previous</button>
+<button class="px-4 py-1.5 border border-outline-variant rounded-lg font-label-md text-on-surface hover:bg-surface-container transition-colors">Next</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Anchor -->
+<footer class="mt-auto flex justify-between items-center px-space-xl py-space-md border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex items-center gap-space-lg">
+<span class="font-label-md font-bold text-on-surface">MONOLITH</span>
+<span class="font-caption text-on-surface-variant">© 2024 MONOLITH Luxury Retail Operations. All rights reserved.</span>
+</div>
+<div class="flex gap-space-lg">
+<a class="font-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-on-surface-variant hover:text-primary transition-colors" href="#">System Status</a>
+</div>
+</footer>
+</div>
+<!-- Side Drawer Overlay (Add Category) -->
+<div class="fixed inset-0 z-50 translate-x-full transition-transform duration-300 ease-in-out" id="add-drawer">
+<div class="absolute inset-0 bg-black/30 drawer-blur" onclick="document.getElementById('add-drawer').classList.add('translate-x-full')"></div>
+<div class="absolute right-0 top-0 h-full w-full max-w-[520px] bg-white shadow-2xl flex flex-col">
+<!-- Drawer Header -->
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Add Category</h3>
+<p class="font-caption text-on-surface-variant">Define a new product classification.</p>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface-variant" onclick="document.getElementById('add-drawer').classList.add('translate-x-full')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Body -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- Image Upload Section -->
+<div class="space-y-3">
+<label class="font-label-md text-on-surface">Category Thumbnail</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[48px] text-outline group-hover:text-primary transition-colors mb-3">cloud_upload</span>
+<p class="font-label-md text-on-surface mb-1">Click to upload or drag and drop</p>
+<p class="font-caption text-on-surface-variant">SVG, PNG, JPG or GIF (max. 800x800px)</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2 col-span-2">
+<label class="font-label-md text-on-surface">Category Name</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-2.5 text-body-md" placeholder="e.g., Summer Essentials" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">URL Slug</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline font-caption">monolith.com/</span>
+<input class="w-full bg-white border border-outline-variant rounded-lg pl-[90px] pr-4 py-2.5 text-body-md" placeholder="summer-essentials" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Parent Category</label>
+<select class="w-full bg-white border border-outline-variant rounded-lg px-4 py-2.5 text-body-md appearance-none">
+<option>None (Top Level)</option>
+<option>Menswear</option>
+<option>Womenswear</option>
+<option>Accessories</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Short Description</label>
+<textarea class="w-full bg-white border border-outline-variant rounded-lg px-4 py-2.5 text-body-md resize-none" placeholder="Brief description for internal use and SEO..." rows="4"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-6 items-center">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Display Order</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg px-4 py-2.5 text-body-md" type="number" value="0"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Status</label>
+<div class="flex items-center gap-4 py-2.5">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="text-primary focus:ring-primary border-outline-variant" name="status" type="radio"/>
+<span class="font-body-md text-on-surface">Active</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="text-primary focus:ring-primary border-outline-variant" name="status" type="radio"/>
+<span class="font-body-md text-on-surface">Hidden</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Actions -->
+<div class="p-6 border-t border-outline-variant bg-surface-container-lowest flex gap-3">
+<button class="flex-1 px-6 py-2.5 border border-outline-variant rounded-lg font-label-md text-on-surface hover:bg-surface-container-low transition-colors" onclick="document.getElementById('add-drawer').classList.add('translate-x-full')">Cancel</button>
+<button class="flex-1 px-6 py-2.5 bg-primary text-on-primary rounded-lg font-label-md hover:opacity-90 transition-opacity shadow-sm">Create Category</button>
+</div>
+</div>
+</div>
+<script>
+        // Simple micro-interaction for active nav links
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.textContent.includes('Categories')) return; // Keep categories active
+                navLinks.forEach(l => {
+                    l.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'font-medium');
+                    l.classList.add('text-on-surface-variant');
+                });
+                link.classList.add('bg-secondary-container', 'text-on-secondary-container', 'font-medium');
+                link.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monolith Luxury | Page Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fcf8fa",
+                    "on-tertiary-fixed": "#261906",
+                    "background": "#fcf8fa",
+                    "tertiary-container": "#261906",
+                    "surface-bright": "#fcf8fa",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#f9debf",
+                    "on-secondary-container": "#5e6572",
+                    "primary-container": "#141b2b",
+                    "on-tertiary-container": "#968065",
+                    "on-error-container": "#93000a",
+                    "secondary": "#585f6c",
+                    "surface-container-high": "#eae7e9",
+                    "secondary-container": "#dce2f3",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "primary-fixed-dim": "#c0c6db",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e5e2e3",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c6c6cd",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f3f0f1",
+                    "surface-tint": "#575e70",
+                    "on-primary-fixed-variant": "#404758",
+                    "surface-variant": "#e5e2e3",
+                    "on-primary-fixed": "#141b2b",
+                    "on-secondary-fixed-variant": "#404754",
+                    "inverse-surface": "#303031",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "primary": "#000000",
+                    "on-secondary-fixed": "#151c27",
+                    "secondary-fixed": "#dce2f3",
+                    "primary-fixed": "#dce2f7",
+                    "on-background": "#1b1b1d",
+                    "on-surface": "#1b1b1d",
+                    "on-primary-container": "#7d8497",
+                    "tertiary": "#000000",
+                    "inverse-primary": "#c0c6db",
+                    "outline": "#76777d",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "surface-dim": "#dcd9db",
+                    "surface-container": "#f0edee",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f6f3f4",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "on-surface-variant": "#45464c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "2rem",
+                    "space-xl": "2rem",
+                    "space-md": "1rem",
+                    "gutter": "1.5rem",
+                    "space-lg": "1.5rem",
+                    "space-xs": "0.25rem",
+                    "space-sm": "0.5rem",
+                    "space-2xl": "3rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fcf8fa; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom scrollbar for a premium feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e5e2e3; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c6c6cd; }
+
+        .editor-container { min-height: 400px; }
+        .drop-zone:hover { border-color: #000000; background-color: #f6f3f4; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant bg-surface flex flex-col py-space-xl px-space-md z-30">
+<div class="mb-space-2xl px-space-sm">
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-primary">Monolith Luxury</h1>
+<p class="font-label-sm text-label-sm text-secondary opacity-70">Atelier Admin</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-space-md py-3 rounded-lg text-secondary hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 rounded-lg text-secondary hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 rounded-lg text-secondary hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 rounded-lg text-primary font-semibold bg-secondary-container/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+<span class="font-label-md text-label-md">Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-space-md py-3 rounded-lg text-secondary hover:text-primary hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="pt-space-md border-t border-outline-variant mt-auto">
+<div class="flex items-center gap-3 px-space-md py-2">
+<img class="w-8 h-8 rounded-full bg-secondary-container object-cover" data-alt="A professional headshot of a luxury brand administrator, wearing a minimalist black outfit, in a high-key lighting studio with a neutral grey background. The mood is sophisticated and clean, reflecting a high-end atelier aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6-9OrTukWlAfwZMEPiABlu1jAdGmNFnEdTEMlmr3xqp04vDDlDUn4_-l_2uslIZt6zukGtzD_DN1YicCxZowhPi-X6nGpbN9Cwjz2yIu4pjwiuu1oMPlO2uqshv2R5iTHQl3jVl7pDrFxOwU2YF2CuaqlIPeHPyRJDT0DHaRWy5p9Q3FmX-fxFslshSJ7k5wEaMVNexwxT8BQUKhHGfpkJ2Dy4gnGxrL1WR6YtSe7n0mix_sVZhdfCw"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-semibold truncate">Julian Vane</p>
+<p class="font-caption text-caption text-secondary truncate">Head of Content</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="ml-[280px] min-h-screen flex flex-col relative pb-32">
+<!-- Top Navigation Bar -->
+<header class="h-16 border-b border-outline-variant bg-surface flex justify-between items-center px-space-xl sticky top-0 z-20">
+<div class="flex items-center gap-4 flex-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="arrow_back">arrow_back</span>
+</button>
+<h2 class="font-headline-lg text-headline-lg font-black text-primary">Edit Page</h2>
+<div class="relative ml-8 w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-label-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Search commands or files..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="notifications">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="help_outline">help_outline</span>
+<span class="font-label-md text-label-md text-on-surface">Support</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md font-semibold hover:opacity-90 active:scale-[0.98] transition-all">
+                    Admin Panel
+                </button>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 px-space-xl py-space-xl">
+<div class="max-w-[1440px] mx-auto grid grid-cols-10 gap-space-xl">
+<!-- Left Column (70%) -->
+<div class="col-span-7 space-y-space-lg">
+<!-- Title & Slug Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm">
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md text-secondary mb-2">Page Title</label>
+<input class="w-full text-display font-display bg-transparent border-none focus:ring-0 p-0 placeholder:text-outline" placeholder="Enter page title..." type="text" value="The Heritage Collection: AW24"/>
+</div>
+<div class="flex items-center gap-2 pt-2 border-t border-surface-container-high">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="link">link</span>
+<span class="text-secondary font-label-md text-label-md">monolithluxury.com/</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 p-0 text-label-md text-primary font-medium" placeholder="slug-path" type="text" value="collections/heritage-aw24"/>
+</div>
+</div>
+</section>
+<!-- SEO Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-space-lg py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="search_check">search_check</span>
+                                Search Engine Optimization
+                            </h3>
+<span class="px-2 py-1 bg-secondary-container/50 text-secondary text-[10px] font-bold uppercase tracking-wider rounded">Metadata</span>
+</div>
+<div class="p-space-lg space-y-space-lg">
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold">SEO Title</label>
+<span class="text-caption text-secondary">62 / 70 characters</span>
+</div>
+<input class="w-full h-10 border border-outline-variant rounded-lg px-space-md text-body-md focus:ring-2 focus:ring-primary outline-none" type="text" value="Heritage Collection AW24 | Monolith Luxury Atelier Official"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold">Meta Description</label>
+<span class="text-caption text-secondary">142 / 160 characters</span>
+</div>
+<textarea class="w-full border border-outline-variant rounded-lg p-space-md text-body-md focus:ring-2 focus:ring-primary outline-none resize-none" rows="3">Explore the Monolith Luxury Heritage Collection for Autumn/Winter 2024. Discover timeless silhouettes and sustainable atelier craftsmanship.</textarea>
+</div>
+</div>
+</section>
+<!-- Media Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-space-lg py-4 border-b border-outline-variant bg-surface-container-low/30">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="image">image</span>
+                                Visual Assets
+                            </h3>
+</div>
+<div class="p-space-lg grid grid-cols-2 gap-space-lg">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant font-semibold mb-3">Banner Image (21:9)</label>
+<div class="drop-zone border-2 border-dashed border-outline-variant rounded-xl h-48 flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer transition-all">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-40 transition-opacity" data-alt="A high-end cinematic wide shot of a minimalist luxury atelier showroom with marble floors, clean white walls, and soft natural sunlight streaming through large floor-to-ceiling windows. A single black mannequin stands elegantly in the center. The aesthetic is extremely clean, high-contrast, and modern, fitting a luxury brand's visual identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7aVti1aIa7xOhlSGFceR3faduUC5HHwHCdS7LCLXcTRYyOePv6XWgYAXZbluV7cZlZbkHOPW0CBt_FalLl4zmf9JQd7aBjAN8BLDx0ZVoG7Lr7njNCa00B8ukmwu3wPtuJysRK4ew_9yMaX_GxEzrVP3h2CQrBIaIUWZGg_YGxrMauJRl9OYbTj9uuXgiTy-wiPM27ld47DCCdu7dxFbsYgVoDOqYf5vsZfrXzgYNN6QJAimrqpoJIA')"></div>
+<div class="relative z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-label-sm font-semibold">Change Banner</p>
+<p class="text-[10px] text-secondary">JPG, PNG up to 10MB</p>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant font-semibold mb-3">Social Meta Image (1.91:1)</label>
+<div class="drop-zone border-2 border-dashed border-outline-variant rounded-xl h-48 flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer transition-all">
+<div class="relative z-10 flex flex-col items-center text-center px-4">
+<span class="material-symbols-outlined text-outline text-3xl mb-2" data-icon="add_photo_alternate">add_photo_alternate</span>
+<p class="text-label-sm font-semibold">Upload Image</p>
+<p class="text-[10px] text-secondary">Optimized for LinkedIn &amp; Instagram sharing</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Card (Rich Text Editor Mockup) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-space-lg py-3 border-b border-outline-variant bg-surface-container-low/30 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xl" data-icon="format_bold">format_bold</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xl" data-icon="format_italic">format_italic</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xl" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+<div class="w-px h-6 bg-outline-variant mx-1"></div>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xl" data-icon="link">link</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xl" data-icon="format_quote">format_quote</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xl" data-icon="code">code</span></button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-caption text-secondary">Words: 428</span>
+<button class="p-1 hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-secondary" data-icon="fullscreen">fullscreen</span></button>
+</div>
+</div>
+<div class="p-space-lg editor-container">
+<article class="prose prose-slate max-w-none">
+<h2 class="font-headline-lg text-headline-lg mb-4">A New Era of Craftsmanship</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                                    The Heritage Collection is more than a season; it's a testament to the enduring quality of our artisans. Every stitch tells a story of tradition meeting technology. In this release, we explore the intersection of raw textures and refined silhouettes. 
+                                </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mt-4">
+                                    Our commitment to sustainability continues with the introduction of 100% recycled cashmere and locally sourced organic wools. Each piece is designed to be a lifetime companion, transcending fleeting trends in favor of quiet authority.
+                                </p>
+</article>
+</div>
+</section>
+</div>
+<!-- Right Column (30%) -->
+<aside class="col-span-3 space-y-space-lg">
+<!-- Status & Visibility -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<h4 class="font-label-md text-label-md font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+                            Status &amp; Visibility
+                        </h4>
+<div class="space-y-4">
+<div>
+<label class="block text-caption text-secondary mb-1">Status</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg px-3 py-2 text-label-md focus:ring-2 focus:ring-primary outline-none">
+<option value="draft">Draft</option>
+<option selected="" value="published">Published</option>
+<option value="hidden">Hidden</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-secondary" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-caption text-secondary mb-1">Visibility</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg px-3 py-2 text-label-md focus:ring-2 focus:ring-primary outline-none">
+<option selected="" value="public">Public</option>
+<option value="private">Private (Invite Only)</option>
+<option value="restricted">Restricted (Members)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-secondary" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Publishing Info -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<h4 class="font-label-md text-label-md font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                            Publishing Details
+                        </h4>
+<div class="space-y-4 text-label-md">
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high">
+<span class="text-secondary">Author</span>
+<span class="font-medium">Julian Vane</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-container-high">
+<span class="text-secondary">Created</span>
+<span class="font-medium">Oct 12, 2023</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-secondary">Last Updated</span>
+<span class="font-medium">2 hours ago</span>
+</div>
+</div>
+<div class="mt-6">
+<p class="text-caption font-bold text-secondary uppercase tracking-widest mb-3">Version History</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex-1">
+<p class="text-label-sm font-semibold">v.2.4.0 (Current)</p>
+<p class="text-[10px] text-secondary">Today, 10:24 AM by Julian V.</p>
+</div>
+<span class="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 transition-opacity" data-icon="history">history</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-1">
+<p class="text-label-sm font-medium text-on-surface-variant">v.2.3.9</p>
+<p class="text-[10px] text-secondary">Yesterday, 4:15 PM by Sarah L.</p>
+</div>
+<span class="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 transition-opacity" data-icon="history">history</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-1">
+<p class="text-label-sm font-medium text-on-surface-variant">v.2.3.0</p>
+<p class="text-[10px] text-secondary">Oct 14, 9:30 AM by Julian V.</p>
+</div>
+<span class="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 transition-opacity" data-icon="history">history</span>
+</div>
+</div>
+<button class="w-full mt-4 py-2 text-label-sm font-semibold text-secondary hover:text-primary transition-colors border border-outline-variant rounded-lg">View All Revisions</button>
+</div>
+</section>
+</aside></div>
+</main></div>
+<!-- Fixed Bottom Action Bar -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-280px)] h-20 bg-surface/80 backdrop-blur-md border-t border-outline-variant px-space-xl flex items-center justify-between z-30">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-2 text-secondary font-label-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Autosaved at 12:42 PM
+                </span>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant font-label-md text-label-md font-semibold hover:bg-surface-container transition-colors">
+                    Save Draft
+                </button>
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant font-label-md text-label-md font-semibold hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+                    Preview
+                </button>
+<button class="bg-primary text-on-primary px-8 py-2.5 rounded-lg font-label-md text-label-md font-bold hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-primary/10">
+                    Publish Changes
+                </button>
+</div>
+</footer>
+<!-- Micro-interaction scripts -->
+<script>
+        document.querySelectorAll('input, textarea, select').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.classList.add('ring-primary/5');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.classList.remove('ring-primary/5');
+            });
+        });
+
+        // Simple preview alert
+        document.querySelector('[data-icon="open_in_new"]').parentElement.addEventListener('click', () => {
+            alert('Generating live preview for: ' + document.querySelector('input[value*="collections"]').value);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kids | MONOLITH LUXURY</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1b1b1b",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-tint": "#5e5e5e",
+                    "outline": "#7e7576",
+                    "secondary-fixed": "#e2e2e2",
+                    "on-primary-fixed": "#1b1b1b",
+                    "tertiary": "#000000",
+                    "background": "#f9f9f9",
+                    "surface-bright": "#f9f9f9",
+                    "surface-container-highest": "#e2e2e2",
+                    "primary": "#000000",
+                    "on-background": "#1a1c1c",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "surface-variant": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "error": "#ba1a1a",
+                    "secondary": "#5d5f5f",
+                    "on-surface": "#1a1c1c",
+                    "surface-container": "#eeeeee",
+                    "on-primary-container": "#848484",
+                    "tertiary-container": "#1a1c1c",
+                    "primary-fixed": "#e2e2e2",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "outline-variant": "#cfc4c5",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "on-surface-variant": "#4c4546",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#838484",
+                    "tertiary-fixed": "#e2e2e2",
+                    "secondary-container": "#dcdddd",
+                    "surface-dim": "#dadada",
+                    "surface-container-high": "#e8e8e8",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-secondary-container": "#5f6161",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary-fixed": "#1a1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "128px",
+                    "margin-mobile": "20px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-md": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "display-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .product-card-aspect {
+            aspect-ratio: 4 / 5;
+        }
+        /* Custom scrollbar for editorial feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f9f9f9; }
+        ::-webkit-scrollbar-thumb { background: #e2e2e2; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1a1c1c; }
+
+        .image-swap-container img {
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .image-swap-container:hover .primary-image {
+            opacity: 0;
+            transform: scale(1.04);
+        }
+        .image-swap-container .secondary-image {
+            opacity: 0;
+            position: absolute;
+            inset: 0;
+            transform: scale(1.08);
+        }
+        .image-swap-container:hover .secondary-image {
+            opacity: 1;
+            transform: scale(1.04);
+        }
+        .card-action-btn {
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .group:hover .card-action-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 bg-background/95 backdrop-blur-md border-b border-outline-variant dark:border-outline transition-all duration-300">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop py-6">
+<!-- Brand Logo -->
+<a class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary" href="#">MONOLITH</a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-10">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-primary dark:text-on-primary border-b border-primary dark:border-on-primary pb-1" href="#">Categories</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">New Arrivals</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity duration-300" data-icon="favorite">favorite</button>
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity duration-300" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity duration-300" data-icon="person">person</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Hero Editorial Section -->
+<section class="mt-8 mb-section-gap">
+<div class="relative w-full h-[50vh] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out" data-alt="A high-fashion editorial campaign featuring a young child dressed in minimalist luxury apparel." id="hero-image" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpjsRRXS_4RAewE2JaELlpFcDwguk2mkno6RMUNZILd2s3Cnmjg0ZjdfeDHcNJl74DgZ0wLwCNvioYHzd4NfaPqwtvMX9CkTIcGEtaVvkOuYq6DEgrypY09s3onfnPorGwpT3LHB7QJpmOyrPheoG-C0XgSGu8ro5jr1Lxn-BkcX43ik1ApV0jETxAQ9PoiA_RH9qyUUfNCGjSIGYkzZn9jng3NLVAsyPyMuiQ5rCUkzBOI-cBRTpLtw')">
+</div>
+<div class="absolute inset-0 bg-black/10 flex flex-col justify-end p-margin-desktop">
+<div class="max-w-2xl text-white mix-blend-difference">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase tracking-tighter mb-4">Kids</h1>
+<p class="font-body-lg text-body-lg max-w-lg">An elevated collection for the next generation. Timeless silhouettes, premium fabrics, and quiet luxury scaled for the modern youth.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Info & Controls -->
+<section class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant pb-6 mb-12">
+<div class="mb-8 md:mb-0">
+<span class="font-label-caps text-label-caps text-secondary mb-2 block uppercase">Catalogue</span>
+<h2 class="font-headline-md text-headline-md uppercase">The New Youth</h2>
+</div>
+<div class="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 font-label-caps text-label-caps border-b border-transparent hover:border-primary transition-all pb-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span>
+                        FILTERS
+                    </button>
+<button class="flex items-center gap-2 font-label-caps text-label-caps border-b border-transparent hover:border-primary transition-all pb-1">
+                        SORT BY
+                        <span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<span class="font-label-caps text-label-caps text-secondary italic">48 PRODUCTS</span>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-20">
+<!-- Product 1 -->
+<div class="group cursor-pointer">
+<div class="product-card-aspect overflow-hidden bg-surface-container mb-6 relative image-swap-container group">
+<img class="primary-image w-full h-full object-cover" data-alt="Cashmere essential front view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMyRJ-x3FdlO9Yj-fDpfDDKbdZzZR588ht5L41S9_PrjLqaF1jtugEtwu7c5myRNyankVgpwjO5HdwLlB4GdASOQIxkBHhpkdsbV0WpsEXGoJ_hwXik4KQJOogbdBhZ1IrpdXwkBYG2Nb_oH7B5hbHAW192z0yJgfoI4HtWJc_tHfOQspPA2dh5qhzLyxDcWEExtkr2r8dciRvC35IT3plcG6I4FRv1Nj8dyAl86nah5zI6p8wyvQlWg">
+<img class="secondary-image w-full h-full object-cover" data-alt="Cashmere essential lifestyle view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpjsRRXS_4RAewE2JaELlpFcDwguk2mkno6RMUNZILd2s3Cnmjg0ZjdfeDHcNJl74DgZ0wLwCNvioYHzd4NfaPqwtvMX9CkTIcGEtaVvkOuYq6DEgrypY09s3onfnPorGwpT3LHB7QJpmOyrPheoG-C0XgSGu8ro5jr1Lxn-BkcX43ik1ApV0jETxAQ9PoiA_RH9qyUUfNCGjSIGYkzZn9jng3NLVAsyPyMuiQ5rCUkzBOI-cBRTpLtw">
+<!-- Soft Light Overlay -->
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<!-- Top Right: Wishlist -->
+<button class="absolute top-5 right-5 z-10 p-2 text-white mix-blend-difference hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<!-- Bottom Floating Actions -->
+<div class="absolute bottom-8 left-0 w-full flex justify-center gap-3 px-6 z-10"><button class="card-action-btn flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-md text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('PRODUCT')">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="card-action-btn flex-1 flex items-center justify-center gap-2 bg-primary text-white font-button text-[12px] uppercase px-6 py-3 rounded-full shadow-lg hover:bg-stone-800 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+    Add to Cart
+</button></div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<h3 class="font-headline-md text-[18px] tracking-tight">CASHMERE ESSENTIAL</h3>
+<div class="flex justify-between items-baseline">
+<p class="font-label-caps text-[11px] text-secondary uppercase">Bone White</p>
+<span class="font-label-caps text-[12px] text-primary">$240.00</span>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer">
+<div class="product-card-aspect overflow-hidden bg-surface-container mb-6 relative image-swap-container group">
+<img class="primary-image w-full h-full object-cover" data-alt="Modern trouser front view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjkYuYOjJgH-JjK-ZAX6Vm6emi55dIcI_Affgo4qtsJfhFKL58hw0FMkowV0tl-Cw0MeknyPGQ4QaVNfg5ERDrPZ3YWfmFLcTQ-PDN4Qv3gerG3_lBeI5W2aH7IU52BtH0KhNUksPRdc1SHlKSVP_UeKUz-qCLogkdiB6Vxxv3yTeuHoC93kElKP6PYLBi5OvjsdtXUbbD-WlsEUGCRFyzZ0kavjlX9blxSRdFt8-pbJEhOLW78bFQ3g">
+<img class="secondary-image w-full h-full object-cover" data-alt="Modern trouser detail view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpjsRRXS_4RAewE2JaELlpFcDwguk2mkno6RMUNZILd2s3Cnmjg0ZjdfeDHcNJl74DgZ0wLwCNvioYHzd4NfaPqwtvMX9CkTIcGEtaVvkOuYq6DEgrypY09s3onfnPorGwpT3LHB7QJpmOyrPheoG-C0XgSGu8ro5jr1Lxn-BkcX43ik1ApV0jETxAQ9PoiA_RH9qyUUfNCGjSIGYkzZn9jng3NLVAsyPyMuiQ5rCUkzBOI-cBRTpLtw">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<button class="absolute top-5 right-5 z-10 p-2 text-white mix-blend-difference hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-8 left-0 w-full flex justify-center gap-3 px-6 z-10"><button class="card-action-btn flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-md text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('PRODUCT')">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="card-action-btn flex-1 flex items-center justify-center gap-2 bg-primary text-white font-button text-[12px] uppercase px-6 py-3 rounded-full shadow-lg hover:bg-stone-800 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+    Add to Cart
+</button></div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<h3 class="font-headline-md text-[18px] tracking-tight">MODERN TROUSER</h3>
+<div class="flex justify-between items-baseline">
+<p class="font-label-caps text-[11px] text-secondary uppercase">Charcoal</p>
+<span class="font-label-caps text-[12px] text-primary">$185.00</span>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer">
+<div class="product-card-aspect overflow-hidden bg-surface-container mb-6 relative image-swap-container group">
+<img class="primary-image w-full h-full object-cover" data-alt="Archive jacket front view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx1lt47NZjPkfHyxy4LCWkQ634JTbWWuxdYTLA8R8bMbQUsYG1SzdSuLgjBHcBG_zOG_sY-_t97ZINtQSowiu-QZFSQCu2If_-q6WtaEYNcPR_682tCRtc71RiV06-Q7JXwW8fc9vAC1DZJwmM05CGPflr6Pbzhc3zY3ZNgvm-JUhfyorQzWYcXGINWDGP2jPGPmCqsU5qpnB-av0LVVhczQKuK2pbSdGQ5IYU3CnIrdLHpd4YM6VkGg">
+<img class="secondary-image w-full h-full object-cover" data-alt="Archive jacket lifestyle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpjsRRXS_4RAewE2JaELlpFcDwguk2mkno6RMUNZILd2s3Cnmjg0ZjdfeDHcNJl74DgZ0wLwCNvioYHzd4NfaPqwtvMX9CkTIcGEtaVvkOuYq6DEgrypY09s3onfnPorGwpT3LHB7QJpmOyrPheoG-C0XgSGu8ro5jr1Lxn-BkcX43ik1ApV0jETxAQ9PoiA_RH9qyUUfNCGjSIGYkzZn9jng3NLVAsyPyMuiQ5rCUkzBOI-cBRTpLtw">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<button class="absolute top-5 right-5 z-10 p-2 text-white mix-blend-difference hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-8 left-0 w-full flex justify-center gap-3 px-6 z-10"><button class="card-action-btn flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-md text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('PRODUCT')">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="card-action-btn flex-1 flex items-center justify-center gap-2 bg-primary text-white font-button text-[12px] uppercase px-6 py-3 rounded-full shadow-lg hover:bg-stone-800 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+    Add to Cart
+</button></div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<h3 class="font-headline-md text-[18px] tracking-tight">ARCHIVE JACKET</h3>
+<div class="flex justify-between items-baseline">
+<p class="font-label-caps text-[11px] text-secondary uppercase">Matte Black</p>
+<span class="font-label-caps text-[12px] text-primary">$550.00</span>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="group cursor-pointer">
+<div class="product-card-aspect overflow-hidden bg-surface-container mb-6 relative image-swap-container group">
+<img class="primary-image w-full h-full object-cover" data-alt="Oversized hoodie front" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB71ZjZgLNpnNPKD3m2mI526LgSnzWmnLQtOTpleZOfyrYnr1fuMN7FseHap-h8qX_Lse2ninTlWxb_Xcff22H4J4VROAL4uvIBz8KEHMUjRvAft303ZfQbPPOjEG2qsqQeDwmJ6P3e53O9OKTey19Yu92oBevEAud6rOQ0g8G6ToOw6OZCPzQvFJKugLoDS1aW-VWQcnHcfE1fcr_cVYmrWqCtfp0iNB6JKKeF-f20DjZoI-NvSmdVgw">
+<img class="secondary-image w-full h-full object-cover" data-alt="Oversized hoodie lifestyle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpjsRRXS_4RAewE2JaELlpFcDwguk2mkno6RMUNZILd2s3Cnmjg0ZjdfeDHcNJl74DgZ0wLwCNvioYHzd4NfaPqwtvMX9CkTIcGEtaVvkOuYq6DEgrypY09s3onfnPorGwpT3LHB7QJpmOyrPheoG-C0XgSGu8ro5jr1Lxn-BkcX43ik1ApV0jETxAQ9PoiA_RH9qyUUfNCGjSIGYkzZn9jng3NLVAsyPyMuiQ5rCUkzBOI-cBRTpLtw">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<button class="absolute top-5 right-5 z-10 p-2 text-white mix-blend-difference hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-8 left-0 w-full flex justify-center gap-3 px-6 z-10"><button class="card-action-btn flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-md text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('PRODUCT')">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="card-action-btn flex-1 flex items-center justify-center gap-2 bg-primary text-white font-button text-[12px] uppercase px-6 py-3 rounded-full shadow-lg hover:bg-stone-800 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+    Add to Cart
+</button></div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<h3 class="font-headline-md text-[18px] tracking-tight">OVERSIZED HOODIE</h3>
+<div class="flex justify-between items-baseline">
+<p class="font-label-caps text-[11px] text-secondary uppercase">Olive</p>
+<span class="font-label-caps text-[12px] text-primary">$120.00</span>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="group cursor-pointer">
+<div class="product-card-aspect overflow-hidden bg-surface-container mb-6 relative image-swap-container group">
+<img class="primary-image w-full h-full object-cover" data-alt="Heritage boot side" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiI7ZOfJgFyJJYlY8XqYmwsj_cpJ-wRUcgnkxCExhyDJZ0rpqkL_5FPaQOCkXJHLBpL5dJnQdWztj0WGjF8DbJbL0ktvrmJh8P10JFNjIMER5lz-_UEw3EIjv3ko63-I3PQJG_PLt--kc6V5flFm2LoGGoUAXGxHc-Q7n26JFWHY-fj8rRk0i27lKUxdiICxk5jXEdAnUEKnFSEQsxg1Zkm9FNU8BPGA-SDkOU6x0P8S6wz5dlOgYCZw">
+<img class="secondary-image w-full h-full object-cover" data-alt="Heritage boot detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9BRbL9JdSSizlkZfLRtuWnZ0j0p36Kn_ibMSwccj9CyDYUQ3Hlr0hxooIBLVwTWemmVawtZKP6G1N6c3o9t8x6zJcPeVem1jSybTuYHT4ggIh8QTxOwRu-84V0fUzy_Avmp26gq08wSrLlYI61UBvUXLDUhF2huGgLUFeqGV0oqIiK4XCvQ-Y7JKWcSJ08NEJC8dL13xVKbuh0btStW5BEDFyjNdm0D4-rG_8HuXUac2oQT-5RaZjjA">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<button class="absolute top-5 right-5 z-10 p-2 text-white mix-blend-difference hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-8 left-0 w-full flex justify-center gap-3 px-6 z-10"><button class="card-action-btn flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-md text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('PRODUCT')">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="card-action-btn flex-1 flex items-center justify-center gap-2 bg-primary text-white font-button text-[12px] uppercase px-6 py-3 rounded-full shadow-lg hover:bg-stone-800 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+    Add to Cart
+</button></div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<h3 class="font-headline-md text-[18px] tracking-tight">HERITAGE BOOT</h3>
+<div class="flex justify-between items-baseline">
+<p class="font-label-caps text-[11px] text-secondary uppercase">Espresso</p>
+<span class="font-label-caps text-[12px] text-primary">$210.00</span>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="group cursor-pointer">
+<div class="product-card-aspect overflow-hidden bg-surface-container mb-6 relative image-swap-container group">
+<img class="primary-image w-full h-full object-cover" data-alt="Silk slip dress front" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFwjoLsXNZWmpS72iy9d0iZtBNkxZOw_UlVv69l-4PyodQ61B5dcisgqwpzTahYyjyizQyySyZzpBjNNQ22iHk2fzCG733myuKjBhFFMICmCWVx7dkL_rgLF7PEdyElltuo7_xxstVIrX8hyJGoOo2OGeIDo3AXSlFTDOw6ASLA0w13w9l1lEmltX5H7s6lMdds5tq2IX3J7ic6BAbz_07UyJMxrKXUdfXwkcUkSGCzqPnpXdmC0ncPQ">
+<img class="secondary-image w-full h-full object-cover" data-alt="Silk slip dress detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpjsRRXS_4RAewE2JaELlpFcDwguk2mkno6RMUNZILd2s3Cnmjg0ZjdfeDHcNJl74DgZ0wLwCNvioYHzd4NfaPqwtvMX9CkTIcGEtaVvkOuYq6DEgrypY09s3onfnPorGwpT3LHB7QJpmOyrPheoG-C0XgSGu8ro5jr1Lxn-BkcX43ik1ApV0jETxAQ9PoiA_RH9qyUUfNCGjSIGYkzZn9jng3NLVAsyPyMuiQ5rCUkzBOI-cBRTpLtw">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<button class="absolute top-5 right-5 z-10 p-2 text-white mix-blend-difference hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-8 left-0 w-full flex justify-center gap-3 px-6 z-10"><button class="card-action-btn flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-md text-primary rounded-full shadow-lg hover:bg-primary hover:text-white transition-all duration-300" onclick="openQuickView('PRODUCT')">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+<button class="card-action-btn flex-1 flex items-center justify-center gap-2 bg-primary text-white font-button text-[12px] uppercase px-6 py-3 rounded-full shadow-lg hover:bg-stone-800 transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+    Add to Cart
+</button></div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<h3 class="font-headline-md text-[18px] tracking-tight">SILK SLIP DRESS</h3>
+<div class="flex justify-between items-baseline">
+<p class="font-label-caps text-[11px] text-secondary uppercase">Champagne</p>
+<span class="font-label-caps text-[12px] text-primary">$295.00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Load More -->
+<section class="flex justify-center my-section-gap">
+<button class="px-12 py-4 bg-primary text-on-primary font-button text-button uppercase hover:bg-white hover:text-primary border border-primary transition-all duration-300">
+                Load More
+            </button>
+</section>
+<!-- Newsletter Subscription -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap md:grid-cols-3 gap-x-12 gap-y-20">
+<div class="md:col-span-5 flex flex-col justify-center">
+<h2 class="font-headline-md text-headline-md mb-6 uppercase">Join the Monolith</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-8">Exclusive access to limited editions and the editorial journal. No noise, just curation.</p>
+<div class="flex border-b border-primary py-2 group">
+<input class="bg-transparent border-none focus:ring-0 w-full font-label-caps text-label-caps placeholder:text-outline outline-none" placeholder="YOUR EMAIL ADDRESS" type="email">
+<button class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform duration-300" data-icon="arrow_forward">arrow_forward</button>
+</div>
+</div>
+<div class="md:col-start-8 md:col-span-5 hidden md:block">
+<div class="w-full h-80 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="An abstract, high-contrast close-up of premium fabric folds in black and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9BRbL9JdSSizlkZfLRtuWnZ0j0p36Kn_ibMSwccj9CyDYUQ3Hlr0hxooIBLVwTWemmVawtZKP6G1N6c3o9t8x6zJcPeVem1jSybTuYHT4ggIh8QTxOwRu-84V0fUzy_Avmp26gq08wSrLlYI61UBvUXLDUhF2huGgLUFeqGV0oqIiK4XCvQ-Y7JKWcSJ08NEJC8dL13xVKbuh0btStW5BEDFyjNdm0D4-rG_8HuXUac2oQT-5RaZjjA">
+</div>
+</div>
+</section>
+</main>
+<!-- Quick View Modal -->
+<div class="fixed inset-0 z-[60] hidden" id="quick-view-modal">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeQuickView()"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-4xl bg-white p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-12 animate-in fade-in zoom-in duration-300">
+<button class="absolute top-6 right-6 material-symbols-outlined hover:rotate-90 transition-transform duration-300" data-icon="close" onclick="closeQuickView()">close</button>
+<div class="product-card-aspect bg-surface-container-low overflow-hidden">
+<img alt="Product Preview" class="w-full h-full object-cover" id="modal-image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=">
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-secondary mb-4 uppercase">New Arrivals</span>
+<h2 class="font-display-lg text-headline-lg uppercase mb-4" id="modal-title">Product Name</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-8 leading-relaxed">Exquisitely crafted from the finest materials. This piece embodies our commitment to quality and timeless minimalist aesthetic.</p>
+<div class="flex items-center gap-6 mb-10">
+<span class="font-headline-md text-headline-md">$240.00</span>
+<div class="flex gap-2">
+<div class="w-6 h-6 rounded-full border border-primary bg-stone-200"></div>
+<div class="w-6 h-6 rounded-full border border-outline-variant bg-stone-800"></div>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-white font-button uppercase hover:bg-stone-800 transition-colors duration-300">Add to Collection</button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline flat no shadows">
+<div class="max-w-container-max mx-auto px-margin-desktop py-section-gap flex flex-col items-center gap-8 text-center">
+<!-- Brand Logo -->
+<div class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-primary">MONOLITH LUXURY</div>
+<!-- Footer Links -->
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Store Locator</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Journal</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Sustainability</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Instagram</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Pinterest</a>
+</div>
+<!-- Copyright -->
+<p class="font-label-caps text-label-caps text-secondary-fixed-dim mt-8 tracking-widest uppercase">© 2024 Monolith Luxury. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.getElementById('hero-image');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.15}px)`;
+            }
+        });
+
+        // Quick View Logic
+        function openQuickView(productName) {
+            const modal = document.getElementById('quick-view-modal');
+            const title = document.getElementById('modal-title');
+            const img = document.getElementById('modal-image');
+            
+            title.textContent = productName;
+            img.src = "https://lh3.googleusercontent.com/aida-public/AB6AXuDMyRJ-x3FdlO9Yj-fDpfDDKbdZzZR588ht5L41S9_PrjLqaF1jtugEtwu7c5myRNyankVgpwjO5HdwLlB4GdASOQIxkBHhpkdsbV0WpsEXGoJ_hwXik4KQJOogbdBhZ1IrpdXwkBYG2Nb_oH7B5hbHAW192z0yJgfoI4HtWJc_tHfOQspPA2dh5qhzLyxDcWEExtkr2r8dciRvC35IT3plcG6I4FRv1Nj8dyAl86nah5zI6p8wyvQlWg";
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quick-view-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+
+</body></html>

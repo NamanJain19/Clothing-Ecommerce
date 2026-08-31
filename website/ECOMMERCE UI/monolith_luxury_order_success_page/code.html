@@ -1,0 +1,313 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Order Confirmed | MONOLITH</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#4c4546",
+                    "secondary-container": "#dcdddd",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-variant": "#e2e2e2",
+                    "surface-bright": "#f9f9f9",
+                    "on-primary-container": "#848484",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#e2e2e2",
+                    "tertiary-container": "#1a1c1c",
+                    "secondary": "#5d5f5f",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-surface": "#1a1c1c",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-container-low": "#f3f3f4",
+                    "outline": "#7e7576",
+                    "outline-variant": "#cfc4c5",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#5e5e5e",
+                    "on-error-container": "#93000a",
+                    "background": "#f9f9f9",
+                    "tertiary": "#000000",
+                    "primary-container": "#1b1b1b",
+                    "inverse-surface": "#2f3131",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-error": "#ffffff",
+                    "primary": "#000000",
+                    "on-secondary-container": "#5f6161",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#838484",
+                    "surface-container": "#eeeeee",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-secondary-fixed-variant": "#454747",
+                    "surface-dim": "#dadada",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-container-high": "#e8e8e8",
+                    "primary-fixed": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "gutter": "32px",
+                    "section-gap": "128px",
+                    "unit": "8px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "label-caps": ["Montserrat"],
+                    "headline-lg": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-dot {
+            box-shadow: 0 0 0 4px white, 0 0 0 5px black;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-on-surface-variant h-20 fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-8">
+<a class="font-headline-lg text-headline-lg tracking-widest text-primary dark:text-on-background" href="#">MONOLITH</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:opacity-70 transition-opacity duration-300" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:opacity-70 transition-opacity duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:opacity-70 transition-opacity duration-300" href="#">Categories</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:opacity-70 transition-opacity duration-300" href="#">New Arrivals</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">search</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">favorite</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">shopping_bag</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">person</span>
+</div>
+</div>
+</header>
+<main class="mt-20 px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<!-- Success Header -->
+<section class="text-center mb-section-gap">
+<div class="mb-6 flex justify-center">
+<div class="w-16 h-16 border border-primary flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-4xl font-light">check</span>
+</div>
+</div>
+<h1 class="font-headline-lg text-headline-lg mb-4">✓ Order Confirmed</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl mx-auto">
+                Thank you for shopping with us. Your order has been placed successfully and is being prepared for shipment.
+            </p>
+</section>
+<!-- Order Detail Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-section-gap">
+<!-- Details Column -->
+<div class="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 border border-outline-variant p-8 bg-white">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-2">Order Number</p>
+<p class="font-body-md font-semibold">MNL-89234</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-2">Order Date</p>
+<p class="font-body-md font-semibold">Oct 24, 2024</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-2">Payment Method</p>
+<p class="font-body-md font-semibold">Visa ending in 4242</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-2">Total Amount</p>
+<p class="font-body-md font-semibold">$1,420.00</p>
+</div>
+<!-- Shipping Full Width inside Grid -->
+<div class="col-span-2 md:col-span-4 pt-8 border-t border-outline-variant">
+<p class="font-label-caps text-label-caps text-secondary mb-4">Shipping Address</p>
+<address class="not-italic font-body-md text-primary leading-relaxed">
+                        Alexander Sterling<br>
+                        724 Fifth Avenue, Suite 1201<br>
+                        New York, NY 10019<br>
+                        United States
+                    </address>
+</div>
+</div>
+<!-- Tracking Card -->
+<div class="md:col-span-4 border border-outline-variant p-8 bg-white flex flex-col justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-4">Delivery Info</p>
+<div class="space-y-6">
+<div>
+<p class="font-body-md font-semibold">Estimated Delivery</p>
+<p class="font-body-md text-secondary">Oct 27 - Oct 30</p>
+</div>
+<div>
+<p class="font-body-md font-semibold">Courier Partner</p>
+<p class="font-body-md text-secondary">DHL Express</p>
+</div>
+<div>
+<p class="font-body-md font-semibold">Tracking Number</p>
+<p class="font-body-md text-secondary break-all">1Z999AA1012345678</p>
+</div>
+</div>
+</div>
+<div class="pt-8">
+<button class="w-full bg-primary text-on-primary font-button text-button py-4 uppercase tracking-widest hover:opacity-90 transition-all">Track Order</button>
+<button class="w-full mt-4 border border-primary text-primary font-button text-button py-4 uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all">Continue Shopping</button>
+<button class="w-full mt-4 text-secondary font-label-caps text-label-caps hover:text-primary transition-all underline underline-offset-4 decoration-1">Download Invoice</button>
+</div>
+</div>
+</section>
+<!-- Premium Progress Tracker -->
+<section class="mb-section-gap px-margin-mobile md:px-0">
+<div class="max-w-4xl mx-auto">
+<div class="relative flex justify-between items-center w-full">
+<!-- Connector Line -->
+<div class="absolute h-[1px] bg-outline-variant w-full top-1/2 left-0 -translate-y-1/2 z-0"></div>
+<div class="absolute h-[1px] bg-primary w-1/4 top-1/2 left-0 -translate-y-1/2 z-0"></div>
+<!-- Steps -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-3 h-3 bg-primary rounded-full active-dot"></div>
+<p class="absolute top-8 font-label-caps text-[10px] whitespace-nowrap text-primary">Order Confirmed</p>
+</div>
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-3 h-3 bg-outline-variant rounded-full group-hover:bg-primary transition-colors"></div>
+<p class="absolute top-8 font-label-caps text-[10px] whitespace-nowrap text-secondary">Processing</p>
+</div>
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-3 h-3 bg-outline-variant rounded-full group-hover:bg-primary transition-colors"></div>
+<p class="absolute top-8 font-label-caps text-[10px] whitespace-nowrap text-secondary">Packed</p>
+</div>
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-3 h-3 bg-outline-variant rounded-full group-hover:bg-primary transition-colors"></div>
+<p class="absolute top-8 font-label-caps text-[10px] whitespace-nowrap text-secondary">Shipped</p>
+</div>
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-3 h-3 bg-outline-variant rounded-full group-hover:bg-primary transition-colors"></div>
+<p class="absolute top-8 font-label-caps text-[10px] whitespace-nowrap text-secondary">Delivered</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended Products -->
+<section class="pt-section-gap border-t border-outline-variant">
+<h2 class="font-headline-md text-headline-md mb-12 text-center md:text-left">You May Also Like</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden border border-outline-variant mb-4 bg-surface">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A high-fashion minimalist photography of a structured black leather handbag on a pristine white marble pedestal. The lighting is crisp and editorial, highlighting the grain of the luxury leather against a neutral grey background. The composition is centered and symmetrical, embodying the quiet luxury aesthetic of the Monolith brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv0wEzJe5lgd18aSDdelsFIgyNHx3IlmTkhrep-hr0ZrkvHxHCy-mDc1qTRb0XSmxlMLo3RQqlOOFCEvVkOAspGE0p-fcsid9vH2kj_YenEEa9EKjMF4PgNNWgNIxcys41tJQwxuqEIQgyUUpsp4qAfV2U2O_eaGfdm1q3pcZ6qv2F14OK1sTA0c-kiCjXQwWZt_Mn2fVV6dTOOkTNL3UBELedcCwpYdPd50VCImK4-pBR4YDKS3urLg">
+</div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">Accessories</p>
+<h3 class="font-headline-md text-lg md:text-xl mb-2">The Sculptural Tote</h3>
+<p class="font-label-caps text-label-caps">$890.00</p>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden border border-outline-variant mb-4 bg-surface">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="An editorial shot of a tailored ivory silk blazer hanging on a minimalist dark wood rack. The fabric has a subtle, expensive sheen under soft, diffused studio lighting. The background is a clean off-white with deep shadows creating a sense of three-dimensional depth and premium quality. Minimalist and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2k1OdC5f9vNEWHJg90GYKQDsjqDhL1VXz3T6GIneJkCRhOLRl5wDFRTwJGRbDnXFkVWDnLYCy3YESBf346NOTT4ynJKNa6oxv0500Wg45iF0WHmnsmWjftl54CfvPJ5_pLYeeaqjXd9ahhS5KcVtrmQzrhZrr2JBRIG89C85ApVyjtrJp9NrKxMBA0qjRtwm_gj8A1gbbDXJEZG-_H454v8bVudfNPpzfyN26j0oRdD33oQh5NwB7FQ">
+</div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">Outerwear</p>
+<h3 class="font-headline-md text-lg md:text-xl mb-2">Silk Wool Blazer</h3>
+<p class="font-label-caps text-label-caps">$1,250.00</p>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden border border-outline-variant mb-4 bg-surface">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A close-up vertical shot of luxury polarized eyewear with a thick black acetate frame, resting on a clean concrete surface. The reflection in the lenses shows a modern architectural structure. The aesthetic is monochromatic and sharp, emphasizing technical precision and understated elegance for the high-end consumer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChWtK4Jqgbe69Z2e30Hu20pWFJtlWlm4e_XCDag717sxlgsRHE3HyTCoatJDhMQNMgg9qWufq2u53hMfeK4prCqj0jZgbnbHzpe7IHBVUqk5RGoTZaBWTPIAztRjl4TXr8UbkYRMinf1dNAVp2JtQI02v6bzS6YdlRCub0OcT2x6sWjmhMLRXQA_Y50D_a6KPmNk-m_VIL3vOd6JNX1Dpn_FHAEKXgxQFQiSuiTh-l5nXSzv9FPTvrbA">
+</div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">Eyewear</p>
+<h3 class="font-headline-md text-lg md:text-xl mb-2">Obsidian Frames</h3>
+<p class="font-label-caps text-label-caps">$420.00</p>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden border border-outline-variant mb-4 bg-surface">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" data-alt="A pair of minimalist white leather sneakers with a gum sole, shot from a low angle against a stark black background. The contrast is dramatic, highlighting the clean lines and premium materials. No logos are visible, emphasizing the quiet luxury branding of the Monolith collection. Editorial studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5lsIRgvPKwXDC_jC9sCMxwUztRxpm3SS_-BGEc0HD5tHHHJCXHO5PI_D5hbpv43PbcqFxNkS56TafSc6-Y8vyCFXqoskZhA6uSsExMSJUJ_he5FoY_w_k1HSeZ0fS2VerFTRFeyHRZ39sOvzx8jD-iDtgLpKiHOELepQR91TIxYOecj17VDJMllpBaNExBSH_5ZBlKnZ6LwAdrMnmiTYcPdicqP6Uy748l-_fjB50CcXbvpTWVHoaBQ">
+</div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">Footwear</p>
+<h3 class="font-headline-md text-lg md:text-xl mb-2">The Mono Trainer</h3>
+<p class="font-label-caps text-label-caps">$550.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface dark:bg-background border-t border-outline-variant dark:border-on-surface-variant w-full">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-section-gap w-full max-w-container-max mx-auto">
+<div class="mb-8 md:mb-0">
+<p class="font-headline-md text-headline-md text-primary dark:text-on-background mb-4">MONOLITH</p>
+<p class="font-label-caps text-label-caps text-secondary">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:underline transition-all duration-300" href="#">Sustainability</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:underline transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:underline transition-all duration-300" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-on-background hover:underline transition-all duration-300" href="#">Shipping &amp; Returns</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('section, header, footer');
+            elements.forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                el.style.transitionDelay = `${i * 0.1}s`;
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

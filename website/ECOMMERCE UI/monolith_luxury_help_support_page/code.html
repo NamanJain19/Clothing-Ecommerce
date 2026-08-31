@@ -1,0 +1,357 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Help &amp; Support | MONOLITH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c6c6c6",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-container": "#5f6161",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "surface": "#f9f9f9",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#000000",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-bright": "#f9f9f9",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#848484",
+                    "tertiary-fixed": "#e2e2e2",
+                    "outline-variant": "#cfc4c5",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-primary-fixed": "#1b1b1b",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "primary-container": "#1b1b1b",
+                    "surface-tint": "#5e5e5e",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#1a1c1c",
+                    "primary-fixed": "#e2e2e2",
+                    "on-tertiary-container": "#838484",
+                    "inverse-surface": "#2f3131",
+                    "surface-container": "#eeeeee",
+                    "on-secondary-fixed-variant": "#454747",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#7e7576",
+                    "background": "#f9f9f9",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-container-high": "#e8e8e8",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#5d5f5f",
+                    "on-background": "#1a1c1c",
+                    "primary": "#000000",
+                    "surface-dim": "#dadada",
+                    "on-surface-variant": "#4c4546",
+                    "surface-container-highest": "#e2e2e2",
+                    "secondary-container": "#dcdddd",
+                    "primary-fixed-dim": "#c6c6c6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "128px",
+                    "margin-mobile": "20px",
+                    "gutter": "32px",
+                    "container-max": "1440px",
+                    "unit": "8px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "button": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "label-caps": ["Montserrat"]
+            },
+            "fontSize": {
+                    "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary .expand-icon { transform: rotate(45deg); }
+        .sidebar-link.active { border-right: 2px solid #000000; font-weight: 600; }
+        .input-underline { border: none; border-bottom: 1px solid #000000; outline: none; }
+        .input-underline:focus { border-bottom: 2px solid #000000; box-shadow: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-high border-b border-outline-variant dark:border-outline h-20 transition-all ease-in-out duration-300">
+<div class="flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-headline-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary" href="#">MONOLITH</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Collections</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Categories</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-caps text-label-caps hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">New Arrivals</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center border-b border-outline-variant pb-1">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-caps font-label-caps placeholder-on-surface-variant/50 w-48" placeholder="SEARCH" type="text">
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">favorite</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">person</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Layout -->
+<main class="pt-32 pb-section-gap px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Left Account Sidebar -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-32">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-8">MY ACCOUNT</h3>
+<nav class="flex flex-col space-y-2">
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Dashboard</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">My Orders</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Track Orders</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Wishlist</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Saved Addresses</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Payment Methods</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Account Settings</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Notifications</a>
+<a class="sidebar-link active flex items-center py-2 text-primary" href="#">Help &amp; Support</a>
+<a class="sidebar-link flex items-center py-2 text-on-surface-variant hover:text-primary transition-all" href="#">Logout</a>
+</nav>
+</div>
+</aside>
+<!-- Help Content (Right Side) -->
+<section class="flex-grow">
+<div class="max-w-4xl">
+<header class="mb-16">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Help &amp; Support</h1>
+<p class="font-body-lg text-body-lg text-secondary">We're here whenever you need assistance.</p>
+</header>
+<!-- Quick Support Section -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+<div class="p-8 border border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 block">forum</span>
+<h4 class="font-label-caps text-label-caps mb-1">Live Chat</h4>
+<p class="text-[11px] text-on-surface-variant uppercase tracking-widest">Available 24/7</p>
+</div>
+<div class="p-8 border border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 block">contact_support</span>
+<h4 class="font-label-caps text-label-caps mb-1">Contact Us</h4>
+<p class="text-[11px] text-on-surface-variant uppercase tracking-widest">General Enquiries</p>
+</div>
+<div class="p-8 border border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 block">mail</span>
+<h4 class="font-label-caps text-label-caps mb-1">Email Support</h4>
+<p class="text-[11px] text-on-surface-variant uppercase tracking-widest">Response in 24h</p>
+</div>
+<div class="p-8 border border-outline-variant hover:bg-surface-container-low transition-colors group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 block">call</span>
+<h4 class="font-label-caps text-label-caps mb-1">Call Support</h4>
+<p class="text-[11px] text-on-surface-variant uppercase tracking-widest">+1 (800) MONO-LITH</p>
+</div>
+</div>
+<!-- Help Categories -->
+<div class="mb-24">
+<h2 class="font-headline-md text-headline-md mb-8 border-b border-outline-variant pb-4">Browse by Topic</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+<a class="group" href="#">
+<h3 class="font-label-caps text-label-caps mb-2 group-hover:underline">Orders</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Tracking, modifying, or cancelling your latest purchases.</p>
+</a>
+<a class="group" href="#">
+<h3 class="font-label-caps text-label-caps mb-2 group-hover:underline">Shipping</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Domestic and international delivery options and timelines.</p>
+</a>
+<a class="group" href="#">
+<h3 class="font-label-caps text-label-caps mb-2 group-hover:underline">Returns &amp; Refunds</h3>
+<p class="font-body-md text-on-surface-variant text-sm">How to return items and our refund policies.</p>
+</a>
+<a class="group" href="#">
+<h3 class="font-label-caps text-label-caps mb-2 group-hover:underline">Payments</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Secure payment methods and billing questions.</p>
+</a>
+<a class="group" href="#">
+<h3 class="font-label-caps text-label-caps mb-2 group-hover:underline">Gift Options</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Gift wrapping, cards, and digital vouchers.</p>
+</a>
+<a class="group" href="#">
+<h3 class="font-label-caps text-label-caps mb-2 group-hover:underline">Account</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Managing your profile, security, and preferences.</p>
+</a>
+</div>
+</div>
+<!-- FAQ Section -->
+<div class="mb-24">
+<h2 class="font-headline-md text-headline-md mb-8 border-b border-outline-variant pb-4">Common Questions</h2>
+<div class="space-y-4">
+<details class="group border-b border-outline-variant py-4">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-label-caps text-label-caps">How do I track my luxury order?</span>
+<span class="material-symbols-outlined expand-icon transition-transform duration-300">add</span>
+</summary>
+<div class="pt-4 text-on-surface-variant font-body-md">
+                                    Once your order has been dispatched from our atelier, you will receive a confirmation email containing your tracking number. You can also view live status updates directly within the 'Track Orders' section of your account.
+                                </div>
+</details>
+<details class="group border-b border-outline-variant py-4">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-label-caps text-label-caps">What is your international return policy?</span>
+<span class="material-symbols-outlined expand-icon transition-transform duration-300">add</span>
+</summary>
+<div class="pt-4 text-on-surface-variant font-body-md">
+                                    We offer complimentary returns for all international orders within 28 days of delivery. Items must be in their original condition with all security tags and packaging intact.
+                                </div>
+</details>
+<details class="group border-b border-outline-variant py-4">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-label-caps text-label-caps">Can I modify an order after it is placed?</span>
+<span class="material-symbols-outlined expand-icon transition-transform duration-300">add</span>
+</summary>
+<div class="pt-4 text-on-surface-variant font-body-md">
+                                    To ensure prompt delivery, we begin processing orders immediately. Please contact our concierge team within 30 minutes of order placement if you require any modifications.
+                                </div>
+</details>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="bg-surface-container-low p-12">
+<h2 class="font-headline-md text-headline-md mb-4">Direct Message</h2>
+<p class="font-body-md text-on-surface-variant mb-12">If you have a specific inquiry, please use the form below and our concierge team will respond within 24 hours.</p>
+<form class="space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="flex flex-col">
+<label class="font-label-caps text-[10px] text-on-surface-variant mb-2">FULL NAME</label>
+<input class="input-underline bg-transparent py-2 px-0" placeholder="Type here..." type="text">
+</div>
+<div class="flex flex-col">
+<label class="font-label-caps text-[10px] text-on-surface-variant mb-2">EMAIL ADDRESS</label>
+<input class="input-underline bg-transparent py-2 px-0" placeholder="Type here..." type="email">
+</div>
+</div>
+<div class="flex flex-col">
+<label class="font-label-caps text-[10px] text-on-surface-variant mb-2">SUBJECT</label>
+<input class="input-underline bg-transparent py-2 px-0" placeholder="Nature of inquiry" type="text">
+</div>
+<div class="flex flex-col">
+<label class="font-label-caps text-[10px] text-on-surface-variant mb-2">MESSAGE</label>
+<textarea class="input-underline bg-transparent py-2 px-0 resize-none" placeholder="How can we assist you today?" rows="4"></textarea>
+</div>
+<button class="bg-primary text-on-primary font-button text-button px-12 py-4 uppercase tracking-widest hover:bg-secondary transition-colors duration-300" type="submit">
+                                Send Message
+                            </button>
+</form>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Newsletter -->
+<section class="bg-white border-t border-outline-variant py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<h2 class="font-headline-lg text-headline-lg mb-4">The Monolith Journal</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-12 max-w-2xl mx-auto">Subscribe for exclusive access to new collections, editorial insights, and private events.</p>
+<div class="flex flex-col md:flex-row justify-center gap-4 max-w-lg mx-auto">
+<input class="flex-grow border-none border-b border-primary bg-transparent py-3 px-0 focus:ring-0 font-label-caps text-label-caps" placeholder="EMAIL ADDRESS" type="email">
+<button class="bg-primary text-on-primary font-button text-button px-8 py-3 uppercase hover:bg-secondary transition-all">Subscribe</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full pt-section-gap pb-12 bg-surface-container-low dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-4">
+<h2 class="font-headline-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary mb-6">MONOLITH</h2>
+<p class="font-body-md text-on-surface-variant dark:text-surface-variant mb-8 max-w-xs">Elevated essentials for the modern architectural wardrobe. Crafted with precision, worn with intent.</p>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps text-primary dark:text-on-primary mb-6">SHOP</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant dark:text-surface-variant">
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">All Products</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Collections</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps text-primary dark:text-on-primary mb-6">EXPLORE</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant dark:text-surface-variant">
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Journal</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Atelier</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps text-primary dark:text-on-primary mb-6">SUPPORT</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant dark:text-surface-variant">
+<li><a class="font-bold text-primary dark:text-on-primary underline decoration-1 underline-offset-4" href="#">Help &amp; Support</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Store Locator</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-caps text-label-caps text-primary dark:text-on-primary mb-6">SOCIAL</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant dark:text-surface-variant">
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Instagram</a></li>
+<li><a class="hover:text-primary dark:hover:text-on-primary transition-colors" href="#">Pinterest</a></li>
+</ul>
+</div>
+<div class="col-span-full border-t border-outline-variant pt-12 mt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-label-caps text-[10px] text-on-surface-variant dark:text-surface-variant">© 2024 MONOLITH. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] text-on-surface-variant dark:text-surface-variant hover:text-primary" href="#">PRIVACY POLICY</a>
+<a class="font-label-caps text-[10px] text-on-surface-variant dark:text-surface-variant hover:text-primary" href="#">TERMS OF SERVICE</a>
+<a class="font-label-caps text-[10px] text-on-surface-variant dark:text-surface-variant hover:text-primary" href="#">COOKIES</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth transitions for interaction states
+        document.querySelectorAll('details').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                if (el.open) {
+                    // Handle logic if needed for custom animations
+                }
+            });
+        });
+
+        // Form submission prevention for demo
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Your message has been sent to the Monolith Concierge.');
+        });
+    </script>
+</body></html>

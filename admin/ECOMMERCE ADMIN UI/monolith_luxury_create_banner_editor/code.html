@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monolith | Create Banner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "surface-container-high": "#eae7e9",
+                        "primary-fixed": "#dce2f7",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "surface": "#fcf8fa",
+                        "inverse-on-surface": "#f3f0f1",
+                        "surface-container": "#f0edee",
+                        "surface-container-low": "#f6f3f4",
+                        "primary": "#000000",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5e6572",
+                        "background": "#fcf8fa",
+                        "secondary-container": "#dce2f3",
+                        "surface-dim": "#dcd9db",
+                        "on-primary-container": "#7d8497",
+                        "outline-variant": "#c6c6cd",
+                        "tertiary": "#000000",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#c0c6db",
+                        "surface-container-highest": "#e5e2e3",
+                        "secondary": "#585f6c",
+                        "surface-tint": "#575e70",
+                        "on-error": "#ffffff",
+                        "primary-container": "#141b2b",
+                        "on-secondary-fixed-variant": "#404754",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-tertiary-fixed": "#261906",
+                        "tertiary-container": "#261906",
+                        "inverse-surface": "#303031",
+                        "surface-bright": "#fcf8fa",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#f9debf",
+                        "on-tertiary-container": "#968065",
+                        "on-primary-fixed-variant": "#404758",
+                        "outline": "#76777d",
+                        "primary-fixed-dim": "#c0c6db",
+                        "surface-variant": "#e5e2e3",
+                        "on-surface-variant": "#45464c",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#151c27",
+                        "on-surface": "#1b1b1d",
+                        "secondary-fixed": "#dce2f3",
+                        "on-primary-fixed": "#141b2b",
+                        "on-background": "#1b1b1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-lg": "1.5rem",
+                        "gutter": "1.5rem",
+                        "space-sm": "0.5rem",
+                        "container-margin": "2rem",
+                        "space-xl": "2rem",
+                        "space-md": "1rem",
+                        "space-2xl": "3rem",
+                        "space-xs": "0.25rem"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e2e3; border-radius: 10px; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .toggle-checkbox:checked { right: 0; border-color: #111827; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #111827; }
+
+        .preview-container {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-x-hidden">
+<!-- Navigation Shell (SideNav & TopAppBar) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline flex flex-col p-space-lg gap-space-sm z-50">
+<div class="mb-space-xl">
+<h1 class="font-display text-display font-black tracking-tighter text-primary dark:text-primary-fixed">MONOLITH</h1>
+<p class="font-label-sm text-secondary uppercase tracking-widest text-[10px]">Luxury Admin</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 p-3 transition-colors duration-200 text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 transition-colors duration-200 text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 p-3 transition-colors duration-200 text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 p-3 transition-colors duration-200 text-primary font-bold bg-surface-container-high rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span>Website Content</span>
+</a>
+<a class="flex items-center gap-3 p-3 transition-colors duration-200 text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 p-3 transition-colors duration-200 text-secondary hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<header class="sticky top-0 z-40 w-full bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-space-xl py-space-md ml-[280px] w-[calc(100%-280px)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-secondary" data-icon="arrow_back">arrow_back</button>
+<h2 class="font-display text-headline-md font-bold text-primary">Create New Banner</h2>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="relative flex items-center bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Quick search..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary cursor-pointer" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up professional studio portrait of a high-end fashion executive in a minimal grey workspace. Soft natural lighting from a large window illuminates her features, creating a sophisticated and authoritative atmosphere consistent with the Monolith luxury brand. The image uses a neutral color palette with subtle warm tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDQsx_8ut--dGPunVpDsJhfzC-1cm3S64h9erGWSwV0LsWKfNU7KU_e-Mu1E0_N5Lu6br_vbF9_Raw1YZh2V0YodkxOb9CXm8d_kUFPNQ0Wdmf5xElsaKtgdhL8_lXvq5UqYy5wv0lVUaF1Na_2PkPIoizazSPQ60p84ztyILoqEbuU_MFC1RJ6O4FU0FwJ9iP8k2EDg6qPBxq9Z8PtPiti3ZHN1CeipHwqKb06929O5mSshUUlyeCXw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="ml-[280px] p-space-xl pb-32">
+<div class="grid grid-cols-12 gap-gutter max-w-[1440px] mx-auto">
+<!-- Left Column: Form Controls -->
+<div class="col-span-7 flex flex-col gap-space-lg">
+<!-- Section 1: Banner Information -->
+<section class="bg-white p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-label-md text-secondary uppercase tracking-widest mb-space-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="info">info</span>
+                        Banner Information
+                    </h3>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Banner Name</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="input-name" placeholder="e.g. Winter Collection 2024" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Banner Type</label>
+<select class="h-10 px-3 border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+<option>Hero Carousel</option>
+<option>Promotional Grid</option>
+<option>Full-width Announcement</option>
+<option>Split Screen</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section 2: Content -->
+<section class="bg-white p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-label-md text-secondary uppercase tracking-widest mb-space-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="edit_note">edit_note</span>
+                        Copywriting
+                    </h3>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Main Heading</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="input-heading" placeholder="THE NEW ARISTOCRACY" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Sub Heading</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" id="input-subheading" placeholder="Autumn/Winter 2024 Collection" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Description</label>
+<textarea class="p-3 border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Explore our curated collection of Italian-made silhouettes..." rows="3"></textarea>
+</div>
+</div>
+</section>
+<!-- Section 3: Buttons -->
+<section class="bg-white p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-label-md text-secondary uppercase tracking-widest mb-space-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="smart_button">smart_button</span>
+                        Call to Actions
+                    </h3>
+<div class="grid grid-cols-2 gap-x-space-md gap-y-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Primary Button Text</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg" placeholder="Shop Collection" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Primary Link</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg" placeholder="https://..." type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Secondary Button Text</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg" placeholder="View Lookbook" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Secondary Link</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg" placeholder="https://..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Section 4: Banner Media -->
+<section class="bg-white p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-label-md text-secondary uppercase tracking-widest mb-space-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="image">image</span>
+                        Banner Media
+                    </h3>
+<div class="grid grid-cols-3 gap-space-md">
+<!-- Desktop Media -->
+<div class="flex flex-col gap-3">
+<span class="text-xs font-bold text-primary">Desktop (1920x800)</span>
+<div class="group relative aspect-[16/9] rounded-lg border-2 border-dashed border-outline-variant hover:border-primary flex items-center justify-center overflow-hidden bg-surface-container-low transition-all">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="High-fidelity fashion photography showcasing a luxury winter coat. Cinematic lighting, sharp focus on texture and silhouette. The scene is a minimalist concrete architectural space with dramatic shadows. Deep blacks and cool grey tones reflect a premium Monolith boutique aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKu-MKd3uFsEiugWbTVV7ZEgZ_wcW6LwVkRdYJplnIzLxeXptgO5HGqB16xB_UHk9BNGgCZJqqf2-qU7JUulNKdKgnCxsblnCPimto3V1oazOa-t4PsFJ6YT8kX83GhSlRriHpxjz6xU7YaiiDmRquOnpdwnsZwZmopY0zEdF8k1245YvY6m9bwLR0HajIwXWnY3PClp8A20lo14arYsbUY7xGWbxzfUaf4ybG8R-Bd0TPi4psfd5WiQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
+<button class="bg-white text-primary px-4 py-1.5 rounded-full text-xs font-bold">Replace</button>
+<button class="text-white text-[10px] uppercase font-bold hover:underline">Remove</button>
+</div>
+</div>
+</div>
+<!-- Tablet Media -->
+<div class="flex flex-col gap-3">
+<span class="text-xs font-bold text-primary">Tablet (1024x1024)</span>
+<div class="group relative aspect-square rounded-lg border-2 border-dashed border-outline-variant hover:border-primary flex items-center justify-center overflow-hidden bg-surface-container-low transition-all">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Vertical portrait of a fashion model wearing an elegant black leather accessory. Dramatic side lighting, stark minimalist background. Muted colors with emphasis on luxury material texture. Sophisticated, authoritative vibe consistent with the Monolith brand's 'Quiet Authority' style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmhkkTx8jT-4I9H23cXc74Uy6ZB66SU5ibl33T6xOvY8ciUoX9VtLwItrPAuFxN5Y45YziUF4QJybhQAQ8tsf0ircUW964gK39uUD2tBjDTVuCwNSUw4qlDoImHJOhR_bXD_FB0oo6i_lg3rmq09Y1PTlBnzmLc_k_yhIInkztKTeJDovRyaRY-on_4-KM2ufSXG8uKX1m81QE6jIQN-BaX5BDC0KapQ1veRMa2B_2ELkf8bVKRPxgQw"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
+<button class="bg-white text-primary px-4 py-1.5 rounded-full text-xs font-bold">Replace</button>
+</div>
+</div>
+</div>
+<!-- Mobile Media -->
+<div class="flex flex-col gap-3">
+<span class="text-xs font-bold text-primary">Mobile (750x1334)</span>
+<div class="group relative aspect-[9/16] rounded-lg border-2 border-dashed border-outline-variant hover:border-primary flex items-center justify-center overflow-hidden bg-surface-container-low transition-all">
+<div class="flex flex-col items-center gap-2 text-secondary group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="cloud_upload">cloud_upload</span>
+<span class="text-[10px] font-bold">Upload Mobile</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Display Settings -->
+<section class="bg-white p-space-lg rounded-xl border border-outline-variant shadow-sm mb-space-2xl">
+<h3 class="font-label-md text-secondary uppercase tracking-widest mb-space-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="settings_input_component">settings_input_component</span>
+                        Display Settings
+                    </h3>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Homepage Position</label>
+<select class="h-10 px-3 border-outline-variant rounded-lg">
+<option>Top Hero Banner</option>
+<option>Middle Story Grid</option>
+<option>Bottom Footer Anchor</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Display Order</label>
+<input class="h-10 px-3 border-outline-variant rounded-lg" type="number" value="1"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Schedule Start Date</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pr-10 border-outline-variant rounded-lg" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-secondary">Schedule End Date</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pr-10 border-outline-variant rounded-lg" type="date"/>
+</div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Enable Banner Visibility</span>
+<span class="text-[11px] text-secondary">This banner will be live once saved and within the schedule.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Live Preview -->
+<div class="col-span-5 relative">
+<div class="sticky top-24 flex flex-col gap-space-md">
+<div class="flex items-center justify-between px-2">
+<h3 class="font-label-md text-secondary uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                            Live Preview
+                        </h3>
+<div class="flex bg-surface-container-low p-1 rounded-lg gap-1 border border-outline-variant/30">
+<button class="p-1.5 rounded bg-white shadow-sm text-primary transition-all" id="btn-desktop" onclick="setPreviewSize('desktop')">
+<span class="material-symbols-outlined text-lg" data-icon="desktop_windows">desktop_windows</span>
+</button>
+<button class="p-1.5 rounded text-secondary hover:bg-white/50 transition-all" id="btn-tablet" onclick="setPreviewSize('tablet')">
+<span class="material-symbols-outlined text-lg" data-icon="tablet_mac">tablet_mac</span>
+</button>
+<button class="p-1.5 rounded text-secondary hover:bg-white/50 transition-all" id="btn-mobile" onclick="setPreviewSize('mobile')">
+<span class="material-symbols-outlined text-lg" data-icon="smartphone">smartphone</span>
+</button>
+</div>
+</div>
+<div class="preview-container w-full bg-white rounded-2xl border border-outline-variant shadow-lg overflow-hidden flex items-center justify-center p-space-md min-h-[500px]" id="preview-wrapper">
+<div class="relative bg-surface-container-highest w-full aspect-[16/9] transition-all duration-500 overflow-hidden shadow-2xl" id="preview-canvas">
+<!-- Background Image -->
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Minimalist cinematic fashion portrait featuring high-contrast studio lighting. A model in luxury monochrome attire stands before a brutalist concrete wall. Sharp shadows and bright highlights define the premium aesthetic of the Monolith brand. Deep black and clean white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_tJP-4ZWK7ZHVusRpGKfylUgMGIrEQg1Ufzw8ErD4dLkMEhe69pG71yAoxb_wrtRM2NPV_mtlmqAqJV41dEX5gsLioTooAhBSpO_k_UvExftJLDL0qe_RA0Ktd8k6ApBSpOhl63aCmRhRKxjzcyOcCD7LPjuBIB2fUOHP0DbvGPG1PhK96mINegMddTf-qoR-ylSU3vLmTWNmcc2LGe-FF3HHjjOVCHSHwkm6i3La6vBUTMY3YTbc7Q"/>
+<!-- Overlay Content -->
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-center p-space-xl">
+<span class="text-white/80 text-[10px] tracking-[0.3em] font-bold uppercase mb-2 animate-pulse" id="preview-sub">Autumn/Winter 2024 Collection</span>
+<h4 class="text-white text-3xl font-black tracking-tight mb-4 leading-tight" id="preview-head">THE NEW ARISTOCRACY</h4>
+<div class="flex gap-4 mt-2">
+<button class="bg-white text-primary px-6 py-2 rounded-none text-xs font-bold uppercase tracking-widest hover:bg-white/90 transition-all">Shop Now</button>
+<button class="border border-white text-white px-6 py-2 rounded-none text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-primary transition-all">Lookbook</button>
+</div>
+</div>
+<!-- Carousel Dots -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/30"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/30"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="lightbulb">lightbulb</span>
+<p class="text-[11px] text-secondary leading-relaxed">
+<strong class="text-primary-container">Design Tip:</strong> Use high-contrast imagery with centralized or side-aligned subjects to ensure your text overlays remain legible across all responsive sizes.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Fixed Action Bar -->
+<div class="fixed bottom-0 left-[280px] w-[calc(100%-280px)] bg-white/90 backdrop-blur-xl border-t border-outline-variant p-space-md z-50 flex items-center justify-between px-space-xl">
+<a class="text-xs font-bold text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="open_in_new">open_in_new</span>
+            Preview Website
+        </a>
+<div class="flex items-center gap-space-md">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant font-bold text-sm text-primary hover:bg-surface-container transition-all">
+                Save Draft
+            </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all shadow-md">
+                Publish Banner
+            </button>
+</div>
+</div>
+<script>
+        function setPreviewSize(mode) {
+            const canvas = document.getElementById('preview-canvas');
+            const wrapper = document.getElementById('preview-wrapper');
+            const btns = ['desktop', 'tablet', 'mobile'];
+
+            btns.forEach(b => {
+                const btn = document.getElementById('btn-' + b);
+                btn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+                btn.classList.add('text-secondary', 'hover:bg-white/50');
+            });
+
+            const activeBtn = document.getElementById('btn-' + mode);
+            activeBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            activeBtn.classList.remove('text-secondary', 'hover:bg-white/50');
+
+            if (mode === 'desktop') {
+                canvas.className = 'relative bg-surface-container-highest w-full aspect-[16/9] transition-all duration-500 overflow-hidden shadow-2xl';
+                wrapper.classList.remove('p-8');
+                wrapper.classList.add('p-4');
+            } else if (mode === 'tablet') {
+                canvas.className = 'relative bg-surface-container-highest w-[70%] aspect-square transition-all duration-500 overflow-hidden shadow-2xl';
+                wrapper.classList.add('p-8');
+            } else if (mode === 'mobile') {
+                canvas.className = 'relative bg-surface-container-highest w-[320px] h-[520px] transition-all duration-500 overflow-hidden shadow-2xl';
+                wrapper.classList.add('p-8');
+            }
+        }
+
+        // Real-time Text Preview
+        const headInput = document.getElementById('input-heading');
+        const subInput = document.getElementById('input-subheading');
+        const previewHead = document.getElementById('preview-head');
+        const previewSub = document.getElementById('preview-sub');
+
+        headInput.addEventListener('input', (e) => {
+            previewHead.innerText = e.target.value || 'THE NEW ARISTOCRACY';
+        });
+
+        subInput.addEventListener('input', (e) => {
+            previewSub.innerText = e.target.value || 'Autumn/Winter 2024 Collection';
+        });
+    </script>
+</body></html>

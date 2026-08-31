@@ -1,0 +1,258 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Login | MONOLITH LUXURY</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#7e7576",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#000000",
+                        "surface-container-high": "#e8e8e8",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "outline-variant": "#cfc4c5",
+                        "on-secondary-container": "#5f6161",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#848484",
+                        "tertiary": "#000000",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#838484",
+                        "inverse-surface": "#2f3131",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#474747",
+                        "tertiary-container": "#1a1c1c",
+                        "inverse-primary": "#c6c6c6",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "on-primary-fixed": "#1b1b1b",
+                        "surface-container-low": "#f3f3f4",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-tint": "#5e5e5e",
+                        "primary-fixed": "#e2e2e2",
+                        "secondary-container": "#dcdddd",
+                        "on-surface-variant": "#4c4546",
+                        "primary-container": "#1b1b1b",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#c6c6c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "section-gap": "128px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "button": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "label-caps": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        input:focus {
+            outline: none !important;
+            border-bottom-color: #000000 !important;
+            box-shadow: none !important;
+        }
+        .animate-fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Checkbox */
+        .custom-checkbox {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #000;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid black;
+            border-width: 0 1px 1px 0;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<main class="flex min-h-screen w-full">
+<!-- Left: Full-bleed high-end editorial fashion photography -->
+<section class="hidden md:block w-1/2 relative overflow-hidden bg-surface-dim">
+<div class="absolute inset-0 w-full h-full scale-105 hover:scale-100 transition-transform duration-[3000ms] ease-out bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4');"></div>
+<!-- Overlay for text contrast if needed -->
+<div class="absolute inset-0 bg-black/5 pointer-events-none"></div>
+</section>
+<!-- Right: Minimalist authentication form -->
+<section class="w-full md:w-1/2 flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop bg-surface-bright">
+<div class="w-full max-w-[440px] flex flex-col items-center animate-fade-in">
+<!-- Wordmark Header -->
+<div class="mb-12">
+<img alt="MONOLITH" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLtaXqZaTAAKbvrJHMtvaA3X7RjWBjpY4L6-W-q_x5PdwXaqjR0l6H61q4YDKI7D_mmcsTBoDzFs8lGD0DcVbIsP1t63JyUOFrVw2jxRZ35xqfUzq2tnh8-_h9TDGwCbWdrw8Lch_WWByJJk37Yz6Twxn9uSuz_GEywJV8MA3vf95POumjfEj61VkVhVPv93ltCDNO0sL9NC_DsPnHjEsCwE6q4OJKVVh3-v9hwuhf1DMSJKa0Eedfj0saxK">
+</div>
+<!-- Headline -->
+<div class="text-center mb-10">
+<h1 class="font-headline-lg text-headline-lg mb-2 text-primary">Welcome Back.</h1>
+<p class="font-body-md text-secondary opacity-60">Please enter your details to continue your journey.</p>
+</div>
+<!-- Login Form -->
+<form action="#" class="w-full space-y-8" method="POST">
+<!-- Email Field -->
+<div class="relative group">
+<label class="font-label-caps text-label-caps text-secondary block mb-1" for="email">Email Address</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 font-body-md text-on-surface placeholder:text-secondary-fixed-dim transition-all duration-300" id="email" name="email" placeholder="name@example.com" required="" type="email">
+</div>
+<!-- Password Field -->
+<div class="relative group">
+<label class="font-label-caps text-label-caps text-secondary block mb-1" for="password">Password</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 font-body-md text-on-surface placeholder:text-secondary-fixed-dim transition-all duration-300" id="password" name="password" placeholder="••••••••" required="" type="password">
+</div>
+<!-- Actions: Remember Me & Forgot Password -->
+<div class="flex items-center justify-between font-label-caps text-[10px] tracking-widest uppercase">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="custom-checkbox" type="checkbox">
+<span class="text-secondary group-hover:text-primary transition-colors">Remember Me</span>
+</label>
+<a class="text-secondary hover:text-primary transition-colors underline underline-offset-4 decoration-1" href="#">Forgot Password?</a>
+</div>
+<!-- Primary Button: Sign In -->
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary py-5 px-8 font-headline-md text-button uppercase tracking-[0.2em] hover:bg-on-primary hover:text-primary border border-primary transition-all duration-500 ease-in-out" type="submit">
+                            Sign In
+                        </button>
+</div>
+</form>
+<!-- Social Login Section -->
+<div class="w-full mt-10">
+<div class="relative flex items-center justify-center mb-8">
+<div class="border-t border-outline-variant w-full"></div>
+<span class="absolute bg-surface-bright px-4 font-label-caps text-[10px] text-secondary-fixed-dim">OR</span>
+</div>
+<div class="space-y-4">
+<!-- Google -->
+<button class="w-full flex items-center justify-center gap-3 border border-outline-variant py-4 hover:border-primary transition-colors duration-300 group">
+<svg class="w-5 h-5 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-button text-button uppercase">Continue with Google</span>
+</button>
+<!-- Apple -->
+<button class="w-full flex items-center justify-center gap-3 border border-outline-variant py-4 hover:border-primary transition-colors duration-300 group">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.11.77 1.12-.04 2.25-.83 3.67-.74 1.77.11 3.03.88 3.73 2.13-3.62 1.83-3.04 6.7.44 8.16-.69 1.67-1.63 3.31-2.95 4.65zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"></path>
+</svg>
+<span class="font-button text-button uppercase">Continue with Apple</span>
+</button>
+</div>
+</div>
+<!-- Footer: Redirect to Sign Up -->
+<div class="mt-12 pt-8 border-t border-outline-variant/30 w-full text-center">
+<p class="font-body-md text-secondary">
+                        Don't have an account? 
+                        <a class="text-primary font-medium hover:underline underline-offset-4 decoration-1 transition-all" href="#">Create Account</a>
+</p>
+</div>
+<!-- Micro-interaction Legal -->
+<p class="mt-8 font-label-caps text-[9px] text-secondary opacity-40 uppercase tracking-[0.2em] leading-relaxed">
+                    By signing in, you agree to our <a class="hover:text-primary underline" href="#">Terms of Service</a> &amp; <a class="hover:text-primary underline" href="#">Privacy Policy</a>
+</p>
+</div>
+</section>
+</main>
+<script>
+        // Subtle Parallax effect on the left image
+        window.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+            const image = document.querySelector('section.hidden.md\\:block div');
+            if(image) {
+                image.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+
+        // Form focus styles
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label').classList.replace('text-secondary', 'text-primary');
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.querySelector('label').classList.replace('text-primary', 'text-secondary');
+                }
+            });
+        });
+    </script>
+</body></html>

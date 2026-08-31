@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payments | Atelier Admin</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#76777d",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dcd9db",
+                    "primary": "#000000",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "on-secondary-fixed": "#151c27",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f6f3f4",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "primary-fixed-dim": "#c0c6db",
+                    "tertiary-container": "#261906",
+                    "surface-bright": "#fcf8fa",
+                    "secondary": "#585f6c",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#dce2f7",
+                    "on-surface": "#1b1b1d",
+                    "on-primary-container": "#7d8497",
+                    "outline-variant": "#c6c6cd",
+                    "on-primary-fixed": "#141b2b",
+                    "background": "#fcf8fa",
+                    "on-secondary-container": "#5e6572",
+                    "on-surface-variant": "#45464c",
+                    "surface-container-high": "#eae7e9",
+                    "inverse-on-surface": "#f3f0f1",
+                    "secondary-container": "#dce2f3",
+                    "tertiary": "#000000",
+                    "inverse-surface": "#303031",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0edee",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "surface-container-highest": "#e5e2e3",
+                    "on-tertiary-fixed": "#261906",
+                    "on-tertiary-container": "#968065",
+                    "inverse-primary": "#c0c6db",
+                    "surface-variant": "#e5e2e3",
+                    "secondary-fixed": "#dce2f3",
+                    "on-secondary-fixed-variant": "#404754",
+                    "surface-tint": "#575e70",
+                    "surface": "#fcf8fa",
+                    "primary-container": "#141b2b",
+                    "tertiary-fixed": "#f9debf",
+                    "on-primary-fixed-variant": "#404758",
+                    "on-background": "#1b1b1d",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-xs": "0.25rem",
+                    "space-md": "1rem",
+                    "space-xl": "2rem",
+                    "space-sm": "0.5rem",
+                    "container-margin": "2rem",
+                    "space-lg": "1.5rem",
+                    "space-2xl": "3rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #F7F7F7; }
+        .quiet-shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05); }
+        .luxury-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 12px; }
+        
+        /* Custom Toggle Switch */
+        .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e5e7eb; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #111827; }
+        input:checked + .slider:before { transform: translateX(16px); }
+
+        /* Animation for chart-like bars */
+        @keyframes grow { from { width: 0; } to { width: 100%; } }
+        .animate-grow { animation: grow 1s ease-out forwards; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Sidebar (Shared Component Style Mapping) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface border-r border-outline-variant flex flex-col p-space-lg z-50">
+<div class="mb-space-xl">
+<h1 class="text-headline-lg font-headline-lg font-bold tracking-tight text-primary">Atelier Admin</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Premium Retail Ops</p>
+</div>
+<nav class="flex-1 space-y-2 overflow-y-auto">
+<!-- Nav Item: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-md font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-label-md font-label-md">Orders</span>
+</a>
+<!-- Active State: Payments (Inferred from prompt intent) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-label-md font-label-md">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-label-md font-label-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+<span class="text-label-md font-label-md">Website Content</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-label-md font-label-md">Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="text-label-md font-label-md">Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-low transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a high-end retail administrative professional, softly lit in a clean modern office studio. The person is wearing a minimalist black outfit, looking confident and approachable. The background is a blurred high-end showroom with neutral tones and soft ambient lighting, matching the quiet authority aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATCIgy9FJ9yvGWkaFacoumaNlnldJuTC5YWGD8ilnzENnJagkOGy0BFhZN-_UC3MiH5qAw65Ga30jdOA9VF6Hm71whm0lqnoAgMPjqZoWvowxfXQcdmKhG_e2HSR63XGGAiGwSI5mxBSQueXwt69Wdqt6vvCg8ZfGaf9nyrOkTS6Pci3aEdEgHOOIMMZtj32Y_42_ch0YiXxpMPg1h6Q_irBRI9F3dfcWGOsG8knwhrNKJibFenHhgxQ"/>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-bold text-primary">Alex Sterling</p>
+<p class="text-caption text-secondary">Super Admin</p>
+</div>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary transition-colors">logout</span>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen flex flex-col">
+<!-- TopAppBar (Shared Component Style Mapping) -->
+<header class="sticky top-0 right-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center w-full px-space-xl py-space-sm h-[64px]">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-low border-none rounded-lg text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Global search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="relative text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="text-label-md">Atelier CMS</span>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-space-xl space-y-space-lg max-w-[1440px] mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-display font-display text-primary">Payments</h2>
+<p class="text-body-md text-secondary">Manage payment gateways, transactions, refunds, and settlements.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-space-md py-2.5 bg-on-primary border border-outline-variant text-primary font-label-md rounded-lg flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                        This Month
+                    </button>
+<button class="px-space-md py-2.5 bg-primary text-on-primary font-label-md rounded-lg flex items-center gap-2 quiet-shadow hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">file_download</span>
+                        Export Transactions
+                    </button>
+</div>
+</div>
+<!-- Overview Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<div class="luxury-card p-space-lg quiet-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<span class="text-label-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">+12.4%</span>
+</div>
+<p class="text-label-md text-secondary mb-1">Total Revenue</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">₹1,24,50,000</h3>
+</div>
+<div class="luxury-card p-space-lg quiet-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container text-on-secondary-container rounded-lg">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<span class="text-label-sm text-secondary">vs last month</span>
+</div>
+<p class="text-label-md text-secondary mb-1">Successful Payments</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">8,432</h3>
+</div>
+<div class="luxury-card p-space-lg quiet-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container-highest text-primary rounded-lg">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<span class="text-label-sm text-amber-600">Action Required</span>
+</div>
+<p class="text-label-md text-secondary mb-1">Pending Payments</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">142</h3>
+</div>
+<div class="luxury-card p-space-lg quiet-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container text-on-error-container rounded-lg">
+<span class="material-symbols-outlined">keyboard_return</span>
+</div>
+<span class="text-label-sm text-error">-2.1%</span>
+</div>
+<p class="text-label-md text-secondary mb-1">Refunded Payments</p>
+<h3 class="text-headline-lg font-headline-lg text-primary">28</h3>
+</div>
+</div>
+<!-- Payment Gateways -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<h4 class="text-headline-md font-headline-md text-primary">Payment Gateways</h4>
+<a class="text-label-md text-primary font-bold hover:underline" href="#">Manage All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Gateway: Razorpay -->
+<div class="luxury-card p-4 space-y-4 quiet-shadow">
+<div class="flex justify-between items-start">
+<div class="h-8 w-auto flex items-center grayscale">
+<span class="font-bold text-primary tracking-tight">Razorpay</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-label-sm text-secondary">Default</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary text-label-sm font-bold rounded hover:bg-surface-container-high transition-colors">Configure</button>
+</div>
+<!-- Gateway: Stripe -->
+<div class="luxury-card p-4 space-y-4 quiet-shadow">
+<div class="flex justify-between items-start">
+<div class="h-8 w-auto flex items-center grayscale">
+<span class="font-bold text-primary tracking-tight">Stripe</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-label-sm text-secondary">Default</span>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary text-label-sm font-bold rounded hover:bg-surface-container-high transition-colors">Configure</button>
+</div>
+<!-- Gateway: PayPal -->
+<div class="luxury-card p-4 space-y-4 quiet-shadow">
+<div class="flex justify-between items-start">
+<div class="h-8 w-auto flex items-center grayscale">
+<span class="font-bold text-primary tracking-tight">PayPal</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-secondary text-[10px] font-bold uppercase tracking-wider">Inactive</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-label-sm text-secondary">Default</span>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary text-label-sm font-bold rounded hover:bg-surface-container-high transition-colors">Configure</button>
+</div>
+<!-- Gateway: COD -->
+<div class="luxury-card p-4 space-y-4 quiet-shadow">
+<div class="flex justify-between items-start">
+<div class="h-8 w-auto flex items-center grayscale">
+<span class="font-bold text-primary tracking-tight">COD</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-label-sm text-secondary">Default</span>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary text-label-sm font-bold rounded hover:bg-surface-container-high transition-colors">Configure</button>
+</div>
+<!-- Gateway: UPI -->
+<div class="luxury-card p-4 space-y-4 quiet-shadow">
+<div class="flex justify-between items-start">
+<div class="h-8 w-auto flex items-center grayscale">
+<span class="font-bold text-primary tracking-tight">UPI Direct</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-label-sm text-secondary">Default</span>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<button class="w-full py-2 bg-surface-container-low text-primary text-label-sm font-bold rounded hover:bg-surface-container-high transition-colors">Configure</button>
+</div>
+</div>
+</section>
+<!-- Filters Bar -->
+<div class="luxury-card p-space-md quiet-shadow flex flex-wrap items-center gap-4">
+<div class="flex-1 relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-low border-none rounded-lg text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search Transactions by ID, Customer, or Method..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<select class="h-10 px-4 bg-white border border-outline-variant rounded-lg text-label-md text-primary focus:ring-2 focus:ring-primary transition-all">
+<option>Payment Method</option>
+<option>Razorpay</option>
+<option>Stripe</option>
+<option>PayPal</option>
+</select>
+<select class="h-10 px-4 bg-white border border-outline-variant rounded-lg text-label-md text-primary focus:ring-2 focus:ring-primary transition-all">
+<option>Payment Status</option>
+<option>Successful</option>
+<option>Pending</option>
+<option>Failed</option>
+<option>Refunded</option>
+</select>
+<button class="h-10 px-4 border border-outline-variant rounded-lg text-label-md text-secondary hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">tune</span>
+                        Filters
+                    </button>
+</div>
+</div>
+<!-- Main Data Section: Transactions & Settlements -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-space-lg">
+<!-- Recent Transactions Table -->
+<div class="xl:col-span-2 luxury-card quiet-shadow flex flex-col">
+<div class="px-space-lg py-4 border-b border-outline-variant flex justify-between items-center">
+<h4 class="text-headline-md font-headline-md text-primary">Recent Transactions</h4>
+<a class="text-label-md text-primary font-bold" href="#">View History</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-space-lg py-4 text-label-sm text-secondary font-medium uppercase tracking-wider">Transaction ID</th>
+<th class="px-4 py-4 text-label-sm text-secondary font-medium uppercase tracking-wider">Customer</th>
+<th class="px-4 py-4 text-label-sm text-secondary font-medium uppercase tracking-wider">Method</th>
+<th class="px-4 py-4 text-label-sm text-secondary font-medium uppercase tracking-wider">Amount</th>
+<th class="px-4 py-4 text-label-sm text-secondary font-medium uppercase tracking-wider">Status</th>
+<th class="px-space-lg py-4 text-label-sm text-secondary font-medium uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="flex flex-col">
+<span class="text-label-md font-bold text-primary">TXN-884210</span>
+<span class="text-caption text-secondary">Ord #5291 • 10:24 AM</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-xs">RM</div>
+<span class="text-body-md font-medium">Rohan Mehta</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">payments</span>
+<span class="text-body-md">Razorpay</span>
+</div>
+</td>
+<td class="px-4 py-5 text-body-md font-bold text-primary">₹42,000</td>
+<td class="px-4 py-5">
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-800 text-[11px] font-bold">Successful</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<button class="material-symbols-outlined text-secondary hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="flex flex-col">
+<span class="text-label-md font-bold text-primary">TXN-884209</span>
+<span class="text-caption text-secondary">Ord #5290 • 09:15 AM</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold text-xs">SK</div>
+<span class="text-body-md font-medium">Sonia Kapoor</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">credit_card</span>
+<span class="text-body-md">Stripe</span>
+</div>
+</td>
+<td class="px-4 py-5 text-body-md font-bold text-primary">₹1,15,000</td>
+<td class="px-4 py-5">
+<span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold">Pending</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<button class="material-symbols-outlined text-secondary hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="flex flex-col">
+<span class="text-label-md font-bold text-primary">TXN-884208</span>
+<span class="text-caption text-secondary">Ord #5289 • 08:30 AM</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold text-xs">AN</div>
+<span class="text-body-md font-medium">Arjun Nair</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">account_balance</span>
+<span class="text-body-md">UPI Direct</span>
+</div>
+</td>
+<td class="px-4 py-5 text-body-md font-bold text-primary">₹8,500</td>
+<td class="px-4 py-5">
+<span class="px-3 py-1 rounded-full bg-red-100 text-red-800 text-[11px] font-bold">Failed</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<button class="material-symbols-outlined text-secondary hover:text-primary">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-5">
+<div class="flex flex-col">
+<span class="text-label-md font-bold text-primary">TXN-884207</span>
+<span class="text-caption text-secondary">Ord #5288 • Yesterday</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold text-xs">VD</div>
+<span class="text-body-md font-medium">Vikram Das</span>
+</div>
+</td>
+<td class="px-4 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">payments</span>
+<span class="text-body-md">Razorpay</span>
+</div>
+</td>
+<td class="px-4 py-5 text-body-md font-bold text-primary">₹56,200</td>
+<td class="px-4 py-5">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">Refunded</span>
+</td>
+<td class="px-space-lg py-5 text-right">
+<button class="material-symbols-outlined text-secondary hover:text-primary">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-auto px-space-lg py-4 border-t border-outline-variant flex items-center justify-between">
+<span class="text-label-sm text-secondary">Showing 4 of 2,450 transactions</span>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-md hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-2 border border-outline-variant rounded-md hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Settlements & Refunds Column -->
+<div class="space-y-space-lg">
+<!-- Settlements Card -->
+<div class="luxury-card p-space-lg quiet-shadow space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="text-headline-md font-headline-md text-primary">Settlements</h4>
+<span class="material-symbols-outlined text-secondary">info</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-label-md text-secondary">Today's Settlement</span>
+<span class="text-body-md font-bold text-primary">₹1,45,000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-md text-secondary">Weekly Total</span>
+<span class="text-body-md font-bold text-primary">₹22,80,000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-md text-secondary">Monthly Projection</span>
+<span class="text-body-md font-bold text-primary">₹94,50,000</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div>
+<p class="text-[10px] uppercase tracking-wider text-secondary font-bold">Next Settlement Date</p>
+<p class="text-body-md font-bold text-primary">Oct 28, 2023</p>
+</div>
+<span class="material-symbols-outlined text-primary">event</span>
+</div>
+</div>
+</div>
+<!-- Refund Requests -->
+<div class="luxury-card p-space-lg quiet-shadow space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="text-headline-md font-headline-md text-primary">Refund Requests</h4>
+<span class="bg-error text-on-primary text-[10px] font-bold px-2 py-0.5 rounded-full">4 New</span>
+</div>
+<div class="space-y-4">
+<!-- Request Item 1 -->
+<div class="p-4 border border-outline-variant rounded-lg space-y-3">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-md font-bold text-primary">₹12,400</p>
+<p class="text-caption text-secondary">TXN-884102 • Zara Jacket</p>
+</div>
+<span class="text-[10px] text-secondary font-medium">2h ago</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 bg-primary text-on-primary text-label-sm font-bold rounded hover:opacity-90 transition-opacity">Approve</button>
+<button class="flex-1 py-1.5 bg-on-primary border border-outline-variant text-primary text-label-sm font-bold rounded hover:bg-surface-container-low transition-colors">Reject</button>
+</div>
+</div>
+<!-- Request Item 2 -->
+<div class="p-4 border border-outline-variant rounded-lg space-y-3">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-md font-bold text-primary">₹5,200</p>
+<p class="text-caption text-secondary">TXN-884095 • Silk Scarf</p>
+</div>
+<span class="text-[10px] text-secondary font-medium">5h ago</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 bg-primary text-on-primary text-label-sm font-bold rounded hover:opacity-90 transition-opacity">Approve</button>
+<button class="flex-1 py-1.5 bg-on-primary border border-outline-variant text-primary text-label-sm font-bold rounded hover:bg-surface-container-low transition-colors">Reject</button>
+</div>
+</div>
+</div>
+<button class="w-full text-center text-label-md font-bold text-secondary hover:text-primary transition-colors py-2">
+                            View All Requests
+                        </button>
+</div>
+</div>
+</div>
+<!-- Visual Atmosphere Micro-interaction -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">support_agent</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Micro-interactions Script -->
+<script>
+        // Simple hover effect for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.cursor = 'pointer';
+            });
+        });
+
+        // Search bar focus effect
+        const globalSearch = document.querySelector('header input');
+        globalSearch.addEventListener('focus', () => {
+            globalSearch.parentElement.classList.add('max-w-lg');
+        });
+        globalSearch.addEventListener('blur', () => {
+            globalSearch.parentElement.classList.remove('max-w-lg');
+        });
+    </script>
+</body></html>

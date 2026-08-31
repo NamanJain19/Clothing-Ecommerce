@@ -1,0 +1,270 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Saved Addresses | MONOLITH LUXURY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f0f1f1",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e2e2e2",
+                        "outline-variant": "#cfc4c5",
+                        "tertiary-container": "#1a1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2f3131",
+                        "outline": "#7e7576",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#5f6161",
+                        "surface-bright": "#f9f9f9",
+                        "surface-dim": "#dadada",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-container": "#838484",
+                        "primary-fixed": "#e2e2e2",
+                        "secondary-container": "#dcdddd",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#474747",
+                        "tertiary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-tint": "#5e5e5e",
+                        "primary": "#000000",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container": "#eeeeee",
+                        "on-surface-variant": "#4c4546",
+                        "surface-container-low": "#f3f3f4",
+                        "on-primary-container": "#848484",
+                        "surface-variant": "#e2e2e2",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c6c6c6",
+                        "primary-container": "#1b1b1b",
+                        "on-background": "#1a1c1c",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#1b1b1b",
+                        "surface-container-highest": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "section-gap": "128px",
+                        "unit": "8px",
+                        "gutter": "32px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Montserrat"],
+                        "label-caps": ["Montserrat"],
+                        "display-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "button": ["Montserrat"],
+                        "body-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "button": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .address-card:hover .action-overlay {
+            opacity: 1;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky z-50 bg-background dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop py-6">
+<div class="flex items-center gap-12">
+<a class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary" href="#">MONOLITH</a>
+<div class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">Categories</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary transition-colors duration-300" href="#">New Arrivals</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="bg-transparent border-b border-primary py-1 px-2 focus:outline-none font-label-caps text-label-caps w-48 transition-all duration-500 focus:w-64" placeholder="SEARCH" type="text">
+</div>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined">favorite</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined">shopping_bag</span></button>
+<button class="hover:opacity-70 transition-opacity duration-300"><span class="material-symbols-outlined text-primary">person</span></button>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12 md:py-24">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Account Sidebar (Shared) -->
+<aside class="md:col-span-3 lg:col-span-2 space-y-8">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md mb-2">My Account</h2>
+<p class="font-label-caps text-label-caps text-secondary">Julianne Vance</p>
+</div>
+<nav class="flex flex-col gap-6"><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Dashboard</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">My Orders</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Track Orders</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Wishlist</a><a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 w-fit" href="#">Saved Addresses</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Payment Methods</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Account Settings</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Notifications</a><a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="#">Help &amp; Support</a><div class="pt-8 border-t border-outline-variant"><a class="font-label-caps text-label-caps text-error" href="#">Logout</a></div></nav>
+</aside>
+<!-- Main Content Area -->
+<section class="md:col-span-9 lg:col-span-10">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h1 class="font-headline-lg text-headline-lg">Saved Addresses</h1>
+<p class="font-body-md text-body-md text-secondary mt-2">Manage your delivery locations for a faster checkout experience.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Add New Address Card -->
+<button class="group flex flex-col items-center justify-center border-2 border-dashed border-outline-variant p-8 min-h-[300px] hover:border-primary transition-all duration-300">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-300">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary text-3xl">add</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary">Add New Address</span>
+</button>
+<!-- Primary Address Card -->
+<div class="relative bg-white border border-outline-variant p-8 flex flex-col justify-between min-h-[300px] hover:border-primary transition-colors duration-300 group">
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="bg-primary text-on-primary font-label-caps text-[10px] px-3 py-1 tracking-widest">PRIMARY</span>
+</div>
+<h3 class="font-headline-md text-2xl mb-4">Julianne Vance</h3>
+<div class="space-y-1 text-secondary font-body-md">
+<p class="">1100 Avenue of the Americas</p>
+<p class="">Floor 14, Suite 200</p>
+<p class="">New York, NY 10036</p>
+<p class="">United States</p>
+</div>
+</div>
+<div class="flex gap-6 mt-8">
+<button class="font-label-caps text-label-caps text-primary underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity">Edit</button>
+<button class="font-label-caps text-label-caps text-secondary hover:text-error transition-colors">Delete</button>
+</div>
+</div>
+<!-- Additional Address Card -->
+<div class="relative bg-white border border-outline-variant p-8 flex flex-col justify-between min-h-[300px] hover:border-primary transition-colors duration-300">
+<div>
+<div class="h-[26px] mb-6"></div> <!-- Spacer for alignment -->
+<h3 class="font-headline-md text-2xl mb-4">Julianne Vance</h3>
+<div class="space-y-1 text-secondary font-body-md">
+<p class="">845 N Michigan Ave</p>
+<p class="">Water Tower Place</p>
+<p class="">Chicago, IL 60611</p>
+<p class="">United States</p>
+</div>
+</div>
+<div class="flex gap-6 mt-8">
+<button class="font-label-caps text-label-caps text-primary underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity">Edit</button>
+<button class="font-label-caps text-label-caps text-secondary hover:text-error transition-colors">Delete</button>
+</div>
+</div>
+<!-- Additional Address Card 2 -->
+<div class="relative bg-white border border-outline-variant p-8 flex flex-col justify-between min-h-[300px] hover:border-primary transition-colors duration-300">
+<div>
+<div class="h-[26px] mb-6"></div> <!-- Spacer for alignment -->
+<h3 class="font-headline-md text-2xl mb-4">Monolith Office</h3>
+<div class="space-y-1 text-secondary font-body-md">
+<p class="">Rue du Faubourg Saint-Honoré, 75</p>
+<p class="">8th Arrondissement</p>
+<p class="">Paris, 75008</p>
+<p class="">France</p>
+</div>
+</div>
+<div class="flex gap-6 mt-8">
+<button class="font-label-caps text-label-caps text-primary underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity">Edit</button>
+<button class="font-label-caps text-label-caps text-secondary hover:text-error transition-colors">Delete</button>
+</div>
+</div>
+</div>
+<!-- Subtle Help Text -->
+<div class="mt-section-gap max-w-2xl border-l-2 border-primary pl-8 py-4">
+<p class="font-body-md italic text-secondary">
+                        "Your privacy and data security are our highest priority. All saved addresses are encrypted and handled in accordance with our Global Privacy Policy."
+                    </p>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline">
+<div class="max-w-container-max mx-auto px-margin-desktop py-section-gap flex flex-col items-center gap-8 text-center">
+<h2 class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-on-primary">MONOLITH</h2>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Store Locator</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Journal</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Sustainability</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Instagram</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Pinterest</a>
+</div>
+<p class="font-body-lg text-body-lg text-primary dark:text-on-primary max-w-md mt-4">
+                Experience the intersection of architectural form and high-fashion utility.
+            </p>
+<div class="pt-8 border-t border-outline-variant/30 w-full">
+<p class="font-label-caps text-label-caps text-secondary">© 2024 MONOLITH LUXURY. ALL RIGHTS RESERVED.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple UI Interaction logic
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if(el.getAttribute('href') === '#') e.preventDefault();
+            });
+        });
+
+        // Sticky Header Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+
+
+</body></html>

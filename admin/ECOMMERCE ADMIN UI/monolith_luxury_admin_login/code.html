@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monolith Luxury | Admin Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#c0c6db",
+                        "surface-container-highest": "#e5e2e3",
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#151c27",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#575e70",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#5e6572",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45464c",
+                        "on-secondary-fixed-variant": "#404754",
+                        "primary-fixed": "#dce2f7",
+                        "on-background": "#1b1b1d",
+                        "inverse-surface": "#303031",
+                        "tertiary-fixed": "#f9debf",
+                        "surface-dim": "#dcd9db",
+                        "on-tertiary-fixed-variant": "#55442d",
+                        "on-tertiary-container": "#968065",
+                        "on-tertiary-fixed": "#261906",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#261906",
+                        "surface-container-high": "#eae7e9",
+                        "inverse-on-surface": "#f3f0f1",
+                        "on-surface": "#1b1b1d",
+                        "tertiary-fixed-dim": "#dcc2a4",
+                        "surface-bright": "#fcf8fa",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#141b2b",
+                        "on-primary-fixed-variant": "#404758",
+                        "on-primary-container": "#7d8497",
+                        "surface": "#fcf8fa",
+                        "primary-fixed-dim": "#c0c6db",
+                        "tertiary": "#000000",
+                        "surface-container-low": "#f6f3f4",
+                        "background": "#fcf8fa",
+                        "outline-variant": "#c6c6cd",
+                        "outline": "#76777d",
+                        "secondary-fixed": "#dce2f3",
+                        "on-primary-fixed": "#141b2b",
+                        "surface-container": "#f0edee",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e5e2e3",
+                        "secondary": "#585f6c",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#dce2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "space-sm": "0.5rem",
+                        "space-lg": "1.5rem",
+                        "space-2xl": "3rem",
+                        "gutter": "1.5rem",
+                        "space-xl": "2rem",
+                        "space-md": "1rem",
+                        "space-xs": "0.25rem",
+                        "container-margin": "2rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .login-canvas {
+            background-color: #F7F7F7;
+        }
+        .luxury-card {
+            background-color: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        }
+        .visual-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+        }
+    </style>
+</head>
+<body class="login-canvas font-body-md text-on-surface antialiased">
+<main class="flex min-h-screen">
+<!-- Left Side: Visual Experience -->
+<section class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-primary-container">
+<div class="absolute inset-0 z-0" data-alt="A cinematic, high-contrast interior shot of a minimalist luxury clothing atelier. Sleek black marble floors reflect soft overhead spotlighting. Masterfully tailored dark garments are visible in the soft-focus background on brushed metal racks. The atmosphere is quiet, authoritative, and sophisticated, utilizing a monochromatic palette of blacks, whites, and charcoal grays." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATT8ERG7OXAHHfsVDDR_PIjU8lWaHou2PZNgQS0t1grOJegixUBQZY9S46UVmhNHF7htuAiQCiZNjK58-o1UrvimzQwhxlpkRj1Un45EepJyAzVXW5T9f6Uw5iNOBeGJtjWjtVWiCSmyA1S2v3oZPLm-gD10ji0-F40vUbTi1PZHMqOEJFQ6soKv6wtbqlhib1z31fyy4GdmqWBPnRp2g3p0V4IJmF7kER3FKkiHPnC64blBDBU2vNZg')"></div>
+<div class="absolute inset-0 visual-overlay z-10"></div>
+<div class="relative z-20 flex flex-col justify-between p-space-2xl w-full">
+<div>
+<h1 class="font-display text-display text-white mb-space-xs">Monolith Luxury</h1>
+<div class="h-1 w-12 bg-white mb-space-lg"></div>
+<h2 class="font-headline-md text-headline-md text-white/90">Admin Panel</h2>
+</div>
+<div class="max-w-md">
+<p class="font-headline-lg text-headline-lg text-white mb-space-md">Luxury Clothing Management System</p>
+<p class="font-body-lg text-body-lg text-white/70 leading-relaxed">
+                        Precision-engineered for internal high-end retail operations. Manage global inventory, bespoke orders, and atelier assets with quiet authority and absolute security.
+                    </p>
+</div>
+<div class="flex items-center space-x-space-md">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white/20 bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional senior administrator in a minimalist office setting, soft natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeyaLfyJ4ILYCH86uZVVveR2M3b8Sbuiz6X2l8rB2NVl8MkgBEQESqJKrm-2ghMJVjUIzJFUqZ04a-1g8uBAn7W1nz7Jgg2q9Pa56C5Oglc1tPZvEzTaXAccy2RFwd4d5YvgbMlxBqQIKwZwuSgsDSOa0cGEz4N5bsZnjDg9sYnaVAmVLPL5kVeHC9zzU8oO7_w2sSYinJX7k8VcnQ393reHd_qMRBTP6Vn--I9MxEJ4ZIJQNfpSs7rQ"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white/20 bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up of a designer's hand sketching luxury fashion layouts on a digital tablet, high-end studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAieKJwXoPSramdJkcZE-alnA9VqM2Gll-lRDyQ2Tpj3TiJFvAC09t7hQfF6ZEfHLANuzPqqL7p8NwJkTEI_5w4eEwI-Yg2SM3_YgwWbPae4AwSI_eluAQ8i3Cm_WKkThHVnoYyO1nUdllWhYK4eLCHNzgktNmvwYV8C4IYlxv5d4BFJGPN9ZNp_5Lmui8BkuEZIeuOfmZJTqvYe8WkVbrnDrQ0_WrT9uROrvv67vERtvC5SzmGJP4tNQ"/>
+</div>
+</div>
+<span class="font-label-md text-label-md text-white/60">Active session management enabled</span>
+</div>
+</div>
+</section>
+<!-- Right Side: Login Component -->
+<section class="w-full lg:w-1/2 flex flex-col justify-center items-center px-space-md py-space-xl lg:px-space-2xl bg-surface">
+<div class="w-full max-w-[440px]">
+<!-- Header -->
+<div class="mb-space-xl text-center lg:text-left">
+<div class="inline-flex items-center px-space-md py-space-xs rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm mb-space-md border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] mr-space-xs" style="font-variation-settings: 'FILL' 1;">lock</span>
+                        Authorized Personnel Only
+                    </div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Secure Login</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">Access the Monolith Enterprise Gateway</p>
+</div>
+<!-- Login Card -->
+<div class="luxury-card rounded-xl p-space-xl">
+<form class="space-y-space-lg" id="loginForm" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface" for="email">Admin Email</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">mail</span>
+<input class="w-full h-[40px] pl-10 pr-space-md bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-200 font-body-md" id="email" name="email" placeholder="admin@monolith.luxury" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface" for="password">Password</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">key</span>
+<input class="w-full h-[40px] pl-10 pr-10 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-200 font-body-md" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between pt-space-xs">
+<label class="flex items-center cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer sr-only" type="checkbox"/>
+<div class="w-4 h-4 border border-outline-variant rounded bg-surface peer-checked:bg-primary peer-checked:border-primary transition-all duration-200"></div>
+<span class="absolute text-white scale-0 peer-checked:scale-100 transition-transform duration-200 left-[1px]">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+</div>
+<span class="ml-2 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Remember Me</span>
+</label>
+<a class="font-label-md text-label-md text-primary hover:underline underline-offset-4" href="#">Forgot Password?</a>
+</div>
+<!-- Submit -->
+<button class="w-full h-[44px] bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-on-background active:scale-[0.98] transition-all duration-200 shadow-sm flex items-center justify-center gap-2 mt-space-md" type="submit">
+                            Sign In to Dashboard
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Feedback Area -->
+<div class="mt-space-md hidden" id="formFeedback">
+<div class="p-space-md rounded-lg bg-error-container text-on-error-container flex items-center gap-space-sm font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">error</span>
+                            Invalid credentials. Please contact your system administrator.
+                        </div>
+</div>
+</div>
+<!-- Security Footer -->
+<div class="mt-space-2xl border-t border-outline-variant pt-space-xl flex flex-col items-center lg:items-start">
+<div class="flex flex-wrap justify-center lg:justify-start gap-space-lg mb-space-md text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Security Audit</a>
+</div>
+<div class="flex items-center gap-space-sm text-outline font-caption text-caption">
+<span>v4.12.0-PRO</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>© 2024 Monolith Luxury Operations</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple Interaction Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('loginForm');
+            const feedback = document.getElementById('formFeedback');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Verifying...';
+                
+                // Simulate network latency
+                setTimeout(() => {
+                    feedback.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Sign In to Dashboard <span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
+                }, 1200);
+            });
+
+            // Input Focus Effects
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.querySelector('.material-symbols-outlined').style.color = 'var(--primary)';
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.querySelector('.material-symbols-outlined').style.color = 'var(--outline)';
+                });
+            });
+        });
+    </script>
+</body></html>

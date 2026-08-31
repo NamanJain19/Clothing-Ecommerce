@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monolith Luxury Admin - Reviews</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#575e70",
+                    "tertiary": "#000000",
+                    "on-secondary-fixed": "#151c27",
+                    "tertiary-container": "#261906",
+                    "inverse-on-surface": "#f3f0f1",
+                    "inverse-primary": "#c0c6db",
+                    "primary": "#000000",
+                    "on-tertiary-fixed-variant": "#55442d",
+                    "on-surface-variant": "#45464c",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "outline": "#76777d",
+                    "on-surface": "#1b1b1d",
+                    "surface-container-high": "#eae7e9",
+                    "on-primary-fixed": "#141b2b",
+                    "inverse-surface": "#303031",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#5e6572",
+                    "surface-variant": "#e5e2e3",
+                    "secondary": "#585f6c",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#141b2b",
+                    "background": "#fcf8fa",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#968065",
+                    "secondary-container": "#dce2f3",
+                    "on-tertiary-fixed": "#261906",
+                    "on-primary-fixed-variant": "#404758",
+                    "on-secondary-fixed-variant": "#404754",
+                    "surface-dim": "#dcd9db",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#dcc2a4",
+                    "primary-fixed": "#dce2f7",
+                    "on-primary-container": "#7d8497",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e5e2e3",
+                    "primary-fixed-dim": "#c0c6db",
+                    "on-error": "#ffffff",
+                    "on-background": "#1b1b1d",
+                    "surface-bright": "#fcf8fa",
+                    "surface": "#fcf8fa",
+                    "tertiary-fixed": "#f9debf",
+                    "secondary-fixed": "#dce2f3",
+                    "surface-container-low": "#f6f3f4",
+                    "surface-container": "#f0edee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "space-sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "container-margin": "2rem",
+                    "space-md": "1rem",
+                    "space-xs": "0.25rem",
+                    "space-xl": "2rem",
+                    "space-2xl": "3rem",
+                    "space-lg": "1.5rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                    "display": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #F7F7F7; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
+        .drawer-transition { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bulk-bar-transition { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] bg-surface-container-lowest border-r border-outline-variant flex flex-col py-space-xl px-space-md gap-space-sm z-50">
+<div class="mb-space-xl px-4 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">diamond</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary">Monolith Luxury</h1>
+<p class="text-label-sm text-secondary">Atelier Admin</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<!-- Items mapped from JSON logic -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container rounded-lg font-label-md transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container rounded-lg font-label-md transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container rounded-lg font-label-md transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container rounded-lg font-label-md transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">reviews</span>
+<span>Reviews</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container rounded-lg font-label-md transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">sell</span>
+<span>Coupons</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container rounded-lg font-label-md transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a high-end fashion executive in a minimalist studio. The person is wearing a tailored charcoal grey blazer against a soft off-white background. The lighting is diffused and sophisticated, conveying a sense of quiet authority and modern luxury expertise. High-resolution editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPZIn8fVyb2jIKD6aTcHahOFYwNpGFwbLK1cD4FGn3dRiSDoMa7Mbu0FDpIYs5GBtb8334Z_cw6r2fXe9i5Gv5DAgwVjpmKB0ZeUDSQwqozR-a40CMqF3dLVEf53Z3l19Pc9RsZSDE7qoYsdlp2pIDqfJ7i1KpPPpi907jHAQRdZ6BBDVd1HtmUTE6XTLeocgJABYf9cDjXCv8a97-yyuUbxSVeu0rHNXKXvUSCKo85HRSx7WQx6mT_Q"/>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-bold">Admin User</p>
+<p class="text-caption text-secondary">Global Overseer</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-[18px]">more_vert</span>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 w-full pl-[280px] pr-space-xl bg-surface/80 backdrop-blur-md z-40 fixed top-0 border-b border-outline-variant">
+<div class="flex items-center gap-space-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px] pointer-events-none">search</span>
+<input class="h-10 pl-10 pr-4 w-80 bg-surface-container-low border-none rounded-lg text-body-md focus:ring-1 focus:ring-primary placeholder:text-secondary-fixed-dim" placeholder="Search reviews, products, customers..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md">Support</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="font-label-md font-bold text-primary">Atelier Interface</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="p-space-xl max-w-[1440px] mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-space-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Reviews</h2>
+<p class="font-body-md text-body-md text-secondary">Manage customer ratings and product reviews.</p>
+</div>
+<button class="h-10 px-6 bg-primary text-white font-label-md rounded-lg flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                    Export Reviews
+                </button>
+</div>
+<!-- Overview Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg mb-space-xl">
+<div class="bg-surface-container-lowest p-space-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Total Reviews</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-display font-display text-primary">12,482</span>
+<span class="text-label-sm text-green-600 font-bold">+12%</span>
+</div>
+<p class="text-caption text-secondary mt-1">Growth since last month</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Pending Approval</span>
+<div class="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-display font-display text-primary">243</span>
+</div>
+<p class="text-caption text-secondary mt-1">Requiring immediate action</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Published Reviews</span>
+<div class="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-display font-display text-primary">12,194</span>
+</div>
+<p class="text-caption text-secondary mt-1">Visible on storefront</p>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Average Rating</span>
+<div class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-display font-display text-primary">4.8</span>
+<span class="text-headline-md text-secondary">/ 5</span>
+</div>
+<p class="text-caption text-secondary mt-1">Based on global feedback</p>
+</div>
+</div>
+<!-- Action Bar / Filters -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm mb-space-lg flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-transparent border border-outline-variant rounded-lg text-body-md focus:ring-1 focus:ring-primary" placeholder="Search by keyword or customer..." type="text"/>
+</div>
+<div class="flex items-center gap-3 overflow-x-auto pb-1 md:pb-0">
+<select class="h-10 px-3 bg-transparent border border-outline-variant rounded-lg text-body-md focus:ring-1 focus:ring-primary">
+<option>Rating: All</option>
+<option>5 Stars</option>
+<option>4 Stars</option>
+<option>3 Stars</option>
+<option>2 Stars</option>
+<option>1 Star</option>
+</select>
+<select class="h-10 px-3 bg-transparent border border-outline-variant rounded-lg text-body-md focus:ring-1 focus:ring-primary">
+<option>Status: All</option>
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
+</select>
+<select class="h-10 px-3 bg-transparent border border-outline-variant rounded-lg text-body-md focus:ring-1 focus:ring-primary">
+<option>Product: All</option>
+<option>Leather Tote</option>
+<option>Silk Scarf</option>
+<option>Monolith Watch</option>
+</select>
+<div class="h-10 flex items-center px-3 border border-outline-variant rounded-lg text-body-md text-secondary">
+<span class="material-symbols-outlined text-[18px] mr-2">calendar_today</span>
+<span>Date Range</span>
+</div>
+</div>
+</div>
+<!-- Reviews Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="py-4 px-6 w-10">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" id="selectAll" type="checkbox"/>
+</th>
+<th class="py-4 px-4 font-label-md text-secondary uppercase text-[11px] tracking-widest">Customer</th>
+<th class="py-4 px-4 font-label-md text-secondary uppercase text-[11px] tracking-widest">Product</th>
+<th class="py-4 px-4 font-label-md text-secondary uppercase text-[11px] tracking-widest">Rating</th>
+<th class="py-4 px-4 font-label-md text-secondary uppercase text-[11px] tracking-widest">Review</th>
+<th class="py-4 px-4 font-label-md text-secondary uppercase text-[11px] tracking-widest">Status</th>
+<th class="py-4 px-4 font-label-md text-secondary uppercase text-[11px] tracking-widest">Date</th>
+<th class="py-4 px-6 text-right font-label-md text-secondary uppercase text-[11px] tracking-widest">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="py-4 px-6" onclick="event.stopPropagation()">
+<input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a sophisticated woman with an elegant updo, wearing a refined pearl necklace and a cream-colored silk blouse. The aesthetic is clean and high-key, photographed in a light-filled minimalist room with soft natural shadows. The mood is luxury, clean and polished." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwssUnFLySLVQq-BYk75tSS4ljEOaxU58ZDd7oMStq4oxQxiVWmoAyPRbn-P_4zrb8zudrlgkiKlT0s0Pkg_F1W5RV8nt3vRhmHpf5LrM7ro8zJcp4fOEwAPWGvh5AuTLIt55p3OomDYsqcvelGCVhhawuayK6P5MCn6zFppRRAWGcBzmeGIOX_PE-ZSapMHXZw8IXaS4SZ7pk1P1IUo0ImlDCS3XUJGioCqt_ebODGXH7XUn2FoZiug"/>
+</div>
+<div>
+<p class="font-label-md font-bold text-primary">Elena Vance</p>
+<p class="text-caption text-secondary">elena.v@example.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro studio shot of a handcrafted deep emerald green leather luxury handbag with gold hardware. The product is set against a neutral, warm-toned beige background with soft studio lighting that highlights the texture of the grain. High-end product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYKsy7q664h4oF7e9ZDDGtLDQwzt_zcgi9dWHbBpRTCNQk6uy42c6AiLV7-6SNL6msnkUXCdVfEzRl3P1RPJX0jX_yy20xpRBs1NoST3UrzubptigyhXHIaKlixOnm4bsxq9koev8tsoFSMz_tWljPAdScnTWdhRx1Epa0cnsHK8msdELZnlLH0RmNg180Zasv8IjDLKFcMSLmOECDYDEnQ-wJyR2gfn-9YlWf8BxmvwWqTr0QdU38PQ"/>
+</div>
+<span class="text-body-md font-medium">Emerald Artisan Tote</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex text-[#FACC15]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</td>
+<td class="py-4 px-4 max-w-xs">
+<p class="text-body-md text-on-surface line-clamp-1">The leather quality is beyond anything I've purchased before. Truly exceptional craftsmanship.</p>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-green-50 text-green-700 border border-green-100">
+                                    Approved
+                                </span>
+</td>
+<td class="py-4 px-4 text-body-md text-secondary">Oct 24, 2023</td>
+<td class="py-4 px-6 text-right" onclick="event.stopPropagation()">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px] text-secondary">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="py-4 px-6" onclick="event.stopPropagation()">
+<input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a distinguished man in his 40s with well-groomed facial hair, wearing a navy blue cashmere turtleneck. He is set against a blurred interior of a modern library with warm, soft lighting. The look is intellectual, affluent, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRyCDq2vA0jn6935jgxZKOm2DrQyAH8asz7YTDs7MGMkfi17WzFeSwOKqEHwMS42lsSL5ggQfbgDxTp65rjcyvyFChAaoQmFNCVzK-lPm9r2Y137N_x-U7D6bmQIUO5-Tv5aO5QaaexJNLmb3ZDT42BcHtP5HWvdAr6zZNjA2IE0We9G_8I4A-4Pzog8LF3IGj2u6Ou8wv6rE_t05w5tJrx31pAj6JK-duloEhf06sOIa0xB0H9DHKWQ"/>
+</div>
+<div>
+<p class="font-label-md font-bold text-primary">Marcus Sterling</p>
+<p class="text-caption text-secondary">m.sterling@globex.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up photograph of a minimalist silver chronograph watch with a black leather strap. The watch is resting on a polished dark wood surface, illuminated by a sharp side light that creates high contrast and highlights the metallic finish. Luxury accessory photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2iraP7a15NbkVPQ1VppSR91QzXgm_qZOgZi8INKeJXGXUEOFxzRMRXPePSZGv0fVS4PiNb9zaS-imFxE0GRIfGh72nOJshzxiQhAvt021hkZvj6Ud4o5EDntUiqFGCSDBPwbIf8N1aO3v8Kh24dzyGSJ1HPo2IHPpNtwLZMbOdzPiDEqAZah5a4wr5j5AaXNDVamsvg2JKMLjsZJT3bMSMZ62SYL7ngr9cEKwziAKiDOS6Mq1p4bj0w"/>
+</div>
+<span class="text-body-md font-medium">Monolith Onyx Watch</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex text-[#FACC15]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+</td>
+<td class="py-4 px-4 max-w-xs">
+<p class="text-body-md text-on-surface line-clamp-1">A bit heavier than expected, but the aesthetic is undeniable. The packaging was stunning.</p>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-orange-50 text-orange-700 border border-orange-100">
+                                    Pending
+                                </span>
+</td>
+<td class="py-4 px-4 text-body-md text-secondary">Oct 23, 2023</td>
+<td class="py-4 px-6 text-right" onclick="event.stopPropagation()">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px] text-secondary">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group" onclick="toggleDrawer(true)">
+<td class="py-4 px-6" onclick="event.stopPropagation()">
+<input class="row-checkbox rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a creative professional woman with vibrant energy, wearing a bold geometric print scarf and modern glasses. The background is a clean white studio with a hint of architectural shadows. The lighting is bright and optimistic, reflecting a contemporary luxury vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOepfd9fw1G5vM7b6LxnVri63I9rStIEb3TpSegkclXAp5mjiEoe3xhZyxRtMKbFcNGVrYospfrOBqI5UCrKmK_b__ZWa9bZSz8vuH4nyEAHDncwjJrKYzPoShKaw94mA7ragacyrsTHxFKV613W1z-gQ1QT3gwv2QD3QmAEQRpa49coTY13OWXxgTD-qvH73TV5gf6BfeUmfpEnvIWIjUKX5ILI6yby9WumgEpWXi4GgQNOQon0QqYg"/>
+</div>
+<div>
+<p class="font-label-md font-bold text-primary">Sienna Brooks</p>
+<p class="text-caption text-secondary">s.brooks@design.io</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An artistic flat-lay of a sheer ivory silk scarf with hand-rolled edges, folded elegantly on a white marble surface. Soft, dappled light creates a dreamy and luxurious atmosphere. The textures of the silk and marble are crisp and high-detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Cj6AbB02Qaq8lAIJGiNNiOozkNJlC9gERnVJ1tA7mkDwcsXT_4FnuY0_9zcHSpiC6J10NmamePoCknxkWvKSnohVOjLv-bI-98QA6nF7-vJw3xzVLZ8noIl4ddkqSQSIGKEm6HIN3EOI208ExWrU-iY8ooQE8M5N85vWC_GFD-Pv-h8G7dH3jqIFPlRvj30nJKxAagVmcX1j-LRoCwOIefgKq9mblAxaVOcv7KpT6T8qA8qUA2cddg"/>
+</div>
+<span class="text-body-md font-medium">Ivory Silk Veil</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex text-[#FACC15]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</td>
+<td class="py-4 px-4 max-w-xs">
+<p class="text-body-md text-on-surface line-clamp-1">Absolutely perfect. The drape is elegant and the material feels incredibly soft.</p>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-green-50 text-green-700 border border-green-100">
+                                    Approved
+                                </span>
+</td>
+<td class="py-4 px-4 text-body-md text-secondary">Oct 22, 2023</td>
+<td class="py-4 px-6 text-right" onclick="event.stopPropagation()">
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px] text-secondary">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="p-4 bg-surface-container-low border-t border-outline-variant flex justify-between items-center">
+<p class="text-body-md text-secondary">Showing 1 to 10 of 12,482 reviews</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface transition-colors font-label-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface transition-colors font-label-md">3</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface transition-colors font-label-md">...</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bulk Action Bar -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-4 rounded-full shadow-2xl bulk-bar-transition translate-y-32 opacity-0 flex items-center gap-6 z-[60]" id="bulkActionBar">
+<div class="flex items-center gap-3 pr-6 border-r border-white/20">
+<span class="font-bold text-headline-sm" id="selectedCount">0</span>
+<span class="text-label-md opacity-80 uppercase tracking-wider">Selected</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-10 px-4 hover:bg-white/10 rounded-lg flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="font-label-md">Approve</span>
+</button>
+<button class="h-10 px-4 hover:bg-white/10 rounded-lg flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">block</span>
+<span class="font-label-md">Reject</span>
+</button>
+<button class="h-10 px-4 hover:bg-white/10 rounded-lg flex items-center gap-2 transition-colors text-red-300">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+<span class="font-label-md">Delete</span>
+</button>
+<button class="h-10 px-4 hover:bg-white/10 rounded-lg flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+<span class="font-label-md">Export</span>
+</button>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors" onclick="clearSelection()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Review Details Drawer Overlay -->
+<div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-[70] hidden opacity-0 transition-opacity duration-300" id="drawerOverlay" onclick="toggleDrawer(false)"></div>
+<!-- Review Details Drawer -->
+<aside class="fixed top-0 right-0 h-screen w-[500px] bg-white z-[80] shadow-2xl drawer-transition translate-x-full border-l border-outline-variant flex flex-col" id="reviewDrawer">
+<!-- Drawer Header -->
+<div class="p-space-lg border-b border-outline-variant flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md">Review Details</h3>
+<p class="text-caption text-secondary">Reference ID: REV-94821</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-lg transition-colors" onclick="toggleDrawer(false)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-space-lg space-y-space-lg">
+<!-- Review Content -->
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a sophisticated woman with an elegant updo, wearing a refined pearl necklace and a cream-colored silk blouse. High-end, clean photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6eYVPWSevoHkLJN7pW61LiQMFe8jqe-hBYppIo3V8XQ-u9DIGCfFEmr0f0-8Ntm9jb_Z6H47KQzP-_sDHhs6KLc1jRyADeFNGtbR__zytEznf4xWPKj-CIfr_hu4opyxnmitHlx7VMHMkhqivwWWsFsG9g60fhsL1gixWSoC-hd6J2t678zY9FRKsb0J0JyJUSot4s4Qg2mnytrHJjDEBv9EPXdOSjM_Tqa8mQQgUn9dYPQ-cZGw6_w"/>
+</div>
+<div>
+<p class="font-bold text-primary">Elena Vance</p>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold uppercase tracking-widest">Verified Purchase</span>
+</div>
+</div>
+</div>
+<div class="flex text-[#FACC15]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<p class="text-body-lg text-on-surface leading-relaxed italic">"The leather quality is beyond anything I've purchased before. Truly exceptional craftsmanship. The stitching is flawless and the color is exactly as represented in the photos. It feels substantial and luxurious. I will definitely be coming back for the matching wallet."</p>
+</div>
+<!-- Customer Photos -->
+<div>
+<h4 class="text-label-sm text-secondary uppercase mb-3 tracking-widest">Customer Photos</h4>
+<div class="grid grid-cols-3 gap-3">
+<div class="aspect-square rounded-lg bg-surface-container border border-outline-variant overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="Close up of a luxury emerald leather handbag texture in natural sunlight, showing the exquisite pebble grain and gold-plated hardware. High-end detail shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_JXM-a4JHjyHwNdP4lLKgBCDNWtzjDL3Nqn_LRMCnyeBPOzDzTQf9Moy_anXTGY9dbuazOYY1C9yOhPpeKULy8EMcLajV9ssZYV45JYpXPPZr3kJOYk0tfNDkaD2LnPzBpP4MbSAmE2WUvbideFqPKumFH8ssddQo78JDroQTvec6koWMy8XWYE_XdZhTMmPQayTYuyeCtM6tPYAnynHTdOSky8UFHtqJZXbDIFaQtQXRD5Oy7pgoOA"/>
+</div>
+<div class="aspect-square rounded-lg bg-surface-container border border-outline-variant overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A lifestyle photo of an emerald green leather handbag sitting on an outdoor bistro table next to a latte. Soft morning light, luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPFsfjzRjP7fCc5OVhTHn5aDAEzpS9rAvk8mUnr2PD1VaCjbQZDUe4mdmsYOf8z6oVmN4XwT0U19GwIwry0hk4izAfCrhfE8JMv1fUJkdyODB4h5iQlCI24-rd5S0tgTn19Q2O55fg8t0pwwjw1U0ydSvppE99RBIWvsa0VVk6LY96f5nfyYVQkCmqWK14kGABMq_z48s7dUOBHcTJco1qZmfTL5GKBP2gn6Onxoeg2G0QfWzO4oC8Fw"/>
+</div>
+</div>
+</div>
+<!-- Product Context -->
+<div class="p-4 border border-outline-variant rounded-xl flex items-center gap-4 bg-surface-bright">
+<div class="w-16 h-16 rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro studio shot of a handcrafted deep emerald green leather luxury handbag with gold hardware. Professional product shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkUJPTuVrPHDAnqswq9fUo2jlLNeKNyJGuS9p9rLun9Fqhfih7uxBAkvdoRkC6gdE8atdg7J5_A1oxFImp8RKfyLvY0KNYzUFh2vAcrQ4Ybn_6nrjzcGlCspn4eLLjiFgQqNHEYiAS9KfvOig9aCPRnQBQpPDpQg-E-JjdseDVE4PnrXPuS5ttuPsfl-eMe6Lo2XU_9BSBqVvRYOby4-LmIzwsJq9SjFBbs6QtOYB8RJr6TalJ1JgQ7Q"/>
+</div>
+<div class="flex-1">
+<p class="text-caption text-secondary">Reviewed Product</p>
+<p class="font-bold text-primary">Emerald Artisan Tote</p>
+<p class="text-label-md text-primary">$2,450.00</p>
+</div>
+<span class="material-symbols-outlined text-secondary">open_in_new</span>
+</div>
+</div>
+<!-- Reply Section -->
+<div class="pt-space-lg border-t border-outline-variant">
+<h4 class="font-headline-sm text-headline-sm mb-4">Official Response</h4>
+<div class="space-y-4">
+<textarea class="w-full h-32 p-4 bg-transparent border border-outline-variant rounded-xl text-body-md focus:ring-1 focus:ring-primary resize-none" placeholder="Write your response to the customer..."></textarea>
+<div class="flex justify-between items-center">
+<p class="text-caption text-secondary">This response will be visible to all visitors.</p>
+<button class="h-10 px-6 bg-primary text-white font-label-md rounded-lg hover:opacity-90 transition-opacity">
+                            Post Reply
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-space-lg border-t border-outline-variant bg-surface-container-low flex gap-3">
+<button class="flex-1 h-12 border border-outline-variant bg-white text-primary font-bold rounded-lg hover:bg-surface transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">block</span>
+                Reject Review
+            </button>
+<button class="flex-1 h-12 bg-primary text-white font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                Approve Review
+            </button>
+</div>
+</aside>
+<script>
+        function toggleDrawer(isOpen) {
+            const drawer = document.getElementById('reviewDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            
+            if (isOpen) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.add('opacity-100');
+                    drawer.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                overlay.classList.remove('opacity-100');
+                drawer.classList.add('translate-x-full');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Bulk Selection Logic
+        const selectAll = document.getElementById('selectAll');
+        const checkboxes = document.querySelectorAll('.row-checkbox');
+        const bulkBar = document.getElementById('bulkActionBar');
+        const selectedCountLabel = document.getElementById('selectedCount');
+
+        function updateBulkBar() {
+            const selected = Array.from(checkboxes).filter(cb => cb.checked);
+            if (selected.length > 0) {
+                selectedCountLabel.textContent = selected.length;
+                bulkBar.classList.remove('translate-y-32', 'opacity-0');
+                bulkBar.classList.add('translate-y-0', 'opacity-100');
+            } else {
+                bulkBar.classList.add('translate-y-32', 'opacity-0');
+                bulkBar.classList.remove('translate-y-0', 'opacity-100');
+            }
+        }
+
+        selectAll.addEventListener('change', (e) => {
+            checkboxes.forEach(cb => cb.checked = e.target.checked);
+            updateBulkBar();
+        });
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateBulkBar);
+        });
+
+        function clearSelection() {
+            selectAll.checked = false;
+            checkboxes.forEach(cb => cb.checked = false);
+            updateBulkBar();
+        }
+
+        // Row interaction micro-interactions
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mousedown', () => {
+                row.classList.add('scale-[0.995]');
+            });
+            row.addEventListener('mouseup', () => {
+                row.classList.remove('scale-[0.995]');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('scale-[0.995]');
+            });
+        });
+    </script>
+</body></html>

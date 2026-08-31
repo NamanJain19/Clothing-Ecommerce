@@ -10,6 +10,7 @@ import { FilterDrawer } from '../components/ui/FilterDrawer';
 import { recentlyViewedItems } from '../data/wishlistData';
 import { Product } from '../types';
 import { useWishlist } from '../context/WishlistContext';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl } from '../utils/imageUtils';
 import { ChevronDown, Heart } from 'lucide-react';
 
 export const WishlistPage: React.FC = () => {
@@ -139,9 +140,13 @@ export const WishlistPage: React.FC = () => {
                 >
                   <div className="aspect-[4/5] bg-white overflow-hidden border border-outline-variant relative">
                     <img
-                      src={item.image}
+                      src={normalizeImageUrl(item.image)}
                       alt={item.name}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                      }}
                     />
                   </div>
                   <div className="mt-4 flex justify-between items-baseline">

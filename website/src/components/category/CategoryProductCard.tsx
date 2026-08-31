@@ -5,6 +5,7 @@ import { CategoryProduct } from '../../data/womenProducts';
 import { Product } from '../../types';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl } from '../../utils/imageUtils';
 
 interface CategoryProductCardProps {
   product: CategoryProduct;
@@ -17,6 +18,8 @@ export const CategoryProductCard: React.FC<CategoryProductCardProps> = ({ produc
   const { addToCart } = useCart();
 
   const isFavorite = isInWishlist(product.id);
+  const mainImage = normalizeImageUrl(product.image);
+  const hoverImage = normalizeImageUrl(product.hoverImage || product.image);
 
   const handleCardClick = () => {
     navigate(`/product/${product.id}`);
@@ -29,7 +32,7 @@ export const CategoryProductCard: React.FC<CategoryProductCardProps> = ({ produc
       name: product.name,
       category: product.specs,
       price: product.price,
-      image: product.image,
+      image: mainImage,
     });
   };
 
@@ -40,7 +43,7 @@ export const CategoryProductCard: React.FC<CategoryProductCardProps> = ({ produc
       name: product.name,
       categoryTag: product.specs,
       price: product.price,
-      image: product.image,
+      image: mainImage,
       size: 'M',
       color: 'Standard',
       quantity: 1,
@@ -54,8 +57,8 @@ export const CategoryProductCard: React.FC<CategoryProductCardProps> = ({ produc
       name: product.name,
       specs: product.specs,
       price: product.price,
-      image: product.image,
-      hoverImage: product.hoverImage,
+      image: mainImage,
+      hoverImage: hoverImage,
     });
   };
 
@@ -68,21 +71,21 @@ export const CategoryProductCard: React.FC<CategoryProductCardProps> = ({ produc
         {/* Main Image */}
         <img
           alt={product.name}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 group-hover:opacity-0"
-          src={product.image}
+          src={mainImage}
           onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              'https://lh3.googleusercontent.com/aida-public/AB6AXuD-Nfjeq46m2xJ4GymhY-CWVY9EVjOojA372rE-6bRT6KWYPqn6NPSyYDtDgR_WS3i6DV8xJUf6iqw7lMT59PNsRlHn2hMwtSINciz2CaydrVqGxBArBq1Vj7l1Jk_rZQ292u5GgHodW_XB8RBw9r8AXCeL9ou5-aIyL8_-gFaH6rwBXLI5AErv7DWmcfuhABNuNi3CiNvpCSluBUrdj0pj3h6pHh0bh65f5GsPFj7oPPUYJI2C9OqaEw';
+            (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
           }}
         />
         {/* Hover Detail Image */}
         <img
           alt={`${product.name} Detail`}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100"
-          src={product.hoverImage || product.image}
+          src={hoverImage}
           onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              'https://lh3.googleusercontent.com/aida-public/AB6AXuD-Nfjeq46m2xJ4GymhY-CWVY9EVjOojA372rE-6bRT6KWYPqn6NPSyYDtDgR_WS3i6DV8xJUf6iqw7lMT59PNsRlHn2hMwtSINciz2CaydrVqGxBArBq1Vj7l1Jk_rZQ292u5GgHodW_XB8RBw9r8AXCeL9ou5-aIyL8_-gFaH6rwBXLI5AErv7DWmcfuhABNuNi3CiNvpCSluBUrdj0pj3h6pHh0bh65f5GsPFj7oPPUYJI2C9OqaEw';
+            (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
           }}
         />
 

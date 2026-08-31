@@ -5,6 +5,8 @@ import { Product } from '../../types';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl } from '../../utils/imageUtils';
+
 interface ProductCardProps {
   product: Product;
   offsetClass?: string;
@@ -53,17 +55,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, offsetClass =
   };
 
   const aspectClass = product.aspectRatio === '4/5' ? 'aspect-[4/5]' : 'aspect-[3/4]';
+  const displayImage = normalizeImageUrl(product.image);
 
   return (
     <div onClick={handleCardClick} className={`group cursor-pointer ${offsetClass}`}>
       <div className={`relative ${aspectClass} overflow-hidden rounded-lg mb-8 bg-surface-container-low`}>
         <img
           alt={product.name}
+          loading="lazy"
           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-          src={product.image}
+          src={displayImage}
           onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              'https://lh3.googleusercontent.com/aida-public/AB6AXuD-Nfjeq46m2xJ4GymhY-CWVY9EVjOojA372rE-6bRT6KWYPqn6NPSyYDtDgR_WS3i6DV8xJUf6iqw7lMT59PNsRlHn2hMwtSINciz2CaydrVqGxBArBq1Vj7l1Jk_rZQ292u5GgHodW_XB8RBw9r8AXCeL9ou5-aIyL8_-gFaH6rwBXLI5AErv7DWmcfuhABNuNi3CiNvpCSluBUrdj0pj3h6pHh0bh65f5GsPFj7oPPUYJI2C9OqaEw';
+            (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
           }}
         />
         <button

@@ -21,11 +21,12 @@ import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminPagination } from '../../components/ui/AdminPagination';
 import { initialProducts, Product } from '../../data/products';
 import { adminService } from '../../services/adminService';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl, getProductImage } from '../../utils/imageUtils';
 
 export const ProductsPage: React.FC = () => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-  const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
@@ -33,23 +34,25 @@ export const ProductsPage: React.FC = () => {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
-  const itemsPerPage = 8;
+  const itemsPerPage = 10;
 
   const fetchLiveProducts = async () => {
     setIsLoading(true);
     try {
-      const res = await adminService.getProducts();
-      if (res && res.products && res.products.length > 0) {
-        const mapped: Product[] = res.products.map((p: any) => ({
+      const data = await adminService.getProducts();
+      if (data && data.products && data.products.length > 0) {
+        const mapped: Product[] = data.products.map((p: any) => ({
           id: p._id || p.id,
           name: p.name,
-          sku: p.sku || `MON-${p._id?.slice(-4)}`,
-          category: typeof p.category === 'object' ? p.category?.name : (p.category || 'Outerwear'),
+          sku: p.sku || 'N/A',
+          category: typeof p.category === 'object' ? p.category?.name : (p.category || 'General'),
+          collection: typeof p.collection === 'object' ? p.collection?.name : (p.collection || 'Monolith Archive'),
+          brand: p.brand || 'MONOLITH',
           price: p.price,
-          comparePrice: p.compareAtPrice || Math.round(p.price * 1.3),
+          comparePrice: p.compareAtPrice,
           stock: p.stock ?? 15,
           status: p.stock === 0 ? 'Out of Stock' : (p.isActive ? 'Published' : 'Draft'),
-          image: (p.images && p.images[0]) || p.thumbnail || 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80',
+          image: getProductImage(p),
           createdAt: p.createdAt || 'Just now',
         }));
         setProducts(mapped);
@@ -311,7 +314,11 @@ export const ProductsPage: React.FC = () => {
                         <img
                           className="w-full h-full object-cover"
                           alt={product.name}
-                          src={product.image}
+                          loading="lazy"
+                          src={normalizeImageUrl(product.image)}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                          }}
                         />
                       </div>
                     </td>

@@ -3,6 +3,7 @@ import { X, Heart, ShoppingBag } from 'lucide-react';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl } from '../../utils/imageUtils';
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -16,13 +17,14 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
   if (!product) return null;
 
   const isFavorite = isInWishlist(product.id);
+  const displayImage = normalizeImageUrl(product.image);
 
   const handleAddToCart = () => {
     addToCart({
       productId: product.id,
       name: product.name,
       price: product.price,
-      image: product.image,
+      image: displayImage,
       categoryTag: product.category,
       size: 'M',
       color: 'Standard',
@@ -37,7 +39,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
       name: product.name,
       category: product.category,
       price: product.price,
-      image: product.image,
+      image: displayImage,
     });
   };
 
@@ -54,9 +56,13 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="aspect-[3/4] bg-surface-container-low overflow-hidden">
             <img
-              src={product.image}
+              src={displayImage}
               alt={product.name}
+              loading="lazy"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+              }}
             />
           </div>
           <div className="flex flex-col justify-between h-full">

@@ -10,28 +10,15 @@ import {
   CollectionsResponse,
 } from '../types/product';
 import { Product } from '../types';
-
-const DEFAULT_FALLBACK_IMAGE =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuD-Nfjeq46m2xJ4GymhY-CWVY9EVjOojA372rE-6bRT6KWYPqn6NPSyYDtDgR_WS3i6DV8xJUf6iqw7lMT59PNsRlHn2hMwtSINciz2CaydrVqGxBArBq1Vj7l1Jk_rZQ292u5GgHodW_XB8RBw9r8AXCeL9ou5-aIyL8_-gFaH6rwBXLI5AErv7DWmcfuhABNuNi3CiNvpCSluBUrdj0pj3h6pHh0bh65f5GsPFj7oPPUYJI2C9OqaEw';
+import { normalizeImageUrl, getProductImage, getProductImages, DEFAULT_FALLBACK_IMAGE } from '../utils/imageUtils';
 
 /**
  * Maps a raw BackendProduct into the UI Product structure
  */
 export const toUIProduct = (bp: BackendProduct): Product => {
-  const sanitizeImg = (img?: string) => {
-    if (!img || img.includes('example.com') || img.trim() === '') {
-      return DEFAULT_FALLBACK_IMAGE;
-    }
-    return img;
-  };
-
-  const rawImages = bp.images && bp.images.length > 0
-    ? bp.images
-    : [bp.thumbnail || DEFAULT_FALLBACK_IMAGE];
-
-  const images = rawImages.map(sanitizeImg);
-  const primaryImage = images[0] || DEFAULT_FALLBACK_IMAGE;
-  const hoverImage = images.length > 1 ? images[1] : primaryImage;
+  const primaryImage = getProductImage(bp);
+  const allImages = getProductImages(bp);
+  const hoverImage = allImages.length > 1 ? allImages[1] : primaryImage;
 
   const categoryName =
     typeof bp.category === 'object' && bp.category
@@ -72,7 +59,7 @@ export const toUIProduct = (bp: BackendProduct): Product => {
     originalPrice: bp.compareAtPrice && bp.compareAtPrice > bp.price ? bp.compareAtPrice : undefined,
     image: primaryImage,
     hoverImage: hoverImage,
-    images: images,
+    images: allImages,
     description: bp.description || bp.shortDescription || 'Crafted with meticulous attention to architectural proportion and artisanal quality.',
     details: [
       bp.shortDescription || 'Meticulously tailored luxury garment.',

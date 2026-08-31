@@ -20,6 +20,7 @@ import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminBreadcrumb } from '../../components/ui/AdminBreadcrumb';
 import { initialProducts, Product } from '../../data/products';
 import { adminService } from '../../services/adminService';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl, getProductImage } from '../../utils/imageUtils';
 
 export const ProductDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,20 +37,22 @@ export const ProductDetailsPage: React.FC = () => {
         const res = await adminService.getProducts();
         const found = res.products?.find((p: any) => p._id === id || p.id === id);
         if (found) {
+          const primaryImg = getProductImage(found);
+          const gallery = (found.images && found.images.length > 0) ? found.images.map(normalizeImageUrl) : [primaryImg];
           const mapped: Product = {
             id: found._id || found.id,
             name: found.name,
             sku: found.sku || `MON-${found._id?.slice(-5)}`,
             brand: found.brand || 'Monolith Sartorial',
-            category: found.category || 'Outerwear',
-            collection: found.collection || 'Winter Solstice 2024',
+            category: typeof found.category === 'object' ? found.category?.name : (found.category || 'Outerwear'),
+            collection: typeof found.collection === 'object' ? found.collection?.name : (found.collection || 'Monolith Archive'),
             price: found.price || 0,
             compareAtPrice: found.compareAtPrice || found.price || 0,
             isSale: Boolean(found.isSale),
             stock: found.stock ?? 15,
             status: found.status || 'Published',
-            image: found.images?.[0] || 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80',
-            gallery: found.images || [],
+            image: primaryImg,
+            gallery: gallery,
             description: found.description || '',
             material: found.material || '100% Virgin Cashmere',
             rating: found.rating || 5,
@@ -57,7 +60,7 @@ export const ProductDetailsPage: React.FC = () => {
             createdAt: found.createdAt || '2024-01-15',
           };
           setProduct(mapped);
-          setSelectedImage(mapped.image);
+          setSelectedImage(primaryImg);
         }
       } catch (err) {
         console.warn('Using local fallback for product details:', err);
@@ -166,7 +169,14 @@ export const ProductDetailsPage: React.FC = () => {
               Visual Presentation
             </h3>
             <div className="aspect-[3/4] rounded-xl overflow-hidden bg-surface-container border border-outline-variant">
-              <img src={selectedImage} alt={product.name} className="w-full h-full object-cover" />
+              <img
+                src={normalizeImageUrl(selectedImage)}
+                alt={product.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                }}
+              />
             </div>
 
             {product.gallery && product.gallery.length > 1 && (
@@ -179,7 +189,14 @@ export const ProductDetailsPage: React.FC = () => {
                       selectedImage === img ? 'border-primary shadow-sm' : 'border-transparent opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                    <img
+                      src={normalizeImageUrl(img)}
+                      alt="Thumb"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                      }}
+                    />
                   </button>
                 ))}
               </div>

@@ -10,6 +10,7 @@ import { FilterDrawer } from '../components/ui/FilterDrawer';
 import { savedForLaterItems } from '../data/cartData';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl } from '../utils/imageUtils';
 import { Plus, Minus, Heart, ShieldCheck, Truck, RefreshCw, Zap, Lock, CreditCard } from 'lucide-react';
 
 export const ShoppingCartPage: React.FC = () => {
@@ -91,7 +92,14 @@ export const ShoppingCartPage: React.FC = () => {
                     className="flex flex-col md:flex-row gap-8 pb-10 border-b border-outline-variant"
                   >
                     <div className="w-full md:w-44 aspect-[3/4] overflow-hidden bg-surface-container shrink-0 border border-outline-variant">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      <img 
+                        src={normalizeImageUrl(item.image)} 
+                        alt={item.name} 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                        }} 
+                      />
                     </div>
                     <div className="flex-1 flex flex-col justify-between">
                       <div className="flex justify-between items-start">

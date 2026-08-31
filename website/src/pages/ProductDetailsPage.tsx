@@ -11,6 +11,7 @@ import { getProductById, backendProductToDetailItem } from '../utils/productReso
 import { productService } from '../services/productService';
 import { BackendProduct } from '../types/product';
 import { Product } from '../types';
+import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl } from '../utils/imageUtils';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
@@ -361,7 +362,7 @@ export const ProductDetailsPage: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col-reverse md:flex-row gap-4">
             {/* Thumbnails with Hover and Click Selection */}
             <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto max-h-[700px] shrink-0 hide-scrollbar">
-              {product.images.map((img, idx) => (
+              {(product.images && product.images.length > 0 ? product.images : [DEFAULT_FALLBACK_IMAGE]).map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
@@ -373,7 +374,15 @@ export const ProductDetailsPage: React.FC = () => {
                   }`}
                   aria-label={`Preview photo ${idx + 1}`}
                 >
-                  <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img
+                    src={normalizeImageUrl(img)}
+                    alt={`Thumbnail ${idx + 1}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                    }}
+                  />
                 </button>
               ))}
             </div>
@@ -381,9 +390,12 @@ export const ProductDetailsPage: React.FC = () => {
             {/* Main Featured Image */}
             <div className="flex-1 aspect-[3/4] max-h-[700px] border border-outline-variant overflow-hidden relative group bg-surface-container-low cursor-zoom-in">
               <img
-                src={product.images[activeImageIndex]}
+                src={normalizeImageUrl(product.images?.[activeImageIndex] || product.images?.[0] || DEFAULT_FALLBACK_IMAGE)}
                 alt={product.name}
                 className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = DEFAULT_FALLBACK_IMAGE;
+                }}
               />
             </div>
           </div>

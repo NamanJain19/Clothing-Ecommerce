@@ -2,6 +2,8 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.6-flash';
+
 const getGenAI = () => {
   const key = process.env.GEMINI_API_KEY;
   if (!key) return null;
@@ -19,7 +21,29 @@ const getGenAI = () => {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
- * Fallback visual attribute extractor when Gemini free-tier quota limit is cooling down
+ * Check if an error from Gemini is transient (503 high demand, 429 rate limit, 500, etc.)
+ */
+const isTransientGeminiError = (err) => {
+  if (!err) return false;
+  const status = err.status || err.statusCode;
+  if (status === 503 || status === 429 || status === 500 || status === 504) return true;
+  const msg = (err.message || '').toLowerCase();
+  return (
+    msg.includes('503') ||
+    msg.includes('429') ||
+    msg.includes('500') ||
+    msg.includes('504') ||
+    msg.includes('high demand') ||
+    msg.includes('service unavailable') ||
+    msg.includes('resourceexhausted') ||
+    msg.includes('quota exceeded') ||
+    msg.includes('overloaded') ||
+    msg.includes('try again later')
+  );
+};
+
+/**
+ * Fallback visual attribute extractor when Gemini is unavailable, experiencing high demand (503), or quota cooling down
  */
 const getFallbackVisualAttributes = (mimeType = 'image/jpeg') => {
   return {
@@ -40,9 +64,10 @@ const getFallbackVisualAttributes = (mimeType = 'image/jpeg') => {
  * Analyze an uploaded image buffer with Gemini Vision API (with automatic retry and graceful fallback)
  * @param {Buffer} imageBuffer - Raw image buffer
  * @param {string} mimeType - Image MIME type (image/jpeg, image/png, etc.)
+ * @param {number} maxRetries - Maximum retry attempts for transient errors
  * @returns {Promise<Object>} Structured visual attributes
  */
-const analyzeImageWithGemini = async (imageBuffer, mimeType = 'image/jpeg', maxRetries = 1) => {
+const analyzeImageWithGemini = async (imageBuffer, mimeType = 'image/jpeg', maxRetries = 2) => {
   const genAI = getGenAI();
   if (!genAI) {
     console.warn('[Visual Search] Gemini API key missing, using fallback analysis');
@@ -50,7 +75,7 @@ const analyzeImageWithGemini = async (imageBuffer, mimeType = 'image/jpeg', maxR
   }
 
   const model = genAI.getGenerativeModel({
-    model: 'gemini-3.6-flash',
+    model: GEMINI_MODEL,
     generationConfig: {
       temperature: 0.1,
       responseMimeType: 'application/json',
@@ -97,25 +122,26 @@ If any attribute is not clearly visible or uncertain, provide an empty array [] 
         return JSON.parse(cleaned);
       }
     } catch (err) {
-      const isRateLimit =
-        err.status === 429 ||
-        (err.message && err.message.includes('429')) ||
-        (err.message && err.message.includes('Quota exceeded'));
+      const isTransient = isTransientGeminiError(err);
 
-      if (isRateLimit && attempt < maxRetries) {
-        console.warn(`[Visual Search] Rate limit hit, retrying in 2s (attempt ${attempt + 1}/${maxRetries})...`);
-        await sleep(2000);
+      if (isTransient && attempt < maxRetries) {
+        const delayMs = Math.min(1000 * Math.pow(2, attempt) + Math.random() * 300, 4000);
+        console.warn(`[Visual Search] Transient Gemini error (${err.message}), retrying in ${Math.round(delayMs)}ms (attempt ${attempt + 1}/${maxRetries})...`);
+        await sleep(delayMs);
         continue;
       }
 
-      if (isRateLimit) {
-        console.warn('[Visual Search] Gemini quota cooling down, using graceful visual fallback analysis');
+      if (isTransient) {
+        console.warn('[Visual Search] Gemini unavailable/high demand (503/429), using graceful visual fallback analysis');
         return getFallbackVisualAttributes(mimeType);
       }
 
-      throw err;
+      console.error('[Visual Search] Gemini analysis failed, using graceful visual fallback:', err.message);
+      return getFallbackVisualAttributes(mimeType);
     }
   }
+
+  return getFallbackVisualAttributes(mimeType);
 };
 
 /**

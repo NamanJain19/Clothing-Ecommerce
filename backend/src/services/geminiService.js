@@ -3,6 +3,28 @@ const aiToolService = require('./aiToolService');
 const { parseUserQuery } = require('./aiQueryParser');
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.6-flash';
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const isTransientGeminiError = (err) => {
+  if (!err) return false;
+  const status = err.status || err.statusCode;
+  if (status === 503 || status === 429 || status === 500 || status === 504) return true;
+  const msg = (err.message || '').toLowerCase();
+  return (
+    msg.includes('503') ||
+    msg.includes('429') ||
+    msg.includes('500') ||
+    msg.includes('504') ||
+    msg.includes('high demand') ||
+    msg.includes('service unavailable') ||
+    msg.includes('resourceexhausted') ||
+    msg.includes('quota exceeded') ||
+    msg.includes('overloaded') ||
+    msg.includes('try again later')
+  );
+};
 
 let genAI = null;
 if (GEMINI_API_KEY) {
@@ -147,21 +169,39 @@ const chat = async ({ message, conversationId, history = [], user = null }) => {
   // 2. Direct Indexed MongoDB Lookup (3-10ms)
   const dbResult = await resolveDataFromDatabase(parsed, user);
 
-  // 3. Generate synthesized response with Gemini in a single pass
+  // 3. Generate synthesized response with Gemini in a single pass (with retry on transient errors)
   let responseText = '';
   if (genAI) {
-    try {
-      const model = genAI.getGenerativeModel({
-        model: 'gemini-3.6-flash',
-        systemInstruction: SYSTEM_INSTRUCTION,
-      });
+    let lastError = null;
+    const maxRetries = 2;
 
-      const prompt = buildPromptContext(parsed, dbResult, message);
-      const result = await model.generateContent(prompt);
-      const res = await result.response;
-      responseText = res.text();
-    } catch (err) {
-      console.warn('[Gemini Fast Pipeline Fallback]:', err.message);
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: GEMINI_MODEL,
+          systemInstruction: SYSTEM_INSTRUCTION,
+        });
+
+        const prompt = buildPromptContext(parsed, dbResult, message);
+        const result = await model.generateContent(prompt);
+        const res = await result.response;
+        responseText = res.text();
+        lastError = null;
+        break;
+      } catch (err) {
+        lastError = err;
+        if (isTransientGeminiError(err) && attempt < maxRetries) {
+          const delayMs = Math.min(1000 * Math.pow(2, attempt) + Math.random() * 300, 4000);
+          console.warn(`[Gemini Assistant] Transient error (${err.message}), retrying in ${Math.round(delayMs)}ms (attempt ${attempt + 1}/${maxRetries})...`);
+          await sleep(delayMs);
+          continue;
+        }
+        break;
+      }
+    }
+
+    if (lastError || !responseText) {
+      console.warn('[Gemini Fast Pipeline Fallback]:', lastError ? lastError.message : 'Empty response');
       responseText = generateInstantResponse(parsed, dbResult);
     }
   } else {
@@ -196,22 +236,40 @@ const chatStream = async ({ message, conversationId, user = null, onChunk, onCom
   let accumulatedText = '';
 
   if (genAI) {
-    try {
-      const model = genAI.getGenerativeModel({
-        model: 'gemini-3.6-flash',
-        systemInstruction: SYSTEM_INSTRUCTION,
-      });
+    let lastError = null;
+    const maxRetries = 2;
 
-      const prompt = buildPromptContext(parsed, dbResult, message);
-      const resultStream = await model.generateContentStream(prompt);
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: GEMINI_MODEL,
+          systemInstruction: SYSTEM_INSTRUCTION,
+        });
 
-      for await (const chunk of resultStream.stream) {
-        const chunkText = chunk.text();
-        accumulatedText += chunkText;
-        if (onChunk) onChunk(chunkText);
+        const prompt = buildPromptContext(parsed, dbResult, message);
+        const resultStream = await model.generateContentStream(prompt);
+
+        for await (const chunk of resultStream.stream) {
+          const chunkText = chunk.text();
+          accumulatedText += chunkText;
+          if (onChunk) onChunk(chunkText);
+        }
+        lastError = null;
+        break;
+      } catch (err) {
+        lastError = err;
+        if (isTransientGeminiError(err) && attempt < maxRetries && !accumulatedText) {
+          const delayMs = Math.min(1000 * Math.pow(2, attempt) + Math.random() * 300, 4000);
+          console.warn(`[Gemini Stream] Transient error (${err.message}), retrying in ${Math.round(delayMs)}ms (attempt ${attempt + 1}/${maxRetries})...`);
+          await sleep(delayMs);
+          continue;
+        }
+        break;
       }
-    } catch (err) {
-      console.warn('[Gemini Stream Fallback]:', err.message);
+    }
+
+    if (lastError || !accumulatedText) {
+      console.warn('[Gemini Stream Fallback]:', lastError ? lastError.message : 'Empty stream');
       accumulatedText = generateInstantResponse(parsed, dbResult);
       if (onChunk) onChunk(accumulatedText);
     }

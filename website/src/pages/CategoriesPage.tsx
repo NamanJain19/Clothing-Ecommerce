@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
@@ -6,44 +6,9 @@ import { CategoriesHero } from '../components/categories/CategoriesHero';
 import { CategoryVolumeCard } from '../components/categories/CategoryVolumeCard';
 import { NewsletterSection } from '../components/home/NewsletterSection';
 import { categoriesPageData } from '../data/categoriesPage';
-import { productService } from '../../src/services/productService';
 
 export const CategoriesPage: React.FC = () => {
-  const [categories, setCategories] = useState(categoriesPageData);
-
-  useEffect(() => {
-    let isMounted = true;
-    const fetchCategories = async () => {
-      try {
-        const liveCategories = await productService.getCategories({ isActive: true });
-        if (liveCategories && liveCategories.length > 0 && isMounted) {
-          // Map backend categories and blend with rich editorial fallback artwork
-          const mapped = categoriesPageData.map((fallbackCat) => {
-            const match = liveCategories.find(
-              (c) => c.name.toLowerCase().includes(fallbackCat.title.toLowerCase()) ||
-                     fallbackCat.link.includes(c.slug.toLowerCase())
-            );
-            return match
-              ? {
-                  ...fallbackCat,
-                  id: match._id || match.id || fallbackCat.id,
-                  title: match.name,
-                  description: match.description || fallbackCat.description,
-                }
-              : fallbackCat;
-          });
-          setCategories(mapped);
-        }
-      } catch (err) {
-        console.warn('Failed to load categories from API, using fallback:', err);
-      }
-    };
-
-    fetchCategories();
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const categories = categoriesPageData;
 
   return (
     <div className="min-h-screen bg-background text-primary font-body-md antialiased selection:bg-primary-container selection:text-white">

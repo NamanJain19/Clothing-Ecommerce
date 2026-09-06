@@ -14,9 +14,18 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 
+declare global {
+  interface ImportMeta {
+    env: Record<string, string | undefined>;
+  }
+}
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || 'http://localhost:3011/api';
+
 export const AdminLoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('admin@monolith.luxury');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -57,20 +66,52 @@ export const AdminLoginPage: React.FC = () => {
 
     setIsLoading(true);
 
-    // Simulated network verification
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+        }),
+      });
 
-      // Dummy authentication simulation
-      if (email.toLowerCase().includes('fail') || password === 'wrong') {
-        setErrorMessage('Invalid credentials. Please contact your system administrator.');
-      } else {
-        setSuccessMessage('Authentication successful. Redirecting to executive dashboard...');
-        setTimeout(() => {
-          navigate('/admin/dashboard');
-        }, 800);
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setErrorMessage(data.message || 'Invalid administrator credentials.');
+        setIsLoading(false);
+        return;
       }
-    }, 1200);
+
+      // Verify that user role is allowed for Admin access
+      const role = (data.user?.role || '').toLowerCase();
+      const allowedRoles = ['admin', 'manager', 'staff'];
+      if (!allowedRoles.includes(role)) {
+        setErrorMessage('Access denied. Administrator privileges required.');
+        setIsLoading(false);
+        return;
+      }
+
+      // Save tokens and user information
+      localStorage.setItem('admin_token', data.token);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('admin_user', JSON.stringify(data.user));
+
+      setSuccessMessage('Authentication successful. Redirecting to executive dashboard...');
+      setTimeout(() => {
+        navigate('/admin/dashboard');
+      }, 600);
+    } catch (err: any) {
+      console.error('[Admin Login] Connection error:', err);
+      setErrorMessage(
+        err.message || 'Unable to connect to authentication server. Please check your network.'
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -14,4 +14,8 @@ export default defineConfig({
     strictPort: true,
     host: true,
   },
+  preview: {
+    host: true,
+    allowedHosts: ['clothing-ecommerce-qoo7.onrender.com'],
+  },
 });

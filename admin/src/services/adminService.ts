@@ -4,7 +4,14 @@
  * with reliable fallback handling.
  */
 
-const API_BASE_URL = 'http://localhost:3011/api';
+declare global {
+  interface ImportMeta {
+    env: Record<string, string | undefined>;
+  }
+}
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || 'http://localhost:3011/api';
 
 const getAuthHeaders = (): HeadersInit => {
   const token = localStorage.getItem('admin_token') || localStorage.getItem('token') || '';

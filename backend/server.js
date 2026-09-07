@@ -21,18 +21,26 @@ connectDB();
 // Security HTTP headers
 app.use(helmet());
 
+// Helper to normalize origins by trimming and removing trailing slash
+const normalizeOrigin = (url) => (url ? url.replace(/\/+$/, '').trim() : '');
+
 // Allowed origins for CORS
 const envAllowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim())
+  ? process.env.ALLOWED_ORIGINS.split(',').map((o) => normalizeOrigin(o)).filter(Boolean)
   : [];
 
-const allowedOrigins = [
+const rawAllowedOrigins = [
   'http://localhost:3008',
   'http://localhost:3009',
+  'http://127.0.0.1:3009',
   process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
   ...envAllowedOrigins
-].filter(Boolean);
+];
+
+const allowedOrigins = Array.from(
+  new Set(rawAllowedOrigins.map((origin) => normalizeOrigin(origin)).filter(Boolean))
+);
 
 // CORS configuration
 const corsOptions = {
@@ -40,7 +48,8 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps, curl, or Postman)
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
+    const normalizedOrigin = normalizeOrigin(origin);
+    if (allowedOrigins.includes(normalizedOrigin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

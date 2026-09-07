@@ -56,7 +56,7 @@ export const AIStylistWidget: React.FC = () => {
     {
       id: 'init-1',
       sender: 'ai',
-      text: 'Namaste & welcome to MONOLITH Luxury Atelier. I am your live AI Stylist & Concierge powered by Gemini.\n\nAsk me about men\'s or women\'s collections, price checks (e.g. "3000 ke andar mens shirts"), bespoke sizing, or your live order tracking.',
+      text: 'Namaste & welcome to MONOLITH Luxury Atelier. I am your live AI Stylist & Concierge powered by Gemini.\n\nAsk me about men\'s or women\'s collections, price checks (e.g. "Show me shirts under ₹3000"), bespoke sizing, or your live order tracking.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -287,14 +287,14 @@ export const AIStylistWidget: React.FC = () => {
             </button>
           </div>
 
-          {/* Quick Suggestion Chips (Supporting Indian & Hinglish shortcuts) */}
+          {/* Quick Suggestion Chips */}
           <div className="px-4 py-2.5 bg-neutral-50 dark:bg-[#17181a] border-b border-neutral-200 dark:border-neutral-800 flex gap-1.5 overflow-x-auto shrink-0 scrollbar-none">
             {[
-              'mens ke products dikhao',
-              '3000 ke andar shirts',
-              'women ke dresses',
-              'men ke new arrivals',
               'Where is my order?',
+              "Men's new arrivals",
+              "Women's new dresses",
+              'Show me shirts under ₹3000',
+              'Products on sale',
               '14-Day Return Policy',
             ].map((chip) => (
               <button
@@ -433,7 +433,7 @@ export const AIStylistWidget: React.FC = () => {
               type="text"
               value={inputMsg}
               onChange={(e) => setInputMsg(e.target.value)}
-              placeholder="Ask: 'mens ke black shirts', '3000 ke andar', order status..."
+              placeholder="Ask: 'Show me shirts under ₹3000', 'Men\'s new arrivals', order status..."
               className="flex-1 bg-white dark:bg-[#121314] text-xs p-3 rounded-2xl border border-neutral-200 dark:border-neutral-700 focus:border-amber-400 focus:outline-none"
               disabled={isThinking}
             />

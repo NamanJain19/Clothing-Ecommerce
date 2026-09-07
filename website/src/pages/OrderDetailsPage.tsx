@@ -6,6 +6,7 @@ import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { NewsletterSection } from '../components/home/NewsletterSection';
 import { useAuth } from '../context/AuthContext';
 import { orderService, OrderData } from '../services/orderService';
+import { AccountNav } from '../components/account/AccountNav';
 import { CreditCard, LogOut, ArrowRight, Download, Truck, RotateCcw, AlertCircle } from 'lucide-react';
 
 export const OrderDetailsPage: React.FC = () => {
@@ -90,77 +91,27 @@ export const OrderDetailsPage: React.FC = () => {
           ]}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Sidebar Navigation (3 Columns) */}
-          <aside className="md:col-span-3 space-y-4 md:space-y-8">
-            <div className="space-y-3 md:space-y-6">
-              <h3 className="font-label-caps text-xs text-secondary uppercase tracking-widest">MY ACCOUNT</h3>
-              <nav className="flex md:flex-col gap-1 border-b md:border-b-0 md:border-l border-outline-variant overflow-x-auto pb-3 md:pb-0 scrollbar-none shrink-0">
-                <Link
-                  to="/dashboard"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  to="/my-orders"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-primary font-bold border-b-2 md:border-b-0 md:border-l-2 border-primary -mb-[1px] md:mb-0 md:-ml-[1px] whitespace-nowrap shrink-0"
-                >
-                  My Orders
-                </Link>
-                <Link
-                  to="/track-order"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                >
-                  Track Orders
-                </Link>
-                <Link
-                  to="/wishlist"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                >
-                  Wishlist
-                </Link>
-                <Link
-                  to="/saved-addresses"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                >
-                  Saved Addresses
-                </Link>
-                <Link
-                  to="/payment-methods"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                >
-                  Payment Methods
-                </Link>
-                <Link
-                  to="/account-settings"
-                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                >
-                  Account Settings
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="px-3 md:pl-6 py-2 md:py-3 md:mt-4 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
-                >
-                  <LogOut className="w-4 h-4" /> Logout
-                </button>
-              </nav>
-            </div>
+          <aside className="col-span-1 lg:col-span-3 space-y-4 lg:space-y-8">
+            <div className="lg:sticky lg:top-28 space-y-6">
+              <AccountNav activePath="/my-orders" />
 
-            {/* Help Concierge Card */}
-            <div className="p-4 sm:p-6 bg-surface-container-low border border-outline-variant hidden md:block">
-              <p className="font-label-caps text-xs uppercase tracking-widest mb-2 font-semibold">NEED HELP?</p>
-              <p className="font-body-md text-secondary mb-4 text-xs">
-                Our concierge is available 24/7 for any inquiries regarding your orders.
-              </p>
-              <Link to="/help-support" className="block text-primary font-label-caps text-[10px] underline tracking-widest">
-                CONTACT SUPPORT
-              </Link>
+              {/* Help Concierge Card */}
+              <div className="p-4 sm:p-6 bg-surface-container-low border border-outline-variant hidden lg:block">
+                <p className="font-label-caps text-xs uppercase tracking-widest mb-2 font-semibold">NEED HELP?</p>
+                <p className="font-body-md text-secondary mb-4 text-xs">
+                  Our concierge is available 24/7 for any inquiries regarding your orders.
+                </p>
+                <Link to="/help-support" className="block text-primary font-label-caps text-[10px] underline tracking-widest">
+                  CONTACT SUPPORT
+                </Link>
+              </div>
             </div>
           </aside>
 
-          {/* Main Content Area: Order Details (9 Columns) */}
-          <section className="md:col-span-9 space-y-8 md:space-y-12">
+          {/* Right Main Content (9 Columns) */}
+          <section className="col-span-1 lg:col-span-9 space-y-8 md:space-y-12">
             <header className="mb-4 sm:mb-8">
               <h1 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-primary mb-2">Order Details</h1>
               <p className="font-body-md text-secondary text-xs sm:text-sm">View complete real-time information about your order.</p>

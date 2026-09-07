@@ -5,6 +5,19 @@ const Collection = require('../models/Collection');
 const Order = require('../models/Order');
 
 /**
+ * Garment type patterns with whole-word boundaries and singular/plural support
+ */
+const GARMENT_PATTERNS = {
+  shirt: /\b(shirts?|t-?shirts?|tees?|polo|kurta)\b/i,
+  dress: /\b(dress(es)?|gowns?|sundress(es)?|froks?|maxi|skirts?)\b/i,
+  outerwear: /\b(jackets?|coats?|overcoats?|blazers?|suits?|tuxedos?)\b/i,
+  knitwear: /\b(knitwears?|sweaters?|cardigans?|cashmere|pullovers?|turtlenecks?)\b/i,
+  trouser: /\b(trousers?|pants?|jeans?|chinos?|bottomwear)\b/i,
+  shoe: /\b(shoes?|sneakers?|loafers?|boots?|oxfords?|footwear)\b/i,
+  accessory: /\b(accessories|accessory|watches?|bags?|wallets?|belts?|scarves?|neckties?|ties?|cravats?|gloves?|keyrings?|cufflinks?)\b/i,
+};
+
+/**
  * AI Tool Service: Real-time Live Database Tool Execution Engine
  * Queries MongoDB directly on demand — NO static cached catalogs, NO retraining required.
  */
@@ -17,6 +30,7 @@ const aiToolService = {
       const {
         query,
         category,
+        garmentType,
         collection,
         gender,
         minPrice,
@@ -28,29 +42,27 @@ const aiToolService = {
         limit = 6,
       } = params;
 
-      const filter = { isActive: true };
+      const conditions = [{ isActive: true }];
 
-      // Text query on name, description, tags, brand, sku
-      if (query && typeof query === 'string' && query.trim()) {
-        const cleanQuery = query.trim();
-        const searchRegex = new RegExp(cleanQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
-        filter.$or = [
-          { name: searchRegex },
-          { brand: searchRegex },
-          { description: searchRegex },
-          { shortDescription: searchRegex },
-          { tags: searchRegex },
-          { sku: searchRegex },
-          { material: searchRegex },
-        ];
-      }
-
-      // Gender filter
+      // 1. Gender / Department filter (inclusive of luxury unisex pieces)
       if (gender && ['men', 'women', 'unisex', 'kids', 'all'].includes(gender.toLowerCase())) {
-        filter.gender = gender.toLowerCase() === 'all' ? { $in: ['men', 'women', 'unisex', 'kids'] } : gender.toLowerCase();
+        const g = gender.toLowerCase();
+        if (g === 'men') {
+          conditions.push({ gender: { $in: ['men', 'unisex'] } });
+        } else if (g === 'women') {
+          conditions.push({ gender: { $in: ['women', 'unisex'] } });
+        } else if (g === 'kids') {
+          conditions.push({ gender: 'kids' });
+        } else if (g === 'unisex') {
+          conditions.push({ gender: 'unisex' });
+        }
       }
 
-      // Category lookup
+      // 2. Garment type & Category resolution
+      const resolvedGarmentRegex =
+        (garmentType && GARMENT_PATTERNS[garmentType]) ||
+        (category && GARMENT_PATTERNS[category.toLowerCase().replace(/s$/, '')]);
+
       if (category && typeof category === 'string' && category.trim()) {
         const catDoc = await Category.findOne({
           $or: [
@@ -58,12 +70,27 @@ const aiToolService = {
             { name: new RegExp(`^${category.trim()}$`, 'i') },
           ],
         });
+
         if (catDoc) {
-          filter.category = catDoc._id;
+          conditions.push({ category: catDoc._id });
+        } else if (resolvedGarmentRegex) {
+          conditions.push({
+            $or: [
+              { name: resolvedGarmentRegex },
+              { tags: resolvedGarmentRegex },
+            ],
+          });
         }
+      } else if (resolvedGarmentRegex) {
+        conditions.push({
+          $or: [
+            { name: resolvedGarmentRegex },
+            { tags: resolvedGarmentRegex },
+          ],
+        });
       }
 
-      // Collection lookup
+      // 3. Collection lookup
       if (collection && typeof collection === 'string' && collection.trim()) {
         const colDoc = await Collection.findOne({
           $or: [
@@ -72,34 +99,64 @@ const aiToolService = {
           ],
         });
         if (colDoc) {
-          filter.collection = colDoc._id;
+          conditions.push({ collection: colDoc._id });
         }
       }
 
-      // Price bounds
+      // 4. Price bounds
       if (minPrice !== undefined || maxPrice !== undefined) {
-        filter.price = {};
-        if (minPrice !== undefined && !isNaN(Number(minPrice))) filter.price.$gte = Number(minPrice);
-        if (maxPrice !== undefined && !isNaN(Number(maxPrice))) filter.price.$lte = Number(maxPrice);
+        const priceCond = {};
+        if (minPrice !== undefined && !isNaN(Number(minPrice))) priceCond.$gte = Number(minPrice);
+        if (maxPrice !== undefined && !isNaN(Number(maxPrice))) priceCond.$lte = Number(maxPrice);
+        conditions.push({ price: priceCond });
       }
 
-      // Badges
-      if (onSale === true) filter.isSale = true;
-      if (newArrival === true) filter.isNewArrival = true;
+      // 5. On Sale filter
+      if (onSale === true) {
+        conditions.push({
+          $or: [{ isSale: true }, { $expr: { $gt: ['$compareAtPrice', '$price'] } }],
+        });
+      }
 
-      // Sizes / Colors
+      // 6. Sizes / Colors
       if (size && typeof size === 'string') {
-        filter.sizes = new RegExp(size.trim(), 'i');
+        conditions.push({ sizes: new RegExp(size.trim(), 'i') });
       }
       if (color && typeof color === 'string') {
-        filter.colors = new RegExp(color.trim(), 'i');
+        conditions.push({ colors: new RegExp(color.trim(), 'i') });
       }
 
-      const products = await Product.find(filter)
+      // 7. Targeted Query text search on name, description, tags, brand, sku
+      if (query && typeof query === 'string' && query.trim()) {
+        const cleanQuery = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const searchRegex = new RegExp(cleanQuery, 'i');
+        conditions.push({
+          $or: [
+            { name: searchRegex },
+            { brand: searchRegex },
+            { description: searchRegex },
+            { shortDescription: searchRegex },
+            { tags: searchRegex },
+            { sku: searchRegex },
+            { material: searchRegex },
+          ],
+        });
+      }
+
+      const finalFilter = conditions.length === 1 ? conditions[0] : { $and: conditions };
+
+      let sortObj = { isFeatured: -1, isNewArrival: -1, createdAt: -1 };
+      if (newArrival === true) {
+        sortObj = { isNewArrival: -1, createdAt: -1 };
+      } else if (onSale === true) {
+        sortObj = { isSale: -1, discountPercentage: -1, createdAt: -1 };
+      }
+
+      const products = await Product.find(finalFilter)
         .select('_id name slug sku brand price compareAtPrice discountPercentage stock images thumbnail category gender sizes colors material isSale isNewArrival')
         .populate('category', 'name slug')
         .populate('collection', 'name slug')
-        .sort({ isFeatured: -1, isNewArrival: -1, createdAt: -1 })
+        .sort(sortObj)
         .limit(Math.min(10, Math.max(1, Number(limit) || 6)))
         .lean();
 

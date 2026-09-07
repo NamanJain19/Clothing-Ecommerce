@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import { useWishlist } from '../context/WishlistContext';
 import { orderService, OrderData } from '../services/orderService';
 import { addressService } from '../services/addressService';
+import { AccountNav } from '../components/account/AccountNav';
 import {
   Camera,
   ShoppingBag,
@@ -91,75 +92,16 @@ export const DashboardPage: React.FC = () => {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Account Navigation Sidebar (3 Columns) */}
-          <aside className="md:col-span-3">
-            <nav className="flex md:flex-col gap-1 border-b md:border-b-0 md:border-l border-outline-variant overflow-x-auto pb-3 md:pb-0 scrollbar-none shrink-0">
-              <Link
-                to="/dashboard"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-primary -mb-[1px] md:mb-0 md:-ml-[1px] text-primary font-bold whitespace-nowrap shrink-0"
-              >
-                Dashboard
-              </Link>
-              <Link
-                to="/my-orders"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                My Orders
-              </Link>
-              <Link
-                to="/track-order"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Track Orders
-              </Link>
-              <Link
-                to="/wishlist"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Wishlist
-              </Link>
-              <Link
-                to="/saved-addresses"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Saved Addresses
-              </Link>
-              <Link
-                to="/payment-methods"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Payment Methods
-              </Link>
-              <Link
-                to="/account-settings"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Account Settings
-              </Link>
-              <Link
-                to="/notifications"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Notifications
-              </Link>
-              <Link
-                to="/help-support"
-                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
-              >
-                Help & Support
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="px-3 md:pl-6 py-2 md:py-3.5 md:mt-6 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
-              >
-                <LogOut className="w-4 h-4" /> Logout
-              </button>
-            </nav>
+          <aside className="col-span-1 lg:col-span-3">
+            <div className="lg:sticky lg:top-28">
+              <AccountNav activePath="/dashboard" />
+            </div>
           </aside>
 
           {/* Right Column: Dashboard Main Content (9 Columns) */}
-          <div className="md:col-span-9 space-y-8 md:space-y-12">
+          <div className="col-span-1 lg:col-span-9 space-y-8 md:space-y-12">
             {/* Profile Card */}
             <section className="border border-outline-variant p-5 sm:p-8 md:p-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 bg-white shadow-sm">
               <div className="relative shrink-0">

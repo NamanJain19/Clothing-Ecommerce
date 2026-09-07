@@ -1,8 +1,8 @@
 /**
  * AI Query Parser & Intent Normalization Engine
  * Handles English, Hindi, and Hinglish e-commerce terminology,
- * currency formats (₹, Rs, 3k, 3000 ke andar), department/gender aliases,
- * categories, colors, sizes, and operational intent classification.
+ * currency formats (₹, Rs, 3k, 3000 ke andar, three thousand, between 2000 and 4000),
+ * department/gender aliases, garment types, colors, sizes, and operational intent classification.
  */
 
 // Comprehensive Department / Gender mappings
@@ -21,55 +21,108 @@ const GENDER_PATTERNS = [
   },
 ];
 
-// Category Aliases
-const CATEGORY_MAP = [
-  { category: 'Shirts', regex: /\b(shirts?|t-?shirts?|tees?|kurta|polo|topwear|tops?)\b/i },
-  { category: 'Outerwear', regex: /\b(jackets?|coats?|overcoats?|blazers?|suits?|tuxedos?|outerwear|winter wear)\b/i },
-  { category: 'Dresses', regex: /\b(dresses?|gowns?|froks?|maxi|skirts?)\b/i },
-  { category: 'Knitwear', regex: /\b(knitwears?|sweaters?|cardigans?|cashmere pullovers?)\b/i },
-  { category: 'Trousers', regex: /\b(trousers?|pants?|jeans?|bottomwear|chinos?)\b/i },
-  { category: 'Shoes', regex: /\b(shoes?|footwear|sneakers?|loafers?|boots?|oxfords?|joota|joote)\b/i },
-  { category: 'Accessories', regex: /\b(accessories|accessory|watches?|bags?|wallets?|belts?|silk scarves?|sunglasses?)\b/i },
+// Garment Types & Category Aliases (with proper singular and plural regex)
+const GARMENT_MAP = [
+  { type: 'shirt', label: 'Shirts', regex: /\b(shirts?|t-?shirts?|tees?|kurta|polo|topwear|tops?)\b/i },
+  { type: 'dress', label: 'Dresses', regex: /\b(dress(es)?|gowns?|sundress(es)?|froks?|maxi|skirts?)\b/i },
+  { type: 'outerwear', label: 'Outerwear', regex: /\b(jackets?|coats?|overcoats?|blazers?|suits?|tuxedos?|outerwear|winter wear)\b/i },
+  { type: 'knitwear', label: 'Knitwear', regex: /\b(knitwears?|sweaters?|cardigans?|cashmere|pullovers?|turtlenecks?)\b/i },
+  { type: 'trouser', label: 'Trousers', regex: /\b(trousers?|pants?|jeans?|bottomwear|chinos?)\b/i },
+  { type: 'shoe', label: 'Shoes', regex: /\b(shoes?|footwear|sneakers?|loafers?|boots?|oxfords?|joota|joote)\b/i },
+  { type: 'accessory', label: 'Accessories', regex: /\b(accessories|accessory|watches?|bags?|wallets?|belts?|silk scarves?|sunglasses?|neckties?|ties?|cravats?|gloves?|keyrings?|cufflinks?)\b/i },
 ];
 
-// Common Indian / Hinglish conversational stop words to strip from product keyword search
-const STOP_WORDS_REGEX = /\b(show|showing|find|search|get|give|please|i want|looking for|need|tell me|details|what is|price of|chahiye|dikhao|dikha|batao|bata|kya hai|hai|hain|kuch|wali|wale|wala|ke|ka|ki|ko|me|mein|se|tak|par|products?|clothes|kapde|items?|collections?|piece|pieces?|samaan|stuff)\b/gi;
+// Greeting expressions
+const GREETING_REGEX = /^(hi|hello|hey|greetings|namaste|good\s*(morning|afternoon|evening|day)|what\s+can\s+you\s+help\s+me\s+with|who\s+are\s+you|what\s+can\s+you\s+do|help\s*me\b\??|help\??)$/i;
+
+// Word number conversions for natural price queries (e.g. "three thousand", "five thousand")
+const WORD_NUMBERS = {
+  'one thousand': 1000,
+  'two thousand': 2000,
+  'three thousand': 3000,
+  'four thousand': 4000,
+  'five thousand': 5000,
+  'six thousand': 6000,
+  'seven thousand': 7000,
+  'eight thousand': 8000,
+  'nine thousand': 9000,
+  'ten thousand': 10000,
+  'fifteen thousand': 15000,
+  'twenty thousand': 20000,
+  'twenty five thousand': 25000,
+  'fifty thousand': 50000,
+  'one lakh': 100000,
+  '1 lakh': 100000,
+  'ek hazar': 1000,
+  'do hazar': 2000,
+  'teen hazar': 3000,
+  'char hazar': 4000,
+  'paanch hazar': 5000,
+  'das hazar': 10000,
+};
+
+/**
+ * Normalize word numbers in text into numeric strings
+ */
+const normalizeWordNumbers = (text) => {
+  let result = text;
+  for (const [w, n] of Object.entries(WORD_NUMBERS)) {
+    result = result.replace(new RegExp(`\\b${w}\\b`, 'gi'), n.toString());
+  }
+  return result;
+};
 
 /**
  * Normalize price strings into numeric bounds
- * Handles: ₹3000, Rs 3000, 3k, 3.5k, 3000 ke andar, under 3000, 3000 se kam, etc.
+ * Handles: ₹3000, Rs 3000, 3k, 3.5k, 3000 ke andar, under 3000, below 3000,
+ * between 2000 and 4000, 2000 se 4000 ke beech, three thousand, etc.
  */
 const extractPriceFilters = (text) => {
+  const normalized = normalizeWordNumbers(text);
   let maxPrice = undefined;
   let minPrice = undefined;
 
-  // 1. "3k", "3.5k", "10k" formats
-  const kMatch = text.match(/(?:under|below|less than|budget|upto|up to|ke andar|se kam|tak)?\s*(?:₹|rs\.?|inr)?\s*(\d+(?:\.\d+)?)\s*k\b/i);
+  // 1. "between 2000 and 4000", "from 2000 to 4000", "2000 se 4000 ke beech"
+  const betweenMatch = normalized.match(/(?:between|from|ke beech|se)?\s*(?:₹|rs\.?|inr)?\s*([\d,]+)(?:\s*k)?\s*(?:and|to|-|se)\s*(?:₹|rs\.?|inr)?\s*([\d,]+)(?:\s*k)?/i);
+  if (betweenMatch && betweenMatch[1] && betweenMatch[2]) {
+    let p1 = parseInt(betweenMatch[1].replace(/,/g, ''), 10);
+    let p2 = parseInt(betweenMatch[2].replace(/,/g, ''), 10);
+    if (/k\b/i.test(betweenMatch[0])) {
+      if (betweenMatch[1].toLowerCase().includes('k') || p1 < 100) p1 *= 1000;
+      if (betweenMatch[2].toLowerCase().includes('k') || p2 < 100) p2 *= 1000;
+    }
+    minPrice = Math.min(p1, p2);
+    maxPrice = Math.max(p1, p2);
+    return { minPrice, maxPrice };
+  }
+
+  // 2. "3k", "3.5k", "10k" formats
+  const kMatch = normalized.match(/(?:under|below|less than|budget|upto|up to|ke andar|se kam|tak)?\s*(?:₹|rs\.?|inr)?\s*(\d+(?:\.\d+)?)\s*k\b/i);
   if (kMatch) {
     maxPrice = Math.round(parseFloat(kMatch[1]) * 1000);
   }
 
-  // 2. "under 3000", "3000 ke andar", "below ₹3,000", "3000 se kam"
+  // 3. "under 3000", "3000 ke andar", "below ₹3,000", "3000 se kam"
   if (!maxPrice) {
-    const underMatch = text.match(/(?:under|below|less than|budget|upto|up to|max|maximum)\s*(?:₹|rs\.?|inr)?\s*([\d,]+)/i);
+    const underMatch = normalized.match(/(?:under|below|less than|budget|upto|up to|max|maximum|ke neeche)\s*(?:₹|rs\.?|inr)?\s*([\d,]+)/i);
     if (underMatch) {
       maxPrice = parseInt(underMatch[1].replace(/,/g, ''), 10);
     }
   }
 
   if (!maxPrice) {
-    const hindiUnderMatch = text.match(/(?:₹|rs\.?|inr)?\s*([\d,]+)\s*(?:rupees?|inr)?\s*(?:ke andar|se kam|tak|ke neeche)/i);
+    const hindiUnderMatch = normalized.match(/(?:₹|rs\.?|inr)?\s*([\d,]+)\s*(?:rupees?|inr)?\s*(?:ke andar|se kam|tak|ke neeche)/i);
     if (hindiUnderMatch) {
       maxPrice = parseInt(hindiUnderMatch[1].replace(/,/g, ''), 10);
     }
   }
 
-  // 3. Minimum price: "above 2000", "2000 se jyada", "more than 2000"
-  const overMatch = text.match(/(?:above|over|more than|minimum|min)\s*(?:₹|rs\.?|inr)?\s*([\d,]+)/i);
+  // 4. Minimum price: "above 2000", "2000 se jyada", "more than 2000"
+  const overMatch = normalized.match(/(?:above|over|more than|minimum|min)\s*(?:₹|rs\.?|inr)?\s*([\d,]+)/i);
   if (overMatch) {
     minPrice = parseInt(overMatch[1].replace(/,/g, ''), 10);
   } else {
-    const hindiOverMatch = text.match(/(?:₹|rs\.?|inr)?\s*([\d,]+)\s*(?:rupees?|inr)?\s*(?:se jyada|se upar|se adhik)/i);
+    const hindiOverMatch = normalized.match(/(?:₹|rs\.?|inr)?\s*([\d,]+)\s*(?:rupees?|inr)?\s*(?:se jyada|se upar|se adhik)/i);
     if (hindiOverMatch) {
       minPrice = parseInt(hindiOverMatch[1].replace(/,/g, ''), 10);
     }
@@ -101,28 +154,52 @@ const extractColor = (text) => {
 };
 
 /**
- * Extract Clothing Size
+ * Extract Clothing Size safely without false matching 's in Men's or Women's
  */
 const extractSize = (text) => {
-  const sizeMatch = text.match(/\b(?:size|number)?\s*(xs|s|m|l|xl|xxl|38|40|42|44|46|48)\b/i);
-  if (sizeMatch && !text.includes('rs') && !text.includes('k')) {
-    return sizeMatch[1].toUpperCase();
+  const clean = text.replace(/['’]s\b/gi, ' ').trim();
+
+  // Explicit size: "size S", "size: 42", "size M", "sz XL"
+  const explicitSizeMatch = clean.match(/\b(?:size|sz|no\.?|number)\s*[:=]?\s*(xs|s|m|l|xl|xxl|xxxl|28|30|32|34|36|38|40|42|44|46)\b/i);
+  if (explicitSizeMatch) {
+    return explicitSizeMatch[1].toUpperCase();
   }
+
+  // Multi-letter size abbreviations: XS, XL, XXL, XXXL
+  const multiLetterMatch = clean.match(/\b(xs|xxl|xxxl|xl)\b/i);
+  if (multiLetterMatch) {
+    return multiLetterMatch[1].toUpperCase();
+  }
+
   return undefined;
 };
+
+/**
+ * Common conversational stop words to strip from product keyword searches
+ */
+const STOP_WORDS_REGEX = /\b(show|showing|find|search|get|give|please|i|need|want|looking\s+for|tell\s+me|details|what\s+is|price\s+of|chahiye|dikhao|dikha|batao|bata|kya\s+hai|hai|hain|kuch|wali|wale|wala|ke|ka|ki|ko|me|mein|se|tak|par|products?|clothes|kapde|items?|collections?|piece|pieces?|samaan|stuff|something|anything|for|in|on|with|a|an|the|can\s+you|could\s+you|would\s+you|are\s+there|have\s+you|got|any|some|all|available|latest|new|fresh|recent|arrivals?|sale|discount|offers?|deals?|private\s+sale|cheap|sasta|kam\s+daam|budget)\b/gi;
 
 /**
  * Parse and normalize user query into structured search intent
  */
 const parseUserQuery = (rawQuery) => {
   if (!rawQuery || typeof rawQuery !== 'string') {
-    return { intent: 'general', rawQuery: '' };
+    return { intent: 'greeting', rawQuery: '' };
   }
 
   const text = rawQuery.trim();
   const lower = text.toLowerCase();
 
-  // 1. Order Tracking intent
+  // 1. General Greeting intent ("Hello", "Hi", "Namaste", "What can you help me with?")
+  const sanitizedForGreeting = text.replace(/[?!.,]/g, '').trim();
+  if (GREETING_REGEX.test(sanitizedForGreeting)) {
+    return {
+      intent: 'greeting',
+      rawQuery: text,
+    };
+  }
+
+  // 2. Order Tracking intent ("Where is my order?", "Where's my latest order?", "Track my order", "ORD-...")
   if (
     lower.includes('order') ||
     lower.includes('track') ||
@@ -140,7 +217,7 @@ const parseUserQuery = (rawQuery) => {
     };
   }
 
-  // 2. Policy / Sizing intent
+  // 3. Policy / Sizing intent ("14-Day Return Policy", "Return policy", "Shipping", "Size guide")
   if (
     lower.includes('return') ||
     lower.includes('refund') ||
@@ -166,7 +243,7 @@ const parseUserQuery = (rawQuery) => {
     };
   }
 
-  // 3. Specific single product details
+  // 4. Specific single product details
   if (
     lower.includes('tell me about') ||
     lower.includes('what is the price of') ||
@@ -192,7 +269,7 @@ const parseUserQuery = (rawQuery) => {
     };
   }
 
-  // 4. Product Search / Browsing Intent
+  // 5. Product Search / Browsing Intent
   // Extract Gender / Department
   let gender = undefined;
   for (const g of GENDER_PATTERNS) {
@@ -202,16 +279,18 @@ const parseUserQuery = (rawQuery) => {
     }
   }
 
-  // Extract Category
+  // Extract Garment Type & Category
+  let garmentType = undefined;
   let category = undefined;
-  for (const c of CATEGORY_MAP) {
-    if (c.regex.test(text)) {
-      category = c.category;
+  for (const gm of GARMENT_MAP) {
+    if (gm.regex.test(text)) {
+      garmentType = gm.type;
+      category = gm.label;
       break;
     }
   }
 
-  // Extract Price Bounds
+  // Extract Price Bounds (supporting numbers, words, and ranges)
   const { minPrice, maxPrice } = extractPriceFilters(text);
 
   // Extract Color & Size
@@ -219,19 +298,25 @@ const parseUserQuery = (rawQuery) => {
   const size = extractSize(text);
 
   // Extract Sale / New Arrival
-  const onSale = /\b(sale|discount|offer|deal|sasta|kam daam|private sale)\b/i.test(text);
+  const onSale = /\b(sale|discount|offer|offers|deal|deals|sasta|kam daam|private sale|on sale)\b/i.test(text);
   const newArrival = /\b(new|latest|naya|naye|new arrival|new arrivals|fresh|recent)\b/i.test(text);
 
-  // Generate Clean Product Search Keyword for MongoDB
-  let cleanedKeywords = text
+  // Clean keywords for targeted text search
+  const textWithNormalizedNumbers = normalizeWordNumbers(text);
+  let cleanedKeywords = textWithNormalizedNumbers
     .replace(STOP_WORDS_REGEX, ' ')
-    .replace(/(?:under|below|less than|budget|upto|up to|above|over|more than|se kam|ke andar|se jyada|tak)\s*(?:₹|rs\.?|inr)?\s*[\d,]+(?:\s*k)?/gi, ' ')
-    .replace(/(?:₹|rs\.?|inr)\s*[\d,]+/gi, ' ')
-    .replace(/\b(men|mens|men's|male|gents|women|womens|women's|female|ladies|kids|children|boys|girls)\b/gi, ' ')
+    .replace(/(?:between|from)?\s*(?:₹|rs\.?|inr)?\s*[\d,]+(?:\s*k)?\s*(?:and|to|-)\s*(?:₹|rs\.?|inr)?\s*[\d,]+(?:\s*k)?/gi, ' ')
+    .replace(/(?:under|below|less than|budget|upto|up to|above|over|more than|se kam|ke andar|se jyada|tak|max|min)\s*(?:₹|rs\.?|inr)?\s*[\d,]+(?:\s*k)?/gi, ' ')
+    .replace(/(?:₹|rs\.?|inr)\s*[\d,]+(?:\s*k)?/gi, ' ')
+    .replace(/\b[\d,]+(?:\s*k)?\b/gi, ' ')
+    .replace(/\b(men|mens|men's|male|gents|women|womens|women's|female|ladies|kids|children|boys|girls|unisex)\b/gi, ' ')
+    .replace(/\b(shirts?|t-?shirts?|tees?|kurta|polo|dresses?|gowns?|sundresses?|maxi|skirts?|jackets?|coats?|overcoats?|blazers?|suits?|tuxedos?|outerwear|sweaters?|cardigans?|trousers?|pants?|jeans?|shoes?|sneakers?|loafers?|accessories|bags?|belts?)\b/gi, ' ')
+    .replace(/['’]s\b/gi, ' ')
+    .replace(/[^\w\s]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 
-  // If after stripping the string is empty or just generic, leave undefined so database uses category/gender filters
+  // If after stripping the string is empty or just generic, leave undefined so database uses category/gender/badge filters
   if (!cleanedKeywords || cleanedKeywords.length < 2) {
     cleanedKeywords = undefined;
   }
@@ -239,6 +324,7 @@ const parseUserQuery = (rawQuery) => {
   return {
     intent: 'product_search',
     gender,
+    garmentType,
     category,
     minPrice,
     maxPrice,
@@ -256,4 +342,5 @@ module.exports = {
   extractPriceFilters,
   extractColor,
   GENDER_PATTERNS,
+  GARMENT_MAP,
 };

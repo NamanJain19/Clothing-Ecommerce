@@ -5,6 +5,7 @@ import { Footer } from '../components/layout/Footer';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { NewsletterSection } from '../components/home/NewsletterSection';
 import { useAuth } from '../context/AuthContext';
+import { AccountNav } from '../components/account/AccountNav';
 import {
   CreditCard,
   ShieldCheck,
@@ -187,72 +188,8 @@ export const PaymentMethodsPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Account Sidebar Navigation (3 Columns) */}
           <aside className="col-span-1 lg:col-span-3">
-            <div className="lg:sticky lg:top-28 space-y-4 lg:space-y-12">
-              <div>
-                <h2 className="font-headline-md text-xl lg:text-2xl mb-4 lg:mb-6 text-primary">My Account</h2>
-                <nav className="flex lg:flex-col gap-1 border-b lg:border-b-0 lg:border-l border-outline-variant overflow-x-auto pb-3 lg:pb-0 scrollbar-none shrink-0">
-                  <Link
-                    to="/dashboard"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    to="/my-orders"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    My Orders
-                  </Link>
-                  <Link
-                    to="/track-order"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Track Orders
-                  </Link>
-                  <Link
-                    to="/wishlist"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Wishlist
-                  </Link>
-                  <Link
-                    to="/saved-addresses"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Saved Addresses
-                  </Link>
-                  <Link
-                    to="/payment-methods"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-primary font-bold border-b-2 lg:border-b-0 lg:border-l-2 border-primary -mb-[1px] lg:mb-0 lg:-ml-[1px] whitespace-nowrap shrink-0"
-                  >
-                    Payment Methods
-                  </Link>
-                  <Link
-                    to="/account-settings"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Account Settings
-                  </Link>
-                  <Link
-                    to="/notifications"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Notifications
-                  </Link>
-                  <Link
-                    to="/help-support"
-                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
-                  >
-                    Help & Support
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="px-3 lg:pl-6 py-2 lg:py-3 lg:mt-6 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
-                  >
-                    <LogOut className="w-4 h-4" /> Logout
-                  </button>
-                </nav>
-              </div>
+            <div className="lg:sticky lg:top-28">
+              <AccountNav activePath="/payment-methods" />
             </div>
           </aside>
 

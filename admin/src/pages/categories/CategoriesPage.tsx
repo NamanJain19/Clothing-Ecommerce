@@ -8,16 +8,19 @@ import { AdminDrawer } from '../../components/ui/AdminDrawer';
 import { AdminInput } from '../../components/ui/AdminInput';
 import { AdminImageUpload } from '../../components/ui/AdminImageUpload';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialCategories, Category } from '../../data/categories';
+import type { Category } from '../../data/categories';
+import { adminService } from '../../services/adminService';
 
 export const CategoriesPage: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 6;
 
   // Drawer Form State
   const [name, setName] = useState('');
@@ -25,6 +28,35 @@ export const CategoriesPage: React.FC = () => {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<'Active' | 'Hidden'>('Active');
   const [image, setImage] = useState('');
+
+  const fetchLiveCategories = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await adminService.getCategories();
+      const rawList = res?.data || [];
+      const mapped: Category[] = rawList.map((c: any) => ({
+        id: c._id || c.id,
+        name: c.name,
+        slug: c.slug,
+        productCount: c.productCount || 0,
+        status: c.isActive !== false ? 'Active' : 'Hidden',
+        image: c.image || 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=400&q=80',
+        description: c.description || '',
+        featured: false,
+      }));
+      setCategories(mapped);
+    } catch (err: any) {
+      console.error('Failed to load categories from MongoDB:', err);
+      setError(err?.message || 'Unable to load categories from MongoDB.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchLiveCategories();
+  }, []);
 
   const filteredCategories = categories.filter((c) => {
     const matchesSearch =
@@ -46,9 +78,7 @@ export const CategoriesPage: React.FC = () => {
     setSlug('');
     setDescription('');
     setStatus('Active');
-    setImage(
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuATT8ERG7OXAHHfsVDDR_PIjU8lWaHou2PZNgQS0t1grOJegixUBQZY9S46UVmhNHF7htuAiQCiZNjK58-o1UrvimzQwhxlpkRj1Un45EepJyAzVXW5T9f6Uw5iNOBeGJtjWjtVWiCSmyA1S2v3oZPLm-gD10ji0-F40vUbTi1PZHMqOEJFQ6soKv6wtbqlhib1z31fyy4GdmqWBPnRp2g3p0V4IJmF7kER3FKkiHPnC64blBDBU2vNZg'
-    );
+    setImage('');
     setIsDrawerOpen(true);
   };
 
@@ -62,45 +92,41 @@ export const CategoriesPage: React.FC = () => {
     setIsDrawerOpen(true);
   };
 
-  const handleSave = (e?: React.FormEvent | React.MouseEvent) => {
+  const handleSave = async (e?: React.FormEvent | React.MouseEvent) => {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }
     if (!name.trim()) return;
 
-    if (editingCategory) {
-      setCategories((prev) =>
-        prev.map((c) =>
-          c.id === editingCategory.id
-            ? {
-                ...c,
-                name,
-                slug: slug || name.toLowerCase().replace(/\s+/g, '-'),
-                description,
-                status,
-                image,
-              }
-            : c
-        )
-      );
-    } else {
-      const newCat: Category = {
-        id: `CAT-0${categories.length + 1}`,
-        name,
-        slug: slug || name.toLowerCase().replace(/\s+/g, '-'),
-        productCount: 0,
-        status,
-        image,
-        description,
-        featured: false,
-      };
-      setCategories([...categories, newCat]);
+    const payload = {
+      name: name.trim(),
+      slug: slug.trim() || name.toLowerCase().replace(/\s+/g, '-'),
+      description: description.trim(),
+      isActive: status === 'Active',
+      image: image.trim(),
+    };
+
+    try {
+      if (editingCategory) {
+        await adminService.updateCategory(editingCategory.id, payload);
+      } else {
+        await adminService.createCategory(payload);
+      }
+      setIsDrawerOpen(false);
+      await fetchLiveCategories();
+    } catch (err: any) {
+      alert(err?.message || 'Failed to save category to database.');
     }
-    setIsDrawerOpen(false);
   };
 
-  const handleDelete = (id: string) => {
-    setCategories((prev) => prev.filter((c) => c.id !== id));
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to deactivate/delete this category?')) return;
+    try {
+      await adminService.deleteCategory(id);
+      await fetchLiveCategories();
+    } catch (err: any) {
+      alert(err?.message || 'Failed to delete category.');
+    }
   };
 
   return (
@@ -166,7 +192,38 @@ export const CategoriesPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant">
-                {paginatedCategories.map((category) => (
+                {isLoading && (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-12 text-center text-on-surface-variant">
+                      <div className="flex flex-col items-center justify-center space-y-2">
+                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs">Loading categories from MongoDB...</span>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && error && (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-10 text-center text-error">
+                      <p className="font-semibold text-sm">{error}</p>
+                      <button
+                        onClick={fetchLiveCategories}
+                        className="mt-2 px-3 py-1 bg-primary text-white rounded text-xs"
+                      >
+                        Retry
+                      </button>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedCategories.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-12 text-center text-on-surface-variant">
+                      <p className="font-semibold text-sm">No categories found</p>
+                      <p className="text-xs mt-1">No product categories matching your criteria.</p>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedCategories.map((category) => (
                   <tr
                     key={category.id}
                     className="hover:bg-surface-container-lowest transition-colors"

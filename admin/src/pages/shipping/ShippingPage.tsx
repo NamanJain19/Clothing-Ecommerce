@@ -152,7 +152,16 @@ export const ShippingPage: React.FC = () => {
           </AdminButton>
         </div>
 
-        {/* Zones Grid */}
+        {/* Logistics Architecture Notice */}
+        <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase tracking-wider bg-amber-200/80 px-2 py-0.5 rounded text-[10px]">Server-Side Logistics</span>
+            <span>Order freight rates and free shipping qualification are calculated server-side in checkout (<code>backend/src/controllers/orderController.js</code>). Operational carrier rates below reflect live dispatch agreements.</span>
+          </div>
+          <AdminBadge variant="neutral">Server-Enforced Rules</AdminBadge>
+        </div>
+
+        {/* Shipping Zones Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
           {zones.map((zone) => (
             <div

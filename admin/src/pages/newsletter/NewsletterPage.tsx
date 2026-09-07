@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Download, Trash2, CheckCircle2, UserCheck, Search, Send } from 'lucide-react';
 import { AdminLayout } from '../../components/layout/AdminLayout';
 import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminPagination } from '../../components/ui/AdminPagination';
+
+import { adminService } from '../../services/adminService';
 
 export interface Subscriber {
   id: string;
@@ -14,49 +16,42 @@ export interface Subscriber {
   subscribedAt: string;
 }
 
-export const initialSubscribers: Subscriber[] = [
-  {
-    id: 'SUB-01',
-    email: 'elias.vance@monolith.luxury',
-    source: 'VIP Salon Invitation',
-    status: 'Active',
-    subscribedAt: 'Aug 28, 2024',
-  },
-  {
-    id: 'SUB-02',
-    email: 'clara.sartorial@paris.fr',
-    source: 'Private Sale Popup',
-    status: 'Active',
-    subscribedAt: 'Aug 27, 2024',
-  },
-  {
-    id: 'SUB-03',
-    email: 'marcus.couture@milan.it',
-    source: 'Footer',
-    status: 'Active',
-    subscribedAt: 'Aug 25, 2024',
-  },
-  {
-    id: 'SUB-04',
-    email: 'victoria.sterling@london.uk',
-    source: 'Checkout Opt-in',
-    status: 'Active',
-    subscribedAt: 'Aug 24, 2024',
-  },
-  {
-    id: 'SUB-05',
-    email: 'alexander.wright@luxury.com',
-    source: 'Private Sale Popup',
-    status: 'Active',
-    subscribedAt: 'Aug 22, 2024',
-  },
-];
-
 export const NewsletterPage: React.FC = () => {
-  const [subscribers, setSubscribers] = useState<Subscriber[]>(initialSubscribers);
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  const fetchSubscribers = async () => {
+    try {
+      setLoading(true);
+      const res = await adminService.getCustomers({ limit: 100 });
+      const customers = res?.data || [];
+      const mapped: Subscriber[] = customers.map((c: any) => ({
+        id: c._id || c.id,
+        email: c.email,
+        source: 'Checkout Opt-in',
+        status: c.isActive === false ? 'Unsubscribed' : 'Active',
+        subscribedAt: c.createdAt
+          ? new Date(c.createdAt).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })
+          : 'Live Atlas',
+      }));
+      setSubscribers(mapped);
+    } catch (err) {
+      console.warn('Failed to load customers for subscriber list:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSubscribers();
+  }, []);
 
   const filteredSubscribers = subscribers.filter((s) =>
     s.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -109,6 +104,15 @@ export const NewsletterPage: React.FC = () => {
               Export CSV Manifest
             </AdminButton>
           </div>
+        </div>
+
+        {/* Backend Audience Notice */}
+        <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase tracking-wider bg-amber-200/80 px-2 py-0.5 rounded text-[10px]">Database Audience</span>
+            <span>Audience records reflect verified client accounts and checkout opt-ins in MongoDB Atlas. Standalone newsletter lead subscription is not isolated as a separate table in the backend.</span>
+          </div>
+          <AdminBadge variant="neutral">Verified Clients Sync</AdminBadge>
         </div>
 
         {/* Stats Snapshot */}

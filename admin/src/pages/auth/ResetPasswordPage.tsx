@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, ShieldCheck, ArrowRight, ArrowLeft, CheckCircle2, Gem } from 'lucide-react';
+import { Lock, ShieldCheck, ArrowRight, ArrowLeft, CheckCircle2, Gem, Key } from 'lucide-react';
+import { adminService } from '../../services/adminService';
 
 export const ResetPasswordPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const tokenFromUrl = searchParams.get('token') || '';
+  const [token, setToken] = useState(tokenFromUrl);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -11,9 +15,15 @@ export const ResetPasswordPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    const activeToken = token.trim();
+    if (!activeToken) {
+      setError('Password reset token is required. Please check your reset email link.');
+      return;
+    }
 
     if (password.length < 8) {
       setError('Password must be at least 8 characters long.');
@@ -27,10 +37,14 @@ export const ResetPasswordPage: React.FC = () => {
 
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      await adminService.resetPassword(activeToken, password);
       setIsLoading(false);
       setShowSuccessModal(true);
-    }, 1200);
+    } catch (err: any) {
+      setIsLoading(false);
+      setError(err?.message || 'Password reset failed. The token may be invalid or expired.');
+    }
   };
 
   return (
@@ -82,6 +96,25 @@ export const ResetPasswordPage: React.FC = () => {
             </header>
 
             <form className="space-y-space-lg" onSubmit={handleSubmit}>
+              <div className="space-y-2">
+                <label className="block font-label-md text-label-md text-on-surface" htmlFor="reset_token">
+                  Reset Token
+                </label>
+                <div className="relative">
+                  <Key className="absolute left-3 top-1/2 -translate-y-1/2 text-outline w-5 h-5" />
+                  <input
+                    id="reset_token"
+                    type="text"
+                    value={token}
+                    onChange={(e) => setToken(e.target.value)}
+                    placeholder="Enter or paste recovery token"
+                    className="w-full h-10 pl-10 pr-4 bg-surface-container-low border border-outline-variant rounded-lg font-mono text-xs text-on-surface outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+                    required
+                  />
+                </div>
+                <p className="text-[11px] text-outline px-1">Provided in your administrator reset email.</p>
+              </div>
+
               <div className="space-y-2">
                 <label className="block font-label-md text-label-md text-on-surface" htmlFor="new_password">
                   New Password

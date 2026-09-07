@@ -113,11 +113,12 @@ export const AddProductPage: React.FC = () => {
 
     try {
       await adminService.createProduct(payload);
-    } catch (err) {
-      console.warn('Direct API create error, fallback state persisted:', err);
-    } finally {
       setIsSaving(false);
       navigate('/admin/products');
+    } catch (err: any) {
+      console.error('Direct API create error:', err);
+      setIsSaving(false);
+      alert(err?.message || 'Failed to create product in database.');
     }
   };
 

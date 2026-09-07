@@ -9,6 +9,8 @@ import {
   Building2,
   Package,
   Layers,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
 import { AdminLayout } from '../../components/layout/AdminLayout';
 import { AdminButton } from '../../components/ui/AdminButton';
@@ -17,49 +19,70 @@ import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminModal } from '../../components/ui/AdminModal';
 import { AdminInput } from '../../components/ui/AdminInput';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialInventory, InventoryItem } from '../../data/inventory';
 import { adminService } from '../../services/adminService';
 
+export interface LiveInventoryItem {
+  id: string;
+  productName: string;
+  sku: string;
+  category: string;
+  availableStock: number;
+  totalStock: number;
+  safetyThreshold: number;
+  location: string;
+  status: 'In Stock' | 'Low Stock' | 'Critical' | 'Out of Stock';
+  lastAuditDate?: string;
+}
+
 export const InventoryPage: React.FC = () => {
-  const [inventory, setInventory] = useState<InventoryItem[]>(initialInventory);
-  const [isLoading, setIsLoading] = useState(false);
+  const [inventory, setInventory] = useState<LiveInventoryItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
-  const [restockingItem, setRestockingItem] = useState<InventoryItem | null>(null);
+  const [restockingItem, setRestockingItem] = useState<LiveInventoryItem | null>(null);
   const [restockAmount, setRestockAmount] = useState('15');
+  const [isSubmittingRestock, setIsSubmittingRestock] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 10;
 
   const fetchLiveInventory = async () => {
     setIsLoading(true);
+    setError(null);
     try {
-      const res = await adminService.getProducts();
-      if (res && res.products && res.products.length > 0) {
-        const mapped: InventoryItem[] = res.products.map((p: any) => {
-          const avail = p.stock ?? 15;
-          const safety = 5;
-          let st: InventoryItem['status'] = 'In Stock';
-          if (avail === 0) st = 'Out of Stock';
-          else if (avail <= 2) st = 'Critical';
-          else if (avail <= safety) st = 'Low Stock';
+      const res = await adminService.getInventory({ limit: 100 });
+      const rawProducts = res?.data || [];
+      const mapped: LiveInventoryItem[] = rawProducts.map((p: any) => {
+        const avail = typeof p.stock === 'number' ? p.stock : 0;
+        const safety = 5;
+        let st: LiveInventoryItem['status'] = 'In Stock';
+        if (avail === 0) st = 'Out of Stock';
+        else if (avail <= 2) st = 'Critical';
+        else if (avail <= safety) st = 'Low Stock';
 
-          return {
-            id: p._id || p.id,
-            productName: p.name,
-            sku: p.sku || `MON-${p._id?.slice(-5)}`,
-            totalStock: avail + 5,
-            availableStock: avail,
-            reservedStock: 2,
-            safetyThreshold: safety,
-            location: 'Central Vault / Milan',
-            status: st,
-            lastAuditDate: p.updatedAt ? new Date(p.updatedAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Today',
-          };
-        });
-        setInventory(mapped);
-      }
-    } catch (err) {
-      console.warn('Failed to load inventory from live backend, using fallback:', err);
+        return {
+          id: p._id || p.id,
+          productName: p.name || 'Unnamed Product',
+          sku: p.sku || `MON-${(p._id || '').slice(-5)}`,
+          category: p.category?.name || p.brand || 'Apparel',
+          availableStock: avail,
+          totalStock: avail,
+          safetyThreshold: safety,
+          location: p.brand ? `${p.brand} Facility` : 'Production Facility',
+          status: st,
+          lastAuditDate: p.updatedAt
+            ? new Date(p.updatedAt).toLocaleDateString('en-IN', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              })
+            : 'Live Atlas',
+        };
+      });
+      setInventory(mapped);
+    } catch (err: any) {
+      console.error('Failed to load inventory from live backend:', err);
+      setError(err.message || 'Unable to load inventory data from backend.');
     } finally {
       setIsLoading(false);
     }
@@ -84,7 +107,7 @@ export const InventoryPage: React.FC = () => {
     currentPage * itemsPerPage
   );
 
-  const getStatusBadge = (status: InventoryItem['status']) => {
+  const getStatusBadge = (status: LiveInventoryItem['status']) => {
     switch (status) {
       case 'In Stock':
         return <AdminBadge variant="success">In Stock</AdminBadge>;
@@ -105,35 +128,23 @@ export const InventoryPage: React.FC = () => {
     }
     if (!restockingItem) return;
     const addedUnits = parseInt(restockAmount, 10) || 0;
-    const newAvailable = restockingItem.availableStock + addedUnits;
-
-    try {
-      await adminService.updateProduct(restockingItem.id, {
-        stock: newAvailable,
-      });
-    } catch (err) {
-      console.warn('Failed to update live stock via API:', err);
+    if (addedUnits <= 0) {
+      alert('Please enter a valid stock amount greater than 0.');
+      return;
     }
 
-    setInventory((prev) =>
-      prev.map((item) => {
-        if (item.id === restockingItem.id) {
-          return {
-            ...item,
-            availableStock: newAvailable,
-            totalStock: (item.totalStock ?? item.availableStock) + addedUnits,
-            status:
-              newAvailable > item.safetyThreshold
-                ? 'In Stock'
-                : newAvailable > 0
-                ? 'Low Stock'
-                : 'Out of Stock',
-          };
-        }
-        return item;
-      })
-    );
-    setRestockingItem(null);
+    const newStock = restockingItem.availableStock + addedUnits;
+    setIsSubmittingRestock(true);
+
+    try {
+      await adminService.updateInventoryStock(restockingItem.id, newStock);
+      setRestockingItem(null);
+      await fetchLiveInventory();
+    } catch (err: any) {
+      alert(err.message || 'Failed to update stock in MongoDB. Please try again.');
+    } finally {
+      setIsSubmittingRestock(false);
+    }
   };
 
   return (
@@ -183,91 +194,114 @@ export const InventoryPage: React.FC = () => {
           </span>
         </div>
 
-        {/* Inventory Table */}
-        <div className="bg-white border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col">
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left">
-              <thead>
-                <tr className="bg-surface-container-low border-b border-outline-variant">
-                  <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    Garment / Complication
-                  </th>
-                  <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    SKU Code
-                  </th>
-                  <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    Available Units
-                  </th>
-                  <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    Reserved
-                  </th>
-                  <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    Safety Min.
-                  </th>
-                  <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    Health Status
-                  </th>
-                  <th className="px-6 py-4 text-right font-semibold text-secondary uppercase tracking-wider text-[11px]">
-                    Restock Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-outline-variant">
-                {paginatedInventory.map((item) => (
-                  <tr key={item.id} className="hover:bg-surface-container-lowest transition-colors">
-                    <td className="px-6 py-4">
-                      <div>
-                        <p className="font-semibold text-sm text-primary">{item.productName}</p>
-                        <p className="text-xs text-on-surface-variant flex items-center gap-1">
-                          <Building2 className="w-3.5 h-3.5" /> {item.location}
-                        </p>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 font-mono text-xs text-on-surface-variant font-bold">
-                      {item.sku}
-                    </td>
-                    <td className="px-6 py-4 font-bold text-sm text-primary font-mono">
-                      {item.availableStock} units
-                    </td>
-                    <td className="px-6 py-4 text-sm text-on-surface font-mono">
-                      {item.reservedStock}
-                    </td>
-                    <td className="px-6 py-4 text-xs font-semibold text-on-surface-variant font-mono">
-                      {item.safetyThreshold}
-                    </td>
-                    <td className="px-6 py-4">{getStatusBadge(item.status)}</td>
-                    <td className="px-6 py-4 text-right">
-                      <button
-                        onClick={() => {
-                          setRestockingItem(item);
-                          setRestockAmount('15');
-                        }}
-                        className="px-3 py-1.5 bg-surface-container hover:bg-primary hover:text-white text-xs font-semibold rounded-lg border border-outline-variant transition-colors cursor-pointer"
-                      >
-                        + Restock Units
-                      </button>
-                    </td>
+        {/* Inventory Content */}
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20 bg-white border border-outline-variant rounded-xl">
+            <Loader2 className="w-8 h-8 animate-spin text-primary mb-3" />
+            <p className="font-body-md text-sm text-on-surface-variant">Auditing real-time stock from database...</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center py-16 bg-red-50/50 border border-red-200 rounded-xl text-center px-4">
+            <AlertCircle className="w-8 h-8 text-error mb-2" />
+            <p className="font-body-md text-sm text-error font-medium">{error}</p>
+            <AdminButton variant="outline" className="mt-4" onClick={fetchLiveInventory}>
+              Retry Stock Audit
+            </AdminButton>
+          </div>
+        ) : filteredInventory.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 bg-white border border-outline-variant rounded-xl text-center px-4">
+            <Package className="w-10 h-10 text-on-surface-variant/40 mb-3" />
+            <h3 className="font-display text-base font-bold text-primary">No matching stock items</h3>
+            <p className="font-body-md text-sm text-on-surface-variant mt-1 max-w-sm">
+              Try adjusting your search criteria or stock level filter.
+            </p>
+          </div>
+        ) : (
+          <div className="bg-white border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-left">
+                <thead>
+                  <tr className="bg-surface-container-low border-b border-outline-variant">
+                    <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      Garment / Piece
+                    </th>
+                    <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      SKU Code
+                    </th>
+                    <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      Category
+                    </th>
+                    <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      Available Units
+                    </th>
+                    <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      Safety Min.
+                    </th>
+                    <th className="px-6 py-4 font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      Health Status
+                    </th>
+                    <th className="px-6 py-4 text-right font-semibold text-secondary uppercase tracking-wider text-[11px]">
+                      Restock Action
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-outline-variant">
+                  {paginatedInventory.map((item) => (
+                    <tr key={item.id} className="hover:bg-surface-container-lowest transition-colors">
+                      <td className="px-6 py-4">
+                        <div>
+                          <p className="font-semibold text-sm text-primary">{item.productName}</p>
+                          <p className="text-xs text-on-surface-variant flex items-center gap-1">
+                            <Building2 className="w-3.5 h-3.5" /> {item.location}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 font-mono text-xs text-on-surface-variant font-bold">
+                        {item.sku}
+                      </td>
+                      <td className="px-6 py-4 text-xs font-semibold text-on-surface-variant">
+                        {item.category}
+                      </td>
+                      <td className="px-6 py-4 font-bold text-sm text-primary font-mono">
+                        {item.availableStock} units
+                      </td>
+                      <td className="px-6 py-4 text-xs font-semibold text-on-surface-variant font-mono">
+                        {item.safetyThreshold}
+                      </td>
+                      <td className="px-6 py-4">{getStatusBadge(item.status)}</td>
+                      <td className="px-6 py-4 text-right">
+                        <button
+                          onClick={() => {
+                            setRestockingItem(item);
+                            setRestockAmount('15');
+                          }}
+                          className="px-3 py-1.5 bg-surface-container hover:bg-primary hover:text-white text-xs font-semibold rounded-lg border border-outline-variant transition-colors cursor-pointer"
+                        >
+                          + Restock Units
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-          {/* Table Footer / Pagination */}
-          <div className="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
-            <span className="text-xs text-on-surface-variant">
-              Showing {Math.min(paginatedInventory.length, filteredInventory.length)} of{' '}
-              {filteredInventory.length} assets
-            </span>
-            <AdminPagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              totalItems={filteredInventory.length}
-              itemsPerPage={itemsPerPage}
-              onPageChange={setCurrentPage}
-            />
+            {/* Table Footer / Pagination */}
+            <div className="p-4 border-t border-outline-variant bg-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
+              <span className="text-xs text-on-surface-variant">
+                Showing {Math.min(paginatedInventory.length, filteredInventory.length)} of{' '}
+                {filteredInventory.length} assets
+              </span>
+              <AdminPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={filteredInventory.length}
+                itemsPerPage={itemsPerPage}
+                onPageChange={setCurrentPage}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Restock Modal */}

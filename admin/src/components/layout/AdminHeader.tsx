@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Bell, Menu, LogOut, Settings, Shield, User, Check } from 'lucide-react';
-import { initialNotifications } from '../../data/notifications';
+import { adminService } from '../../services/adminService';
 import { storeSettingsService, StoreSettings } from '../../services/storeSettingsService';
 
 interface AdminHeaderProps {
@@ -21,10 +21,29 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
   const [storeSettings, setStoreSettings] = useState<StoreSettings>(storeSettingsService.getSettings());
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [notifications, setNotifications] = useState(initialNotifications.slice(0, 3));
-
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const currentUser = adminService.getCurrentUser();
   const notifRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const loadNotifs = async () => {
+      try {
+        const res = await adminService.getNotifications();
+        if (mounted && res && res.data) {
+          setNotifications(res.data.slice(0, 5));
+        }
+      } catch (err) {
+        // Silently preserve empty array without dummy fallback
+        if (mounted) setNotifications([]);
+      }
+    };
+    loadNotifs();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const handleSettingsUpdate = () => {
@@ -168,8 +187,12 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
             className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity select-none"
           >
             <div className="text-right hidden sm:block">
-              <p className="text-xs font-semibold text-on-surface leading-tight">{storeSettings.adminName || 'Admin'}</p>
-              <p className="text-[11px] text-on-surface-variant leading-tight">Store Administrator</p>
+              <p className="text-xs font-semibold text-on-surface leading-tight">
+                {currentUser ? `${currentUser.firstName || ''} ${currentUser.lastName || ''}`.trim() || currentUser.email : (storeSettings.adminName || 'Admin')}
+              </p>
+              <p className="text-[11px] text-on-surface-variant leading-tight capitalize">
+                {currentUser?.role ? `${currentUser.role} Administrator` : 'Store Administrator'}
+              </p>
             </div>
             <div className="h-9 w-9 rounded-xl bg-primary flex items-center justify-center overflow-hidden border border-outline-variant flex-shrink-0">
               <img
@@ -183,8 +206,12 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
           {showProfileMenu && (
             <div className="absolute right-0 mt-2 w-56 bg-white border border-outline-variant rounded-2xl shadow-xl py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
               <div className="px-4 py-2 border-b border-outline-variant">
-                <p className="text-xs font-bold text-primary">{storeSettings.adminName || 'Admin'}</p>
-                <p className="text-[11px] text-on-surface-variant">{storeSettings.adminEmail || 'admin@monolith.luxury'}</p>
+                <p className="text-xs font-bold text-primary">
+                  {currentUser ? `${currentUser.firstName || ''} ${currentUser.lastName || ''}`.trim() || 'Admin' : (storeSettings.adminName || 'Admin')}
+                </p>
+                <p className="text-[11px] text-on-surface-variant">
+                  {currentUser?.email || storeSettings.adminEmail || 'admin@monolith.luxury'}
+                </p>
               </div>
 
               <div className="py-1">
@@ -212,6 +239,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
                 <button
                   onClick={() => {
                     setShowProfileMenu(false);
+                    adminService.logout();
                     navigate('/admin/login');
                   }}
                   className="w-full text-left px-4 py-2 text-xs text-error hover:bg-red-50 flex items-center gap-2.5 transition-colors cursor-pointer"

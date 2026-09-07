@@ -18,7 +18,7 @@ import { AdminLayout } from '../../components/layout/AdminLayout';
 import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminBreadcrumb } from '../../components/ui/AdminBreadcrumb';
-import { initialProducts, Product } from '../../data/products';
+import type { Product } from '../../data/products';
 import { adminService } from '../../services/adminService';
 import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl, getProductImage } from '../../utils/imageUtils';
 
@@ -26,16 +26,19 @@ export const ProductDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const fallbackProduct = initialProducts.find((p) => p.id === id) || initialProducts[0];
-  const [product, setProduct] = useState<Product>(fallbackProduct);
-  const [selectedImage, setSelectedImage] = useState<string>(fallbackProduct.image);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
       if (!id) return;
+      setIsLoading(true);
+      setError(null);
       try {
-        const res = await adminService.getProducts();
-        const found = res.products?.find((p: any) => p._id === id || p.id === id);
+        const res = await adminService.getProductById(id);
+        const found = (res as any)?.data || (res as any)?.product;
         if (found) {
           const primaryImg = getProductImage(found);
           const gallery = (found.images && found.images.length > 0) ? found.images.map(normalizeImageUrl) : [primaryImg];
@@ -49,25 +52,57 @@ export const ProductDetailsPage: React.FC = () => {
             price: found.price || 0,
             compareAtPrice: found.compareAtPrice || found.price || 0,
             isSale: Boolean(found.isSale),
-            stock: found.stock ?? 15,
-            status: found.status || 'Published',
+            stock: found.stock ?? 0,
+            status: found.stock === 0 ? 'Out of Stock' : (found.isActive ? 'Published' : 'Draft'),
             image: primaryImg,
             gallery: gallery,
             description: found.description || '',
             material: found.material || '100% Virgin Cashmere',
             rating: found.rating || 5,
-            reviewsCount: found.reviewsCount || 12,
+            reviewsCount: found.reviewsCount || 0,
             createdAt: found.createdAt || '2024-01-15',
           };
           setProduct(mapped);
           setSelectedImage(primaryImg);
+        } else {
+          setError('Product not found in database.');
         }
-      } catch (err) {
-        console.warn('Using local fallback for product details:', err);
+      } catch (err: any) {
+        console.error('Fetch product details error:', err);
+        setError(err?.message || 'Unable to load product details from MongoDB.');
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProduct();
   }, [id]);
+
+  if (isLoading) {
+    return (
+      <AdminLayout>
+        <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <p className="font-label-md text-on-surface-variant">Loading product details...</p>
+        </div>
+      </AdminLayout>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <AdminLayout>
+        <div className="p-8 max-w-xl mx-auto text-center space-y-4">
+          <p className="text-error font-medium">{error || 'Product not found.'}</p>
+          <button
+            onClick={() => navigate('/admin/products')}
+            className="px-5 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:opacity-90"
+          >
+            ← Back to Products
+          </button>
+        </div>
+      </AdminLayout>
+    );
+  }
 
   return (
     <AdminLayout>

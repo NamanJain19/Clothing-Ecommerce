@@ -22,6 +22,7 @@ import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminModal } from '../../components/ui/AdminModal';
 import { AdminInput } from '../../components/ui/AdminInput';
 import { storeSettingsService, StoreSettings } from '../../services/storeSettingsService';
+import { adminService } from '../../services/adminService';
 
 export interface PaymentGatewayConfig {
   id: string;
@@ -35,13 +36,82 @@ export interface PaymentGatewayConfig {
   testMode: boolean;
 }
 
+export interface TransactionItem {
+  id: string;
+  orderNumber: string;
+  paymentId: string;
+  client: string;
+  amount: number;
+  method: string;
+  isCOD: boolean;
+  date: string;
+  status: string;
+}
+
 export const PaymentsPage: React.FC = () => {
   const [storeSettings, setStoreSettings] = useState<StoreSettings>(storeSettingsService.getSettings());
+  const [transactions, setTransactions] = useState<TransactionItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [razorpayKeyId, setRazorpayKeyId] = useState(storeSettings.razorpayKeyId || 'rzp_test_1DP5mmOlF5G5ag');
   const [razorpaySecret, setRazorpaySecret] = useState('••••••••••••••••••••••••');
   const [isSaved, setIsSaved] = useState(false);
   const [methodFilter, setMethodFilter] = useState<'All' | 'COD' | 'Online'>('All');
+
+  const fetchLivePaymentData = async () => {
+    try {
+      setLoading(true);
+      const [settingsRes, ordersRes] = await Promise.allSettled([
+        adminService.getSettings(),
+        adminService.getOrders({ limit: 50 }),
+      ]);
+
+      if (settingsRes.status === 'fulfilled' && settingsRes.value?.data) {
+        const s = settingsRes.value.data;
+        setStoreSettings((prev) => ({ ...prev, ...s }));
+        if (s.razorpayKeyId) setRazorpayKeyId(s.razorpayKeyId);
+      }
+
+      if (ordersRes.status === 'fulfilled') {
+        const orderList = ordersRes.value.data || ordersRes.value.orders || [];
+        const txns: TransactionItem[] = orderList.map((o: any) => {
+          const isCod = o.paymentMethod === 'cod' || o.paymentMethod?.toLowerCase().includes('cash');
+          const clientName = o.user
+            ? `${o.user.firstName || ''} ${o.user.lastName || ''}`.trim() || o.user.email
+            : o.shippingAddress?.fullName || 'Private Client';
+
+          return {
+            id: o.paymentResult?.id || `TXN-${(o._id || '').slice(-6).toUpperCase()}`,
+            orderNumber: o.orderNumber || `ORD-${(o._id || '').slice(-4).toUpperCase()}`,
+            paymentId: o.paymentResult?.id || (isCod ? `COD-${o._id?.slice(-6)}` : 'Prepaid Gateway'),
+            client: clientName,
+            amount: o.total || 0,
+            method: isCod ? 'Cash on Delivery (COD)' : (o.paymentMethod || 'Razorpay Online'),
+            isCOD: isCod,
+            date: o.createdAt
+              ? new Date(o.createdAt).toLocaleDateString('en-IN', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })
+              : 'Live',
+            status: o.paymentStatus === 'paid' ? 'Captured' : (o.paymentStatus || 'Pending'),
+          };
+        });
+        setTransactions(txns);
+      }
+    } catch (err) {
+      console.warn('Failed to load live payments/orders:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchLivePaymentData();
+  }, []);
 
   const gateways: PaymentGatewayConfig[] = [
     {
@@ -79,84 +149,42 @@ export const PaymentsPage: React.FC = () => {
     },
   ];
 
-  const toggleGateway = (id: string) => {
-    if (id === 'GW-01') {
-      const updated = storeSettingsService.saveSettings({ razorpayEnabled: !storeSettings.razorpayEnabled });
-      setStoreSettings(updated);
-    } else if (id === 'GW-02') {
-      const updated = storeSettingsService.saveSettings({ codEnabled: !storeSettings.codEnabled });
-      setStoreSettings(updated);
+  const toggleGateway = async (id: string) => {
+    try {
+      if (id === 'GW-01') {
+        const newStatus = !storeSettings.razorpayEnabled;
+        const updated = { ...storeSettings, razorpayEnabled: newStatus };
+        await adminService.updateSettings(updated);
+        setStoreSettings(updated);
+        storeSettingsService.saveSettings(updated);
+      } else if (id === 'GW-02') {
+        const newStatus = !storeSettings.codEnabled;
+        const updated = { ...storeSettings, codEnabled: newStatus };
+        await adminService.updateSettings(updated);
+        setStoreSettings(updated);
+        storeSettingsService.saveSettings(updated);
+      }
+    } catch (err: any) {
+      alert(err.message || 'Failed to update gateway setting in database.');
     }
   };
 
-  const handleSaveKeys = (e: React.FormEvent) => {
+  const handleSaveKeys = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updated = storeSettingsService.saveSettings({ razorpayKeyId });
-    setStoreSettings(updated);
-    setIsSaved(true);
-    setTimeout(() => {
-      setIsSaved(false);
-      setIsConfigOpen(false);
-    }, 800);
+    try {
+      const updated = { ...storeSettings, razorpayKeyId };
+      await adminService.updateSettings(updated);
+      setStoreSettings(updated);
+      storeSettingsService.saveSettings(updated);
+      setIsSaved(true);
+      setTimeout(() => {
+        setIsSaved(false);
+        setIsConfigOpen(false);
+      }, 800);
+    } catch (err: any) {
+      alert(err.message || 'Failed to save Razorpay configuration.');
+    }
   };
-
-  const transactions = [
-    {
-      id: 'TXN-9023',
-      orderNumber: 'ORD-9824',
-      paymentId: 'pay_P39k18491x',
-      client: 'Rohit Sharma',
-      amount: 125000,
-      method: 'Razorpay UPI (Google Pay)',
-      isCOD: false,
-      date: 'Aug 29, 2026, 08:34 PM',
-      status: 'Captured',
-    },
-    {
-      id: 'TXN-9022',
-      orderNumber: 'ORD-9823',
-      paymentId: 'pay_K10492810m',
-      client: 'Pooja Hegde',
-      amount: 84500,
-      method: 'Razorpay Credit Card (HDFC Infinia)',
-      isCOD: false,
-      date: 'Aug 29, 2026, 06:12 PM',
-      status: 'Captured',
-    },
-    {
-      id: 'TXN-9021',
-      orderNumber: 'ORD-9821',
-      paymentId: 'cod_order_8820',
-      client: 'Vikramaditya Roy',
-      amount: 210000,
-      method: 'Cash on Delivery (COD)',
-      isCOD: true,
-      date: 'Aug 28, 2026, 03:45 PM',
-      status: 'Pending Doorstep Collection',
-    },
-    {
-      id: 'TXN-9020',
-      orderNumber: 'ORD-9818',
-      paymentId: 'pay_N91827401v',
-      client: 'Ananya Singhania',
-      amount: 45000,
-      method: 'Razorpay UPI (PhonePe)',
-      isCOD: false,
-      date: 'Aug 28, 2026, 11:20 AM',
-      status: 'Captured',
-    },
-    {
-      id: 'TXN-9019',
-      orderNumber: 'ORD-9815',
-      paymentId: 'cod_order_8815',
-      client: 'Kabir Malhotra',
-      amount: 62000,
-      method: 'Cash on Delivery (COD)',
-      isCOD: true,
-      date: 'Aug 27, 2026, 04:15 PM',
-      status: 'Paid & Delivered',
-    },
-  ];
 
   const filteredTransactions = transactions.filter((t) => {
     if (methodFilter === 'COD') return t.isCOD;

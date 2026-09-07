@@ -8,12 +8,13 @@ import { AdminModal } from '../../components/ui/AdminModal';
 import { AdminInput } from '../../components/ui/AdminInput';
 import { AdminSelect } from '../../components/ui/AdminSelect';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialCoupons, Coupon } from '../../data/coupons';
+import type { Coupon } from '../../data/coupons';
 import { adminService } from '../../services/adminService';
 
 export const CouponsPage: React.FC = () => {
-  const [coupons, setCoupons] = useState<Coupon[]>(initialCoupons);
-  const [isLoading, setIsLoading] = useState(false);
+  const [coupons, setCoupons] = useState<Coupon[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,24 +29,25 @@ export const CouponsPage: React.FC = () => {
 
   const fetchLiveCoupons = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const res = await adminService.getCoupons();
-      if (res && res.coupons && res.coupons.length > 0) {
-        const mapped: Coupon[] = res.coupons.map((c: any) => ({
-          id: c._id || c.id,
-          code: c.code,
-          type: c.discountType === 'percentage' ? 'Percentage' : 'Fixed Amount',
-          value: c.discountType === 'percentage' ? `${c.discountValue}% OFF` : `₹${c.discountValue} OFF`,
-          minSpend: c.minOrderValue || 0,
-          usageLimit: c.usageLimit || 100,
-          usedCount: c.usedCount || 0,
-          validUntil: c.validUntil ? new Date(c.validUntil).toISOString().split('T')[0] : '2025-12-31',
-          status: c.isActive ? 'Active' : 'Disabled',
-        }));
-        setCoupons(mapped);
-      }
-    } catch (err) {
-      console.warn('Failed to fetch coupons, using fallback:', err);
+      const rawList = (res as any)?.data || (res as any)?.coupons || [];
+      const mapped: Coupon[] = rawList.map((c: any) => ({
+        id: c._id || c.id,
+        code: c.code,
+        type: c.discountType === 'percentage' ? 'Percentage' : 'Fixed Amount',
+        value: c.discountType === 'percentage' ? `${c.discountValue}% OFF` : `₹${c.discountValue} OFF`,
+        minSpend: c.minOrderValue || 0,
+        usageLimit: c.usageLimit || 100,
+        usedCount: c.usedCount || 0,
+        validUntil: c.validUntil ? new Date(c.validUntil).toISOString().split('T')[0] : '2025-12-31',
+        status: c.isActive !== false ? 'Active' : 'Disabled',
+      }));
+      setCoupons(mapped);
+    } catch (err: any) {
+      console.error('Failed to fetch coupons:', err);
+      setError(err?.message || 'Unable to load coupons from MongoDB.');
     } finally {
       setIsLoading(false);
     }
@@ -73,18 +75,6 @@ export const CouponsPage: React.FC = () => {
 
     const discountVal = parseInt(value.replace(/\D/g, '')) || 20;
 
-    const newCoupon: Coupon = {
-      id: `CPN-0${coupons.length + 1}`,
-      code: code.toUpperCase().trim(),
-      type,
-      value,
-      minSpend: parseFloat(minSpend) || 0,
-      usageLimit: parseInt(usageLimit, 10) || 100,
-      usedCount: 0,
-      validUntil,
-      status: 'Active',
-    };
-
     try {
       await adminService.createCoupon({
         code: code.toUpperCase().trim(),
@@ -95,22 +85,22 @@ export const CouponsPage: React.FC = () => {
         validUntil: new Date(validUntil).toISOString(),
         isActive: true,
       });
-    } catch (err) {
-      console.warn('Live API coupon create error:', err);
+      setIsModalOpen(false);
+      setCode('');
+      await fetchLiveCoupons();
+    } catch (err: any) {
+      alert(err?.message || 'Failed to create coupon in database.');
     }
-
-    setCoupons([newCoupon, ...coupons]);
-    setIsModalOpen(false);
-    setCode('');
   };
 
   const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this coupon?')) return;
     try {
       await adminService.deleteCoupon(id);
-    } catch (err) {
-      console.warn('Live API coupon delete error:', err);
+      await fetchLiveCoupons();
+    } catch (err: any) {
+      alert(err?.message || 'Failed to delete coupon.');
     }
-    setCoupons((prev) => prev.filter((c) => c.id !== id));
   };
 
   const getStatusBadge = (status: Coupon['status']) => {
@@ -188,7 +178,38 @@ export const CouponsPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant">
-                {paginatedCoupons.map((coupon) => (
+                {isLoading && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-on-surface-variant">
+                      <div className="flex flex-col items-center justify-center space-y-2">
+                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs">Loading coupons from MongoDB...</span>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && error && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-10 text-center text-error">
+                      <p className="font-semibold text-sm">{error}</p>
+                      <button
+                        onClick={fetchLiveCoupons}
+                        className="mt-2 px-3 py-1 bg-primary text-white rounded text-xs"
+                      >
+                        Retry
+                      </button>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedCoupons.length === 0 && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-on-surface-variant">
+                      <p className="font-semibold text-sm">No coupons created</p>
+                      <p className="text-xs mt-1">There are no promotional coupons matching your search.</p>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedCoupons.map((coupon) => (
                   <tr key={coupon.id} className="hover:bg-surface-container-lowest transition-colors">
                     <td className="px-6 py-4">
                       <span className="font-mono font-bold text-sm text-primary tracking-wide bg-surface-container px-2.5 py-1 rounded-md border border-outline-variant">

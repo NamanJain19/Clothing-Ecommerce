@@ -47,107 +47,12 @@ export interface StorefrontBanner {
   clicks: number;
 }
 
-export const initialStorefrontBanners: StorefrontBanner[] = [
-  // Homepage
-  {
-    id: 'BAN-HOME-01',
-    title: 'The Autumn / Winter Anthology',
-    subtitle: 'Architectural silhouettes, virgin cashmere, and liquid silk tailoring.',
-    badge: 'Curated Season // 2026',
-    targetPage: 'Homepage Hero',
-    slideOrder: 1,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuATT8ERG7OXAHHfsVDDR_PIjU8lWaHou2PZNgQS0t1grOJegixUBQZY9S46UVmhNHF7htuAiQCiZNjK58-o1UrvimzQwhxlpkRj1Un45EepJyAzVXW5T9f6Uw5iNOBeGJtjWjtVWiCSmyA1S2v3oZPLm-gD10ji0-F40vUbTi1PZHMqOEJFQ6soKv6wtbqlhib1z31fyy4GdmqWBPnRp2g3p0V4IJmF7kER3FKkiHPnC64blBDBU2vNZg',
-    link: '/collections',
-    ctaText: 'Explore Lookbook',
-    status: 'Active',
-    impressions: 14250,
-    clicks: 1840,
-  },
-  // Men
-  {
-    id: 'BAN-MEN-01',
-    title: "Men's Collection",
-    subtitle: 'A definitive collection of architectural silhouettes, artisanal fabrics, and precision tailoring.',
-    badge: 'Signature Tailoring',
-    targetPage: "Men's Collection Hero",
-    slideOrder: 1,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCGPQOk6iZWR8JE8ZK9UBA1KYtzip0hXSS5KWZKm1MrlmXyo6w5j7GmvTIkAUyoCvxGr-ugobJyf025tNF7zvDHBIk-VdDdOrAT8bHrws5ba1l3zfw0OPIaCqY13A7h6CenkerB0RiY-MzK6-LnY50eysXq8ZkPPnut6Q4KRnMnf5QZ12PZ2yZx57sFsHbppJYXoaAnuCHM7t9hP6y0L1IZ-yQjCB-tLVivwM_gAjb-sF6wWqv5b5k7mQ',
-    link: '/men',
-    ctaText: 'Explore Men',
-    status: 'Active',
-    impressions: 8900,
-    clicks: 1120,
-  },
-  // Women
-  {
-    id: 'BAN-WOMEN-01',
-    title: "Women's Collection",
-    subtitle: 'A curated evolution of form and texture. Discover architectural silhouettes and elevated essentials.',
-    badge: 'Curated Season',
-    targetPage: "Women's Collection Hero",
-    slideOrder: 1,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCLZ81vrKKc9KjF7nq8llSGUICo1ImWRqT2eAiWOArBi73xgF1dumkumkFx85L6231i8QY3IlUvtbfcfCkUFRoLDM5uKjiqF4UpfzAoeQOsxLSMLBg65H8QFly58hTTmUziDVDokMGkLuYH6kYz0a0S4nnLphb21Gce8c2xCN8kEqi5yRE0zWXzd4BAGVCaWB6ZkrwntDMwaiBPvDeEKzZD6ZyBQGtOEiJMIPlPuJBE7atX04ZqSviJlg',
-    link: '/women',
-    ctaText: 'Explore Women',
-    status: 'Active',
-    impressions: 11400,
-    clicks: 1560,
-  },
-  // Sale
-  {
-    id: 'BAN-SALE-01',
-    title: 'The Private Sale Vault',
-    subtitle: 'Exclusive seasonal archives and limited luxury releases with special privileges.',
-    badge: 'Private Sale // Up to 50% Off',
-    targetPage: 'Private Sale Hero',
-    slideOrder: 1,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDR6aK4Him3nAFtFIsMlS9ukrGjyGi-g2fg5ua3B3PJr2da4K79QBAIf_k-fEkOXKd6hp5XX4AuPhRYDy3642DOmzX8kLetTi-uw8aVE5E5q7Kc4YfMaaHRVZm286H19bN625BHVfVn5kXW2ZDnyvaa5HgRd2qI55_MfpAB2jr9fdVdyV4DGdOBE8LOl3QsjmxG8HdBWNxqKF0PgiZLB2sKCiNKm6WX8X7HPSfhVZsRa5lQw8DZhGyajQ',
-    link: '/sale',
-    ctaText: 'Access Vault',
-    status: 'Active',
-    impressions: 21500,
-    clicks: 4320,
-  },
-  // Kids
-  {
-    id: 'BAN-KIDS-01',
-    title: "The Kids Atelier",
-    subtitle: 'Pure cashmere, soft wool knits, and mini sartorial pieces crafted with utmost comfort.',
-    badge: 'Junior Edition',
-    targetPage: "Kids Collection Hero",
-    slideOrder: 1,
-    image:
-      'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=1200&q=80',
-    link: '/kids',
-    ctaText: 'Explore Kids',
-    status: 'Active',
-    impressions: 4300,
-    clicks: 650,
-  },
-  // Accessories
-  {
-    id: 'BAN-ACC-01',
-    title: 'Fine Leather & Timepiece Complications',
-    subtitle: 'Full-grain Italian calfskin, handmade trunks, and precision Swiss watches.',
-    badge: 'Atelier Accessories',
-    targetPage: 'Accessories Hero',
-    slideOrder: 1,
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAyxyqvyh346BaRtj82icFZ6xEJqNwxJObUST0eLtI-twZgrnV-aKZXbTvy856m-SM3EQHVwvjSBwSw9j8GzKcmdjqR0SM8MJ6eEVGs1kfGoblzeKnFLRM0tmPIT825qn1nN9fctSzGBFjTog1_zqqpCgpNrGHp5DrggVk5VDPVKkd9iMl7ssIUbMFRUdE8l-eVAhMoofh4yJbd-RLdrXql7W4zSKTuFPkt63ATk3jXhWlc_kqlqlWivw',
-    link: '/accessories',
-    ctaText: 'Shop Accessories',
-    status: 'Active',
-    impressions: 9800,
-    clicks: 1420,
-  },
-];
+import { adminService } from '../../services/adminService';
 
 export const BannerManagementPage: React.FC = () => {
-  const [banners, setBanners] = useState<StorefrontBanner[]>(initialStorefrontBanners);
+  const [banners, setBanners] = useState<StorefrontBanner[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingBannerId, setEditingBannerId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string>('All');
@@ -158,12 +63,43 @@ export const BannerManagementPage: React.FC = () => {
   const [badge, setBadge] = useState('Curated Season // 2026');
   const [targetPage, setTargetPage] = useState<BannerTargetLocation>('Homepage Hero');
   const [slideOrder, setSlideOrder] = useState<number>(1);
-  const [image, setImage] = useState(
-    'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80'
-  );
+  const [image, setImage] = useState('');
   const [link, setLink] = useState('/collections');
   const [ctaText, setCtaText] = useState('Explore Collection');
   const [status, setStatus] = useState<'Active' | 'Draft'>('Active');
+
+  const fetchBanners = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await adminService.getBanners();
+      const rawList = res?.data || [];
+      const mapped: StorefrontBanner[] = rawList.map((b: any, idx: number) => ({
+        id: b._id || b.id || `BAN-${idx}`,
+        title: b.title || 'Curated Banner',
+        subtitle: b.subtitle || '',
+        badge: b.badge || 'Featured',
+        targetPage: (b.targetPage || 'Homepage Hero') as BannerTargetLocation,
+        slideOrder: b.sortOrder || b.slideOrder || idx + 1,
+        image: b.image || '',
+        link: b.link || '/',
+        ctaText: b.ctaText || 'Shop Now',
+        status: b.isActive !== false ? 'Active' : 'Draft',
+        impressions: b.impressions || 0,
+        clicks: b.clicks || 0,
+      }));
+      setBanners(mapped);
+    } catch (err: any) {
+      console.error('Failed to load banners:', err);
+      setError(err?.message || 'Unable to load banners from MongoDB.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchBanners();
+  }, []);
 
   const handleOpenAdd = () => {
     setEditingBannerId(null);
@@ -172,7 +108,7 @@ export const BannerManagementPage: React.FC = () => {
     setBadge('Curated Season // 2026');
     setTargetPage('Homepage Hero');
     setSlideOrder(1);
-    setImage('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80');
+    setImage('');
     setLink('/collections');
     setCtaText('Explore Collection');
     setStatus('Active');
@@ -216,55 +152,48 @@ export const BannerManagementPage: React.FC = () => {
     return true;
   });
 
-  const handleSaveBanner = (e?: React.FormEvent | React.MouseEvent) => {
+  const handleSaveBanner = async (e?: React.FormEvent | React.MouseEvent) => {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }
-    if (!title.trim()) return;
-
-    if (editingBannerId) {
-      setBanners((prev) =>
-        prev.map((b) =>
-          b.id === editingBannerId
-            ? {
-                ...b,
-                title,
-                subtitle,
-                badge,
-                targetPage,
-                slideOrder: Number(slideOrder) || 1,
-                image: image || b.image,
-                link,
-                ctaText,
-                status,
-              }
-            : b
-        )
-      );
-    } else {
-      const newBanner: StorefrontBanner = {
-        id: `BAN-${Date.now().toString().slice(-4)}`,
-        title,
-        subtitle,
-        badge,
-        targetPage,
-        slideOrder: Number(slideOrder) || 1,
-        image: image || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80',
-        link,
-        ctaText,
-        status,
-        impressions: 0,
-        clicks: 0,
-      };
-      setBanners([newBanner, ...banners]);
+    if (!title.trim() || !image.trim()) {
+      alert('Title and Image URL are required.');
+      return;
     }
 
-    setIsModalOpen(false);
-    setEditingBannerId(null);
+    const payload = {
+      title: title.trim(),
+      subtitle: subtitle.trim(),
+      image: image.trim(),
+      link: link.trim(),
+      targetPage,
+      position: 'hero',
+      sortOrder: Number(slideOrder) || 0,
+      isActive: status === 'Active',
+    };
+
+    try {
+      if (editingBannerId) {
+        await adminService.updateBanner(editingBannerId, payload);
+      } else {
+        await adminService.createBanner(payload);
+      }
+      setIsModalOpen(false);
+      setEditingBannerId(null);
+      await fetchBanners();
+    } catch (err: any) {
+      alert(err?.message || 'Failed to persist banner to database.');
+    }
   };
 
-  const handleDelete = (id: string) => {
-    setBanners((prev) => prev.filter((b) => b.id !== id));
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to permanently delete this banner from MongoDB?')) return;
+    try {
+      await adminService.deleteBanner(id);
+      await fetchBanners();
+    } catch (err: any) {
+      alert(err?.message || 'Failed to delete banner from database.');
+    }
   };
 
   return (
@@ -302,9 +231,39 @@ export const BannerManagementPage: React.FC = () => {
           ))}
         </div>
 
+        {/* Loading / Error / Empty States */}
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center py-20 space-y-3">
+            <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin" />
+            <p className="text-xs text-on-surface-variant">Loading storefront banners from MongoDB...</p>
+          </div>
+        )}
+
+        {!isLoading && error && (
+          <div className="p-6 bg-red-50 border border-red-200 rounded-xl text-center space-y-3">
+            <p className="text-sm text-red-800 font-medium">{error}</p>
+            <button
+              onClick={fetchBanners}
+              className="px-4 py-1.5 bg-red-600 text-white rounded-lg text-xs font-semibold hover:bg-red-700"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
+        {!isLoading && !error && filteredBanners.length === 0 && (
+          <div className="p-12 bg-surface-container-low rounded-2xl border border-outline-variant text-center space-y-3">
+            <p className="text-base font-semibold text-primary">No banners configured</p>
+            <p className="text-xs text-on-surface-variant max-w-sm mx-auto">
+              No storefront banners found for "{activeTab}". Click "Add New Banner" to create your first live hero banner.
+            </p>
+          </div>
+        )}
+
         {/* Banners Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
-          {filteredBanners.map((banner) => (
+        {!isLoading && !error && filteredBanners.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+            {filteredBanners.map((banner) => (
             <div
               key={banner.id}
               className="bg-white border border-outline-variant rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col group"
@@ -391,6 +350,7 @@ export const BannerManagementPage: React.FC = () => {
             </div>
           ))}
         </div>
+      )}
       </div>
 
       {/* Create / Edit Banner Modal */}

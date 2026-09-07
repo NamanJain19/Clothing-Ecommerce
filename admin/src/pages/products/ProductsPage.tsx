@@ -19,7 +19,7 @@ import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialProducts, Product } from '../../data/products';
+import type { Product } from '../../data/products';
 import { adminService } from '../../services/adminService';
 import { DEFAULT_FALLBACK_IMAGE, normalizeImageUrl, getProductImage } from '../../utils/imageUtils';
 
@@ -27,6 +27,7 @@ export const ProductsPage: React.FC = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
@@ -38,27 +39,31 @@ export const ProductsPage: React.FC = () => {
 
   const fetchLiveProducts = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const data = await adminService.getProducts();
-      if (data && data.products && data.products.length > 0) {
-        const mapped: Product[] = data.products.map((p: any) => ({
-          id: p._id || p.id,
-          name: p.name,
-          sku: p.sku || 'N/A',
-          category: typeof p.category === 'object' ? p.category?.name : (p.category || 'General'),
-          collection: typeof p.collection === 'object' ? p.collection?.name : (p.collection || 'Monolith Archive'),
-          brand: p.brand || 'MONOLITH',
-          price: p.price,
-          comparePrice: p.compareAtPrice,
-          stock: p.stock ?? 15,
-          status: p.stock === 0 ? 'Out of Stock' : (p.isActive ? 'Published' : 'Draft'),
-          image: getProductImage(p),
-          createdAt: p.createdAt || 'Just now',
-        }));
-        setProducts(mapped);
-      }
-    } catch (err) {
-      console.warn('Failed to load products, using fallback:', err);
+      const rawList = data?.data || data?.products || [];
+      const mapped: Product[] = rawList.map((p: any) => ({
+        id: p._id || p.id,
+        name: p.name,
+        sku: p.sku || 'N/A',
+        category: typeof p.category === 'object' ? p.category?.name : (p.category || 'General'),
+        collection: typeof p.collection === 'object' ? p.collection?.name : (p.collection || 'Monolith Archive'),
+        brand: p.brand || 'MONOLITH',
+        price: p.price,
+        compareAtPrice: p.compareAtPrice,
+        stock: p.stock ?? 0,
+        status: p.stock === 0 ? 'Out of Stock' : (p.isActive ? 'Published' : 'Draft'),
+        image: getProductImage(p),
+        description: p.description || '',
+        rating: p.rating || 5,
+        reviewsCount: p.reviewsCount || 0,
+        createdAt: p.createdAt || 'Just now',
+      }));
+      setProducts(mapped);
+    } catch (err: any) {
+      console.error('Failed to load products:', err);
+      setError(err?.message || 'Unable to load products. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +72,6 @@ export const ProductsPage: React.FC = () => {
   useEffect(() => {
     fetchLiveProducts();
   }, []);
-
 
   // Filter & Search
   const filteredProducts = products.filter((item) => {
@@ -107,14 +111,26 @@ export const ProductsPage: React.FC = () => {
     );
   };
 
-  const handleDeleteSelected = () => {
-    setProducts((prev) => prev.filter((p) => !selectedIds.includes(p.id)));
-    setSelectedIds([]);
+  const handleDeleteSelected = async () => {
+    if (!window.confirm(`Are you sure you want to permanently delete ${selectedIds.length} product(s) from MongoDB?`)) return;
+    try {
+      await Promise.all(selectedIds.map((id) => adminService.deleteProduct(id)));
+      setProducts((prev) => prev.filter((p) => !selectedIds.includes(p.id)));
+      setSelectedIds([]);
+    } catch (err: any) {
+      alert(err?.message || 'Failed to delete selected products from database.');
+    }
   };
 
-  const handleDeleteProduct = (id: string) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-    setActiveMenuId(null);
+  const handleDeleteProduct = async (id: string) => {
+    if (!window.confirm('Are you sure you want to permanently delete this product from MongoDB?')) return;
+    try {
+      await adminService.deleteProduct(id);
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+      setActiveMenuId(null);
+    } catch (err: any) {
+      alert(err?.message || 'Failed to delete product from database.');
+    }
   };
 
   const getStatusBadge = (status: Product['status']) => {

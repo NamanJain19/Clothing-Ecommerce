@@ -50,58 +50,63 @@ import { CreateEmailTemplatePage } from './pages/email/CreateEmailTemplatePage';
 import { EditEmailTemplatePage } from './pages/email/EditEmailTemplatePage';
 import { NewsletterPage } from './pages/newsletter/NewsletterPage';
 
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
+
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Auth Pages (1-4) */}
+        {/* Public Auth Pages (1-4) */}
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/admin/otp" element={<OtpPage />} />
         <Route path="/admin/reset-password" element={<ResetPasswordPage />} />
 
-        {/* Dashboard & Products (5-9) */}
-        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-        <Route path="/admin/products" element={<ProductsPage />} />
-        <Route path="/admin/products/new" element={<AddProductPage />} />
-        <Route path="/admin/products/:id/edit" element={<EditProductPage />} />
-        <Route path="/admin/products/:id" element={<ProductDetailsPage />} />
+        {/* Protected Admin Routes */}
+        <Route element={<ProtectedRoute />}>
+          {/* Dashboard & Products (5-9) */}
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route path="/admin/products" element={<ProductsPage />} />
+          <Route path="/admin/products/new" element={<AddProductPage />} />
+          <Route path="/admin/products/:id/edit" element={<EditProductPage />} />
+          <Route path="/admin/products/:id" element={<ProductDetailsPage />} />
 
-        {/* Core Operations & Commerce (10-17) */}
-        <Route path="/admin/categories" element={<CategoriesPage />} />
-        <Route path="/admin/collections" element={<CollectionsPage />} />
-        <Route path="/admin/orders" element={<OrdersPage />} />
-        <Route path="/admin/customers" element={<CustomersPage />} />
-        <Route path="/admin/inventory" element={<InventoryPage />} />
-        <Route path="/admin/coupons" element={<CouponsPage />} />
-        <Route path="/admin/reviews" element={<ReviewsPage />} />
-        <Route path="/admin/analytics" element={<AnalyticsPage />} />
+          {/* Core Operations & Commerce (10-17) */}
+          <Route path="/admin/categories" element={<CategoriesPage />} />
+          <Route path="/admin/collections" element={<CollectionsPage />} />
+          <Route path="/admin/orders" element={<OrdersPage />} />
+          <Route path="/admin/customers" element={<CustomersPage />} />
+          <Route path="/admin/inventory" element={<InventoryPage />} />
+          <Route path="/admin/coupons" element={<CouponsPage />} />
+          <Route path="/admin/reviews" element={<ReviewsPage />} />
+          <Route path="/admin/analytics" element={<AnalyticsPage />} />
 
-        {/* CMS & Storefront (18-20) */}
-        <Route path="/admin/website-content" element={<WebsiteContentPage />} />
-        <Route path="/admin/website-content/new" element={<AddWebsiteSectionPage />} />
-        <Route path="/admin/banners" element={<BannerManagementPage />} />
+          {/* CMS & Storefront (18-20) */}
+          <Route path="/admin/website-content" element={<WebsiteContentPage />} />
+          <Route path="/admin/website-content/new" element={<AddWebsiteSectionPage />} />
+          <Route path="/admin/banners" element={<BannerManagementPage />} />
 
-        {/* Infrastructure, Logistics & Governance (21-24) */}
-        <Route path="/admin/shipping" element={<ShippingPage />} />
-        <Route path="/admin/payments" element={<PaymentsPage />} />
-        <Route path="/admin/notifications" element={<NotificationsPage />} />
-        <Route path="/admin/settings" element={<SettingsPage />} />
+          {/* Infrastructure, Logistics & Governance (21-24) */}
+          <Route path="/admin/shipping" element={<ShippingPage />} />
+          <Route path="/admin/payments" element={<PaymentsPage />} />
+          <Route path="/admin/notifications" element={<NotificationsPage />} />
+          <Route path="/admin/settings" element={<SettingsPage />} />
 
-        {/* Extended Store Operations (25-31) */}
-        <Route path="/admin/returns" element={<ReturnsPage />} />
-        <Route path="/admin/brands" element={<BrandsPage />} />
-        <Route path="/admin/size-guide" element={<SizeGuidePage />} />
-        <Route path="/admin/gift-cards" element={<GiftCardsPage />} />
-        <Route path="/admin/reports" element={<ReportsPage />} />
-        <Route path="/admin/navigation" element={<NavigationPage />} />
-        <Route path="/admin/pages" element={<PagesManagementPage />} />
+          {/* Extended Store Operations (25-31) */}
+          <Route path="/admin/returns" element={<ReturnsPage />} />
+          <Route path="/admin/brands" element={<BrandsPage />} />
+          <Route path="/admin/size-guide" element={<SizeGuidePage />} />
+          <Route path="/admin/gift-cards" element={<GiftCardsPage />} />
+          <Route path="/admin/reports" element={<ReportsPage />} />
+          <Route path="/admin/navigation" element={<NavigationPage />} />
+          <Route path="/admin/pages" element={<PagesManagementPage />} />
 
-        {/* Email Templates & Audience (32-35) */}
-        <Route path="/admin/email-templates" element={<EmailTemplatesPage />} />
-        <Route path="/admin/email-templates/new" element={<CreateEmailTemplatePage />} />
-        <Route path="/admin/email-templates/:id/edit" element={<EditEmailTemplatePage />} />
-        <Route path="/admin/newsletter" element={<NewsletterPage />} />
+          {/* Email Templates & Audience (32-35) */}
+          <Route path="/admin/email-templates" element={<EmailTemplatesPage />} />
+          <Route path="/admin/email-templates/new" element={<CreateEmailTemplatePage />} />
+          <Route path="/admin/email-templates/:id/edit" element={<EditEmailTemplatePage />} />
+          <Route path="/admin/newsletter" element={<NewsletterPage />} />
+        </Route>
 
         {/* Default Redirects */}
         <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />

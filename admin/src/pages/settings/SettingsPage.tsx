@@ -29,9 +29,33 @@ export const SettingsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'store' | 'whatsapp' | 'sms' | 'payments' | 'admin'>('store');
   const [isSaved, setIsSaved] = useState(false);
   const [toastMessage, setToastMessage] = useState('Settings saved & synced in real-time!');
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Form State initialized from storeSettingsService
+  // Form State initialized from storeSettingsService as fallback, updated immediately from backend
   const [settings, setSettings] = useState<StoreSettings>(storeSettingsService.getSettings());
+
+  // Load from backend database as source of truth
+  useEffect(() => {
+    const fetchBackendSettings = async () => {
+      try {
+        setIsLoading(true);
+        const res = await adminService.getSettings();
+        if (res && res.data) {
+          setSettings((prev) => {
+            const merged = { ...prev, ...res.data };
+            storeSettingsService.saveSettings(merged);
+            return merged;
+          });
+        }
+      } catch (err) {
+        console.warn('Backend settings fetch warning (using cached config):', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBackendSettings();
+  }, []);
 
   // Password change state
   const [currentPassword, setCurrentPassword] = useState('');
@@ -46,19 +70,21 @@ export const SettingsPage: React.FC = () => {
       e.preventDefault();
     }
 
-    // 1. Save to local reactive store
-    storeSettingsService.saveSettings(settings);
-
-    // 2. Persist to MongoDB backend
     try {
-      await adminService.updateSettings(settings);
-    } catch (err) {
-      console.warn('Backend settings update warning:', err);
-    }
+      // 1. Persist directly to MongoDB backend via Admin API
+      const res = await adminService.updateSettings(settings);
+      const updated = res?.data ? { ...settings, ...res.data } : settings;
+      
+      // 2. Sync to local cache
+      setSettings(updated);
+      storeSettingsService.saveSettings(updated);
 
-    setToastMessage('Store settings updated & saved to Database live!');
-    setIsSaved(true);
-    setTimeout(() => setIsSaved(false), 2500);
+      setToastMessage('Store settings updated & saved to Database live!');
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 2500);
+    } catch (err: any) {
+      alert(err.message || 'Failed to update store settings in database.');
+    }
   };
 
   const handlePasswordChange = async (e: React.FormEvent) => {
@@ -88,8 +114,8 @@ export const SettingsPage: React.FC = () => {
         setConfirmPassword('');
         setTimeout(() => setPasswordSuccess(false), 3500);
       }
-    } catch (err) {
-      setPasswordError('Error connecting to backend database');
+    } catch (err: any) {
+      setPasswordError(err.message || 'Error updating password in database');
     } finally {
       setIsChangingPassword(false);
     }

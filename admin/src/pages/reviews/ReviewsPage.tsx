@@ -5,12 +5,13 @@ import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialReviews, Review } from '../../data/reviews';
+import type { Review } from '../../data/reviews';
 import { adminService } from '../../services/adminService';
 
 export const ReviewsPage: React.FC = () => {
-  const [reviews, setReviews] = useState<Review[]>(initialReviews);
-  const [isLoading, setIsLoading] = useState(false);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,25 +19,27 @@ export const ReviewsPage: React.FC = () => {
 
   const fetchLiveReviews = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const res = await adminService.getReviews();
-      if (res && res.reviews && res.reviews.length > 0) {
-        const mapped: Review[] = res.reviews.map((r: any) => ({
-          id: r._id || r.id,
-          productName: r.product?.name || r.productName || 'Luxury Sartorial Garment',
-          author: r.user ? `${r.user.firstName || ''} ${r.user.lastName || ''}`.trim() : (r.author || 'Verified Client'),
-          authorEmail: r.user?.email || r.authorEmail || 'client@monolith.luxury',
-          rating: r.rating || 5,
-          headline: r.title || r.headline || 'Exemplary Craftsmanship',
-          comment: r.comment || '',
-          date: r.createdAt ? new Date(r.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent',
-          status: r.isApproved ? 'Approved' : 'Pending Moderation',
-          isVerified: Boolean(r.isVerifiedPurchase ?? true),
-        }));
-        setReviews(mapped);
-      }
-    } catch (err) {
-      console.warn('Failed to load reviews, using fallback:', err);
+      const rawList = (res as any)?.data || (res as any)?.reviews || [];
+      const mapped: Review[] = rawList.map((r: any) => ({
+        id: r._id || r.id,
+        productName: r.product?.name || r.productName || 'Luxury Sartorial Garment',
+        author: r.user ? `${r.user.firstName || ''} ${r.user.lastName || ''}`.trim() : (r.author || 'Verified Client'),
+        authorEmail: r.user?.email || r.authorEmail || 'client@monolith.luxury',
+        rating: r.rating || 5,
+        title: r.title || r.headline || 'Exemplary Craftsmanship',
+        headline: r.title || r.headline || 'Exemplary Craftsmanship',
+        comment: r.comment || '',
+        date: r.createdAt ? new Date(r.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent',
+        status: (r.isApproved ? 'Approved' : 'Pending Moderation') as Review['status'],
+        isVerified: Boolean(r.isVerifiedPurchase ?? true),
+      }));
+      setReviews(mapped);
+    } catch (err: any) {
+      console.error('Failed to load reviews:', err);
+      setError(err?.message || 'Unable to load reviews from MongoDB.');
     } finally {
       setIsLoading(false);
     }
@@ -64,27 +67,33 @@ export const ReviewsPage: React.FC = () => {
   const handleApprove = async (id: string) => {
     try {
       await adminService.approveReview(id);
-    } catch (err) {
-      console.warn('Live API review approval error:', err);
+      setReviews((prev) =>
+        prev.map((r) => (r.id === id ? { ...r, status: 'Approved' } : r))
+      );
+    } catch (err: any) {
+      alert(err?.message || 'Failed to approve review in database.');
     }
-    setReviews((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: 'Approved' } : r))
-    );
   };
 
-  const handleReject = (id: string) => {
-    setReviews((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: 'Rejected' } : r))
-    );
+  const handleReject = async (id: string) => {
+    try {
+      await adminService.rejectReview(id, 'Moderation review rejected');
+      setReviews((prev) =>
+        prev.map((r) => (r.id === id ? { ...r, status: 'Rejected' } : r))
+      );
+    } catch (err: any) {
+      alert(err?.message || 'Failed to reject review in database.');
+    }
   };
 
   const handleDelete = async (id: string) => {
+    if (!window.confirm('Are you sure you want to permanently delete this client review?')) return;
     try {
       await adminService.deleteReview(id);
-    } catch (err) {
-      console.warn('Live API review delete error:', err);
+      setReviews((prev) => prev.filter((r) => r.id !== id));
+    } catch (err: any) {
+      alert(err?.message || 'Failed to delete review from database.');
     }
-    setReviews((prev) => prev.filter((r) => r.id !== id));
   };
 
   return (
@@ -134,8 +143,37 @@ export const ReviewsPage: React.FC = () => {
         </div>
 
         {/* Reviews List */}
-        <div className="space-y-4">
-          {paginatedReviews.map((review) => (
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center py-20 space-y-3">
+            <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin" />
+            <p className="text-xs text-on-surface-variant">Loading customer reviews from MongoDB...</p>
+          </div>
+        )}
+
+        {!isLoading && error && (
+          <div className="p-6 bg-red-50 border border-red-200 rounded-xl text-center space-y-3">
+            <p className="text-sm text-red-800 font-medium">{error}</p>
+            <button
+              onClick={fetchLiveReviews}
+              className="px-4 py-1.5 bg-red-600 text-white rounded-lg text-xs font-semibold hover:bg-red-700"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
+        {!isLoading && !error && filteredReviews.length === 0 && (
+          <div className="p-12 bg-surface-container-low rounded-2xl border border-outline-variant text-center space-y-3">
+            <p className="text-base font-semibold text-primary">No reviews submitted</p>
+            <p className="text-xs text-on-surface-variant max-w-sm mx-auto">
+              No customer product reviews matching your filter criteria.
+            </p>
+          </div>
+        )}
+
+        {!isLoading && !error && filteredReviews.length > 0 && (
+          <div className="space-y-4">
+            {paginatedReviews.map((review) => (
             <div
               key={review.id}
               className="bg-white border border-outline-variant rounded-xl p-6 shadow-sm space-y-4"
@@ -225,6 +263,7 @@ export const ReviewsPage: React.FC = () => {
             </div>
           ))}
         </div>
+      )}
 
         {/* Pagination */}
         <div className="p-4 bg-white border border-outline-variant rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4">

@@ -55,6 +55,15 @@ export const NavigationPage: React.FC = () => {
           </AdminButton>
         </div>
 
+        {/* Status Notice */}
+        <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase tracking-wider bg-amber-200/80 px-2 py-0.5 rounded text-[10px]">Architecture Note</span>
+            <span>Storefront navigation is compiled directly in the website header template (<code>website/src/components/layout/Header.tsx</code>). Dynamic API navigation routing is not provisioned in backend routes.</span>
+          </div>
+          <AdminBadge variant="neutral">Server-Side Template</AdminBadge>
+        </div>
+
         {/* Menu Grid Split */}
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-space-lg items-start">
           {/* Menu Selector (30%) */}

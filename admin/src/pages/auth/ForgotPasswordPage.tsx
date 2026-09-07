@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowRight, ArrowLeft, CheckCircle2, Gem } from 'lucide-react';
+import { adminService } from '../../services/adminService';
 
 export const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ export const ForgotPasswordPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -27,13 +28,14 @@ export const ForgotPasswordPage: React.FC = () => {
 
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      await adminService.forgotPassword(email.trim());
       setIsLoading(false);
       setIsSuccess(true);
-      setTimeout(() => {
-        navigate('/admin/otp');
-      }, 1500);
-    }, 1200);
+    } catch (err: any) {
+      setIsLoading(false);
+      setError(err?.message || 'Unable to transmit reset link. Please verify email and try again.');
+    }
   };
 
   return (

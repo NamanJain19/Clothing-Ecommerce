@@ -19,12 +19,13 @@ import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminModal } from '../../components/ui/AdminModal';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialOrders, Order } from '../../data/orders';
+import type { Order } from '../../data/orders';
 import { adminService } from '../../services/adminService';
 
 export const OrdersPage: React.FC = () => {
-  const [orders, setOrders] = useState<Order[]>(initialOrders);
-  const [isLoading, setIsLoading] = useState(false);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
@@ -36,46 +37,47 @@ export const OrdersPage: React.FC = () => {
 
   const fetchLiveOrders = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const res = await adminService.getOrders();
-      if (res && res.orders && res.orders.length > 0) {
-        const mapped: Order[] = res.orders.map((o: any) => ({
-          id: o._id || o.id,
-          orderNumber: o.orderNumber || `ORD-${o._id?.slice(-6)}`,
-          customerName: o.user ? `${o.user.firstName || ''} ${o.user.lastName || ''}`.trim() : (o.shippingAddress?.fullName || 'Valued Client'),
-          customerEmail: o.user?.email || o.shippingAddress?.email || 'client@monolith.luxury',
-          initials: (o.user?.firstName?.[0] || 'C') + (o.user?.lastName?.[0] || 'L'),
-          amount: o.totalAmount || 0,
-          status: (o.orderStatus?.charAt(0).toUpperCase() + o.orderStatus?.slice(1)) || 'Processing',
-          paymentStatus: o.paymentStatus?.toLowerCase() === 'paid' || o.paymentMethod === 'razorpay' ? 'Paid' : 'Pending',
-          paymentMethod: o.paymentMethod?.toUpperCase() || 'RAZORPAY',
-          date: o.createdAt ? new Date(o.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent',
-          shippingAddress: typeof o.shippingAddress === 'object' ? `${o.shippingAddress.addressLine1 || ''}, ${o.shippingAddress.city || ''}, ${o.shippingAddress.state || ''} - ${o.shippingAddress.postalCode || ''}` : String(o.shippingAddress || 'Armored Courier Dispatch'),
-          estimatedDelivery: o.estimatedDelivery || '',
-          latitude: o.shippingAddress?.latitude || null,
-          longitude: o.shippingAddress?.longitude || null,
-          awbNumber: o.awbNumber || o.trackingNumber || '',
-          trackingNumber: o.awbNumber || o.trackingNumber || '',
-          shipmentId: o.shipmentId || '',
-          shiprocketOrderId: o.shiprocketOrderId || '',
-          shiprocketShipmentId: o.shiprocketShipmentId || '',
-          carrier: o.carrier || '',
-          carrierService: o.carrierService || '',
-          trackingUrl: o.trackingUrl || '',
-          shipmentStatus: o.shipmentStatus || 'pending',
-          trackingHistory: o.trackingHistory || [],
-          items: (o.items || []).map((it: any) => ({
-            productId: it.product?._id || it.product || 'item-1',
-            name: it.product?.name || it.name || 'Luxury Fashion Garment',
-            quantity: it.quantity || 1,
-            price: it.price || 0,
-            image: it.product?.images?.[0] || it.image || 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=300&q=80',
-          })),
-        }));
-        setOrders(mapped);
-      }
-    } catch (err) {
-      console.warn('Failed to load live orders, using fallback:', err);
+      const rawOrders = res?.data || res?.orders || [];
+      const mapped: Order[] = rawOrders.map((o: any) => ({
+        id: o._id || o.id,
+        orderNumber: o.orderNumber || `ORD-${o._id?.slice(-6)}`,
+        customerName: o.user ? `${o.user.firstName || ''} ${o.user.lastName || ''}`.trim() : (o.shippingAddress?.fullName || 'Valued Client'),
+        customerEmail: o.user?.email || o.shippingAddress?.email || 'client@monolith.luxury',
+        initials: (o.user?.firstName?.[0] || 'C') + (o.user?.lastName?.[0] || 'L'),
+        amount: o.total || o.totalAmount || 0,
+        status: (o.orderStatus?.charAt(0).toUpperCase() + o.orderStatus?.slice(1)) || 'Processing',
+        paymentStatus: o.paymentStatus?.toLowerCase() === 'paid' || o.paymentMethod === 'razorpay' ? 'Paid' : 'Pending',
+        paymentMethod: o.paymentMethod?.toUpperCase() || 'RAZORPAY',
+        date: o.createdAt ? new Date(o.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent',
+        shippingAddress: typeof o.shippingAddress === 'object' ? `${o.shippingAddress.addressLine1 || ''}, ${o.shippingAddress.city || ''}, ${o.shippingAddress.state || ''} - ${o.shippingAddress.postalCode || ''}` : String(o.shippingAddress || 'Armored Courier Dispatch'),
+        estimatedDelivery: o.estimatedDelivery || '',
+        latitude: o.shippingAddress?.latitude || null,
+        longitude: o.shippingAddress?.longitude || null,
+        awbNumber: o.awbNumber || o.trackingNumber || '',
+        trackingNumber: o.awbNumber || o.trackingNumber || '',
+        shipmentId: o.shipmentId || '',
+        shiprocketOrderId: o.shiprocketOrderId || '',
+        shiprocketShipmentId: o.shiprocketShipmentId || '',
+        carrier: o.carrier || '',
+        carrierService: o.carrierService || '',
+        trackingUrl: o.trackingUrl || '',
+        shipmentStatus: o.shipmentStatus || 'pending',
+        trackingHistory: o.trackingHistory || [],
+        items: (o.items || []).map((it: any) => ({
+          productId: it.product?._id || it.product || 'item-1',
+          name: it.product?.name || it.name || 'Luxury Fashion Garment',
+          quantity: it.quantity || 1,
+          price: it.price || 0,
+          image: it.product?.images?.[0] || it.image || 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=300&q=80',
+        })),
+      }));
+      setOrders(mapped);
+    } catch (err: any) {
+      console.error('Failed to load live orders:', err);
+      setError(err?.message || 'Unable to load orders from MongoDB.');
     } finally {
       setIsLoading(false);
     }
@@ -130,18 +132,19 @@ export const OrdersPage: React.FC = () => {
       await adminService.updateOrderStatus(
         selectedOrder.id,
         newStatus.toLowerCase().replace(/\s+/g, '_'),
-        trackingNumberInput.trim() || `TRK-IN-${Date.now().toString().slice(-6)}`,
-        carrierInput
+        trackingNumberInput.trim() || undefined,
+        carrierInput || undefined
       );
-    } catch (err) {
-      console.warn('Live API status update error, updated in-memory:', err);
+      setOrders((prev) =>
+        prev.map((o) => (o.id === selectedOrder.id ? { ...o, status: newStatus as any } : o))
+      );
+      setSelectedOrder({ ...selectedOrder, status: newStatus as any });
+    } catch (err: any) {
+      console.error('Order status update error:', err);
+      alert(err?.message || 'Failed to update order status in database.');
+    } finally {
+      setIsUpdatingStatus(false);
     }
-
-    setOrders((prev) =>
-      prev.map((o) => (o.id === selectedOrder.id ? { ...o, status: newStatus as any } : o))
-    );
-    setSelectedOrder({ ...selectedOrder, status: newStatus as any });
-    setIsUpdatingStatus(false);
   };
 
   const handleGenerateShipment = async (carrierName = 'Blue Dart Express (Air Priority)') => {
@@ -277,7 +280,38 @@ export const OrdersPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant text-sm">
-                {paginatedOrders.map((order) => (
+                {isLoading && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-on-surface-variant">
+                      <div className="flex flex-col items-center justify-center space-y-2">
+                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs">Loading orders from MongoDB...</span>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && error && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-10 text-center text-error">
+                      <p className="font-semibold text-sm">{error}</p>
+                      <button
+                        onClick={fetchLiveOrders}
+                        className="mt-2 px-3 py-1 bg-primary text-white rounded text-xs"
+                      >
+                        Retry
+                      </button>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedOrders.length === 0 && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-on-surface-variant">
+                      <p className="font-semibold text-sm">No orders found</p>
+                      <p className="text-xs mt-1">There are no client orders matching your search and status criteria.</p>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedOrders.map((order) => (
                   <tr
                     key={order.id}
                     onClick={() => {

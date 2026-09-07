@@ -6,12 +6,13 @@ import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminDrawer } from '../../components/ui/AdminDrawer';
 import { AdminPagination } from '../../components/ui/AdminPagination';
-import { initialCustomers, Customer } from '../../data/customers';
+import type { Customer } from '../../data/customers';
 import { adminService } from '../../services/adminService';
 
 export const CustomersPage: React.FC = () => {
-  const [customers, setCustomers] = useState<Customer[]>(initialCustomers);
-  const [isLoading, setIsLoading] = useState(false);
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [tierFilter, setTierFilter] = useState('All');
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
@@ -20,26 +21,36 @@ export const CustomersPage: React.FC = () => {
 
   const fetchLiveCustomers = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const res = await adminService.getCustomers();
-      if (res && res.users && res.users.length > 0) {
-        const mapped: Customer[] = res.users.map((u: any) => ({
+      const rawList = (res as any)?.data || (res as any)?.customers || [];
+      const mapped: Customer[] = rawList.map((u: any) => {
+        const spent = u.totalSpent || 0;
+        let tier: Customer['tier'] = 'Gold Tier';
+        if (spent >= 100000) tier = 'Bespoke Private';
+        else if (spent >= 50000) tier = 'VIP Platinum';
+        else if (spent < 20000) tier = 'Gold Tier';
+
+        return {
           id: u._id || u.id,
           name: `${u.firstName || ''} ${u.lastName || ''}`.trim() || 'Private Client',
           email: u.email,
-          phone: u.phone || '+91 (0) 98200 12345',
-          city: u.addresses?.[0]?.city || 'Mumbai',
-          country: 'India',
-          ordersCount: u.orders?.length || 2,
-          totalSpent: 48500,
-          joinDate: u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : 'Jan 2024',
-          tier: 'VIP Platinum',
-          shippingAddress: u.addresses?.[0] ? `${u.addresses[0].addressLine1 || ''}, ${u.addresses[0].city || ''}` : 'Oberoi Tower Private Suite, Mumbai',
-        }));
-        setCustomers(mapped);
-      }
-    } catch (err) {
-      console.warn('Failed to load customers, using fallback:', err);
+          phone: u.phone || 'N/A',
+          city: u.addresses?.[0]?.city || u.city || 'India',
+          country: u.country || 'India',
+          ordersCount: u.orderCount || u.ordersCount || 0,
+          totalSpent: spent,
+          joinDate: u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : 'Recent',
+          tier,
+          status: (u.isActive !== false ? 'Active' : 'Dormant') as 'Active' | 'Dormant',
+          shippingAddress: u.addresses?.[0] ? `${u.addresses[0].addressLine1 || ''}, ${u.addresses[0].city || ''}` : 'Primary Client Address on File',
+        };
+      });
+      setCustomers(mapped);
+    } catch (err: any) {
+      console.error('Failed to load customers from MongoDB:', err);
+      setError(err?.message || 'Unable to load registered customers from MongoDB.');
     } finally {
       setIsLoading(false);
     }
@@ -155,7 +166,38 @@ export const CustomersPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-outline-variant">
-                {paginatedCustomers.map((customer) => (
+                {isLoading && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-on-surface-variant">
+                      <div className="flex flex-col items-center justify-center space-y-2">
+                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs">Loading registered clients from MongoDB...</span>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && error && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-10 text-center text-error">
+                      <p className="font-semibold text-sm">{error}</p>
+                      <button
+                        onClick={fetchLiveCustomers}
+                        className="mt-2 px-3 py-1 bg-primary text-white rounded text-xs"
+                      >
+                        Retry
+                      </button>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedCustomers.length === 0 && (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-on-surface-variant">
+                      <p className="font-semibold text-sm">No clients found</p>
+                      <p className="text-xs mt-1">There are no client profiles matching your search criteria.</p>
+                    </td>
+                  </tr>
+                )}
+                {!isLoading && !error && paginatedCustomers.map((customer) => (
                   <tr
                     key={customer.id}
                     onClick={() => setSelectedCustomer(customer)}

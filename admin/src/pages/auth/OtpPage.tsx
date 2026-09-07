@@ -59,14 +59,8 @@ export const OtpPage: React.FC = () => {
 
     setError(null);
     setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSuccess(true);
-      setTimeout(() => {
-        navigate('/admin/reset-password');
-      }, 1000);
-    }, 1200);
+    setIsSuccess(true);
+    navigate(`/admin/reset-password?token=${encodeURIComponent(code)}`);
   };
 
   const handleResend = () => {

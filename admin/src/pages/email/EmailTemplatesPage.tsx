@@ -39,6 +39,15 @@ export const EmailTemplatesPage: React.FC = () => {
           </AdminButton>
         </div>
 
+        {/* Backend Template Notice */}
+        <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase tracking-wider bg-amber-200/80 px-2 py-0.5 rounded text-[10px]">Backend Architecture</span>
+            <span>Customer transaction emails (order confirmation, dispatch, password reset) are rendered server-side by <code>backend/src/utils/emailService.js</code>. Dynamic database template editing is not connected via API.</span>
+          </div>
+          <AdminBadge variant="neutral">Server-Compiled Templates</AdminBadge>
+        </div>
+
         {/* Templates Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
           {templates.map((tpl) => (

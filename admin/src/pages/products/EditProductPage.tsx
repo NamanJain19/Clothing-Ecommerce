@@ -21,65 +21,72 @@ import { AdminInput } from '../../components/ui/AdminInput';
 import { AdminSelect } from '../../components/ui/AdminSelect';
 import { AdminBreadcrumb } from '../../components/ui/AdminBreadcrumb';
 import { AdminImageUpload } from '../../components/ui/AdminImageUpload';
-import { initialProducts, Product } from '../../data/products';
+import type { Product } from '../../data/products';
 import { adminService } from '../../services/adminService';
 
 export const EditProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const fallbackProduct = initialProducts.find((p) => p.id === id) || initialProducts[0];
-
-  const [name, setName] = useState(fallbackProduct.name);
-  const [sku, setSku] = useState(fallbackProduct.sku);
-  const [brand, setBrand] = useState(fallbackProduct.brand);
-  const [category, setCategory] = useState(fallbackProduct.category);
-  const [collection, setCollection] = useState(fallbackProduct.collection);
+  const [name, setName] = useState('');
+  const [sku, setSku] = useState('');
+  const [brand, setBrand] = useState('MONOLITH');
+  const [category, setCategory] = useState('');
+  const [collection, setCollection] = useState('');
   const [gender, setGender] = useState<string>('unisex');
-  const [price, setPrice] = useState(fallbackProduct.price.toString());
-  const [comparePrice, setComparePrice] = useState((fallbackProduct.compareAtPrice || 0).toString());
-  const [isSale, setIsSale] = useState(Boolean(fallbackProduct.isSale));
-  const [stock, setStock] = useState(fallbackProduct.stock.toString());
-  const [description, setDescription] = useState(fallbackProduct.description);
-  const [material, setMaterial] = useState(fallbackProduct.material || '100% Virgin Cashmere / Loro Piana Wool');
-  const [status, setStatus] = useState<Product['status']>(fallbackProduct.status);
-  const [primaryImage, setPrimaryImage] = useState(fallbackProduct.image);
-  const [hoverImage, setHoverImage] = useState(fallbackProduct.image);
-  const [galleryImages, setGalleryImages] = useState<string[]>(fallbackProduct.gallery || []);
+  const [price, setPrice] = useState('0');
+  const [comparePrice, setComparePrice] = useState('0');
+  const [isSale, setIsSale] = useState(false);
+  const [stock, setStock] = useState('0');
+  const [description, setDescription] = useState('');
+  const [material, setMaterial] = useState('');
+  const [status, setStatus] = useState<Product['status']>('Published');
+  const [primaryImage, setPrimaryImage] = useState('');
+  const [hoverImage, setHoverImage] = useState('');
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
   const [newGalleryInput, setNewGalleryInput] = useState('');
   const [isSaving, setIsSaving] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isUploadingBatch, setIsUploadingBatch] = useState(false);
 
   useEffect(() => {
     const loadProduct = async () => {
       if (!id) return;
       setIsLoading(true);
+      setError(null);
       try {
-        const res = await adminService.getProducts();
-        const found = res.products?.find((p: any) => p._id === id || p.id === id);
+        const res = await adminService.getProductById(id);
+        const found = (res as any)?.data || (res as any)?.product;
         if (found) {
           setName(found.name || '');
           setSku(found.sku || '');
-          setBrand(found.brand || 'Monolith Sartorial');
-          setCategory(found.category || 'Outerwear');
-          setCollection(found.collection || 'Winter Solstice 2024');
+          setBrand(found.brand || 'MONOLITH');
+          setCategory(typeof found.category === 'object' ? found.category?.name || found.category?._id : (found.category || ''));
+          setCollection(typeof found.collection === 'object' ? found.collection?.name || found.collection?._id : (found.collection || ''));
           setGender(found.gender || 'unisex');
           setPrice(String(found.price || 0));
           setComparePrice(String(found.compareAtPrice || found.price || 0));
-          setIsSale(Boolean(found.isSale || found.isSaleVault));
-          setStock(String(found.stock ?? 15));
+          setIsSale(Boolean(found.isSale));
+          setStock(String(found.stock ?? 0));
           setDescription(found.description || '');
-          setMaterial(found.material || '100% Virgin Cashmere');
-          setStatus(found.status || 'Published');
+          setMaterial(found.material || '');
+          setStatus(found.stock === 0 ? 'Out of Stock' : (found.isActive ? 'Published' : 'Draft'));
           if (found.images && found.images.length > 0) {
             setPrimaryImage(found.images[0]);
             setHoverImage(found.images[1] || found.images[0]);
             setGalleryImages(found.images);
+          } else if (found.thumbnail) {
+            setPrimaryImage(found.thumbnail);
+            setHoverImage(found.thumbnail);
+            setGalleryImages([found.thumbnail]);
           }
+        } else {
+          setError('Product not found in database.');
         }
-      } catch (err) {
-        console.warn('Could not fetch product from live API, using fallback state:', err);
+      } catch (err: any) {
+        console.error('Could not fetch product from live API:', err);
+        setError(err?.message || 'Unable to fetch product details.');
       } finally {
         setIsLoading(false);
       }
@@ -133,11 +140,12 @@ export const EditProductPage: React.FC = () => {
 
     try {
       await adminService.updateProduct(id, payload);
-    } catch (err) {
-      console.warn('Failed to update live API:', err);
-    } finally {
       setIsSaving(false);
       navigate('/admin/products');
+    } catch (err: any) {
+      console.error('Failed to update product in live API:', err);
+      setIsSaving(false);
+      alert(err?.message || 'Failed to update product in database.');
     }
   };
 

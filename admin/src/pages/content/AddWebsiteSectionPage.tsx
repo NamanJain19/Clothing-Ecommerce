@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Layout, Layers, Globe, Check } from 'lucide-react';
+import { ArrowLeft, Layout, Layers, Globe, Check, Loader2 } from 'lucide-react';
 import { AdminLayout } from '../../components/layout/AdminLayout';
 import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminInput } from '../../components/ui/AdminInput';
 import { AdminSelect } from '../../components/ui/AdminSelect';
 import { AdminBreadcrumb } from '../../components/ui/AdminBreadcrumb';
+import { adminService } from '../../services/adminService';
 
 export const AddWebsiteSectionPage: React.FC = () => {
   const navigate = useNavigate();
@@ -19,13 +20,29 @@ export const AddWebsiteSectionPage: React.FC = () => {
   const [ctaLink, setCtaLink] = useState('/collections/winter-solstice');
   const [isSaving, setIsSaving] = useState(false);
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!title.trim()) return;
+
     setIsSaving(true);
-    setTimeout(() => {
-      setIsSaving(false);
+    try {
+      await adminService.createWebsiteSection({
+        title: title.trim(),
+        name: title.trim(),
+        type,
+        pageLocation,
+        headline: headline.trim(),
+        subheading: subheading.trim(),
+        ctaText: ctaText.trim(),
+        ctaLink: ctaLink.trim(),
+        isActive: true,
+      });
       navigate('/admin/website-content');
-    }, 800);
+    } catch (err: any) {
+      alert(err.message || 'Failed to create website section in database.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (

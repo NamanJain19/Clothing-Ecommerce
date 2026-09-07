@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { adminService } from '../../services/adminService';
 import {
   LayoutDashboard,
   Package,
@@ -106,6 +107,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
   ];
 
   const handleLogout = () => {
+    adminService.logout();
     navigate('/admin/login');
   };
 

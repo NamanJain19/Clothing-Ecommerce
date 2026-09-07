@@ -1,456 +1,509 @@
-# MONOLITH — Luxury Fashion E-Commerce Platform
+MONOLITH — Luxury Fashion E-Commerce Platform
 
-A full-stack luxury fashion e-commerce platform built with a modern customer-facing website, admin dashboard, REST API backend, MongoDB database, authentication, product management, order management, responsive UI, and AI-powered shopping assistance.
+A full-stack luxury fashion e-commerce platform featuring a premium customer website, admin dashboard, REST API backend, authentication, product management, order management, analytics, and responsive UI.
 
-MONOLITH is designed as a complete end-to-end e-commerce system rather than a static frontend demo. The customer website, admin panel, backend API, and database work together using real production data.
+🌐 Live Demo
 
----
+Website: https://monolithh.duckdns.org
 
-## 🚀 Live Demo
+Admin Dashboard: https://clothing-ecommerce-qoo7.onrender.com
 
-### Customer Website
-https://monolithh.duckdns.org
+Backend API: https://monolith-backend-yzxj.onrender.com/api
 
-### Backend API
-https://monolith-backend-yzxj.onrender.com
+📂 GitHub Repository
 
-### Admin Dashboard
-https://clothing-ecommerce-qoo7.onrender.com
+https://github.com/NamanJain19/Clothing-Ecommerce
 
----
+✨ Overview
 
-## ✨ Project Overview
+MONOLITH is a full-stack luxury fashion e-commerce application designed with a premium, modern, editorial-style interface.
 
-MONOLITH is a premium luxury fashion e-commerce platform focused on delivering a modern editorial shopping experience while providing a complete backend and administration system.
+The project contains three major parts:
 
-The platform includes:
+Customer Website
+Admin Dashboard
+Backend REST API
 
-- Luxury fashion storefront
-- Product catalog
-- Categories and collections
-- New arrivals
-- Sale section
-- Product details
-- Search and filtering
-- Wishlist
-- Shopping cart
-- Checkout
-- Order management
-- Order tracking
-- Customer accounts
-- Saved addresses
-- Payment methods
-- Notifications
-- Reviews
-- Coupons
-- Gift cards
-- Authentication
-- Forgot Password / Reset Password
-- Google authentication
-- Apple authentication
-- OTP verification
-- AI Stylist
-- Admin dashboard
-- Product management
-- Category management
-- Collection management
-- Banner management
-- Customer management
-- Order management
-- Inventory management
-- Returns management
-- Review management
-- Analytics and reports
-- Website/CMS management
-- Responsive mobile and tablet experience
+The platform uses MongoDB for persistent application data and provides separate interfaces for customers and administrators.
 
----
+🚀 Key Features
+🛍️ Customer Website
+Premium luxury fashion UI
+Responsive mobile, tablet, and desktop design
+Product browsing
+Product search
+Category-based browsing
+Collection pages
+Product details
+Product images and galleries
+Wishlist
+Shopping cart
+Checkout
+Address management
+Payment method management
+Order placement
+Order history
+Order tracking
+Returns
+Notifications
+Customer account dashboard
+Help & Support
+Account settings
+Google authentication
+Apple authentication
+OTP verification
+Password reset
+AI Stylist interface
+👨‍💼 Admin Dashboard
+Admin authentication
+Dashboard analytics
+Product management
+Category management
+Collection management
+Banner management
+Website section management
+Order management
+Customer management
+Coupon management
+Review management
+Inventory management
+Returns management
+Notification management
+Brand management
+Size guide management
+Gift card management
+Shipping management
+Email template management
+Website settings
+Reports and analytics
+🔐 Authentication
+Email/password authentication
+Google authentication
+Apple authentication
+OTP verification
+Forgot password
+Secure password reset tokens
+Protected customer routes
+Protected admin routes
+📊 Analytics & Management
 
-## 🛍️ Customer Website
+The admin dashboard provides management and reporting capabilities for:
 
-The customer-facing website provides a premium editorial shopping experience inspired by modern luxury fashion platforms.
+Products
+Orders
+Customers
+Revenue
+Inventory
+Reviews
+Returns
+Coupons
+Website content
+🧠 AI Stylist
 
-### Main Features
-
-- Premium luxury UI/UX
-- Responsive design
-- Editorial homepage
-- Featured categories
-- New arrivals
-- Featured collections
-- Sale collections
-- Product search
-- Product filtering
-- Product sorting
-- Product details
-- Product image galleries
-- Size selection
-- Wishlist
-- Quick view
-- Shopping cart
-- Checkout
-- Order confirmation
-- Order tracking
-- Customer dashboard
-- Saved addresses
-- Payment methods
-- Notifications
-- Help & Support
-- FAQ
-- Shipping policy
-- Return & refund policy
-- Privacy policy
-- Terms & conditions
-- About MONOLITH
-- Contact page
-
----
-
-## 🤖 AI Stylist
-
-MONOLITH includes an AI-powered shopping assistant designed to help customers discover products and navigate the platform using natural language.
+MONOLITH includes an AI Stylist interface designed to understand natural-language shopping requests.
 
 Example queries include:
 
-- "Show me shirts under ₹3000"
-- "Men's new arrivals"
-- "Women's new dresses"
-- "Show me something for men under ₹5000"
-- "Products on sale"
-- "Where is my order?"
+"Men's new arrivals"
+"Women's new dresses"
+"shirts under ₹3000"
+"Where is my order?"
 
-The AI Stylist is designed to work with the existing product and customer/order data instead of relying on hardcoded demo products.
+The AI Stylist is designed to connect customer queries with relevant product, category, pricing, and order information.
 
----
+🏗️ Project Architecture
 
-## 🔐 Authentication
+The application is divided into three independent services.
 
-The platform includes a complete authentication system.
-
-### Supported Authentication Features
-
-- Email/password authentication
-- Google authentication
-- Apple authentication
-- OTP verification
-- Forgot Password
-- Reset Password
-- Secure reset tokens
-- Customer account management
-- Session-based authenticated requests
-
-### Password Reset Flow
-
-The password reset system generates a secure reset token and sends a reset link to the customer's email.
-
-Example:
-
-https://monolithh.duckdns.org/reset-password?token=TOKEN
-
-Reset tokens are securely generated and handled by the backend.
-
----
-
-## 🛒 Shopping & Checkout
-
-Customers can:
-
-1. Browse products
-2. Search products
-3. Filter products
-4. View product details
-5. Select product sizes
-6. Add products to wishlist
-7. Add products to cart
-8. Update cart quantities
-9. Apply coupons
-10. Select or add an address
-11. Select a payment method
-12. Place an order
-13. View order confirmation
-14. Track orders
-15. View previous orders
-
----
-
-## 📦 Order Management
-
-Customers can view:
-
-- Order history
-- Order details
-- Order status
-- Delivery progress
-- Purchased products
-- Order totals
-- Shipping information
-- Tracking information
-
-The Admin Dashboard provides management capabilities for orders and order statuses.
-
----
-
-## ❤️ Wishlist
-
-Customers can save products to their wishlist and manage their saved products from their account.
-
-Wishlist functionality is connected to the backend rather than using temporary frontend-only data.
-
----
-
-## 👤 Customer Account
-
-The customer account area includes:
-
-- Dashboard
-- My Orders
-- Saved Addresses
-- Payment Methods
-- Notifications
-- Account Settings
-- Help & Support
-- Track Order
-- Logout
-
-The account navigation has been optimized for mobile and tablet devices so that navigation options remain accessible without requiring horizontal page scrolling.
-
----
-
-## 🖥️ Admin Dashboard
-
-MONOLITH includes a separate web-based administration dashboard.
-
-The Admin Dashboard is connected to the same production backend and database used by the customer website.
-
-### Admin Features
-
-- Dashboard analytics
-- Product management
-- Category management
-- Collection management
-- Banner management
-- Website/CMS management
-- Customer management
-- Order management
-- Inventory management
-- Returns management
-- Reviews management
-- Coupons management
-- Gift cards management
-- Notifications management
-- Brand management
-- Size guide management
-- Shipping management
-- Email templates
-- Reports
-- Analytics
-- Website settings
-
-Admin changes are designed to persist through the backend and MongoDB database.
-
----
-
-## 🗄️ Backend
-
-The backend is built using Node.js and Express.js.
-
-### Backend Responsibilities
-
-- Authentication
-- User management
-- Product APIs
-- Category APIs
-- Collection APIs
-- Cart APIs
-- Wishlist APIs
-- Order APIs
-- Payment APIs
-- Review APIs
-- Coupon APIs
-- Gift card APIs
-- Notification APIs
-- Admin APIs
-- Analytics APIs
-- Reports
-- Password reset
-- Email services
-- OTP services
-- AI-related services
-
----
-
-## 🗃️ Database
-
-MONOLITH uses MongoDB with Mongoose.
-
-The production database contains real application data including:
-
-- Users
-- Products
-- Categories
-- Collections
-- Orders
-- Addresses
-- Carts
-- Wishlists
-- Reviews
-- Coupons
-- Gift Cards
-- Notifications
-- Payments
-- Returns
-- Brands
-- Size Guides
-- Website Sections
-- Banners
-- Settings
-
-The Admin Dashboard and Customer Website operate against the same backend/database architecture.
-
----
-
-## 📱 Responsive Design
-
-The website has been audited and optimized across:
-
-### Mobile
-
-- 320px
-- 360px
-- 375px
-- 390px
-- 414px
-- 430px
-
-### Tablet
-
-- 768px
-- 820px
-- 834px
-- 1024px
-
-### Desktop
-
-- 1280px+
-- 1440px+
-
-Responsive improvements include:
-
-- Mobile navigation
-- Responsive product grids
-- Responsive account pages
-- Responsive checkout
-- Responsive cart
-- Responsive order pages
-- Responsive modals
-- Responsive OTP verification
-- Responsive AI Stylist widget
-- Responsive banners
-- Responsive forms
-- Touch-friendly controls
-- Mobile-friendly account navigation
-- Horizontal overflow prevention
-
-The responsive audit achieved zero page-level horizontal overflow across the tested viewport sizes.
-
----
-
-## 🎨 Design System
-
-MONOLITH follows a premium luxury editorial visual language.
-
-Design characteristics include:
-
-- Minimal luxury aesthetic
-- Editorial layouts
-- Large typography
-- Clean spacing
-- Monochromatic visual direction
-- Premium product presentation
-- Responsive layouts
-- Subtle animations
-- Modern navigation
-- Glassmorphism-inspired UI accents where appropriate
-
-The desktop design was preserved while responsive behavior was improved for smaller screens.
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- GSAP
-- Three.js
-- React Three Fiber
-
-### Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-
-### Authentication
-
-- Email/Password
-- Google OAuth
-- Apple Authentication
-- OTP Verification
-
-### AI & Automation
-
-- AI Stylist
-- Natural-language product discovery
-- AI-powered shopping assistance
-
-### DevOps & Deployment
-
-- Docker
-- Git
-- GitHub
-- Linux
-- Nginx
-- Render
-
----
-
-## 📁 Project Structure
-
-```text
-Clothing-Ecommerce/
-│
-├── admin/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.ts
-│
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   └── middleware/
-│   ├── server.js
-│   └── package.json
+MONOLITH
 │
 ├── website/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── data/
-│   │   └── styles/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.ts
+│   ├── Customer E-Commerce Website
+│   ├── React + TypeScript
+│   └── Vite
 │
-├── docker-compose.yml
-└── README.md
+├── admin/
+│   ├── Admin Dashboard
+│   ├── React + TypeScript
+│   └── Vite
+│
+├── backend/
+│   ├── REST API
+│   ├── Node.js
+│   ├── Express.js
+│   └── MongoDB / Mongoose
+│
+└── docker-compose.yml
+🛠️ Technology Stack
+Frontend
+React
+TypeScript
+Vite
+Tailwind CSS
+Bootstrap
+Framer Motion
+GSAP
+Three.js
+React Three Fiber
+Lenis
+Backend
+Node.js
+Express.js
+MongoDB
+Mongoose
+REST API
+JWT / Authentication
+Nodemailer / Email Services
+Resend
+Twilio integration
+Development & Deployment
+Git
+GitHub
+Docker
+Docker Compose
+Linux
+Render
+MongoDB Atlas
+🗄️ Database
+
+The application uses MongoDB with Mongoose for database management.
+
+Major collections include:
+
+users
+products
+categories
+collections
+brands
+orders
+payments
+carts
+wishlists
+reviews
+returns
+coupons
+giftcards
+addresses
+notifications
+banners
+settings
+sizeguides
+websistections
+
+The database stores customer, product, order, inventory, website, and administrative information.
+
+🔌 Backend API
+
+The backend exposes REST APIs used by both the customer website and admin dashboard.
+
+Example API structure:
+
+/api
+│
+├── /auth
+├── /products
+├── /categories
+├── /collections
+├── /orders
+├── /users
+├── /reviews
+├── /coupons
+├── /returns
+├── /notifications
+├── /brands
+├── /size-guides
+├── /gift-cards
+├── /banners
+├── /website-sections
+└── /admin
+📱 Responsive Design
+
+The website is designed to work across:
+
+Mobile
+Tablet
+Laptop
+Desktop
+Large desktop screens
+
+Responsive layouts include:
+
+Adaptive navigation
+Mobile-friendly product grids
+Responsive product details
+Responsive checkout
+Mobile account navigation
+Responsive modals
+Touch-friendly controls
+Responsive AI Stylist
+Responsive banners and editorial sections
+🎨 Design System
+
+MONOLITH follows a premium luxury fashion design direction.
+
+Design Principles
+Minimal
+Editorial
+Premium
+Luxury
+Modern
+Clean typography
+Large visual imagery
+Subtle animations
+Responsive layouts
+Typography
+
+The project primarily uses Google Fonts with a combination of modern sans-serif and editorial serif typography.
+
+🔑 Environment Variables
+
+Create environment files for the respective services.
+
+Backend
+MONGODB_URI=
+PORT=
+JWT_SECRET=
+FRONTEND_URL=
+ADMIN_URL=
+ALLOWED_ORIGINS=
+
+RESEND_API_KEY=
+EMAIL_FROM=
+RESET_PASSWORD_URL=
+
+TWILIO_ACCOUNT_SID=
+TWILIO_API_KEY_SID=
+TWILIO_API_KEY_SECRET=
+TWILIO_AUTH_TOKEN=
+TWILIO_PHONE_NUMBER=
+TWILIO_MESSAGING_SERVICE_SID=
+TWILIO_VERIFY_SERVICE_SID=
+Website
+VITE_API_URL=
+Admin
+VITE_API_URL=
+
+Do not commit .env files or API credentials to GitHub.
+
+💻 Local Development
+1. Clone Repository
+git clone https://github.com/NamanJain19/Clothing-Ecommerce.git
+cd Clothing-Ecommerce
+2. Install Backend Dependencies
+cd backend
+npm install
+3. Start Backend
+npm run dev
+
+Backend runs on:
+
+http://localhost:3011
+4. Install Website Dependencies
+
+Open another terminal:
+
+cd website
+npm install
+npm run dev
+
+Website runs on:
+
+http://localhost:3008
+5. Install Admin Dependencies
+
+Open another terminal:
+
+cd admin
+npm install
+npm run dev
+
+Admin runs on:
+
+http://localhost:3009
+🐳 Docker
+
+The project also contains Docker Compose configuration.
+
+docker compose up -d
+
+To rebuild services:
+
+docker compose build
+
+To stop services:
+
+docker compose down
+📦 Production Deployment
+
+The project is deployed using Render.
+
+Services
+Customer Website
+        ↓
+monolithh.duckdns.org
+
+Admin Dashboard
+        ↓
+clothing-ecommerce-qoo7.onrender.com
+
+Backend API
+        ↓
+monolith-backend-yzxj.onrender.com
+
+MongoDB Atlas is used as the cloud database.
+
+🔄 Application Flow
+Customer
+   │
+   ▼
+MONOLITH Website
+   │
+   ▼
+Backend REST API
+   │
+   ▼
+MongoDB Atlas
+
+Admin:
+
+Administrator
+      │
+      ▼
+Admin Dashboard
+      │
+      ▼
+Backend REST API
+      │
+      ▼
+MongoDB Atlas
+
+Both the customer website and admin dashboard communicate with the same backend and database.
+
+👤 Customer Flow
+Register / Login
+       ↓
+Browse Products
+       ↓
+Search / Categories / Collections
+       ↓
+Product Details
+       ↓
+Add to Wishlist / Cart
+       ↓
+Checkout
+       ↓
+Place Order
+       ↓
+Track Order
+       ↓
+Manage Account
+🛠️ Admin Flow
+Admin Login
+     ↓
+Dashboard
+     ↓
+Manage Products
+     ↓
+Manage Categories / Collections
+     ↓
+Manage Orders
+     ↓
+Manage Customers
+     ↓
+Manage Inventory
+     ↓
+Manage Reviews / Returns
+     ↓
+Analytics & Reports
+     ↓
+Website Content Management
+📸 Screenshots
+
+Screenshots of the customer website and admin dashboard can be added here.
+
+Customer Website
+
+Add screenshots of:
+
+Homepage
+Product Listing
+Product Details
+Shopping Cart
+Checkout
+Account
+Order Tracking
+Admin Dashboard
+
+Add screenshots of:
+
+Dashboard
+Product Management
+Orders
+Customers
+Analytics
+Website Management
+🔒 Security
+
+The project follows common application security practices including:
+
+Environment variables for secrets
+Password hashing
+Protected API routes
+Authentication middleware
+Secure password reset tokens
+Token expiration
+Single-use password reset tokens
+CORS configuration
+Server-side validation
+No credentials committed to source control
+📈 Project Highlights
+Full-stack e-commerce architecture
+Separate customer and admin applications
+RESTful backend API
+MongoDB database integration
+Authentication system
+Product and inventory management
+Order management
+Customer management
+Analytics and reporting
+Responsive design
+Cloud deployment
+AI-powered shopping interface
+Admin-controlled website content
+📚 What I Built
+
+This project demonstrates practical experience in:
+
+Full-stack web development
+React application development
+TypeScript
+REST API development
+Database design
+Authentication
+Admin dashboard development
+E-commerce workflows
+Responsive UI/UX
+Cloud deployment
+Docker
+MongoDB Atlas
+API integration
+AI-assisted application features
+👨‍💻 Author
+
+Naman Jain
+
+BCA Student | Full-Stack Developer | AI Automation & Cloud Enthusiast
+
+GitHub:
+https://github.com/NamanJain19
+
+Portfolio:
+https://personal-portfolio-git-main-namanjain19s-projects.vercel.app
+
+📄 License
+
+This project is created for educational, portfolio, and demonstration purposes.
+
+⭐ Project
+
+If you find this project useful or interesting, consider giving the repository a ⭐ on GitHub.

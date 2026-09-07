@@ -107,6 +107,15 @@ export const PagesManagementPage: React.FC = () => {
           </AdminButton>
         </div>
 
+        {/* Status Notice */}
+        <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase tracking-wider bg-amber-200/80 px-2 py-0.5 rounded text-[10px]">Architecture Note</span>
+            <span>Storefront editorial pages (<code>/about-us</code>, <code>/privacy-policy</code>, <code>/terms-conditions</code>) are rendered via dedicated template components in <code>website/src/pages/</code>. Standalone CMS page routing is managed at the storefront level.</span>
+          </div>
+          <AdminBadge variant="neutral">Frontend Editorial</AdminBadge>
+        </div>
+
         {/* Search */}
         <div className="bg-white border border-outline-variant rounded-xl p-space-md shadow-sm flex flex-wrap gap-4 items-center justify-between">
           <div className="flex-1 max-w-md">

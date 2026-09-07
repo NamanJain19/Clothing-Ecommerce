@@ -5,8 +5,9 @@ import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminDrawer } from '../../components/ui/AdminDrawer';
 import { AdminInput } from '../../components/ui/AdminInput';
-import { AdminImageUpload } from '../../components/ui/AdminImageUpload';
 import { adminService } from '../../services/adminService';
+import { normalizeImageUrl } from '../../utils/imageUtils';
+import { AdminImageUpload } from '../../components/ui/AdminImageUpload';
 
 export interface CollectionItem {
   id: string;
@@ -47,7 +48,7 @@ export const CollectionsPage: React.FC = () => {
         itemCount: c.productCount || c.itemCount || 0,
         status: c.isActive === false ? 'Archived' : (c.status || 'Published'),
         curator: c.curator || 'Atelier MONOLITH',
-        image: c.image || c.bannerImage || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+        image: normalizeImageUrl(c.image || c.bannerImage),
         description: c.description || '',
         releaseDate: c.createdAt ? new Date(c.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : undefined,
       }));

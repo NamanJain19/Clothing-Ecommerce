@@ -7,6 +7,7 @@ import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminPagination } from '../../components/ui/AdminPagination';
 import type { Review } from '../../data/reviews';
 import { adminService } from '../../services/adminService';
+import { normalizeImageUrl } from '../../utils/imageUtils';
 
 export const ReviewsPage: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -26,6 +27,7 @@ export const ReviewsPage: React.FC = () => {
       const mapped: Review[] = rawList.map((r: any) => ({
         id: r._id || r.id,
         productName: r.product?.name || r.productName || 'Luxury Sartorial Garment',
+        productImage: normalizeImageUrl(r.product?.images?.[0] || r.product?.thumbnail || r.productImage),
         author: r.user ? `${r.user.firstName || ''} ${r.user.lastName || ''}`.trim() : (r.author || 'Verified Client'),
         authorEmail: r.user?.email || r.authorEmail || 'client@monolith.luxury',
         rating: r.rating || 5,

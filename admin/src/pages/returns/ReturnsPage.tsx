@@ -7,6 +7,7 @@ import { AdminSearch } from '../../components/ui/AdminSearch';
 import { AdminModal } from '../../components/ui/AdminModal';
 import { AdminPagination } from '../../components/ui/AdminPagination';
 import { adminService } from '../../services/adminService';
+import { normalizeImageUrl } from '../../utils/imageUtils';
 
 export interface ReturnRequest {
   id: string;
@@ -27,6 +28,7 @@ export const ReturnsPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('All');
   const [selectedReturn, setSelectedReturn] = useState<ReturnRequest | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -43,7 +45,7 @@ export const ReturnsPage: React.FC = () => {
         customerName: r.user ? `${r.user.firstName || ''} ${r.user.lastName || ''}`.trim() || r.user.email : 'Private Client',
         customerEmail: r.user?.email || '',
         productName: r.items?.[0]?.name || r.productName || 'Order Return Package',
-        productImage: r.items?.[0]?.image || r.productImage || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80',
+        productImage: normalizeImageUrl(r.items?.[0]?.image || r.productImage),
         type: r.type || 'Return Request',
         amount: r.refundAmount || r.order?.total || 0,
         status: r.status || 'Pending Review',

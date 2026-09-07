@@ -5,12 +5,28 @@
 export const DEFAULT_FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80';
 
-export const normalizeImageUrl = (url?: string | null): string => {
-  if (!url || typeof url !== 'string') {
+import { API_BASE_URL } from '../services/adminService';
+
+const getBackendRoot = (): string => {
+  const cleanBase = (API_BASE_URL || 'http://localhost:3011/api').replace(/\/+$/, '');
+  return cleanBase.replace(/\/api$/, '');
+};
+
+export const normalizeImageUrl = (input?: any): string => {
+  if (!input) return DEFAULT_FALLBACK_IMAGE;
+
+  let raw = '';
+  if (typeof input === 'string') {
+    raw = input.trim();
+  } else if (typeof input === 'object') {
+    raw = input.secure_url || input.url || input.image || input.src || '';
+  }
+
+  if (!raw || typeof raw !== 'string') {
     return DEFAULT_FALLBACK_IMAGE;
   }
 
-  let cleaned = url.trim();
+  let cleaned = raw.trim();
 
   // If Markdown link: [text](http...)
   const mdMatch = cleaned.match(/\[.*?\]\((https?:\/\/[^\s)]+)\)/);
@@ -20,13 +36,29 @@ export const normalizeImageUrl = (url?: string | null): string => {
 
   cleaned = cleaned.replace(/\\&/g, '&');
 
+  // If relative path like /uploads/... or uploads/...
+  if (cleaned.startsWith('/uploads/') || cleaned.startsWith('/images/')) {
+    cleaned = `${getBackendRoot()}${cleaned}`;
+  } else if (cleaned.startsWith('uploads/') || cleaned.startsWith('images/')) {
+    cleaned = `${getBackendRoot()}/${cleaned}`;
+  }
+
+  // If running on production (HTTPS), replace accidental localhost images with production backend
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    if (cleaned.includes('localhost:3011')) {
+      cleaned = cleaned.replace('http://localhost:3011', 'https://monolith-backend-yzxj.onrender.com');
+    }
+  }
+
   if (
     cleaned.startsWith('https://') ||
     cleaned.startsWith('http://') ||
     cleaned.startsWith('data:image/') ||
     cleaned.startsWith('/')
   ) {
-    if (cleaned.includes('example.com')) return DEFAULT_FALLBACK_IMAGE;
+    if (cleaned.includes('example.com') || cleaned.includes('placeholder.com/via')) {
+      return DEFAULT_FALLBACK_IMAGE;
+    }
     return cleaned;
   }
 

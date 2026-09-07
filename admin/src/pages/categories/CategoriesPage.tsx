@@ -10,6 +10,7 @@ import { AdminImageUpload } from '../../components/ui/AdminImageUpload';
 import { AdminPagination } from '../../components/ui/AdminPagination';
 import type { Category } from '../../data/categories';
 import { adminService } from '../../services/adminService';
+import { normalizeImageUrl } from '../../utils/imageUtils';
 
 export const CategoriesPage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -41,7 +42,7 @@ export const CategoriesPage: React.FC = () => {
         slug: c.slug,
         productCount: c.productCount || 0,
         status: c.isActive !== false ? 'Active' : 'Hidden',
-        image: c.image || 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=400&q=80',
+        image: normalizeImageUrl(c.image),
         description: c.description || '',
         featured: false,
       }));

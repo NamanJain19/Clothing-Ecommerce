@@ -48,6 +48,7 @@ export interface StorefrontBanner {
 }
 
 import { adminService } from '../../services/adminService';
+import { normalizeImageUrl } from '../../utils/imageUtils';
 
 export const BannerManagementPage: React.FC = () => {
   const [banners, setBanners] = useState<StorefrontBanner[]>([]);
@@ -81,7 +82,7 @@ export const BannerManagementPage: React.FC = () => {
         badge: b.badge || 'Featured',
         targetPage: (b.targetPage || 'Homepage Hero') as BannerTargetLocation,
         slideOrder: b.sortOrder || b.slideOrder || idx + 1,
-        image: b.image || '',
+        image: normalizeImageUrl(b.image),
         link: b.link || '/',
         ctaText: b.ctaText || 'Shop Now',
         status: b.isActive !== false ? 'Active' : 'Draft',

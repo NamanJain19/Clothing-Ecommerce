@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Truck, Plus, ShieldCheck, MapPin, Edit, Trash2, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Truck, Plus, ShieldCheck, MapPin, Edit, Trash2, CheckCircle2, Loader2 } from 'lucide-react';
 import { AdminLayout } from '../../components/layout/AdminLayout';
 import { AdminButton } from '../../components/ui/AdminButton';
 import { AdminBadge } from '../../components/ui/AdminBadge';
 import { AdminModal } from '../../components/ui/AdminModal';
 import { AdminInput } from '../../components/ui/AdminInput';
 import { AdminSelect } from '../../components/ui/AdminSelect';
+import { adminService } from '../../services/adminService';
 
 export interface ShippingZone {
   id: string;
@@ -19,46 +20,65 @@ export interface ShippingZone {
   status: 'Active' | 'Inactive';
 }
 
-export const initialShippingZones: ShippingZone[] = [
-  {
-    id: 'SHIP-01',
-    name: 'India Domestic Priority & Metros',
-    regions: ['Mumbai', 'Delhi NCR', 'Bengaluru', 'All India Metros'],
-    carrier: 'BlueDart Express (Air Priority)',
-    serviceType: 'Insured Armored Transit',
-    baseRate: 250,
-    freeShippingThreshold: 5000,
-    deliveryTime: '24-48 Hours',
-    status: 'Active',
-  },
-  {
-    id: 'SHIP-02',
-    name: 'Metropolitan White-Glove Concierge',
-    regions: ['South Mumbai', 'Lutyens Delhi', 'UB City Bengaluru'],
-    carrier: 'Monolith Private Chauffeur',
-    serviceType: 'Same-Day Hand Delivery & Fitting',
-    baseRate: 1500,
-    freeShippingThreshold: 50000,
-    deliveryTime: 'Same Day (4 Hours)',
-    status: 'Active',
-  },
-  {
-    id: 'SHIP-03',
-    name: 'International Diplomatic Dispatch',
-    regions: ['Dubai', 'London', 'Paris', 'Singapore', 'New York'],
-    carrier: 'DHL Express Worldwide Insured',
-    serviceType: 'Customs Cleared Air Courier',
-    baseRate: 4500,
-    freeShippingThreshold: 100000,
-    deliveryTime: '3-5 Business Days',
-    status: 'Active',
-  },
-];
-
 export const ShippingPage: React.FC = () => {
-  const [zones, setZones] = useState<ShippingZone[]>(initialShippingZones);
+  const [zones, setZones] = useState<ShippingZone[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+
+  const fetchLiveSettings = async () => {
+    try {
+      setLoading(true);
+      const res = await adminService.getSettings();
+      const s = res?.data || {};
+      const standardFee = Number(s.standardShippingFee ?? 250);
+      const freeThresholdVal = Number(s.freeShippingThreshold ?? 5000);
+
+      setZones([
+        {
+          id: 'SHIP-01',
+          name: 'India Domestic Priority & Metros',
+          regions: ['Mumbai', 'Delhi NCR', 'Bengaluru', 'All India Metros'],
+          carrier: 'BlueDart Express (Air Priority)',
+          serviceType: 'Insured Armored Transit',
+          baseRate: standardFee,
+          freeShippingThreshold: freeThresholdVal,
+          deliveryTime: '24-48 Hours',
+          status: 'Active',
+        },
+        {
+          id: 'SHIP-02',
+          name: 'Metropolitan White-Glove Concierge',
+          regions: ['South Mumbai', 'Lutyens Delhi', 'UB City Bengaluru'],
+          carrier: 'Delhivery Luxury Logistics / Private Chauffeur',
+          serviceType: 'Priority Hand Delivery',
+          baseRate: standardFee * 2,
+          freeShippingThreshold: freeThresholdVal * 5,
+          deliveryTime: 'Same Day / 24 Hours',
+          status: 'Active',
+        },
+        {
+          id: 'SHIP-03',
+          name: 'International Diplomatic Dispatch',
+          regions: ['Dubai', 'London', 'Paris', 'Singapore', 'New York'],
+          carrier: 'DHL Express Worldwide Insured',
+          serviceType: 'Customs Cleared Air Courier',
+          baseRate: 4500,
+          freeShippingThreshold: 100000,
+          deliveryTime: '3-5 Business Days',
+          status: 'Active',
+        },
+      ]);
+    } catch (err) {
+      console.error('Failed to load shipping settings from DB:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchLiveSettings();
+  }, []);
 
   const [name, setName] = useState('');
   const [carrier, setCarrier] = useState('BlueDart Express (Air Priority)');
@@ -89,11 +109,26 @@ export const ShippingPage: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveZone = (e?: React.FormEvent | React.MouseEvent) => {
+  const handleSaveZone = async (e?: React.FormEvent | React.MouseEvent) => {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }
     if (!name.trim()) return;
+
+    const rateNum = parseFloat(baseRate) || 0;
+    const threshNum = parseFloat(freeThreshold) || 0;
+
+    // Persist to MongoDB Settings if domestic/primary zone
+    if (editingId === 'SHIP-01' || name.toLowerCase().includes('domestic')) {
+      try {
+        await adminService.updateSettings({
+          standardShippingFee: rateNum,
+          freeShippingThreshold: threshNum,
+        });
+      } catch (err) {
+        console.error('Failed to persist shipping rates to backend:', err);
+      }
+    }
 
     if (editingId) {
       setZones((prev) =>
@@ -104,8 +139,8 @@ export const ShippingPage: React.FC = () => {
                 name,
                 carrier,
                 serviceType,
-                baseRate: parseFloat(baseRate) || 0,
-                freeShippingThreshold: parseFloat(freeThreshold) || 0,
+                baseRate: rateNum,
+                freeShippingThreshold: threshNum,
                 deliveryTime,
               }
             : z
@@ -118,8 +153,8 @@ export const ShippingPage: React.FC = () => {
         regions: ['India Domestic & Priority Hubs'],
         carrier,
         serviceType,
-        baseRate: parseFloat(baseRate) || 0,
-        freeShippingThreshold: parseFloat(freeThreshold) || 0,
+        baseRate: rateNum,
+        freeShippingThreshold: threshNum,
         deliveryTime,
         status: 'Active',
       };

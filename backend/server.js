@@ -21,25 +21,27 @@ connectDB();
 // Security HTTP headers
 app.use(helmet());
 
-// Helper to normalize origins by trimming and removing trailing slash
-const normalizeOrigin = (url) => (url ? url.replace(/\/+$/, '').trim() : '');
+// Helper to normalize origins by trimming whitespace and removing trailing slash
+const normalizeOrigin = (url) => (url ? String(url).trim().replace(/\/+$/, '') : '');
 
-// Allowed origins for CORS
+// Allowed origins for CORS (Local development + Production deployments)
 const envAllowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map((o) => normalizeOrigin(o)).filter(Boolean)
+  ? process.env.ALLOWED_ORIGINS.split(',').map(normalizeOrigin).filter(Boolean)
   : [];
 
 const rawAllowedOrigins = [
   'http://localhost:3008',
   'http://localhost:3009',
   'http://127.0.0.1:3009',
+  'https://monolith-website.onrender.com',
+  'https://clothing-ecommerce-qoo7.onrender.com',
   process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
   ...envAllowedOrigins
 ];
 
 const allowedOrigins = Array.from(
-  new Set(rawAllowedOrigins.map((origin) => normalizeOrigin(origin)).filter(Boolean))
+  new Set(rawAllowedOrigins.map(normalizeOrigin).filter(Boolean))
 );
 
 // CORS configuration
@@ -57,10 +59,12 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // HTTP request logger
 if (process.env.NODE_ENV !== 'test') {

@@ -1,15 +1,61 @@
 const { Resend } = require('resend');
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
-const EMAIL_FROM = process.env.EMAIL_FROM || 'MONOLITH Luxury Atelier <onboarding@resend.dev>';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3008';
-
 let resendClient = null;
+
+const getResendApiKey = () => (process.env.RESEND_API_KEY || '').trim();
+const getEmailFrom = () => (process.env.EMAIL_FROM || 'MONOLITH Luxury Atelier <onboarding@resend.dev>').trim();
+
 const getResendClient = () => {
-  if (!resendClient && RESEND_API_KEY) {
-    resendClient = new Resend(RESEND_API_KEY);
+  const apiKey = getResendApiKey();
+  if (!apiKey) return null;
+  if (!resendClient) {
+    resendClient = new Resend(apiKey);
   }
   return resendClient;
+};
+
+/**
+ * Get normalized frontend base URL for customer links.
+ * Guarantees that in production, links point to https://monolith-website.onrender.com
+ * and never localhost or 127.0.0.1.
+ */
+const getFrontendBaseUrl = () => {
+  if (process.env.FRONTEND_URL && process.env.FRONTEND_URL.trim()) {
+    const candidate = process.env.FRONTEND_URL.trim().replace(/\/+$/, '');
+    if (process.env.NODE_ENV === 'production') {
+      if (!candidate.includes('localhost') && !candidate.includes('127.0.0.1')) {
+        return candidate;
+      }
+    } else {
+      return candidate;
+    }
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    return 'https://monolith-website.onrender.com';
+  }
+
+  return 'http://localhost:3008';
+};
+
+/**
+ * Generate secure Password Reset Link
+ * Prioritizes RESET_PASSWORD_URL if defined, otherwise uses getFrontendBaseUrl()
+ */
+const getResetPasswordUrl = (rawToken) => {
+  const tokenParam = `token=${encodeURIComponent(rawToken)}`;
+
+  if (process.env.RESET_PASSWORD_URL && process.env.RESET_PASSWORD_URL.trim()) {
+    const custom = process.env.RESET_PASSWORD_URL.trim().replace(/\/+$/, '');
+    if (custom.includes('/reset-password')) {
+      const sep = custom.includes('?') ? '&' : '?';
+      return `${custom}${sep}${tokenParam}`;
+    }
+    return `${custom}/reset-password?${tokenParam}`;
+  }
+
+  const base = getFrontendBaseUrl();
+  return `${base}/reset-password?${tokenParam}`;
 };
 
 /**
@@ -182,8 +228,9 @@ const emailService = {
       return { success: false, reason: 'unconfigured' };
     }
 
-    const resetUrl = `${FRONTEND_URL}/reset-password?token=${encodeURIComponent(rawToken)}`;
+    const resetUrl = getResetPasswordUrl(rawToken);
     const recipientName = user.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Valued Client';
+    const emailFrom = getEmailFrom();
 
     const contentHtml = `
       <p class="greeting">Dear ${recipientName},</p>
@@ -212,9 +259,9 @@ const emailService = {
     });
 
     try {
-      console.log(`[EmailService] Dispatching password reset email to ${user.email}...`);
+      console.log(`[EmailService] Dispatching password reset email to ${user.email} with URL ${resetUrl}...`);
       const response = await resend.emails.send({
-        from: EMAIL_FROM,
+        from: emailFrom,
         to: [user.email],
         subject: 'MONOLITH — Password Reset Request',
         html,
@@ -244,8 +291,10 @@ const emailService = {
     const resend = getResendClient();
     if (!resend) return { success: false, reason: 'unconfigured' };
 
+    const baseUrl = getFrontendBaseUrl();
     const recipientName = user.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Valued Client';
-    const orderUrl = `${FRONTEND_URL}/order-details/${order._id || order.orderNumber}`;
+    const orderUrl = `${baseUrl}/order-details/${order._id || order.orderNumber}`;
+    const emailFrom = getEmailFrom();
 
     const contentHtml = `
       <p class="greeting">Dear ${recipientName},</p>
@@ -270,7 +319,7 @@ const emailService = {
 
     try {
       const response = await resend.emails.send({
-        from: EMAIL_FROM,
+        from: emailFrom,
         to: [user.email],
         subject: `MONOLITH Order Confirmation — ${order.orderNumber}`,
         html,
@@ -289,8 +338,10 @@ const emailService = {
     const resend = getResendClient();
     if (!resend) return { success: false, reason: 'unconfigured' };
 
+    const baseUrl = getFrontendBaseUrl();
     const recipientName = user.firstName || 'Valued Client';
-    const trackUrl = `${FRONTEND_URL}/track-order`;
+    const trackUrl = `${baseUrl}/track-order`;
+    const emailFrom = getEmailFrom();
 
     const contentHtml = `
       <p class="greeting">Dear ${recipientName},</p>

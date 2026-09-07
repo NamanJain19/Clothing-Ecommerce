@@ -64,9 +64,12 @@ export const apiRequest = async <T = any>(
   const url = `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
 
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
     ...(options.headers as Record<string, string> || {}),
   };
+
+  if (!(options.body instanceof FormData) && !headers['Content-Type']) {
+    headers['Content-Type'] = 'application/json';
+  }
 
   const token = getToken();
   if (token && !headers['Authorization']) {

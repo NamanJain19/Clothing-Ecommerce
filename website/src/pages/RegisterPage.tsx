@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Camera, Plus, Loader2 } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { authBrandConfig } from '../data/authConfig';
 import { useAuth } from '../context/AuthContext';
+import { authService } from '../services/authService';
+import { GoogleLogoIcon, AppleLogoIcon } from '../components/common/SocialAuthIcons';
 
 export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,8 +17,45 @@ export const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [avatar, setAvatar] = useState('');
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Show preview immediately
+    const previewUrl = URL.createObjectURL(file);
+    setAvatarPreview(previewUrl);
+    setIsUploadingAvatar(true);
+    setErrorMessage(null);
+
+    try {
+      const uploadedUrl = await authService.uploadAvatar(file);
+      setAvatar(uploadedUrl);
+    } catch (err: any) {
+      console.warn('Avatar upload failed, falling back to local base64:', err.message);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setAvatar(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } finally {
+      setIsUploadingAvatar(false);
+    }
+  };
+
+  const handleRemoveAvatar = () => {
+    setAvatar('');
+    setAvatarPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,14 +75,16 @@ export const RegisterPage: React.FC = () => {
     const nameParts = trimmedName.split(' ');
     const firstName = nameParts[0] || 'Client';
     const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : 'Member';
+    const normalizedEmail = email.trim().toLowerCase();
 
     setIsSubmitting(true);
     const result = await register({
       firstName,
       lastName,
-      email: email.trim(),
+      email: normalizedEmail,
       phone: phone.trim(),
       password,
+      avatar: avatar || undefined,
     });
     setIsSubmitting(false);
 
@@ -108,6 +150,59 @@ export const RegisterPage: React.FC = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Profile Photo Upload (Optional) */}
+              <div className="flex flex-col items-center justify-center pb-2">
+                <div
+                  className="relative group cursor-pointer"
+                  onClick={() => fileInputRef.current?.click()}
+                  title="Choose profile photo (optional)"
+                >
+                  <div className="w-20 h-20 rounded-full border-2 border-outline-variant group-hover:border-primary overflow-hidden bg-surface-container flex items-center justify-center transition-all duration-300 shadow-xs relative">
+                    {avatarPreview ? (
+                      <img src={avatarPreview} alt="Avatar Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center text-secondary group-hover:text-primary transition-colors">
+                        <Camera className="w-6 h-6 stroke-[1.5]" />
+                        <span className="text-[9px] uppercase tracking-wider font-semibold mt-1">Photo</span>
+                      </div>
+                    )}
+                    {isUploadingAvatar && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-full">
+                        <Loader2 className="w-5 h-5 text-white animate-spin" />
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center shadow-md hover:bg-black transition-colors cursor-pointer"
+                    title="Upload profile photo"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  onChange={handleAvatarChange}
+                  className="hidden"
+                />
+                <div className="mt-2 text-center">
+                  <span className="font-label-caps text-[10px] uppercase text-secondary tracking-widest block">
+                    Profile Portrait <span className="opacity-60 font-normal">(Optional)</span>
+                  </span>
+                  {avatarPreview && (
+                    <button
+                      type="button"
+                      onClick={handleRemoveAvatar}
+                      className="text-[10px] text-red-500 hover:text-red-700 underline mt-0.5 cursor-pointer"
+                    >
+                      Remove photo
+                    </button>
+                  )}
+                </div>
+              </div>
+
               {/* Full Name */}
               <div className="relative">
                 <label className="font-label-caps text-[10px] uppercase text-secondary mb-1 block">
@@ -132,9 +227,10 @@ export const RegisterPage: React.FC = () => {
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="CONTACT@MONOLITH.COM"
-                  className="w-full bg-transparent border-0 border-b border-outline-variant py-3 font-body-md text-sm text-on-surface placeholder:text-outline focus:border-primary transition-all"
+                  onChange={(e) => setEmail(e.target.value.toLowerCase())}
+                  onBlur={() => setEmail((prev) => prev.trim().toLowerCase())}
+                  placeholder="contact@monolith.luxury"
+                  className="w-full bg-transparent border-0 border-b border-outline-variant py-3 font-body-md text-sm text-on-surface placeholder:text-outline focus:border-primary transition-all lowercase"
                 />
               </div>
 
@@ -206,10 +302,10 @@ export const RegisterPage: React.FC = () => {
               {/* Create Account Button */}
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isUploadingAvatar}
                 className="w-full bg-primary text-white py-5 font-button text-button uppercase tracking-[0.2em] hover:bg-black/90 disabled:opacity-50 transition-all duration-300 shadow-md cursor-pointer mt-4"
               >
-                {isSubmitting ? 'Creating Account...' : 'Create Account'}
+                {isSubmitting ? 'Creating Account...' : isUploadingAvatar ? 'Uploading Photo...' : 'Create Account'}
               </button>
             </form>
 
@@ -229,15 +325,18 @@ export const RegisterPage: React.FC = () => {
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={isSubmitting}
-                className="flex items-center justify-center gap-2 border border-outline-variant py-3.5 px-4 font-button text-xs uppercase tracking-wider hover:border-primary transition-colors cursor-pointer bg-white disabled:opacity-50 shadow-xs"
+                className="flex items-center justify-center gap-2.5 border border-outline-variant py-3.5 px-4 font-button text-xs uppercase tracking-wider hover:border-primary transition-colors cursor-pointer bg-white disabled:opacity-50 shadow-xs"
               >
-                Google
+                <GoogleLogoIcon className="w-4 h-4 shrink-0" />
+                <span>Google</span>
               </button>
               <button
+                type="button"
                 onClick={() => navigate('/dashboard')}
-                className="flex items-center justify-center gap-2 border border-outline-variant py-3.5 px-4 font-button text-xs uppercase tracking-wider hover:border-primary transition-colors cursor-pointer bg-white"
+                className="flex items-center justify-center gap-2.5 border border-outline-variant py-3.5 px-4 font-button text-xs uppercase tracking-wider hover:border-primary transition-colors cursor-pointer bg-white shadow-xs"
               >
-                Apple
+                <AppleLogoIcon className="w-4 h-4 shrink-0" />
+                <span>Continue with Apple</span>
               </button>
             </div>
 

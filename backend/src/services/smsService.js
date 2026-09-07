@@ -13,24 +13,42 @@ const Order = require('../models/Order');
  * 5. Twilio Verify OTP dispatch and verification
  */
 
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID || '';
-const TWILIO_API_KEY_SID = process.env.TWILIO_API_KEY_SID || '';
-const TWILIO_API_KEY_SECRET = process.env.TWILIO_API_KEY_SECRET || '';
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN || '';
-const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER || '';
-const TWILIO_MESSAGING_SERVICE_SID = process.env.TWILIO_MESSAGING_SERVICE_SID || '';
-const TWILIO_VERIFY_SERVICE_SID = process.env.TWILIO_VERIFY_SERVICE_SID || 'VA2215b9a0261fe4340a46deb095ed4d27';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3008';
+const getTwilioConfig = () => ({
+  accountSid: (process.env.TWILIO_ACCOUNT_SID || '').trim(),
+  apiKeySid: (process.env.TWILIO_API_KEY_SID || '').trim(),
+  apiKeySecret: (process.env.TWILIO_API_KEY_SECRET || '').trim(),
+  authToken: (process.env.TWILIO_AUTH_TOKEN || '').trim(),
+  phoneNumber: (process.env.TWILIO_PHONE_NUMBER || '').trim(),
+  messagingServiceSid: (process.env.TWILIO_MESSAGING_SERVICE_SID || '').trim(),
+  verifyServiceSid: (process.env.TWILIO_VERIFY_SERVICE_SID || 'VA2215b9a0261fe4340a46deb095ed4d27').trim(),
+});
+
+const getFrontendBaseUrl = () => {
+  if (process.env.FRONTEND_URL && process.env.FRONTEND_URL.trim()) {
+    const candidate = process.env.FRONTEND_URL.trim().replace(/\/+$/, '');
+    if (process.env.NODE_ENV === 'production') {
+      if (!candidate.includes('localhost') && !candidate.includes('127.0.0.1')) {
+        return candidate;
+      }
+    } else {
+      return candidate;
+    }
+  }
+  return process.env.NODE_ENV === 'production'
+    ? 'https://monolith-website.onrender.com'
+    : 'http://localhost:3008';
+};
 
 let twilioClient = null;
 
 const getTwilioClient = () => {
   if (twilioClient) return twilioClient;
 
-  if (TWILIO_API_KEY_SID && TWILIO_API_KEY_SECRET && TWILIO_ACCOUNT_SID) {
-    twilioClient = twilio(TWILIO_API_KEY_SID, TWILIO_API_KEY_SECRET, { accountSid: TWILIO_ACCOUNT_SID });
-  } else if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN) {
-    twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+  const config = getTwilioConfig();
+  if (config.apiKeySid && config.apiKeySecret && config.accountSid) {
+    twilioClient = twilio(config.apiKeySid, config.apiKeySecret, { accountSid: config.accountSid });
+  } else if (config.accountSid && config.authToken) {
+    twilioClient = twilio(config.accountSid, config.authToken);
   }
 
   return twilioClient;
@@ -88,10 +106,11 @@ const smsService = {
         body: message,
       };
 
-      if (TWILIO_MESSAGING_SERVICE_SID) {
-        payload.messagingServiceSid = TWILIO_MESSAGING_SERVICE_SID;
-      } else if (TWILIO_PHONE_NUMBER) {
-        payload.from = TWILIO_PHONE_NUMBER;
+      const config = getTwilioConfig();
+      if (config.messagingServiceSid) {
+        payload.messagingServiceSid = config.messagingServiceSid;
+      } else if (config.phoneNumber) {
+        payload.from = config.phoneNumber;
       }
 
       console.log(`[SMS Service] Dispatching SMS (${event}) to ${normalizedPhone}...`);
@@ -276,9 +295,10 @@ const smsService = {
     }
 
     try {
+      const config = getTwilioConfig();
       console.log(`[Twilio Verify] Requesting OTP verification for ${normalizedPhone}...`);
       const verification = await client.verify.v2
-        .services(TWILIO_VERIFY_SERVICE_SID)
+        .services(config.verifyServiceSid)
         .verifications.create({
           to: normalizedPhone,
           channel: 'sms',
@@ -321,9 +341,10 @@ const smsService = {
     }
 
     try {
+      const config = getTwilioConfig();
       console.log(`[Twilio Verify] Checking OTP code for ${normalizedPhone}...`);
       const check = await client.verify.v2
-        .services(TWILIO_VERIFY_SERVICE_SID)
+        .services(config.verifyServiceSid)
         .verificationChecks.create({
           to: normalizedPhone,
           code: String(code).trim(),

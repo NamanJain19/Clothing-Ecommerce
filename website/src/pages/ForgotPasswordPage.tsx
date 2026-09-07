@@ -14,13 +14,15 @@ export const ForgotPasswordPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!normalizedEmail) return;
 
     setIsSubmitting(true);
     setErrorMessage('');
 
     try {
-      await authService.forgotPassword(email.trim());
+      await authService.forgotPassword(normalizedEmail);
+      setEmail(normalizedEmail);
       setIsSubmitted(true);
     } catch (err: any) {
       setErrorMessage(err.message || 'Unable to process password reset request. Please try again.');
@@ -62,7 +64,7 @@ export const ForgotPasswordPage: React.FC = () => {
                     Forgot Password
                   </h1>
                   <p className="font-body-md text-secondary text-sm">
-                    Enter your registered email address to receive a reset link.
+                    Enter your registered email address to receive a secure reset link.
                   </p>
                 </div>
 
@@ -82,9 +84,10 @@ export const ForgotPasswordPage: React.FC = () => {
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="NAME@DOMAIN.COM"
-                      className="w-full bg-transparent border-0 border-b border-outline-variant py-3 font-body-md text-sm text-on-surface placeholder:text-outline focus:border-primary transition-all uppercase"
+                      onChange={(e) => setEmail(e.target.value.toLowerCase())}
+                      onBlur={() => setEmail((prev) => prev.trim().toLowerCase())}
+                      placeholder="client@monolith.luxury"
+                      className="w-full bg-transparent border-0 border-b border-outline-variant py-3 font-body-md text-sm text-on-surface placeholder:text-outline focus:border-primary transition-all lowercase"
                     />
                   </div>
 
@@ -112,16 +115,24 @@ export const ForgotPasswordPage: React.FC = () => {
                 <p className="font-body-md text-sm text-secondary">
                   Please check your inbox at <span className="font-semibold text-primary">{email}</span> to reset your password.
                 </p>
-                <div className="pt-6">
-                  <button
-                    onClick={() => navigate('/reset-password')}
-                    className="w-full bg-primary text-white font-button text-button py-4 uppercase tracking-[0.2em] hover:bg-black/90 transition-all mb-4 cursor-pointer"
+
+                <div className="p-4 bg-surface-container border border-outline-variant/60 rounded text-left space-y-2 text-xs text-secondary my-4">
+                  <p className="font-semibold text-primary">Next Steps:</p>
+                  <p>1. Open the email from <strong>MONOLITH Luxury Atelier</strong>.</p>
+                  <p>2. Click the secure <strong>"Reset Password"</strong> link inside the email.</p>
+                  <p>3. The link will open your private reset session and allow you to set your new password.</p>
+                </div>
+
+                <div className="pt-4 space-y-3">
+                  <Link
+                    to="/login"
+                    className="block w-full bg-primary text-white font-button text-button py-4 uppercase tracking-[0.2em] hover:bg-black/90 transition-all text-center cursor-pointer shadow-md"
                   >
-                    Proceed to Reset Password
-                  </button>
+                    Return to Login
+                  </Link>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="font-label-caps text-xs text-primary underline underline-offset-4 cursor-pointer"
+                    className="font-label-caps text-xs text-secondary hover:text-primary underline underline-offset-4 cursor-pointer block mx-auto pt-2"
                   >
                     Try Again With Different Email
                   </button>

@@ -1,5 +1,11 @@
 const User = require('../models/User');
 const { generateToken } = require('../utils/jwt');
+const cloudinaryService = require('../services/cloudinaryService');
+
+/**
+ * Helper to escape regex special characters for safe case-insensitive MongoDB queries
+ */
+const escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /**
  * @desc    Register a new user
@@ -10,10 +16,15 @@ const register = async (req, res, next) => {
   try {
     const { firstName, lastName, email, password, phone, avatar } = req.body;
 
-    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedEmail = (email || '').toLowerCase().trim();
 
-    // Check if user already exists
-    const existingUser = await User.findOne({ email: normalizedEmail });
+    // Check if user already exists (case-insensitive)
+    const existingUser = await User.findOne({
+      $or: [
+        { email: normalizedEmail },
+        { email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') } }
+      ]
+    });
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -21,14 +32,30 @@ const register = async (req, res, next) => {
       });
     }
 
+    // Process avatar if provided as Base64 data URI
+    let finalAvatar = (avatar || '').trim();
+    if (finalAvatar.startsWith('data:image/')) {
+      try {
+        const uploadResult = await cloudinaryService.uploadSource(finalAvatar, {
+          folder: 'luxury_fashion/avatars',
+        });
+        if (uploadResult && uploadResult.secure_url) {
+          finalAvatar = uploadResult.secure_url;
+        }
+      } catch (uploadErr) {
+        console.warn('[Register] Cloudinary avatar upload failed, continuing with empty avatar:', uploadErr.message);
+        finalAvatar = '';
+      }
+    }
+
     // Create user (password is automatically hashed via pre-save hook)
     const user = await User.create({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
+      firstName: (firstName || 'Client').trim(),
+      lastName: (lastName || '').trim(),
       email: normalizedEmail,
       password: password,
       phone: phone ? phone.trim() : '',
-      avatar: avatar || ''
+      avatar: finalAvatar
     });
 
     // Generate JWT token
@@ -63,10 +90,15 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedEmail = (email || '').toLowerCase().trim();
 
-    // Find user and explicitly select password field
-    const user = await User.findOne({ email: normalizedEmail }).select('+password');
+    // Find user (case-insensitive) and explicitly select password field
+    const user = await User.findOne({
+      $or: [
+        { email: normalizedEmail },
+        { email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') } }
+      ]
+    }).select('+password');
     if (!user) {
       return res.status(401).json({
         success: false,
@@ -388,10 +420,15 @@ const forgotPassword = async (req, res, next) => {
       });
     }
 
-    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedEmail = (email || '').toLowerCase().trim();
 
-    // Look up user in database
-    const user = await User.findOne({ email: normalizedEmail });
+    // Look up user in database (exact normalized match or case-insensitive regex fallback)
+    const user = await User.findOne({
+      $or: [
+        { email: normalizedEmail },
+        { email: { $regex: new RegExp(`^${escapeRegex(normalizedEmail)}$`, 'i') } }
+      ]
+    });
 
     if (user && user.isActive) {
       // 1. Invalidate any existing unused reset tokens for this user
@@ -560,6 +597,55 @@ const logout = async (req, res) => {
   });
 };
 
+/**
+ * @desc    Upload avatar image (Multipart File, Base64, or URL)
+ * @route   POST /api/auth/upload-avatar
+ * @access  Public (Rate limited)
+ */
+const uploadAvatar = async (req, res, next) => {
+  try {
+    const folder = 'luxury_fashion/avatars';
+
+    // Case 1: Upload via Multipart Form File (Multer)
+    if (req.file && req.file.buffer) {
+      const uploadResult = await cloudinaryService.uploadBuffer(req.file.buffer, {
+        folder,
+        filename_override: req.file.originalname,
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: 'Avatar uploaded successfully',
+        url: uploadResult.secure_url,
+        secure_url: uploadResult.secure_url,
+      });
+    }
+
+    // Case 2: Upload via Base64 Data URI or Image URL
+    const { image } = req.body;
+    if (image && typeof image === 'string') {
+      const uploadResult = await cloudinaryService.uploadSource(image, { folder });
+      return res.status(200).json({
+        success: true,
+        message: 'Avatar uploaded successfully',
+        url: uploadResult.secure_url,
+        secure_url: uploadResult.secure_url,
+      });
+    }
+
+    return res.status(400).json({
+      success: false,
+      message: 'No image file or data provided for avatar upload',
+    });
+  } catch (error) {
+    console.error('[UploadAvatar Error]:', error.message);
+    res.status(400).json({
+      success: false,
+      message: error.message || 'Failed to upload avatar image',
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -572,5 +658,6 @@ module.exports = {
   forgotPassword,
   verifyResetToken,
   resetPassword,
+  uploadAvatar,
 };
 

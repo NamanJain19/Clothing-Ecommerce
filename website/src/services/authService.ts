@@ -75,12 +75,37 @@ export const formatUser = (user: any): User => {
 
 export const authService = {
   /**
+   * Upload customer avatar image via POST /api/auth/upload-avatar
+   */
+  uploadAvatar: async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    const res = await apiRequest<any>('/auth/upload-avatar', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const resData = res as any;
+    if (!resData.url && !resData.secure_url) {
+      throw new Error(res.message || 'Failed to upload avatar image');
+    }
+
+    return resData.url || resData.secure_url;
+  },
+
+  /**
    * Login user with credentials via POST /api/auth/login
    */
   login: async (credentials: LoginCredentials): Promise<{ user: User; token: string }> => {
+    const normalizedCredentials = {
+      ...credentials,
+      email: credentials.email.trim().toLowerCase(),
+    };
+
     const res = await apiRequest<any>('/auth/login', {
       method: 'POST',
-      body: JSON.stringify(credentials),
+      body: JSON.stringify(normalizedCredentials),
     });
 
     if (!res.token || !res.user) {
@@ -96,9 +121,14 @@ export const authService = {
    * Register new user via POST /api/auth/register
    */
   register: async (data: RegisterData): Promise<{ user: User; token: string }> => {
+    const normalizedData = {
+      ...data,
+      email: data.email.trim().toLowerCase(),
+    };
+
     const res = await apiRequest<any>('/auth/register', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(normalizedData),
     });
 
     if (!res.token || !res.user) {
@@ -200,9 +230,10 @@ export const authService = {
    * Request password reset link via POST /api/auth/forgot-password
    */
   forgotPassword: async (email: string): Promise<{ success: boolean; message: string }> => {
+    const normalizedEmail = email.trim().toLowerCase();
     const res = await apiRequest<any>('/auth/forgot-password', {
       method: 'POST',
-      body: JSON.stringify({ email: email.trim() }),
+      body: JSON.stringify({ email: normalizedEmail }),
     });
 
     return {
@@ -252,6 +283,44 @@ export const authService = {
     return {
       success: true,
       message: res.message || 'Password has been reset successfully.',
+    };
+  },
+
+  /**
+   * Request phone verification OTP via POST /api/auth/otp/send
+   */
+  sendOtp: async (phone: string): Promise<{ success: boolean; message: string }> => {
+    const res = await apiRequest<any>('/auth/otp/send', {
+      method: 'POST',
+      body: JSON.stringify({ phone: phone.trim() }),
+    });
+
+    if (!res.success) {
+      throw new Error(res.message || 'Failed to dispatch verification code');
+    }
+
+    return {
+      success: true,
+      message: res.message || 'Verification code sent successfully',
+    };
+  },
+
+  /**
+   * Verify phone OTP code via POST /api/auth/otp/verify
+   */
+  verifyOtp: async (phone: string, code: string): Promise<{ success: boolean; message: string }> => {
+    const res = await apiRequest<any>('/auth/otp/verify', {
+      method: 'POST',
+      body: JSON.stringify({ phone: phone.trim(), code: String(code).trim() }),
+    });
+
+    if (!res.success) {
+      throw new Error(res.message || 'Invalid or expired verification code');
+    }
+
+    return {
+      success: true,
+      message: res.message || 'Phone number verified successfully',
     };
   },
 

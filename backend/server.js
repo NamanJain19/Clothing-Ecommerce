@@ -1,5 +1,9 @@
 const express = require('express');
 const dotenv = require('dotenv');
+
+// Load environment variables immediately before requiring internal services
+dotenv.config();
+
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -7,9 +11,6 @@ const connectDB = require('./src/config/database');
 const apiRoutes = require('./src/routes');
 const notFoundHandler = require('./src/middleware/notFoundHandler');
 const errorHandler = require('./src/middleware/errorHandler');
-
-// Load environment variables
-dotenv.config();
 
 // Initialize Express application
 const app = express();

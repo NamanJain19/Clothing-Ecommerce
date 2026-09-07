@@ -66,9 +66,9 @@ export const ShoppingCartPage: React.FC = () => {
           {/* Left Column: Items & Options (8 Columns) */}
           <div className="lg:col-span-8 space-y-12">
             {/* Free Shipping Progress */}
-            <div className="bg-surface-container-low p-8 border border-outline-variant">
-              <div className="flex justify-between items-end mb-4">
-                <p className="font-label-caps text-label-caps text-primary uppercase">
+            <div className="bg-surface-container-low p-4 sm:p-8 border border-outline-variant">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1 mb-4">
+                <p className="font-label-caps text-xs sm:text-label-caps text-primary uppercase">
                   {awayFromFreeShipping > 0
                     ? `You're ₹${awayFromFreeShipping.toLocaleString('en-IN')} away from Free Express Delivery`
                     : 'You have unlocked Complimentary Express Delivery across India!'}
@@ -245,8 +245,8 @@ export const ShoppingCartPage: React.FC = () => {
 
           {/* Right Column: Order Summary Sticky Panel (4 Columns) */}
           <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-8">
-            <div className="bg-white border border-outline-variant p-8 shadow-sm">
-              <h2 className="font-headline-md text-2xl mb-8 border-b border-outline-variant pb-4">
+            <div className="bg-white border border-outline-variant p-4 sm:p-8 shadow-sm">
+              <h2 className="font-headline-md text-xl sm:text-2xl mb-6 sm:mb-8 border-b border-outline-variant pb-4">
                 Order Summary
               </h2>
 
@@ -265,7 +265,7 @@ export const ShoppingCartPage: React.FC = () => {
                   <span>GST Tax</span>
                   <span className="text-emerald-700 font-medium">Included in Price</span>
                 </div>
-                <div className="pt-4 border-t border-outline-variant flex justify-between font-headline-md text-2xl text-primary font-semibold">
+                <div className="pt-4 border-t border-outline-variant flex justify-between font-headline-md text-xl sm:text-2xl text-primary font-semibold">
                   <span>Total</span>
                   <span>₹{(subtotal + (subtotal >= freeShippingThreshold ? 0 : 150)).toLocaleString('en-IN')}.00</span>
                 </div>
@@ -302,13 +302,13 @@ export const ShoppingCartPage: React.FC = () => {
               <div className="space-y-4">
                 <Link
                   to="/checkout"
-                  className="w-full block text-center bg-primary text-white py-5 font-button text-button uppercase tracking-widest hover:bg-black/80 transition-colors shadow-md"
+                  className="w-full block text-center bg-primary text-white py-4 sm:py-5 font-button text-xs sm:text-button uppercase tracking-widest hover:bg-black/80 transition-colors shadow-md"
                 >
                   Proceed to Checkout
                 </Link>
                 <Link
                   to="/collections"
-                  className="w-full block text-center border border-primary py-4 font-button text-[12px] uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all"
+                  className="w-full block text-center border border-primary py-3.5 sm:py-4 font-button text-[11px] sm:text-[12px] uppercase tracking-widest text-primary hover:bg-primary hover:text-white transition-all"
                 >
                   Continue Shopping
                 </Link>

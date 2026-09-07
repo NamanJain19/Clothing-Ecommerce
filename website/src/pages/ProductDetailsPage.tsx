@@ -545,10 +545,10 @@ export const ProductDetailsPage: React.FC = () => {
               <button
                 onClick={() => setIsTryOnOpen(true)}
                 type="button"
-                className="w-full h-14 bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 text-amber-300 font-button text-xs uppercase tracking-widest hover:brightness-125 transition-all cursor-pointer shadow-lg font-bold flex items-center justify-center gap-2.5 border border-amber-500/40 rounded-none group"
+                className="w-full min-h-[50px] sm:h-14 py-2.5 px-3 bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 text-amber-300 font-button text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:brightness-125 transition-all cursor-pointer shadow-lg font-bold flex items-center justify-center gap-2 border border-amber-500/40 rounded-none group text-center"
               >
-                <Sparkles className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
-                AI Virtual Fitting Room (Try On Myself)
+                <Sparkles className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform shrink-0" />
+                <span>AI Virtual Fitting Room (Try On Myself)</span>
               </button>
 
               <button

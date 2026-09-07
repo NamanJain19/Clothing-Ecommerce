@@ -13,9 +13,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
-import { getToken } from '../../services/api';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3011/api';
+import { getToken, API_BASE_URL } from '../../services/api';
 
 export interface StructuredProduct {
   id: string;
@@ -254,7 +252,7 @@ export const AIStylistWidget: React.FC = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 bg-neutral-900 dark:bg-amber-400 hover:bg-black dark:hover:bg-amber-300 text-amber-400 dark:text-black p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 group cursor-pointer border border-amber-400/30"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-neutral-900 dark:bg-amber-400 hover:bg-black dark:hover:bg-amber-300 text-amber-400 dark:text-black p-3.5 sm:p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 group cursor-pointer border border-amber-400/30"
           aria-label="Open AI Stylist"
         >
           <Sparkles className="w-5 h-5 animate-pulse" />
@@ -266,7 +264,7 @@ export const AIStylistWidget: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[92vw] sm:w-[440px] h-[600px] bg-white dark:bg-[#131416] text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed inset-x-3 bottom-3 sm:inset-auto sm:bottom-6 sm:right-6 z-50 w-auto sm:w-[440px] max-w-[calc(100vw-24px)] h-[82vh] sm:h-[600px] max-h-[600px] bg-white dark:bg-[#131416] text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
           <div className="bg-neutral-900 text-white p-4 flex items-center justify-between border-b border-white/10 shrink-0">
             <div className="flex items-center gap-3">

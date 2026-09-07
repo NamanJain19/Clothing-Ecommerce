@@ -14,8 +14,8 @@ interface CollectionCardProps {
 export const CollectionCard: React.FC<CollectionCardProps> = ({
   collection,
   showArrowIcon = false,
-  titleSizeClass = 'text-3xl md:text-4xl',
-  paddingClass = 'p-10',
+  titleSizeClass = 'text-2xl sm:text-3xl md:text-4xl',
+  paddingClass = 'p-6 sm:p-8 md:p-10',
   textSizeClass = 'text-xs md:text-sm max-w-xs',
 }) => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
   return (
     <div
       onClick={() => navigate(targetLink)}
-      className={`group relative ${collection.height} overflow-hidden cursor-pointer`}
+      className={`group relative ${collection.height} max-h-[440px] md:max-h-none overflow-hidden cursor-pointer`}
     >
       <img
         alt={collection.title}

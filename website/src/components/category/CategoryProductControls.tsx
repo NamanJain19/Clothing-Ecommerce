@@ -46,26 +46,26 @@ export const CategoryProductControls: React.FC<CategoryProductControlsProps> = (
   };
 
   return (
-    <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-16 pb-8 border-b border-outline-variant flex flex-col md:flex-row justify-between items-baseline gap-4">
-      <div className="flex items-center gap-8">
+    <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-8 sm:mt-16 pb-4 sm:pb-8 border-b border-outline-variant flex flex-wrap justify-between items-center gap-3 sm:gap-4">
+      <div className="flex items-center gap-4 sm:gap-8">
         <button
           onClick={onFilterClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{ letterSpacing: isHovered ? '0.2em' : '0.15em' }}
-          className="group flex items-center gap-2 font-label-caps text-label-caps py-2 transition-all duration-300 cursor-pointer"
+          className="group flex items-center gap-2 font-label-caps text-xs sm:text-label-caps py-2 transition-all duration-300 cursor-pointer"
         >
-          <Filter className="w-4 h-4 text-primary" />
+          <Filter className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
           FILTERS
         </button>
 
         {/* Sort By Dropdown */}
-        <div className="relative hidden md:block" ref={sortRef}>
-          <div className="flex items-center gap-3">
-            <span className="font-label-caps text-label-caps text-secondary/60">SORT BY:</span>
+        <div className="relative" ref={sortRef}>
+          <div className="flex items-center gap-1.5 sm:gap-3">
+            <span className="font-label-caps text-[10px] sm:text-label-caps text-secondary/60 hidden sm:inline">SORT BY:</span>
             <button
               onClick={() => setIsSortOpen((prev) => !prev)}
-              className="font-label-caps text-label-caps flex items-center gap-1.5 cursor-pointer py-1 border-b border-transparent hover:border-primary transition-all"
+              className="font-label-caps text-xs sm:text-label-caps flex items-center gap-1 cursor-pointer py-1 border-b border-transparent hover:border-primary transition-all"
             >
               <span>{SORT_LABELS[sort] || 'NEWEST'}</span>
               <ChevronDown

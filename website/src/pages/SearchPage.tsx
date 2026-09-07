@@ -108,11 +108,11 @@ export const SearchPage: React.FC = () => {
 
         {/* Search Controls Bar */}
         <section className="mb-12 border-b border-outline-variant pb-8">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-gutter">
+          <div className="flex flex-col md:flex-row justify-between items-stretch md:items-end gap-6 md:gap-gutter">
             <div className="w-full md:w-1/2">
               <div className="relative group flex items-center">
                 <input
-                  className="w-full bg-transparent border-b border-primary py-4 pr-12 font-headline-md text-2xl sm:text-3xl focus:outline-none focus:ring-0 placeholder:text-surface-variant text-primary uppercase"
+                  className="w-full bg-transparent border-b border-primary py-4 pr-12 font-headline-md text-xl sm:text-2xl md:text-3xl focus:outline-none focus:ring-0 placeholder:text-surface-variant text-primary uppercase"
                   placeholder="Enter keyword..."
                   type="text"
                   value={searchQuery}
@@ -135,17 +135,17 @@ export const SearchPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-gutter w-full md:w-auto justify-between md:justify-end">
-              <p className="font-label-caps text-label-caps text-secondary uppercase">
+            <div className="flex items-center gap-4 sm:gap-gutter w-full md:w-auto justify-between md:justify-end">
+              <p className="font-label-caps text-xs sm:text-label-caps text-secondary uppercase">
                 RESULTS COUNT ({totalProducts})
               </p>
-              <div className="flex gap-6">
-                <button className="flex items-center gap-2 font-label-caps text-label-caps text-primary hover:opacity-70 transition-opacity cursor-pointer">
+              <div className="flex gap-4 sm:gap-6">
+                <button className="flex items-center gap-1.5 sm:gap-2 font-label-caps text-xs sm:text-label-caps text-primary hover:opacity-70 transition-opacity cursor-pointer">
                   SORT BY <ChevronDown className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setIsFilterOpen(true)}
-                  className="flex items-center gap-2 font-label-caps text-label-caps text-primary hover:opacity-70 transition-opacity cursor-pointer"
+                  className="flex items-center gap-1.5 sm:gap-2 font-label-caps text-xs sm:text-label-caps text-primary hover:opacity-70 transition-opacity cursor-pointer"
                 >
                   FILTER <Filter className="w-4 h-4" />
                 </button>

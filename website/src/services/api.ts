@@ -2,8 +2,16 @@
  * Centralized API client for Monolith Luxury E-Commerce Website
  */
 
-export const API_BASE_URL: string =
-  (import.meta as any).env?.VITE_API_URL || 'http://localhost:3011/api';
+export const API_BASE_URL: string = (() => {
+  const envUrl = (import.meta as any).env?.VITE_API_URL;
+  if (envUrl && typeof envUrl === 'string' && envUrl.trim() && !envUrl.includes('localhost:3011')) {
+    return envUrl.trim();
+  }
+  if (typeof window !== 'undefined' && window.location.hostname.includes('onrender.com')) {
+    return 'https://monolith-backend-yzxj.onrender.com/api';
+  }
+  return envUrl || 'http://localhost:3011/api';
+})();
 
 const TOKEN_KEY = 'luxury_token';
 

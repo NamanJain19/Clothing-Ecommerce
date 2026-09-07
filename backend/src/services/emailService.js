@@ -259,7 +259,7 @@ const emailService = {
     });
 
     try {
-      console.log(`[EmailService] Dispatching password reset email to ${user.email} with URL ${resetUrl}...`);
+      console.log(`[EmailService] Dispatching password reset email to ${user.email}...`);
       const response = await resend.emails.send({
         from: emailFrom,
         to: [user.email],

@@ -12,10 +12,10 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({ isOpen, onClose }) =
   return (
     <div className="fixed inset-0 z-[100] transition-opacity duration-500 ease-in-out">
       <div className="absolute inset-0 bg-black/30 backdrop-blur-md" onClick={onClose}></div>
-      <div className="absolute top-0 right-0 h-full w-full max-w-md bg-white p-margin-mobile md:p-margin-desktop flex flex-col z-10 shadow-2xl animate-in slide-in-from-right duration-300">
-        <div className="flex justify-between items-center mb-12">
+      <div className="absolute top-0 right-0 h-full w-full max-w-full sm:max-w-md bg-white p-5 sm:p-margin-mobile md:p-margin-desktop flex flex-col z-10 shadow-2xl animate-in slide-in-from-right duration-300">
+        <div className="flex justify-between items-center mb-6 sm:mb-12">
           <h2 className="font-label-caps text-label-caps tracking-widest uppercase">FILTERS</h2>
-          <button className="text-primary hover:opacity-60 transition-opacity cursor-pointer" onClick={onClose}>
+          <button className="text-primary hover:opacity-60 transition-opacity cursor-pointer p-1" onClick={onClose}>
             <X className="w-5 h-5" />
           </button>
         </div>

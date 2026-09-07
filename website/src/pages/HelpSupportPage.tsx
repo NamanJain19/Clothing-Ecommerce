@@ -88,70 +88,73 @@ export const HelpSupportPage: React.FC = () => {
           ]}
         />
 
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Account Sidebar Navigation (3 Columns) */}
-          <aside className="col-span-12 lg:col-span-3">
-            <div className="sticky top-28 space-y-12">
+          <aside className="col-span-1 lg:col-span-3">
+            <div className="lg:sticky lg:top-28 space-y-4 lg:space-y-12">
               <div>
-                <h2 className="font-headline-md text-2xl mb-6 text-primary">My Account</h2>
-                <nav className="flex flex-col gap-1 border-l border-outline-variant">
+                <h2 className="font-headline-md text-xl lg:text-2xl mb-4 lg:mb-6 text-primary">My Account</h2>
+                <nav className="flex lg:flex-col gap-1 border-b lg:border-b-0 lg:border-l border-outline-variant overflow-x-auto pb-3 lg:pb-0 scrollbar-none shrink-0">
                   <Link
                     to="/dashboard"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Dashboard
                   </Link>
                   <Link
                     to="/my-orders"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     My Orders
                   </Link>
                   <Link
                     to="/track-order"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Track Orders
                   </Link>
                   <Link
                     to="/wishlist"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Wishlist
                   </Link>
                   <Link
                     to="/saved-addresses"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Saved Addresses
                   </Link>
                   <Link
                     to="/payment-methods"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Payment Methods
                   </Link>
                   <Link
                     to="/account-settings"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Account Settings
                   </Link>
                   <Link
                     to="/notifications"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Notifications
                   </Link>
                   <Link
                     to="/help-support"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-primary font-bold border-l-2 border-primary -ml-[1px]"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-primary font-bold border-b-2 lg:border-b-0 lg:border-l-2 border-primary -mb-[1px] lg:mb-0 lg:-ml-[1px] whitespace-nowrap shrink-0"
                   >
                     Help & Support
                   </Link>
                   <button
-                    onClick={handleLogout}
-                    className="pl-6 py-3 mt-6 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2"
+                    onClick={() => {
+                      logout();
+                      navigate('/login');
+                    }}
+                    className="px-3 lg:pl-6 py-2 lg:py-3 lg:mt-6 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
                   >
                     <LogOut className="w-4 h-4" /> Logout
                   </button>
@@ -254,7 +257,7 @@ export const HelpSupportPage: React.FC = () => {
                 </div>
               )}
 
-              <form onSubmit={handleFormSubmit} className="space-y-6 bg-white p-8 border border-outline-variant shadow-sm">
+              <form onSubmit={handleFormSubmit} className="space-y-6 bg-white p-4 sm:p-8 border border-outline-variant shadow-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-label-caps text-[10px] uppercase text-secondary mb-1">

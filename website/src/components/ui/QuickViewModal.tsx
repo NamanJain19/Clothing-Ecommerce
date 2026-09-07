@@ -44,17 +44,17 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-opacity">
-      <div className="relative w-full max-w-3xl bg-white border border-outline/20 p-8 shadow-2xl animate-in fade-in zoom-in duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md transition-opacity overflow-y-auto">
+      <div className="relative w-full max-w-[calc(100vw-24px)] sm:max-w-3xl max-h-[90vh] overflow-y-auto bg-white border border-outline/20 p-5 sm:p-8 shadow-2xl animate-in fade-in zoom-in duration-300 my-auto">
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 text-black hover:opacity-60 transition-opacity cursor-pointer"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 text-black hover:opacity-60 transition-opacity cursor-pointer z-10 p-1"
           aria-label="Close modal"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="aspect-[3/4] bg-surface-container-low overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+          <div className="aspect-[3/4] max-h-[340px] md:max-h-none bg-surface-container-low overflow-hidden">
             <img
               src={displayImage}
               alt={product.name}

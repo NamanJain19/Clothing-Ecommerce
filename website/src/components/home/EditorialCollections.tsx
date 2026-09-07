@@ -17,15 +17,15 @@ export const EditorialCollections: React.FC = () => {
             <CollectionCard
               collection={col1}
               showArrowIcon={true}
-              titleSizeClass="text-5xl md:text-6xl"
-              paddingClass="p-12"
-              textSizeClass="text-sm md:text-base max-w-sm"
+              titleSizeClass="text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+              paddingClass="p-6 sm:p-8 md:p-12"
+              textSizeClass="text-xs sm:text-sm md:text-base max-w-sm"
             />
             <CollectionCard
               collection={col4}
               showArrowIcon={false}
-              titleSizeClass="text-3xl md:text-4xl"
-              paddingClass="p-10"
+              titleSizeClass="text-2xl sm:text-3xl md:text-4xl"
+              paddingClass="p-6 sm:p-8 md:p-10"
               textSizeClass="text-xs md:text-sm max-w-xs"
             />
           </div>
@@ -35,15 +35,15 @@ export const EditorialCollections: React.FC = () => {
             <CollectionCard
               collection={col2}
               showArrowIcon={false}
-              titleSizeClass="text-3xl md:text-4xl"
-              paddingClass="p-10"
+              titleSizeClass="text-2xl sm:text-3xl md:text-4xl"
+              paddingClass="p-6 sm:p-8 md:p-10"
               textSizeClass="text-xs md:text-sm max-w-xs"
             />
             <CollectionCard
               collection={col3}
               showArrowIcon={false}
-              titleSizeClass="text-3xl md:text-4xl"
-              paddingClass="p-10"
+              titleSizeClass="text-2xl sm:text-3xl md:text-4xl"
+              paddingClass="p-6 sm:p-8 md:p-10"
               textSizeClass="text-xs md:text-sm max-w-xs"
             />
           </div>

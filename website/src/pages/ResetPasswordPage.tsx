@@ -5,6 +5,8 @@ import { Footer } from '../components/layout/Footer';
 import { Eye, EyeOff, Info, ArrowLeft, CheckCircle2, AlertCircle, Loader2, KeyRound } from 'lucide-react';
 import { authService } from '../services/authService';
 
+import { authBrandConfig } from '../data/authConfig';
+
 export const ResetPasswordPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -26,7 +28,6 @@ export const ResetPasswordPage: React.FC = () => {
 
   useEffect(() => {
     let isMounted = true;
-
     const checkToken = async () => {
       if (!token) {
         setIsVerifying(false);
@@ -101,13 +102,13 @@ export const ResetPasswordPage: React.FC = () => {
           <div className="w-full h-full relative group">
             <div className="absolute inset-0 bg-primary/10 z-10 pointer-events-none" />
             <img
-              src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4"
+              src={authBrandConfig.loginImage}
               alt="MONOLITH Luxury Editorial"
-              className="w-full h-full object-cover grayscale transition-transform duration-1000 ease-out group-hover:scale-105"
+              className="w-full h-full object-cover grayscale brightness-95 scale-105 hover:scale-100 transition-transform duration-[3000ms]"
             />
             <div className="absolute top-12 left-12 z-20">
               <span className="font-display-lg text-4xl tracking-tighter text-white font-serif uppercase drop-shadow-md">
-                MONOLITH
+                {authBrandConfig.brandName}
               </span>
             </div>
             <div className="absolute bottom-12 left-12 z-20 max-w-xs">

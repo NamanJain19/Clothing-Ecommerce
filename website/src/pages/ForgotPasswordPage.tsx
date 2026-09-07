@@ -5,6 +5,8 @@ import { Footer } from '../components/layout/Footer';
 import { ArrowLeft, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { authService } from '../services/authService';
 
+import { authBrandConfig } from '../data/authConfig';
+
 export const ForgotPasswordPage: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -42,13 +44,13 @@ export const ForgotPasswordPage: React.FC = () => {
           <div className="w-full h-full relative group">
             <div className="absolute inset-0 bg-primary/10 z-10 transition-opacity duration-700 group-hover:opacity-0" />
             <img
-              src="https://lh3.googleusercontent.com/aida/AP1WRLstQ-t_BKdLJTMOe57cDvBzNV9OdnMaFENbnzIvKVDenP0nPwHK8nBImh9CSUaQoziP-XhfZFUE4Z8dSWOLRLC4WmLGdWUOiVH3AouzWdChpdCD8v6qcncmP7Lbc3g09DfZXFJ3p80pE9cqHKqETR7Ft4xrv0Wzlx9mW-0t8P5oTV2ESEx5QV3401dDROHbZFa7rD9k9lxJTrlQ9qJS6oV6btCjl1kjEdDcBpenweg2H3duoHO1jLr1UGk4"
+              src={authBrandConfig.loginImage}
               alt="MONOLITH Luxury Editorial"
-              className="w-full h-full object-cover grayscale transition-transform duration-1000 ease-out group-hover:scale-105"
+              className="w-full h-full object-cover grayscale brightness-95 scale-105 hover:scale-100 transition-transform duration-[3000ms]"
             />
             <div className="absolute top-12 left-12 z-20">
               <Link to="/" className="font-display-lg text-4xl tracking-tighter text-white font-serif uppercase drop-shadow-md">
-                MONOLITH
+                {authBrandConfig.brandName}
               </Link>
             </div>
           </div>
@@ -59,6 +61,12 @@ export const ForgotPasswordPage: React.FC = () => {
           <div className="w-full max-w-md">
             {!isSubmitted ? (
               <>
+                <div className="mb-4 text-center md:text-left">
+                  <span className="font-display-lg text-3xl md:text-4xl tracking-tighter uppercase text-primary font-serif">
+                    MONOLITH
+                  </span>
+                </div>
+
                 <div className="mb-10 text-center md:text-left">
                   <h1 className="font-headline-md text-3xl md:text-4xl text-primary mb-3">
                     Forgot Password

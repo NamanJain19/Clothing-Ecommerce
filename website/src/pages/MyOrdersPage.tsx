@@ -76,64 +76,64 @@ export const MyOrdersPage: React.FC = () => {
           ]}
         />
 
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Account Sidebar Navigation (3 Columns) */}
-          <aside className="col-span-12 lg:col-span-3">
-            <div className="sticky top-28 space-y-12">
+          <aside className="col-span-1 lg:col-span-3">
+            <div className="lg:sticky lg:top-28 space-y-4 lg:space-y-12">
               <div>
-                <h2 className="font-headline-md text-2xl mb-6 text-primary">My Account</h2>
-                <nav className="flex flex-col gap-1 border-l border-outline-variant">
+                <h2 className="font-headline-md text-xl lg:text-2xl mb-4 lg:mb-6 text-primary">My Account</h2>
+                <nav className="flex lg:flex-col gap-1 border-b lg:border-b-0 lg:border-l border-outline-variant overflow-x-auto pb-3 lg:pb-0 scrollbar-none shrink-0">
                   <Link
                     to="/dashboard"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Dashboard
                   </Link>
                   <Link
                     to="/my-orders"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-primary font-bold border-l-2 border-primary -ml-[1px]"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-primary font-bold border-b-2 lg:border-b-0 lg:border-l-2 border-primary -mb-[1px] lg:mb-0 lg:-ml-[1px] whitespace-nowrap shrink-0"
                   >
                     My Orders
                   </Link>
                   <Link
                     to="/track-order"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Track Orders
                   </Link>
                   <Link
                     to="/wishlist"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Wishlist
                   </Link>
                   <Link
                     to="/saved-addresses"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Saved Addresses
                   </Link>
                   <Link
                     to="/payment-methods"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Payment Methods
                   </Link>
                   <Link
                     to="/account-settings"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Account Settings
                   </Link>
                   <Link
                     to="/notifications"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Notifications
                   </Link>
                   <Link
                     to="/help-support"
-                    className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                   >
                     Help & Support
                   </Link>
@@ -142,7 +142,7 @@ export const MyOrdersPage: React.FC = () => {
                       logout();
                       navigate('/login');
                     }}
-                    className="pl-6 py-3 mt-6 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2"
+                    className="px-3 lg:pl-6 py-2 lg:py-3 lg:mt-6 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
                   >
                     <LogOut className="w-4 h-4" /> Logout
                   </button>
@@ -210,19 +210,19 @@ export const MyOrdersPage: React.FC = () => {
                   return (
                     <div
                       key={order._id}
-                      className="border border-outline-variant p-6 md:p-8 bg-white flex flex-col md:flex-row gap-6 hover:border-primary transition-all duration-300 shadow-sm"
+                      className="border border-outline-variant p-4 sm:p-6 md:p-8 bg-white flex flex-col sm:flex-row gap-4 sm:gap-6 hover:border-primary transition-all duration-300 shadow-sm"
                     >
-                      <div className="w-full md:w-32 h-40 bg-surface-container shrink-0 overflow-hidden border border-outline-variant">
+                      <div className="w-full sm:w-28 md:w-32 h-44 sm:h-36 md:h-40 bg-surface-container shrink-0 overflow-hidden border border-outline-variant">
                         <img
                           src={firstItem?.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-Nfjeq46m2xJ4GymhY-CWVY9EVjOojA372rE-6bRT6KWYPqn6NPSyYDtDgR_WS3i6DV8xJUf6iqw7lMT59PNsRlHn2hMwtSINciz2CaydrVqGxBArBq1Vj7l1Jk_rZQ292u5GgHodW_XB8RBw9r8AXCeL9ou5-aIyL8_-gFaH6rwBXLI5AErv7DWmcfuhABNuNi3CiNvpCSluBUrdj0pj3h6pHh0bh65f5GsPFj7oPPUYJI2C9OqaEw'}
                           alt={firstItem?.name || 'Monolith Piece'}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                      <div className="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 items-center">
                         <div className="space-y-1">
                           <p className="font-label-caps text-[10px] text-secondary font-mono">Order #{order.orderNumber}</p>
-                          <p className="font-headline-md text-xl text-primary">{firstItem?.name || 'Luxury Order'}</p>
+                          <p className="font-headline-md text-lg sm:text-xl text-primary">{firstItem?.name || 'Luxury Order'}</p>
                           <p className="font-body-md text-secondary text-xs">
                             Ordered: {new Date(order.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                           </p>
@@ -239,21 +239,21 @@ export const MyOrdersPage: React.FC = () => {
                         </div>
                         <div className="space-y-1">
                           <p className="font-label-caps text-[10px] text-secondary">Total</p>
-                          <p className="font-headline-md text-xl font-bold text-primary">
+                          <p className="font-headline-md text-lg sm:text-xl font-bold text-primary">
                             ₹{(order.pricing?.total || 0).toLocaleString('en-IN')}
                           </p>
                         </div>
                       </div>
-                      <div className="flex flex-col gap-2 justify-center">
+                      <div className="flex flex-row sm:flex-col gap-2 justify-center pt-2 sm:pt-0 border-t sm:border-t-0 border-outline-variant">
                         <button
                           onClick={() => navigate(`/order-details?id=${order._id}`, { state: { order } })}
-                          className="font-button text-xs uppercase bg-primary text-white px-5 py-2.5 hover:bg-black/90 transition-opacity cursor-pointer shadow-sm text-center"
+                          className="flex-1 sm:flex-none font-button text-xs uppercase bg-primary text-white px-4 sm:px-5 py-2.5 hover:bg-black/90 transition-opacity cursor-pointer shadow-sm text-center"
                         >
                           Order Details
                         </button>
                         <button
                           onClick={() => navigate('/order-success', { state: { order } })}
-                          className="font-button text-xs uppercase border border-primary text-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-all cursor-pointer text-center"
+                          className="flex-1 sm:flex-none font-button text-xs uppercase border border-primary text-primary px-4 sm:px-5 py-2.5 hover:bg-primary hover:text-white transition-all cursor-pointer text-center"
                         >
                           Receipt
                         </button>

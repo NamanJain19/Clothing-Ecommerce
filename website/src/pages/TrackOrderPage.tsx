@@ -227,12 +227,12 @@ export const TrackOrderPage: React.FC = () => {
             )}
 
             {/* Timeline Progress Card */}
-            <div className="bg-white p-6 md:p-8 border border-outline-variant shadow-sm space-y-8">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-outline-variant pb-4">
+            <div className="bg-white p-4 sm:p-6 md:p-8 border border-outline-variant shadow-sm space-y-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-outline-variant pb-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="font-headline-md text-lg text-primary font-bold">
-                      Order: <span className="font-mono text-sm">{order?.orderNumber || 'Active'}</span>
+                    <h3 className="font-headline-md text-base sm:text-lg text-primary font-bold">
+                      Order: <span className="font-mono text-xs sm:text-sm">{order?.orderNumber || 'Active'}</span>
                     </h3>
                     <button
                       type="button"
@@ -248,11 +248,11 @@ export const TrackOrderPage: React.FC = () => {
                     Estimated Delivery: <span className="font-bold text-primary">{order?.estimatedDelivery || '2-4 Business Days'}</span>
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-label-caps text-xs bg-surface-container text-primary border border-outline-variant px-3 py-1 uppercase font-bold">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-label-caps text-[11px] sm:text-xs bg-surface-container text-primary border border-outline-variant px-2.5 sm:px-3 py-1 uppercase font-bold">
                     Shipment: {order?.shipmentStatus?.replace(/_/g, ' ').toUpperCase() || 'MANIFESTED'}
                   </span>
-                  <span className="font-label-caps text-xs bg-primary text-white px-3 py-1 uppercase font-bold">
+                  <span className="font-label-caps text-[11px] sm:text-xs bg-primary text-white px-2.5 sm:px-3 py-1 uppercase font-bold">
                     {order?.orderStatus?.toUpperCase() || 'CONFIRMED'}
                   </span>
                 </div>

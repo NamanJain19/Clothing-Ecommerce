@@ -1,4 +1,4 @@
-import { apiRequest } from './api';
+import { apiRequest, API_BASE_URL } from './api';
 
 export interface OrderItem {
   _id?: string;
@@ -267,7 +267,7 @@ export const orderService = {
    */
   downloadInvoice: async (orderId: string): Promise<void> => {
     const token = localStorage.getItem('token') || localStorage.getItem('luxury_token') || sessionStorage.getItem('token');
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3011/api';
+    const API_URL = API_BASE_URL;
 
     const response = await fetch(`${API_URL}/orders/${orderId}/invoice/download`, {
       method: 'GET',
@@ -297,7 +297,7 @@ export const orderService = {
    */
   printInvoice: async (orderId: string): Promise<void> => {
     const token = localStorage.getItem('token') || localStorage.getItem('luxury_token') || sessionStorage.getItem('token');
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3011/api';
+    const API_URL = API_BASE_URL;
 
     const response = await fetch(`${API_URL}/orders/${orderId}/invoice/download`, {
       method: 'GET',

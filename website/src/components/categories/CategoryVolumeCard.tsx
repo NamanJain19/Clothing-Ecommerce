@@ -21,7 +21,7 @@ export const CategoryVolumeCard: React.FC<CategoryVolumeCardProps> = ({ category
         src={category.image}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
-      <div className="relative z-20 p-8 text-white">
+      <div className="relative z-20 p-5 sm:p-8 text-white">
         <div className="flex justify-between items-center mb-3">
           <span className="font-label-caps text-[10px] tracking-[0.4em] uppercase text-white/70">
             {category.volume}
@@ -30,7 +30,7 @@ export const CategoryVolumeCard: React.FC<CategoryVolumeCardProps> = ({ category
             {category.itemCount} Items
           </span>
         </div>
-        <h3 className="font-display-lg text-4xl mb-3 leading-tight">{category.title}</h3>
+        <h3 className="font-display-lg text-2xl sm:text-3xl md:text-4xl mb-3 leading-tight">{category.title}</h3>
         <p className="font-body-md text-xs text-white/80 line-clamp-2 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           {category.description}
         </p>

@@ -73,28 +73,28 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
       })}
 
       {/* Hero Content Container */}
-      <div className="relative z-20 text-center text-white px-margin-mobile md:px-0 max-w-4xl">
+      <div className="relative z-20 text-center text-white px-4 sm:px-margin-mobile md:px-0 max-w-4xl">
         <h1
           key={`title-${currentSlide}`}
-          className="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 editorial-reveal visible"
+          className="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 sm:mb-6 editorial-reveal visible"
         >
           {activeBanner.title}
         </h1>
         <p
           key={`subtitle-${currentSlide}`}
-          className="font-body-lg text-body-lg mb-10 max-w-2xl mx-auto editorial-reveal delay-100 visible text-white/90"
+          className="font-body-lg text-sm sm:text-base md:text-body-lg mb-8 sm:mb-10 max-w-2xl mx-auto editorial-reveal delay-100 visible text-white/90"
         >
           {activeBanner.subtitle}
         </p>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 editorial-reveal delay-200 visible">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 editorial-reveal delay-200 visible w-full max-w-xs sm:max-w-none mx-auto">
           <Link
-            className="w-full md:w-auto px-12 py-4 bg-white text-black font-button text-button uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-500 shadow-md cursor-pointer btn-hero-primary"
+            className="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 bg-white text-black font-button text-xs sm:text-button uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-500 shadow-md cursor-pointer btn-hero-primary text-center"
             to={activeBanner.primaryButtonLink}
           >
             {activeBanner.primaryButtonText}
           </Link>
           <Link
-            className="w-full md:w-auto px-12 py-4 border border-white text-white font-button text-button uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500 cursor-pointer"
+            className="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 border border-white text-white font-button text-xs sm:text-button uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500 cursor-pointer text-center"
             to={activeBanner.secondaryButtonLink}
           >
             {activeBanner.secondaryButtonText}
@@ -106,10 +106,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
       {banners.length > 1 && (
         <button
           onClick={prevSlide}
-          className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/20 hover:bg-black/60 text-white/70 hover:text-white backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none"
+          className="absolute left-2 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-black/20 hover:bg-black/60 text-white/70 hover:text-white backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none"
           aria-label="Previous Slide"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       )}
 
@@ -117,10 +117,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
       {banners.length > 1 && (
         <button
           onClick={nextSlide}
-          className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/20 hover:bg-black/60 text-white/70 hover:text-white backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none"
+          className="absolute right-2 sm:right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-black/20 hover:bg-black/60 text-white/70 hover:text-white backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none"
           aria-label="Next Slide"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       )}
 

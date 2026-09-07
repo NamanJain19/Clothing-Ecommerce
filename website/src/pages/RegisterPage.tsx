@@ -336,7 +336,7 @@ export const RegisterPage: React.FC = () => {
                 className="flex items-center justify-center gap-2.5 border border-outline-variant py-3.5 px-4 font-button text-xs uppercase tracking-wider hover:border-primary transition-colors cursor-pointer bg-white shadow-xs"
               >
                 <AppleLogoIcon className="w-4 h-4 shrink-0" />
-                <span>Continue with Apple</span>
+                <span>Apple</span>
               </button>
             </div>
 

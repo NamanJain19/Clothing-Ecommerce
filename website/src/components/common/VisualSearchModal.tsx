@@ -111,40 +111,40 @@ export const VisualSearchModal: React.FC<VisualSearchModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md">
       {/* Click outside backdrop */}
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Main Modal Window */}
-      <div className="relative w-full max-w-4xl bg-white dark:bg-[#131416] text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-[calc(100vw-24px)] sm:max-w-4xl bg-white dark:bg-[#131416] text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#17181a] shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#17181a] shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center border border-amber-500/20">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center border border-amber-500/20 shrink-0">
               <ScanSearch className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xl font-bold tracking-tight flex items-center gap-2">
+              <h3 className="text-base sm:text-xl font-bold tracking-tight flex flex-wrap items-center gap-1.5 sm:gap-2">
                 Monolith AI Visual Lens
                 <span className="text-[10px] bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                   Gemini Vision
                 </span>
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
                 Drop any photo, screenshot, or runway outfit to discover visually matching garments.
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-xl transition-colors cursor-pointer"
+            className="p-1.5 sm:p-2 text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-xl transition-colors cursor-pointer shrink-0"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto flex-1 space-y-6">
+        <div className="p-4 sm:p-8 overflow-y-auto flex-1 space-y-6">
           {!selectedImage ? (
             <div className="space-y-6">
               {/* Dropzone */}

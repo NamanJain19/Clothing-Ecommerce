@@ -117,15 +117,15 @@ export const Navbar: React.FC = () => {
         id="top-nav"
         className={`fixed top-0 w-full z-40 transition-all duration-300 ease-in-out ${navBgClass}`}
       >
-        <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-unit max-w-container-max mx-auto h-20">
+        <div className="flex justify-between items-center px-3 sm:px-margin-mobile md:px-margin-desktop py-unit max-w-container-max mx-auto h-20">
           {/* Mobile menu toggle */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2 focus:outline-none cursor-pointer transition-colors ${iconClass}`}
+              className={`p-1.5 focus:outline-none cursor-pointer transition-colors ${iconClass}`}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
 
@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
           <div className="flex-shrink-0">
             <Link
               to="/"
-              className={`font-display-lg text-2xl tracking-[0.3em] uppercase select-none cursor-pointer transition-colors font-bold ${logoClass}`}
+              className={`font-display-lg text-lg sm:text-xl md:text-2xl tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase select-none cursor-pointer transition-colors font-bold ${logoClass}`}
             >
               MONOLITH
             </Link>
@@ -225,7 +225,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Action Icons */}
-          <div className="flex items-center space-x-5">
+          <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-5">
             {/* Amazon-Style AI Lens Button */}
             <button
               onClick={() => setVisualSearchOpen(true)}

@@ -231,8 +231,8 @@ export const LocationMapModal: React.FC<LocationMapModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="bg-white text-primary w-full max-w-3xl rounded-none border border-outline-variant shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="bg-white text-primary w-full max-w-[calc(100vw-24px)] sm:max-w-3xl rounded-none border border-outline-variant shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
         {/* Modal Header */}
         <div className="p-4 sm:p-6 border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
           <div className="flex items-center gap-3">

@@ -92,55 +92,55 @@ export const OrderDetailsPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Left Sidebar Navigation (3 Columns) */}
-          <aside className="md:col-span-3 space-y-8">
-            <div className="space-y-6">
+          <aside className="md:col-span-3 space-y-4 md:space-y-8">
+            <div className="space-y-3 md:space-y-6">
               <h3 className="font-label-caps text-xs text-secondary uppercase tracking-widest">MY ACCOUNT</h3>
-              <nav className="flex flex-col gap-1 border-l border-outline-variant">
+              <nav className="flex md:flex-col gap-1 border-b md:border-b-0 md:border-l border-outline-variant overflow-x-auto pb-3 md:pb-0 scrollbar-none shrink-0">
                 <Link
                   to="/dashboard"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/my-orders"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-primary font-bold border-l-2 border-primary -ml-[1px]"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-primary font-bold border-b-2 md:border-b-0 md:border-l-2 border-primary -mb-[1px] md:mb-0 md:-ml-[1px] whitespace-nowrap shrink-0"
                 >
                   My Orders
                 </Link>
                 <Link
                   to="/track-order"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   Track Orders
                 </Link>
                 <Link
                   to="/wishlist"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   Wishlist
                 </Link>
                 <Link
                   to="/saved-addresses"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   Saved Addresses
                 </Link>
                 <Link
                   to="/payment-methods"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   Payment Methods
                 </Link>
                 <Link
                   to="/account-settings"
-                  className="pl-6 py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors"
+                  className="px-3 md:pl-6 py-2 md:py-3 font-label-caps text-xs uppercase text-secondary hover:text-primary transition-colors whitespace-nowrap shrink-0"
                 >
                   Account Settings
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="pl-6 py-3 mt-4 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2"
+                  className="px-3 md:pl-6 py-2 md:py-3 md:mt-4 font-label-caps text-xs uppercase text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
                 >
                   <LogOut className="w-4 h-4" /> Logout
                 </button>
@@ -148,7 +148,7 @@ export const OrderDetailsPage: React.FC = () => {
             </div>
 
             {/* Help Concierge Card */}
-            <div className="p-6 bg-surface-container-low border border-outline-variant">
+            <div className="p-4 sm:p-6 bg-surface-container-low border border-outline-variant hidden md:block">
               <p className="font-label-caps text-xs uppercase tracking-widest mb-2 font-semibold">NEED HELP?</p>
               <p className="font-body-md text-secondary mb-4 text-xs">
                 Our concierge is available 24/7 for any inquiries regarding your orders.
@@ -160,10 +160,10 @@ export const OrderDetailsPage: React.FC = () => {
           </aside>
 
           {/* Main Content Area: Order Details (9 Columns) */}
-          <section className="md:col-span-9 space-y-12">
-            <header className="mb-8">
-              <h1 className="font-headline-lg text-3xl md:text-4xl text-primary mb-2">Order Details</h1>
-              <p className="font-body-md text-secondary text-sm">View complete real-time information about your order.</p>
+          <section className="md:col-span-9 space-y-8 md:space-y-12">
+            <header className="mb-4 sm:mb-8">
+              <h1 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-primary mb-2">Order Details</h1>
+              <p className="font-body-md text-secondary text-xs sm:text-sm">View complete real-time information about your order.</p>
             </header>
 
             {errorMessage && (
@@ -176,17 +176,17 @@ export const OrderDetailsPage: React.FC = () => {
             {order ? (
               <>
                 {/* Order Info Card */}
-                <div className="bg-white border border-outline-variant p-6 md:p-8 shadow-sm">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="bg-white border border-outline-variant p-4 sm:p-6 md:p-8 shadow-sm">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                     <div>
                       <p className="font-label-caps text-[10px] text-secondary uppercase mb-1">ORDER NUMBER</p>
-                      <p className="font-body-md font-semibold text-primary font-mono">{order.orderNumber}</p>
+                      <p className="font-body-md font-semibold text-primary font-mono text-xs sm:text-sm truncate">{order.orderNumber}</p>
                     </div>
                     <div>
                       <p className="font-label-caps text-[10px] text-secondary uppercase mb-1">DATE</p>
-                      <p className="font-body-md font-semibold text-primary">
+                      <p className="font-body-md font-semibold text-primary text-xs sm:text-sm">
                         {new Date(order.createdAt).toLocaleDateString('en-US', {
-                          month: 'long',
+                          month: 'short',
                           day: 'numeric',
                           year: 'numeric',
                         })}
@@ -194,30 +194,30 @@ export const OrderDetailsPage: React.FC = () => {
                     </div>
                     <div>
                       <p className="font-label-caps text-[10px] text-secondary uppercase mb-1">STATUS</p>
-                      <span className="inline-block px-3 py-1 bg-primary text-white font-label-caps text-[9px] uppercase tracking-widest font-bold">
+                      <span className="inline-block px-2.5 py-1 bg-primary text-white font-label-caps text-[9px] uppercase tracking-widest font-bold">
                         {order.orderStatus}
                       </span>
                     </div>
                     <div>
                       <p className="font-label-caps text-[10px] text-secondary uppercase mb-1">TOTAL AMOUNT</p>
-                      <p className="font-body-md font-semibold text-primary">
+                      <p className="font-body-md font-semibold text-primary text-xs sm:text-sm">
                         ₹{(order.pricing?.total || order.total || 0).toLocaleString('en-IN')}
                       </p>
                     </div>
                   </div>
 
                   {/* Actions Row */}
-                  <div className="mt-6 pt-6 border-t border-outline-variant flex flex-wrap gap-4 items-center justify-between">
-                    <div className="flex gap-4">
+                  <div className="mt-6 pt-6 border-t border-outline-variant flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
                       <button
                         onClick={() => orderService.downloadInvoice(order._id)}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white font-button text-[11px] uppercase tracking-widest hover:bg-black transition-all cursor-pointer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-white font-button text-[11px] uppercase tracking-widest hover:bg-black transition-all cursor-pointer w-full sm:w-auto"
                       >
                         <Download className="w-3.5 h-3.5" /> Download Tax Invoice
                       </button>
                       <button
                         onClick={() => navigate(`/track-order?id=${order.orderNumber}`)}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 border border-primary text-primary font-button text-[11px] uppercase tracking-widest hover:bg-surface-container-low transition-all cursor-pointer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-primary text-primary font-button text-[11px] uppercase tracking-widest hover:bg-surface-container-low transition-all cursor-pointer w-full sm:w-auto"
                       >
                         <Truck className="w-3.5 h-3.5" /> Track Courier Dispatch
                       </button>

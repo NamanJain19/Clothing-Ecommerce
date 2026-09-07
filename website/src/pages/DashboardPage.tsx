@@ -94,64 +94,64 @@ export const DashboardPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Left Column: Account Navigation Sidebar (3 Columns) */}
           <aside className="md:col-span-3">
-            <nav className="flex flex-col gap-1 border-l border-outline-variant">
+            <nav className="flex md:flex-col gap-1 border-b md:border-b-0 md:border-l border-outline-variant overflow-x-auto pb-3 md:pb-0 scrollbar-none shrink-0">
               <Link
                 to="/dashboard"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-primary -ml-[1px] text-primary font-bold"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-primary -mb-[1px] md:mb-0 md:-ml-[1px] text-primary font-bold whitespace-nowrap shrink-0"
               >
                 Dashboard
               </Link>
               <Link
                 to="/my-orders"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 My Orders
               </Link>
               <Link
                 to="/track-order"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Track Orders
               </Link>
               <Link
                 to="/wishlist"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Wishlist
               </Link>
               <Link
                 to="/saved-addresses"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Saved Addresses
               </Link>
               <Link
                 to="/payment-methods"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Payment Methods
               </Link>
               <Link
                 to="/account-settings"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Account Settings
               </Link>
               <Link
                 to="/notifications"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Notifications
               </Link>
               <Link
                 to="/help-support"
-                className="pl-6 py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-secondary hover:text-primary"
+                className="px-3 md:pl-6 py-2 md:py-3.5 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-secondary hover:text-primary whitespace-nowrap shrink-0"
               >
                 Help & Support
               </Link>
               <button
                 onClick={handleLogout}
-                className="pl-6 py-3.5 mt-6 font-label-caps text-xs uppercase transition-all duration-300 border-l-2 border-transparent -ml-[1px] text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2"
+                className="px-3 md:pl-6 py-2 md:py-3.5 md:mt-6 font-label-caps text-xs uppercase transition-all duration-300 border-b-2 md:border-b-0 md:border-l-2 border-transparent -mb-[1px] md:mb-0 md:-ml-[1px] text-red-600 hover:opacity-70 text-left cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0"
               >
                 <LogOut className="w-4 h-4" /> Logout
               </button>
@@ -159,11 +159,11 @@ export const DashboardPage: React.FC = () => {
           </aside>
 
           {/* Right Column: Dashboard Main Content (9 Columns) */}
-          <div className="md:col-span-9 space-y-12">
+          <div className="md:col-span-9 space-y-8 md:space-y-12">
             {/* Profile Card */}
-            <section className="border border-outline-variant p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 bg-white shadow-sm">
-              <div className="relative">
-                <div className="w-28 h-28 rounded-full border border-outline-variant overflow-hidden bg-surface-container flex items-center justify-center">
+            <section className="border border-outline-variant p-5 sm:p-8 md:p-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 bg-white shadow-sm">
+              <div className="relative shrink-0">
+                <div className="w-20 sm:w-28 h-20 sm:h-28 rounded-full border border-outline-variant overflow-hidden bg-surface-container flex items-center justify-center">
                   {user?.avatar ? (
                     <img
                       src={user.avatar}
@@ -171,29 +171,29 @@ export const DashboardPage: React.FC = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="font-display-lg text-3xl text-primary font-bold">
+                    <span className="font-display-lg text-2xl sm:text-3xl text-primary font-bold">
                       {user?.firstName?.[0] || 'M'}
                     </span>
                   )}
                 </div>
               </div>
-              <div className="flex-1 text-center md:text-left space-y-1">
-                <h2 className="font-headline-md text-2xl md:text-3xl text-primary font-bold">
+              <div className="flex-1 text-center sm:text-left space-y-1">
+                <h2 className="font-headline-md text-xl sm:text-2xl md:text-3xl text-primary font-bold">
                   {user?.fullName || `${user?.firstName || ''} ${user?.lastName || ''}`.trim() || 'Private Client'}
                 </h2>
-                <p className="font-body-md text-secondary text-sm font-medium">{user?.email || 'client@monolithluxury.com'}</p>
+                <p className="font-body-md text-secondary text-xs sm:text-sm font-medium">{user?.email || 'client@monolithluxury.com'}</p>
                 <p className="font-body-md text-secondary text-xs">{user?.phone ? `+91 ${user.phone}` : 'Monolith Private Client'}</p>
               </div>
               <button
                 onClick={() => navigate('/account-settings')}
-                className="bg-primary text-white px-7 py-3.5 font-button text-xs uppercase tracking-widest hover:bg-black/90 transition-all cursor-pointer shadow-sm"
+                className="w-full sm:w-auto bg-primary text-white px-6 sm:px-7 py-3 sm:py-3.5 font-button text-xs uppercase tracking-widest hover:bg-black/90 transition-all cursor-pointer shadow-sm text-center"
               >
                 Edit Profile
               </button>
             </section>
 
             {/* Account Overview Grid */}
-            <section className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               <div
                 onClick={() => navigate('/my-orders')}
                 className="border border-outline-variant p-6 text-center group hover:bg-primary transition-colors duration-500 bg-white cursor-pointer"

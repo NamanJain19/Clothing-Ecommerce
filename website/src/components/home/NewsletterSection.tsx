@@ -24,9 +24,9 @@ export const NewsletterSection: React.FC = () => {
             Receive seasonal updates and private invitations.
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="flex w-full md:w-auto min-w-full md:min-w-[400px] border-b border-black">
+        <form onSubmit={handleSubmit} className="flex w-full md:w-auto md:min-w-[320px] lg:min-w-[400px] border-b border-black">
           <input
-            className="flex-grow bg-transparent border-none focus:outline-none focus:ring-0 font-body-md py-4 px-0 placeholder:text-outline/40"
+            className="flex-grow min-w-0 bg-transparent border-none focus:outline-none focus:ring-0 font-body-md py-3 sm:py-4 px-0 placeholder:text-outline/40 text-sm"
             placeholder={submitted ? 'Thank you for joining.' : 'Your Email Address'}
             type="email"
             value={email}
@@ -34,7 +34,7 @@ export const NewsletterSection: React.FC = () => {
             required
           />
           <button
-            className="font-label-caps text-[11px] uppercase tracking-[0.3em] pl-8 py-4 hover:opacity-50 transition-opacity cursor-pointer"
+            className="font-label-caps text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.3em] pl-4 sm:pl-8 py-3 sm:py-4 hover:opacity-50 transition-opacity cursor-pointer shrink-0"
             type="submit"
           >
             {submitted ? 'Joined' : 'Subscribe'}

@@ -115,38 +115,38 @@ export const VirtualTryOnModal: React.FC<VirtualTryOnModalProps> = ({
   const currentPersonPhoto = userUploadedPhoto || selectedModel.image;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      {/* Dark Backdrop */}
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity animate-in fade-in"
         onClick={onClose}
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-5xl bg-white border border-neutral-300 rounded-3xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[94vh]">
+      <div className="relative w-full max-w-[calc(100vw-24px)] sm:max-w-5xl bg-white border border-neutral-300 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[94vh]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 sm:px-8 py-4.5 border-b border-neutral-200 bg-neutral-900 text-white shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-8 py-3.5 sm:py-4.5 border-b border-neutral-200 bg-neutral-900 text-white shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 text-neutral-950 flex items-center justify-center shadow-md">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 text-neutral-950 flex items-center justify-center shadow-md shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+              <h3 className="text-base sm:text-lg lg:text-xl font-bold tracking-tight text-white flex flex-wrap items-center gap-1.5 sm:gap-2">
                 Monolith AI Virtual Dressing Room
                 <span className="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-2 py-0.5 rounded-full uppercase">
                   Live Fit Mirror
                 </span>
               </h3>
-              <p className="text-xs text-neutral-400 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-neutral-400 mt-0.5">
                 Preview how <strong>{product.name}</strong> drapes on your silhouette in real-time.
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors cursor-pointer"
+            className="p-1.5 sm:p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors cursor-pointer shrink-0"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export const FeaturedSaleBanner: React.FC = () => {
   return (
     <section className="my-section-gap">
-      <div className="relative bg-neutral-950 text-white overflow-hidden p-8 md:p-16 border border-neutral-800">
+      <div className="relative bg-neutral-950 text-white overflow-hidden p-5 sm:p-8 md:p-16 border border-neutral-800">
         {/* Background Subtle Gradient Overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-neutral-800/40 via-transparent to-transparent pointer-events-none" />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-center">
           {/* Left Column: Editorial Philosophy */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2">
@@ -19,7 +19,7 @@ export const FeaturedSaleBanner: React.FC = () => {
               </span>
             </div>
 
-            <h2 className="font-headline-lg text-3xl md:text-4xl lg:text-5xl font-normal leading-tight">
+            <h2 className="font-headline-lg text-2xl sm:text-4xl lg:text-5xl font-normal leading-tight">
               The Archive Protocol
             </h2>
 
@@ -28,7 +28,7 @@ export const FeaturedSaleBanner: React.FC = () => {
             </p>
 
             {/* Value Props */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-neutral-800 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-4 border-t border-neutral-800 text-xs">
               <div className="flex items-center gap-3">
                 <ShieldCheck className="w-4 h-4 text-neutral-400 shrink-0" />
                 <span className="font-label-caps text-[10px] uppercase tracking-wider text-neutral-300">
@@ -49,17 +49,17 @@ export const FeaturedSaleBanner: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
               <Link
                 to="/men"
-                className="px-8 py-3.5 bg-white text-black font-button text-xs uppercase tracking-widest hover:bg-neutral-200 transition-all cursor-pointer font-bold inline-flex items-center gap-2 shadow-md"
+                className="px-6 sm:px-8 py-3.5 bg-white text-black font-button text-xs uppercase tracking-widest hover:bg-neutral-200 transition-all cursor-pointer font-bold inline-flex items-center justify-center gap-2 shadow-md"
               >
                 <span>Men's Collection</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 to="/women"
-                className="px-8 py-3.5 border border-white text-white font-button text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-pointer font-bold inline-flex items-center gap-2"
+                className="px-6 sm:px-8 py-3.5 border border-white text-white font-button text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-pointer font-bold inline-flex items-center justify-center gap-2"
               >
                 <span>Women's Collection</span>
                 <ArrowRight className="w-3.5 h-3.5" />

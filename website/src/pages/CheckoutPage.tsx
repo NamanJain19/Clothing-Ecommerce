@@ -363,14 +363,14 @@ export const CheckoutPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Form Steps (7 Columns) */}
-          <form onSubmit={handlePlaceOrder} className="lg:col-span-7 space-y-12">
+          <form onSubmit={handlePlaceOrder} className="lg:col-span-7 space-y-8 sm:space-y-12">
             {/* Step 1: Contact Information */}
-            <section className="space-y-6 bg-white p-8 border border-outline-variant">
+            <section className="space-y-6 bg-white p-4 sm:p-8 border border-outline-variant">
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-label-caps text-label-caps bg-primary text-white w-8 h-8 flex items-center justify-center font-bold">
                   01
                 </span>
-                <h2 className="font-headline-md text-2xl">Contact Information</h2>
+                <h2 className="font-headline-md text-xl sm:text-2xl">Contact Information</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -404,7 +404,7 @@ export const CheckoutPage: React.FC = () => {
             </section>
 
             {/* Step 2: Shipping Address */}
-            <section className="space-y-6 bg-white p-8 border border-outline-variant">
+            <section className="space-y-6 bg-white p-4 sm:p-8 border border-outline-variant">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-4">
                   <span className="font-label-caps text-label-caps bg-primary text-white w-8 h-8 flex items-center justify-center font-bold">
@@ -581,12 +581,12 @@ export const CheckoutPage: React.FC = () => {
             </section>
 
             {/* Step 3: Shipping Method */}
-            <section className="space-y-6 bg-white p-8 border border-outline-variant">
+            <section className="space-y-6 bg-white p-4 sm:p-8 border border-outline-variant">
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-label-caps text-label-caps bg-primary text-white w-8 h-8 flex items-center justify-center font-bold">
                   03
                 </span>
-                <h2 className="font-headline-md text-2xl">Shipping Method & Delivery Window</h2>
+                <h2 className="font-headline-md text-xl sm:text-2xl">Shipping Method & Delivery Window</h2>
               </div>
               <div className="space-y-4">
                 <label className="flex items-center justify-between p-5 border border-outline-variant cursor-pointer hover:bg-surface-container-low transition-colors">
@@ -632,12 +632,12 @@ export const CheckoutPage: React.FC = () => {
             </section>
 
             {/* Step 4: Payment Method */}
-            <section className="space-y-6 bg-white p-8 border border-outline-variant">
+            <section className="space-y-6 bg-white p-4 sm:p-8 border border-outline-variant">
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-label-caps text-label-caps bg-primary text-white w-8 h-8 flex items-center justify-center font-bold">
                   04
                 </span>
-                <h2 className="font-headline-md text-2xl">Payment Selection (Razorpay Secured)</h2>
+                <h2 className="font-headline-md text-xl sm:text-2xl">Payment Selection (Razorpay Secured)</h2>
               </div>
 
               <div className="space-y-4">
@@ -777,8 +777,8 @@ export const CheckoutPage: React.FC = () => {
           </form>
 
           {/* Right Column: Order Summary (5 Columns) */}
-          <div className="lg:col-span-5 space-y-8 sticky top-28">
-            <div className="bg-surface-container-low p-8 border border-outline-variant">
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
+            <div className="bg-surface-container-low p-4 sm:p-8 border border-outline-variant">
               <div className="flex justify-between items-center pb-6 border-b border-outline-variant">
                 <h3 className="font-headline-md text-xl">Order Summary</h3>
                 <span className="font-label-caps text-secondary text-xs">

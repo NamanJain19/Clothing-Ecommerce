@@ -60,18 +60,18 @@ export const WishlistPage: React.FC = () => {
             </div>
 
             {/* Action Bar */}
-            <div className="mt-12 flex flex-col md:flex-row justify-between items-end md:items-center border-b border-outline-variant pb-6 gap-6">
-              <span className="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+            <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-between items-stretch sm:items-center border-b border-outline-variant pb-6 gap-4 sm:gap-6">
+              <span className="font-label-caps text-xs sm:text-label-caps text-primary uppercase tracking-widest">
                 {wishlist.length} {wishlist.length === 1 ? 'Item' : 'Items'} Saved
               </span>
               {wishlist.length > 0 && (
-                <div className="flex items-center gap-8">
-                  <button className="font-label-caps text-label-caps flex items-center gap-2 uppercase tracking-widest text-primary hover:opacity-70 transition-opacity cursor-pointer">
+                <div className="flex items-center justify-between sm:justify-end gap-6 sm:gap-8">
+                  <button className="font-label-caps text-xs sm:text-label-caps flex items-center gap-2 uppercase tracking-widest text-primary hover:opacity-70 transition-opacity cursor-pointer">
                     Sort By <ChevronDown className="w-4 h-4" />
                   </button>
                   <button
                     onClick={handleClearWishlist}
-                    className="font-label-caps text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors cursor-pointer"
+                    className="font-label-caps text-xs sm:text-label-caps uppercase tracking-widest text-secondary hover:text-primary transition-colors cursor-pointer"
                   >
                     Clear Wishlist
                   </button>

@@ -59,7 +59,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, offsetClass =
 
   return (
     <div onClick={handleCardClick} className={`group cursor-pointer ${offsetClass}`}>
-      <div className={`relative ${aspectClass} overflow-hidden rounded-lg mb-8 bg-surface-container-low`}>
+      <div className={`relative ${aspectClass} overflow-hidden rounded-lg mb-4 sm:mb-8 bg-surface-container-low`}>
         <img
           alt={product.name}
           loading="lazy"
@@ -72,11 +72,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, offsetClass =
         <button
           onClick={handleWishlistClick}
           aria-label={isFavorite ? 'Remove from wishlist' : 'Add to wishlist'}
-          className="absolute top-6 right-6 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-6 sm:right-6 text-black opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 cursor-pointer p-1.5 rounded-full bg-white/80 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none"
         >
-          <Heart className={`w-5 h-5 ${isFavorite ? 'fill-black text-black' : ''}`} />
+          <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${isFavorite ? 'fill-black text-black' : ''}`} />
         </button>
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/5">
+        <div className="hidden sm:flex absolute inset-0 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/5">
           <button
             onClick={handleQuickViewClick}
             className="bg-white text-black font-button text-[10px] uppercase tracking-widest px-8 py-3 hover:bg-black hover:text-white transition-colors cursor-pointer"
